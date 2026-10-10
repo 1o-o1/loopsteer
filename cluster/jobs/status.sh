@@ -59,6 +59,7 @@ ls "$OUT_ROOT/_chain" 2> /dev/null | sed 's/^/  /' || true
 for m in _smoke.ok _smoke_fail.txt _smoke_override.txt _staged.ok; do [ -e "$OUT_ROOT/$m" ] && echo "  $m"; done
 echo
 echo "bad nodes ($OUT_ROOT/bad_nodes.txt, excluded from every later submission): $(sort -u "$OUT_ROOT/bad_nodes.txt" 2> /dev/null | grep . | paste -sd, - || true)"
+echo "run nodes ($OUT_ROOT/run_nodes.txt, chosen by the probe step): $(grep . "$OUT_ROOT/run_nodes.txt" 2> /dev/null | paste -sd, - || true)"
 for f in "$OUT_ROOT"/_probe/*.out; do
   [ -e "$f" ] || continue
   echo "  probe $(basename "$f" .out): $(grep -m1 "^RC=" "$f" || echo "no RC yet") $(grep -m1 -i "CUDA unknown error\|No devices were found" "$f" || true)"

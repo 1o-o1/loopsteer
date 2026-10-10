@@ -14,8 +14,10 @@
 #                    matmul, RC=. Logs in $OUT_ROOT/_probe/<node>.out. A probe that cannot start within two hours ends
 #                    by its deadline and counts as unknown (the node is not excluded).
 #   3. probe_collect CPU job after every probe: a node is bad when its RC is not 0 or its log shows "CUDA unknown error"
-#                    or "No devices were found"; bad nodes go to $OUT_ROOT/bad_nodes.txt. Then it submits, excluding
-#                    them: 4. g0 (task_g0_xllm.sbatch), 5. smoke (env/smoke_cluster.sh, after g0), 6. stage_submit
+#                    or "No devices were found"; bad nodes go to $OUT_ROOT/bad_nodes.txt. It keeps the first
+#                    $NODES_EXPECTED healthy nodes of NODELIST (then nodes with no verdict, when too few are healthy) in
+#                    $OUT_ROOT/run_nodes.txt and excludes every other node of NODELIST ($OUT_ROOT/run_nodes.env, which
+#                    cluster.env reads). Then it submits, excluding the bad and the unused nodes: 4. g0 (task_g0_xllm.sbatch), 5. smoke (env/smoke_cluster.sh, after g0), 6. stage_submit
 #                    (jobs/stage_done.sh unless DONE_SRC=none, then submit_10_rest.sh of the chosen lists, after smoke).
 # Every step writes $OUT_ROOT/_chain/<step>.ok or <step>.fail, loads $MODULES when set, and on any failure writes
 # $OUT_ROOT/_diag/chain.<step>.txt (exit code, failing check, host role, GPU, free memory, last 50 log lines). A task
@@ -135,19 +137,43 @@ if [ "${1:-}" = "--step" ]; then
       [ -f "$CH/setup_check.ok" ] || refuse "previous step not passed: no $CH/setup_check.ok"
       CHECK="probe verdicts ($PR)"
       touch "$OUT_ROOT/bad_nodes.txt"
+      OK=""; UNKNOWN=""
       for n in $(echo "${NODELIST:-}" | tr ',' ' '); do
         f="$PR/$n.out"
         if [ ! -f "$f" ] || ! grep -q "^RC=" "$f"; then
           echo "unknown $n (the probe did not run; not excluded)"
+          UNKNOWN="$UNKNOWN $n"
         elif grep -q "$SIGNATURES" "$f" || ! grep -q "^RC=0" "$f"; then
           echo "BAD     $n: $(grep -m1 -i "error\|No devices\|^RC=" "$f" | cut -c1-120)"
           echo "$n" >> "$OUT_ROOT/bad_nodes.txt"
         else
           echo "ok      $n: $(grep -m1 "^matmul" "$f")"
+          OK="$OK $n"
         fi
       done
       sort -u "$OUT_ROOT/bad_nodes.txt" | grep . > "$OUT_ROOT/bad_nodes.tmp"; mv -f "$OUT_ROOT/bad_nodes.tmp" "$OUT_ROOT/bad_nodes.txt"
       echo "bad nodes: $(paste -sd, "$OUT_ROOT/bad_nodes.txt")"
+      # the run's nodes: the first NODES_EXPECTED healthy nodes in NODELIST order, then nodes with no verdict (the
+      # earlier rule: those are not excluded) when fewer are healthy; every other node of NODELIST is excluded
+      CHECK="choice of the run's nodes"
+      NE="${NODES_EXPECTED:-6}"; run=(); unused=()
+      for n in $OK $UNKNOWN; do [ ${#run[@]} -lt "$NE" ] && run+=("$n"); done
+      for n in $(echo "${NODELIST:-}" | tr ',' ' '); do
+        case " ${run[*]} " in *" $n "*) ;; *) grep -qx "$n" "$OUT_ROOT/bad_nodes.txt" || unused+=("$n");; esac
+      done
+      [ ${#run[@]} -gt 0 ] || { CHECK="no usable node: every probe of NODELIST failed"; exit 1; }
+      printf '%s\n' "${run[@]}" > "$OUT_ROOT/run_nodes.txt"
+      SLURM_RESTRICT="${SLURM_RESTRICT_BASE:-${SLURM_RESTRICT:-}}"
+      if [ ${#unused[@]} -gt 0 ]; then
+        u=$(printf '%s\n' "${unused[@]}" | paste -sd, -)
+        case "$SLURM_RESTRICT" in *--exclude=*) SLURM_RESTRICT=$(echo "$SLURM_RESTRICT" | sed "s/--exclude=\([^ ]*\)/--exclude=\1,$u/");;
+          *) SLURM_RESTRICT="${SLURM_RESTRICT:+$SLURM_RESTRICT }--exclude=$u";; esac
+      fi
+      export SLURM_RESTRICT          # every later job inherits it (sbatch exports the environment)
+      printf '# written by the probe_collect step of submit_chain.sh; cluster.env reads it\nexport SLURM_RESTRICT="%s"\n' \
+        "$SLURM_RESTRICT" > "$OUT_ROOT/run_nodes.env"
+      echo "run nodes (${#run[@]} of $NE): $(printf '%s\n' "${run[@]}" | paste -sd, -); not used: $(printf '%s\n' ${unused[@]+"${unused[@]}"} | paste -sd, -)"
+      [ ${#run[@]} -ge "$NE" ] || echo "WARNING: only ${#run[@]} usable nodes of the $NE expected; the run continues on them"
       CHECK="sbatch of g0 (preflight and xllm build)"
       # shellcheck disable=SC2046
       J4=$(cd "$LISTS" && sbatch $(sb) --output="$LOG_ROOT/ra20_g0_xllm_%A_%a.out" --array=1 \
@@ -211,6 +237,9 @@ for v in PARTITION ACCOUNT LOG_ROOT SLURM_RESTRICT NODELIST VENV_OURO; do
 done
 command -v sbatch > /dev/null 2>&1 || fail "no sbatch on this host" 2
 mkdir -p "$LOG_ROOT" "$PR"
+# a new chain chooses its nodes again: back to the restriction that setup wrote
+export SLURM_RESTRICT="${SLURM_RESTRICT_BASE:-$SLURM_RESTRICT}"
+rm -f "$OUT_ROOT/run_nodes.env" "$OUT_ROOT/run_nodes.txt"
 rm -f "$CH"/*.ok "$CH"/*.fail "$OUT_ROOT/_smoke_fail.txt" "$PR"/*.out
 rm -f "$OUT_ROOT"/_diag/chain.*.txt
 echo "lists: $LISTS; node restriction: $(restrict)"

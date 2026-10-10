@@ -3,7 +3,7 @@
 The cluster bundle runs on the same cluster as loopedcot and follows its convention: a venv made with
 `python3 -m venv --system-site-packages`, torch from the node image, every other package pinned. The cluster venvs
 are built from `requirements_cluster_{ouro,raven,parcae,ifm}.txt` by `setup_cluster.sh`. This file holds the design
-notes; `cluster/README_CLUSTER.md` is the operator page (five commands).
+notes; `cluster/README_CLUSTER.md` is the operator page (three commands: clone, `run_all.sh`, `status.sh`).
 
 ## Known
 
@@ -128,13 +128,24 @@ Inputs read as data, not imported: `cluster/pilot/data/` (`$DATA_ROOT`), `cluste
 (appended to `sys.path` by `k10_ifm.py` only when the real module is absent), `cluster/plans/`, `cluster/data/` and
 `cluster/pilot/tree/data_steer/` (generation pair files).
 
+## One command (run_all.sh)
+
+`run_all.sh` runs from the project folder and discovers what setup needs: the default partition (`sinfo`, the one
+marked `*`), the first association of the user (`sacctmgr show assoc`, else `sshare`), the GPU nodes of the
+partition in a usable state (idle first; drained, down and not responding nodes left out) and a Python with a CUDA
+build of torch (after `module load $MODULES`). It refuses a project folder inside a home directory and a second chain
+while jobs of the first are in Slurm. It asks by name for a value it cannot discover and keeps the answer in
+`out/run_all.env`; an environment variable of the same name wins over both. After one `yes` it runs `setup_cluster.sh`
+(out/, hf/ and ckpt/ in the project folder), sources `out/cluster.env`, runs `submit_chain.sh` with `DONE_SRC=none` and
+prints `status.sh`. `NODELIST` may name more nodes than `NODES_EXPECTED`: the probe step chooses the run's nodes.
+
 ## Launch chain (jobs/submit_chain.sh)
 
 | step | Slurm job | refuses when | writes |
 |---|---|---|---|
 | 1 setup_check | CPU | - | `_chain/setup_check.ok` or `.fail`: cluster.env complete, no placeholder, no folder in a home directory, `SLURM_RESTRICT` set, pins, plan hashes, SETTLE files, venvs, HF_HOME, WEIGHTS_ROOT |
 | 2 probe | one five-minute, one-GPU job per node of `NODELIST` (`--nodelist`), afterok 1 | step 1 failed | `_probe/<node>.out`: node=, `nvidia-smi -L`, a torch CUDA matmul, RC= |
-| 3 probe_collect | CPU, after 1 and every probe | `_chain/setup_check.ok` missing | `bad_nodes.txt` (RC not 0, "CUDA unknown error", "No devices were found"); submits steps g0, smoke and stage_submit with those nodes excluded |
+| 3 probe_collect | CPU, after 1 and every probe | `_chain/setup_check.ok` missing | `bad_nodes.txt` (RC not 0, "CUDA unknown error", "No devices were found"); `run_nodes.txt` (the first `NODES_EXPECTED` healthy nodes of `NODELIST`, then nodes with no verdict when too few are healthy) and `run_nodes.env` (every other node of `NODELIST` added to the `--exclude` of `SLURM_RESTRICT_BASE`; `cluster.env` reads it); submits steps g0, smoke and stage_submit with the bad and the unused nodes excluded |
 | g0 | one GPU | `_chain/setup_check.fail` exists | `_done/g0_xllm.s1_build.001` or `_diag/g0_xllm.s1_build.001.txt`; `_preflight.json` |
 | smoke | one GPU, afterok g0 | step 1 failed, g0 not done | `_smoke.ok` or `_smoke_fail.txt` (`env/smoke_cluster.sh`) |
 | stage_submit | CPU, afterok smoke | `_smoke_fail.txt`, no `_smoke.ok` | `jobs/stage_done.sh` (not with `DONE_SRC=none`), then `submit_10_rest.sh` of the chosen lists |

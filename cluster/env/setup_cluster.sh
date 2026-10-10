@@ -35,7 +35,8 @@
 #   --plan-dir PLAN_DIR     the five plan files (default $REPO/loopedcot/cluster/plans)
 #   --settle SETTLE         SETTLE cell files of steer_gen (default $REPO/loopedcot/cluster/data)
 #   --partition PARTITION --account ACCOUNT
-#   --nodelist NODELIST     exactly the nodes the run may use (comma list or Slurm hostlist)
+#   --nodelist NODELIST     the nodes the run may use, at least N (comma list or Slurm hostlist); when it names more,
+#                           the probe step of submit_chain.sh keeps the first N healthy ones
 #   --nodes-expected N      how many nodes NODELIST must name (default 6; CARDS = 8 x N, 48 by default)
 #   --modules MODULES       environment modules every job loads first (module load $MODULES; default none)
 #   --reservation RESERVATION  optional: a reservation that holds those nodes
@@ -120,7 +121,8 @@ if [ -n "$NODELIST" ]; then
   if command -v scontrol > /dev/null 2>&1; then NODES=$(scontrol show hostnames "$NODELIST" | paste -sd, -)
   else NODES=$(echo "$NODELIST" | tr ' ' ','); fi
   NN=$(echo "$NODES" | tr ',' '\n' | grep -c .)
-  [ "$NN" = "$NODES_EXPECTED" ] || bad "NODELIST names $NN nodes ($NODES); the run must name exactly $NODES_EXPECTED (--nodes-expected)"
+  if [ "$NN" -lt "$NODES_EXPECTED" ]; then bad "NODELIST names $NN nodes ($NODES); the run needs at least $NODES_EXPECTED (--nodes-expected)"
+  elif [ "$NN" -gt "$NODES_EXPECTED" ]; then say "NODELIST names $NN nodes: the probe step keeps the first $NODES_EXPECTED healthy ones and excludes the rest"; fi
 else
   NODES=""; todo "NODELIST: pass --nodelist with exactly the $NODES_EXPECTED nodes the run may use"
 fi
@@ -352,10 +354,12 @@ export MODULES="$MODULES"            # every template and chain step runs: modul
 export PARTITION="$(ph "$PARTITION" PARTITION)" ACCOUNT="$(ph "$ACCOUNT" ACCOUNT)"
 export NODELIST="$(ph "$NODES" NODELIST)"
 export SLURM_RESTRICT="$(ph "$RESTRICT" SLURM_RESTRICT)"      # passed on every sbatch command line
+export SLURM_RESTRICT_BASE="$(ph "$RESTRICT" SLURM_RESTRICT)"      # the probe step adds the unused nodes of NODELIST ($OUT_ROOT/run_nodes.env)
 export CUDA_HOME="$(ph "$CUDA_HOME_V" CUDA_HOME)"
 export TORCH_CUDA_ARCH_LIST="$ARCH_LIST"      # empty: preflight.sh sets it from nvidia-smi on the GPU node
 export MAX_JOBS="\${MAX_JOBS:-16}"
 export PYTORCH_CUDA_ALLOC_CONF="\${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+if [ -f "$(ph "$OUT_ROOT" OUT_ROOT)/run_nodes.env" ]; then . "$(ph "$OUT_ROOT" OUT_ROOT)/run_nodes.env"; fi      # the nodes the probe step chose
 EOF
 say "environment file: $ENVF"
 

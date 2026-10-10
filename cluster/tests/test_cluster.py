@@ -1019,7 +1019,7 @@ def test_setup_cluster_dry_run_headers_env_and_home_refusal(tmp_path):
     # three nodes: refused at the checklist
     r = subprocess.run(base + ["--out-root", proj + "/out", "--nodelist", "n01,n02,n03"], env=env,
                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    assert r.returncode == 1 and b"must name exactly 4 (--nodes-expected)" in r.stdout
+    assert r.returncode == 1 and b"needs at least 4 (--nodes-expected)" in r.stdout
     r = subprocess.run(base + ["--out-root", proj + "/out", "--nodelist", "n01,n02,n03,n04"], env=env,
                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     out = r.stdout.decode()
@@ -1053,10 +1053,23 @@ def test_setup_cluster_dry_run_headers_env_and_home_refusal(tmp_path):
     # --nodes-expected replaces the fixed four; --modules lands in cluster.env
     r = subprocess.run(base + ["--out-root", proj + "/out3", "--nodelist", "n01,n02,n03", "--nodes-expected", "3",
                                "--modules", "cuda/12.4 gcc/12"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    assert b"must name exactly" not in r.stdout, r.stdout.decode()[-2000:]
+    assert b"needs at least" not in r.stdout, r.stdout.decode()[-2000:]
     e3 = open(proj + "/out3/cluster.env", encoding="utf-8").read()
     assert 'MODULES="cuda/12.4 gcc/12"' in e3 and "NODES_EXPECTED=3" in e3 and "CARDS=24" in e3
     assert 'SLURM_RESTRICT="--exclude=n04,n05,n06"' in e3
+    # more nodes than needed: accepted, the probe step keeps the first healthy ones; cluster.env keeps the base
+    # restriction and reads the probe's choice ($OUT_ROOT/run_nodes.env) when it exists
+    r = subprocess.run(base + ["--out-root", proj + "/out4", "--nodelist", "n01,n02,n03,n04,n05,n06"], env=env,
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert "keeps the first 4 healthy ones" in so and "needs at least" not in so, so[-2000:]
+    e4 = open(proj + "/out4/cluster.env", encoding="utf-8").read()
+    assert 'SLURM_RESTRICT_BASE="--partition=gpuq"' in e4 and "/out4/run_nodes.env" in e4 and "CARDS=32" in e4
+    with open(proj + "/out4/run_nodes.env", "w") as f:
+        f.write('export SLURM_RESTRICT="--partition=gpuq --exclude=n05,n06"\n')
+    got = subprocess.run([_bash(), "-c", '. %s/out4/cluster.env && echo "$SLURM_RESTRICT|$SLURM_RESTRICT_BASE"' % proj],
+                         env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert got.returncode == 0 and got.stdout.decode().strip() == "--partition=gpuq --exclude=n05,n06|--partition=gpuq"
 
 
 # ------------------------------------------------------------------ launch chain, status, no-local-done lists
@@ -1240,6 +1253,142 @@ def test_reference_local_manifest():
 
 
 @needs_bash
+@needs_bash
+def test_probe_collect_keeps_first_healthy_nodes(tmp_path):
+    """probe_collect with more nodes than NODES_EXPECTED: the first healthy nodes in NODELIST order run, nodes with no
+    verdict fill up only when too few are healthy, every other node is excluded from the base restriction (a stale
+    SLURM_RESTRICT is ignored), run_nodes.env and run_nodes.txt record the choice and status.sh prints it."""
+    env, out, log = _chain_env(tmp_path)
+    chain = os.path.join(JOBS, "submit_chain.sh").replace("\\", "/")
+    (out / "_chain").mkdir()
+    (out / "_chain" / "setup_check.ok").write_text("ok\n")
+    pr = out / "_probe"
+    pr.mkdir()
+    (pr / "n01.out").write_text("node=n01\nTraceback\nRC=1\n")
+    for n in ("n02", "n04", "n07", "n08"):
+        (pr / ("%s.out" % n)).write_text("node=%s\nGPU 0: card\nmatmul card 1.0\nRC=0\n" % n)
+    env_p = dict(env, NODELIST="n01,n02,n03,n04,n07,n08", NODES_EXPECTED="2", SLURM_RESTRICT_BASE="--exclude=n05,n06",
+                 SLURM_RESTRICT="--exclude=n05,n06,stale")
+    r = subprocess.run([_bash(), chain, "--step", "probe_collect"], env=env_p, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2000:]
+    assert (out / "run_nodes.txt").read_text().split() == ["n02", "n04"]
+    assert "run nodes (2 of 2): n02,n04; not used: n03,n07,n08" in so
+    assert 'export SLURM_RESTRICT="--exclude=n05,n06,n03,n07,n08"' in (out / "run_nodes.env").read_text()
+    calls = open(log).read().splitlines()
+    assert len(calls) == 3 and all("--exclude=n05,n06,n03,n07,n08,n01" in c and "stale" not in c for c in calls), calls
+    st = subprocess.run([_bash(), os.path.join(JOBS, "status.sh").replace("\\", "/")], env=env, stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT).stdout.decode()
+    assert "chosen by the probe step): n02,n04" in st
+    # too few healthy nodes: the node with no verdict fills up, and the run continues with a warning
+    open(log, "w").close()
+    r = subprocess.run([_bash(), chain, "--step", "probe_collect"], env=dict(env_p, NODES_EXPECTED="6"),
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0 and "run nodes (5 of 6): n02,n04,n07,n08,n03; not used: " in so and "WARNING: only 5" in so, so[-1500:]
+    # a new chain goes back to the base restriction and forgets the earlier choice
+    open(log, "w").close()
+    r = subprocess.run([_bash(), chain], env=env_p, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 0 and not (out / "run_nodes.env").exists() and not (out / "run_nodes.txt").exists()
+    first = open(log).read().splitlines()[0]
+    assert "--exclude=n05,n06" in first and "stale" not in first, first
+
+
+def _run_all_tree(tmp_path, sinfo_parts, sinfo_nodes, sacct, sshare="", squeue=""):
+    """run_all.sh in a copy of the bundle layout, with stub setup, chain and status scripts and fake Slurm tools."""
+    proj = tmp_path / "proj"
+    cl = proj / "repo" / "loopedcot" / "cluster"
+    (cl / "env").mkdir(parents=True)
+    (cl / "jobs").mkdir()
+    shutil.copy(os.path.join(CL, "run_all.sh"), str(cl / "run_all.sh"))
+    log = (tmp_path / "calls.log").as_posix()
+    stubs = {
+        "env/setup_cluster.sh": 'echo "setup $*" >> "%s"\nmkdir -p "$2"\necho "export CHAIN_ENV=1" > "$2/cluster.env"\n'
+                                'echo "nothing left: source $2/cluster.env"\n' % log,
+        "jobs/submit_chain.sh": 'echo "chain DONE_SRC=$DONE_SRC CHAIN_ENV=$CHAIN_ENV" >> "%s"\n' % log,
+        "jobs/status.sh": 'echo "STATUS PRINTED"\n'}
+    for rel, body in stubs.items():
+        (cl / rel).write_bytes(("#!/bin/bash\n" + body).encode())
+    fake = tmp_path / "bin"
+    fake.mkdir()
+    tools = {"sinfo": 'case "$*" in *-N*) printf "%s";; *) printf "%s";; esac' % (sinfo_nodes, sinfo_parts),
+             "sacctmgr": 'printf "%s"' % sacct, "sshare": 'printf "%s"' % sshare, "squeue": 'printf "%s"' % squeue,
+             "nvcc": "echo release 12.4", "fakepy": 'echo "2.6.0 CUDA 12.4"'}
+    for name, body in tools.items():
+        (fake / name).write_bytes(("#!/bin/bash\n%s\n" % body).encode())
+        os.chmod(str(fake / name), 0o755)
+    home = tmp_path / "home"
+    home.mkdir()
+    env = dict(os.environ, HOME=home.as_posix(), USER="op", PYTHON=(fake / "fakepy").as_posix(),
+               PATH=fake.as_posix() + os.pathsep + os.environ.get("PATH", ""))
+    for k in ("PARTITION", "ACCOUNT", "NODELIST", "NODES_EXPECTED", "MODULES", "RESERVATION", "OUT_ROOT"):
+        env.pop(k, None)
+    return proj, cl, env, log, home
+
+
+def _run_all(cl, cwd, env, answers):
+    return subprocess.run([_bash(), (cl / "run_all.sh").as_posix()], cwd=str(cwd), env=env, input=answers.encode(),
+                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+
+@needs_bash
+def test_run_all_discovers_asks_and_submits(tmp_path):
+    """run_all.sh: the default partition (*), the first association, the usable GPU nodes of the partition (idle
+    first; not responding, drained, down and CPU nodes left out); one yes, then setup with those values, the chain with
+    DONE_SRC=none after sourcing cluster.env, and status.sh. Refusals: no yes, a home folder, a live earlier chain."""
+    nodes = ("g03|gpu:8|mix\\ng01|gpu:8|idle\\nc01|(null)|idle\\ng02|gpu:8|drain\\ng04|gpu:8|idle*\\n"
+             "g05|gpu:8(S:0-1)|alloc\\ng01|gpu:8|idle\\ng06|gpu:8|down\\n")
+    proj, cl, env, log, home = _run_all_tree(tmp_path, "debug\\ngpu*\\n", nodes, "acctA\\nacctB\\n")
+    r = _run_all(cl, proj, env, "no\n")
+    assert r.returncode == 3 and not os.path.exists(log), r.stdout.decode()[-1500:]
+    r = _run_all(cl, proj, env, "yes\n")
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2000:]
+    assert "could not be discovered" not in so and "free disk" in so and "STATUS PRINTED" in so
+    assert "gpu (sinfo default (*))" in so and "acctA (sacctmgr (first association))" in so
+    calls = open(log).read().splitlines()
+    assert len(calls) == 2 and calls[1] == "chain DONE_SRC=none CHAIN_ENV=1", calls
+    setup = calls[0]
+    assert "--partition gpu --account acctA --nodelist g01,g03,g05 --nodes-expected 6" in setup, setup
+    assert "/proj/out --log-root" in setup and "/proj/hf --weights-root" in setup and "/proj/ckpt" in setup, setup
+    assert "--python " in setup and "fakepy" in setup and "--modules  --python" in setup.replace('""', "")
+    # a chain of the earlier run still in Slurm: not submitted twice
+    proj2, cl2, env2, log2, _ = _run_all_tree(tmp_path / "b", "gpu*\\n", nodes, "acctA\\n", squeue="5003\\n77_4\\n")
+    (proj2 / "out" / "_chain").mkdir(parents=True)
+    (proj2 / "out" / "_chain" / "jobs.txt").write_text("setup_check 5001\nprobes 5002:5003\n")
+    r = _run_all(cl2, proj2, env2, "yes\n")
+    assert r.returncode == 6 and b"still in Slurm (5003)" in r.stdout and not os.path.exists(log2), r.stdout.decode()[-1500:]
+    # the current folder inside the home directory: refused before any question
+    (home / "p").mkdir()
+    r = _run_all(cl, home / "p", env, "yes\n")
+    assert r.returncode == 2 and b"inside a home directory" in r.stdout
+
+
+@needs_bash
+def test_run_all_asks_by_name_and_remembers(tmp_path):
+    """Nothing discoverable (no default partition, no GPU node, no association): one question per value, by name;
+    the answers go to out/run_all.env and the next run asks nothing. An environment variable wins over an answer."""
+    proj, cl, env, log, _ = _run_all_tree(tmp_path, "debug\\ngpu\\n", "", "", sshare="")
+    r = _run_all(cl, proj, env, "gpuq\nacct9\nn1,n2,n3,n4,n5,n6,n7\nyes\n")
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2000:]
+    for name in ("PARTITION", "ACCOUNT", "NODELIST"):
+        assert so.count("%s could not be discovered" % name) == 1, name
+    assert "MODULES could not be discovered" not in so
+    ans = (proj / "out" / "run_all.env").read_text()
+    assert "export PARTITION=gpuq" in ans and "export ACCOUNT=acct9" in ans and "export NODELIST=" in ans, ans
+    assert "--partition gpuq --account acct9 --nodelist n1,n2,n3,n4,n5,n6,n7 " in open(log).read()
+    open(log, "w").close()
+    r = _run_all(cl, proj, dict(env, ACCOUNT="acctX"), "yes\n")
+    so = r.stdout.decode()
+    assert r.returncode == 0 and "could not be discovered" not in so, so[-2000:]
+    assert "--partition gpuq --account acctX --nodelist n1,n2,n3,n4,n5,n6,n7 " in open(log).read()
+    # the sshare fallback when sacctmgr has no association
+    proj3, cl3, env3, log3, _ = _run_all_tree(tmp_path / "c", "gpu*\\n", "g1|gpu:8|idle\\n", "", sshare="acctS  op\\n")
+    r = _run_all(cl3, proj3, env3, "yes\n")
+    assert r.returncode == 0 and "--account acctS " in open(log3).read(), r.stdout.decode()[-1500:]
+
+
 @pytest.mark.parametrize("case", ["nvidia_smi_signature", "output_signature", "second_failure", "plain_failure"])
 def test_task_bad_gpu_node_requeues_once(tmp_path, case):
     """A task whose GPU cannot start ("No devices were found" from nvidia-smi -L, or "CUDA unknown error" in its output)
