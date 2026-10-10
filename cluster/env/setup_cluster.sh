@@ -40,7 +40,11 @@
 #   --nodes-expected N      how many nodes NODELIST must name (default 6; CARDS = 8 x N, 48 by default)
 #   --modules MODULES       environment modules every job loads first (module load $MODULES; default none)
 #   --reservation RESERVATION  optional: a reservation that holds those nodes
-#   --python PYTHON         node interpreter whose site-packages hold torch (default python3)
+#   --project-root DIR      the project folder (run_all.sh passes the current folder); default: the deepest folder
+#                           that holds the repository, OUT_ROOT, HF_HOME, WEIGHTS_ROOT, XLLM_ROOT and VENV_ROOT
+#   --python PYTHON         node interpreter whose site-packages hold torch (default: the first of python3,
+#                           python3.11, python3.12 that is Python >= 3.11, the highest family minimum, with a CUDA
+#                           build of torch; all four venvs use it)
 #   --venvs-only            run steps 1-3 only (checks, folders, the family venvs), e.g. to retry a failed pip install
 #   --dry-run               no venv creation, pip install, clone or download; every check, path, the _env.json,
 #                           the node restriction and the cluster.env write still run
@@ -74,6 +78,7 @@ while [ $# -gt 0 ]; do
     --nodes-expected) NODES_EXPECTED="$2"; shift 2;;
     --modules) MODULES="$2"; shift 2;;
     --python) PYTHON="$2"; shift 2;;
+    --project-root) PROJECT_ROOT="$2"; shift 2;;
     --dry-run) DRY=1; shift;;
     --venvs-only) VENVS_ONLY=1; shift;;
     -h|--help) sed -n '2,45p' "$0"; exit 0;;
@@ -88,7 +93,16 @@ XLLM_ROOT="${XLLM_ROOT:-$REPO/xllm-loop}"
 VENV_ROOT="${VENV_ROOT:-$REPO/venvs}"
 PLAN_DIR="${PLAN_DIR:-$LC/cluster/plans}"
 SETTLE="${SETTLE:-$LC/cluster/data}"
-PYTHON="${PYTHON:-python3}"
+PY_FLOOR=3.11       # the highest family minimum (PYMIN below): one interpreter serves all four venvs
+if [ -z "${PYTHON:-}" ]; then
+  for c in python3 python3.11 python3.12; do
+    command -v "$c" > /dev/null 2>&1 || continue
+    if "$c" -c "import sys, torch; sys.exit(0 if sys.version_info[:2] >= (3, 11) and torch.version.cuda else 1)" 2> /dev/null; then
+      PYTHON="$c"; break
+    fi
+  done
+  PYTHON="${PYTHON:-python3}"
+fi
 DATA_ROOT="$LC/cluster/pilot/data"
 
 FAILS=(); TODO=()
@@ -118,17 +132,22 @@ done
 [ "$HOME_RUN" = 1 ] && echo "running inside a home directory; records will be scrubbed at merge"
 if [ ${#FAILS[@]} -gt 0 ]; then echo "[setup] stopped before creating anything: fix the paths above"; exit 2; fi
 [ -n "$OUT_ROOT" ] || todo "OUT_ROOT: pass --out-root (output tree; outside any home directory)"
-# the project root: the deepest folder that holds the repository and the output tree (the merge job writes it as
-# <PROJECT_ROOT> in every record when the run sits in a home directory)
-PROJECT_ROOT=""
-if [ -n "$OUT_ROOT" ]; then
-  PROJECT_ROOT="$(norm "$REPO")"
-  until [ "$PROJECT_ROOT" = / ] || [ "${PROJECT_ROOT:0:1}" != / ]; do
-    case "$(norm "$OUT_ROOT")/" in "$PROJECT_ROOT"/*) break;; esac
-    PROJECT_ROOT=$(dirname "$PROJECT_ROOT")
+# the project root: the given folder (run_all.sh: the current folder), widened to the deepest folder that holds the
+# repository and every run folder; the merge job writes it as a fixed token in every record of a home directory run
+holds_all() {
+  local v p
+  for v in REPO OUT_ROOT HF_HOME WEIGHTS_ROOT XLLM_ROOT VENV_ROOT; do
+    p="${!v:-}"; [ -n "$p" ] || continue
+    case "$(norm "$p")/" in "$1"/*) ;; *) return 1;; esac
   done
-  case "$PROJECT_ROOT" in /|"") PROJECT_ROOT="";; esac
-fi
+  return 0
+}
+PROJECT_ROOT="$(norm "${PROJECT_ROOT:-$REPO}")"
+until [ "$PROJECT_ROOT" = / ] || [ "${PROJECT_ROOT:0:1}" != / ] || holds_all "$PROJECT_ROOT"; do
+  PROJECT_ROOT=$(dirname "$PROJECT_ROOT")
+done
+case "$PROJECT_ROOT" in /|"") PROJECT_ROOT="";; esac
+[ "$HOME_RUN" = 1 ] && [ -z "$PROJECT_ROOT" ] && { echo "[setup] stopped before creating anything: no folder below / holds the repository and the run folders (pass --project-root)"; exit 2; }
 # ALLOW_HOME=1: a home directory usually has a quota; the space for weights, HF cache, venvs and outputs is checked
 # now, before anything is created (estimates: HF cache 50.6 GB, IFM weights 27.4 GB, four venvs and the xllm build
 # 15 GB, outputs of all jobs 20 GB; what is already in place counts against the estimate)
@@ -211,12 +230,14 @@ for f in $FAMILIES; do
   req="$HERE/requirements_cluster_$f.txt"; V="$VENV_ROOT/$f"
   [ -f "$req" ] || { bad "missing $req"; continue; }
   stamp="$(sha256sum "$req" | cut -c1-64) python=$PYV torch=$TORCH_V"
-  if [ -f "$V/.cluster_setup" ] && [ "$(cat "$V/.cluster_setup")" = "$stamp" ]; then say "venv $f: ready ($V)"; continue; fi
+  if [ -f "$V/.cluster_setup" ] && [ "$(cat "$V/.cluster_setup")" = "$stamp" ]; then say "venv $f: ready ($V, Python $PYV)"; continue; fi
   if [ -z "$PYTHON" ] || [ -z "$TORCH_V" ]; then say "venv $f: not built (no node torch, see the checklist)"; continue; fi
   "$PYTHON" -c "import sys; sys.exit(0 if sys.version_info[:2] >= tuple(map(int, '${PYMIN[$f]}'.split('.'))) else 1)" || { say "venv $f: not built (Python < ${PYMIN[$f]}, see the checklist)"; continue; }
-  say "venv $f: $V from $(basename "$req")"
+  say "venv $f: $V from $(basename "$req"), interpreter $(command -v "$PYTHON") (Python $PYV)"
   run mkdir -p "$VENV_ROOT"
-  [ "$DRY" = 1 ] || echo "torch==$TORCH_V" > "$CONSTRAINT"
+  # the public release number only: pip cannot resolve a pin with the local build label (torch==2.8.0+cu128), and
+  # torch==2.8.0 still matches the installed 2.8.0+cu128
+  [ "$DRY" = 1 ] || echo "torch==${TORCH_V%%+*}" > "$CONSTRAINT"
   run "$PYTHON" -m venv --system-site-packages "$V"
   # the stamp is written only after pip install returned 0 and the import check passed; a failed step leaves no
   # stamp, so the next run installs again
@@ -377,7 +398,7 @@ export XLLM_ROOT="$XLLM_ROOT"
 export VENV_OURO="$VENV_ROOT/ouro" VENV_RAVEN="$VENV_ROOT/raven" VENV_PARCAE="$VENV_ROOT/parcae" VENV_IFM="$VENV_ROOT/ifm"
 export RUN_ROLE=cluster
 export ALLOW_HOME=$ALLOW_HOME                  # 1: the run sits in a home directory (no scratch); the merge job scrubs it
-export PROJECT_ROOT="$PROJECT_ROOT"          # written as <PROJECT_ROOT> in every record by the merge job
+export PROJECT_ROOT="$PROJECT_ROOT"          # the merge job replaces this folder by a fixed token in every record
 export VB_PLAN="$PLAN_DIR/${PLAN[VB_PLAN]}" VB_PLAN_SHA="${SHA[VB_PLAN]}"
 export PUB_PLAN="$PLAN_DIR/${PLAN[PUB_PLAN]}"
 export PAR_PLAN="$PLAN_DIR/${PLAN[PAR_PLAN]}"

@@ -1481,9 +1481,18 @@ def test_allow_home_setup_space_check_and_template_guard(tmp_path):
     so = r.stdout.decode()
     assert "running inside a home directory; records will be scrubbed at merge" in so, so[-2000:]
     assert "need about 113.0 GB more" in so and "quota free no quota found" in so and "quota -s:" in so
-    assert "stopped before creating anything" not in so
+    assert "stopped before creating anything" not in so and "<PROJECT_ROOT>" not in so, so[-2000:]
     e = open(proj + "/out/cluster.env", encoding="utf-8").read()
     assert "export ALLOW_HOME=1" in e and re.search(r'export PROJECT_ROOT="[^"<]+/proj"', e), e
+    # the run folders inside the clone (run_all.sh started from cluster/): the project root widens to the folder that
+    # holds the repository and every run folder, and is never left as a placeholder
+    c = lc.as_posix()
+    r = subprocess.run(cmd[:8] + ["--out-root", c + "/out", "--hf-home", c + "/hf", "--weights-root", c + "/ckpt"] + cmd[14:]
+                       + ["--project-root", c], env=dict(env, ALLOW_HOME="1"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert "<PROJECT_ROOT>" not in so and "stopped before creating anything" not in so, so[-2000:]
+    e = open(c + "/out/cluster.env", encoding="utf-8").read()
+    assert re.search(r'export PROJECT_ROOT="[^"<]+/proj/repo"', e), e
     tools(50 * 1048576, "echo 'fs 1000 0 0 0 1 0 0 0'")           # 50 GB free: short
     r = subprocess.run(cmd, env=dict(env, ALLOW_HOME="1"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     assert r.returncode == 2 and b"stopped before creating anything: about 113.0 GB is needed" in r.stdout, r.stdout.decode()[-1500:]
@@ -1519,6 +1528,75 @@ def test_run_all_allow_home(tmp_path):
     so = r.stdout.decode()
     assert r.returncode == 0 and "running inside a home directory; records will be scrubbed at merge" in so, so[-1500:]
     assert open(log).read().startswith("setup ALLOW_HOME=1 ")
+
+
+@needs_bash
+def test_setup_picks_python311_and_pins_torch_without_local_label(tmp_path):
+    """setup without --python: python3 (no torch, as a 3.9 node default would be) is passed over for python3.11; every
+    venv prints that interpreter; the pip constraint is torch==2.8.0, not torch==2.8.0+cu128; stamps follow pip rc 0."""
+    lc, fake = _setup_tree(tmp_path)
+    log = (tmp_path / "pip.log").as_posix()
+    venv_pip = '#!/bin/bash\nwhile [ $# -gt 0 ]; do [ "$1" = -c ] && cat "$2" >> "%s"; shift; done\nexit 0\n' % log
+    py311 = ('#!/bin/bash\ncase "$*" in\n'
+             '  *"-m venv"*) V="${@: -1}"; mkdir -p "$V/bin"; printf %%s \'%s\' > "$V/bin/pip"; '
+             'printf \'#!/bin/bash\\necho torch from the node image\\n\' > "$V/bin/python"; chmod +x "$V/bin/pip" "$V/bin/python";;\n'
+             '  *"sys.version_info[:3]"*) echo 3.11.9;;\n'
+             '  *"torch.__version__)"*) echo 2.8.0+cu128;;\n'
+             '  *"torch.version.cuda or"*) echo 12.8;;\n'
+             '  *) exit 0;;\nesac\n') % venv_pip.replace("'", "'\\''")
+    (fake / "python3.11").write_bytes(py311.encode())
+    (fake / "python3").write_bytes(b"#!/bin/bash\nexit 1\n")
+    for n in ("python3.11", "python3"):
+        os.chmod(str(fake / n), 0o755)
+    home = tmp_path / "home"
+    home.mkdir()
+    env = dict(os.environ, HOME=home.as_posix())
+    for k in ("OUT_ROOT", "HF_HOME", "WEIGHTS_ROOT", "PARTITION", "ACCOUNT", "NODELIST", "PYTHON", "ALLOW_HOME"):
+        env.pop(k, None)
+    proj = (tmp_path / "proj").as_posix()
+    cmd = [_bash(), "-c", 'PATH="$(cygpath -u "$0" 2> /dev/null || echo "$0"):$PATH"; exec bash "$@"', fake.as_posix(),
+           (lc / "env" / "setup_cluster.sh").as_posix(), "--venvs-only", "--out-root", proj + "/out"]
+    r = subprocess.run(cmd, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2500:]
+    for f in ("ouro", "raven", "parcae", "ifm"):
+        assert re.search(r"venv %s: .* interpreter \S*python3\.11 \(Python 3\.11\.9\)" % f, so), (f, so[-2500:])
+        assert os.path.exists(os.path.join(proj, "repo", "venvs", f, ".cluster_setup"))
+    assert open(log).read().split() == ["torch==2.8.0"] * 4
+    r = subprocess.run(cmd, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.stdout.decode().count("ready (") == 4 and r.stdout.count(b", Python 3.11.9)") == 4
+
+
+@pytest.mark.skipif(shutil.which("git") is None or not os.path.isdir(os.path.join(LC, ".git")), reason="no git checkout")
+def test_gitignore_keeps_run_folders_out_of_the_clone():
+    """run_all.sh started from cluster/ puts out/, hf/ and ckpt/ there: cluster/.gitignore ignores them, and no bundle
+    file is ignored."""
+    for f in ("cluster/out/cluster.env", "cluster/out/run_all.env", "cluster/hf/hub/x", "cluster/ckpt/x/config.json"):
+        assert subprocess.run(["git", "-C", LC, "check-ignore", "-q", f]).returncode == 0, f
+    tracked = subprocess.check_output(["git", "-C", LC, "ls-files", "cluster"]).decode().split()
+    r = subprocess.run(["git", "-C", LC, "check-ignore", "--no-index"] + tracked, stdout=subprocess.PIPE)
+    assert r.returncode == 1 and not r.stdout.strip(), r.stdout.decode()[:500]
+
+
+@needs_bash
+def test_run_all_picks_python311(tmp_path):
+    """run_all.sh with no PYTHON: python3 does not qualify, python3.11 does; it is passed to setup and printed."""
+    proj, cl, env, log, _ = _run_all_tree(tmp_path, "gpu*\\n", "g1|gpu:8|idle\\n", "acctA\\n")
+    fake = tmp_path / "bin"
+    (fake / "python3").write_bytes(b"#!/bin/bash\nexit 1\n")
+    (fake / "python3.11").write_bytes(b'#!/bin/bash\necho "Python 3.11.9, torch 2.8.0+cu128 CUDA 12.8"\n')
+    for n in ("python3", "python3.11"):
+        os.chmod(str(fake / n), 0o755)
+    env = dict(env)
+    env.pop("PYTHON", None)
+    r = subprocess.run([_bash(), "-c", 'PATH="$(cygpath -u "$0" 2> /dev/null || echo "$0"):$PATH"; exec bash "$@"',
+                        fake.as_posix(), (cl / "run_all.sh").as_posix()], cwd=str(proj), env=env, input=b"yes\n",
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0 and "could not be discovered" not in so, so[-2000:]
+    assert re.search(r"python3\.11 \(Python 3\.11\.9, torch 2\.8\.0\+cu128 CUDA 12\.8\); all four venvs use it", so), so[-2000:]
+    assert re.search(r"--python \S*python3\.11\b", open(log).read())
+    assert re.search(r"--project-root \S*/proj\b", open(log).read())
 
 
 @pytest.mark.parametrize("case", ["nvidia_smi_signature", "output_signature", "second_failure", "plain_failure"])

@@ -1,2 +1,7 @@
 # The bundle is committed whole: undo the repository-wide ignore rules for files inside cluster/.
 !checks.json
+# run_all.sh puts the run folders in the current folder; when that is cluster/, keep them out of git so a later
+# git pull never meets them
+/out/
+/hf/
+/ckpt/

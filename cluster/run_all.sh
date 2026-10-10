@@ -8,7 +8,8 @@
 #              scratch; the merge job then scrubs the folder from every record); out/, hf/ and ckpt/ go there
 #   NODELIST   the GPU nodes of the partition that Slurm reports usable, idle ones first; the probe step of
 #              submit_chain.sh keeps the first NODES_EXPECTED (6) healthy ones, so no node list is needed
-#   PYTHON     python3 when it has a CUDA build of torch (after module load $MODULES when MODULES is set)
+#   PYTHON     the first of python3, python3.11, python3.12 (after module load $MODULES when MODULES is set) that is
+#              Python >= 3.11 (the highest family minimum) with a CUDA build of torch; all four venvs use it
 # prints them with the free disk of the project folder, asks one yes, then runs env/setup_cluster.sh with those
 # values, sources out/cluster.env, submits jobs/submit_chain.sh with DONE_SRC=none and prints jobs/status.sh.
 # A value it cannot discover is asked for by name, one question each, and kept in out/run_all.env for the next run.
@@ -90,21 +91,30 @@ load_modules() {
   # shellcheck disable=SC2086
   module load $MODULES || stop "module load $MODULES failed"
 }
-torch_ok() { TORCH_INFO=$("${PYTHON:-python3}" -c 'import sys, torch; print(torch.__version__, "CUDA", torch.version.cuda); sys.exit(0 if torch.version.cuda else 1)' 2> /dev/null); }
+# the interpreter: Python >= 3.11 (parcae-lm needs it; the highest family minimum) with a CUDA build of torch
+py_ok() {            # py_ok <interpreter>: 0 and TORCH_INFO set when it qualifies
+  TORCH_INFO=$("$1" -c 'import sys, torch; print("Python %d.%d.%d," % sys.version_info[:3], "torch", torch.__version__, "CUDA", torch.version.cuda); sys.exit(0 if sys.version_info[:2] >= (3, 11) and torch.version.cuda else 1)' 2> /dev/null)
+}
+find_python() {      # the given or remembered PYTHON first, then python3, python3.11, python3.12 on PATH
+  local c
+  for c in ${PYTHON:-} python3 python3.11 python3.12; do
+    command -v "$c" > /dev/null 2>&1 || continue
+    if py_ok "$c"; then PYTHON="$(command -v "$c")"; return 0; fi
+  done
+  return 1
+}
 MODULES="${MODULES:-}"
 load_modules
-PYTHON="${PYTHON:-python3}"
-if ! torch_ok || ! command -v nvcc > /dev/null 2>&1; then
+if ! find_python || ! command -v nvcc > /dev/null 2>&1; then
   if [ -z "${GIVEN_MODULES:-}" ] && [ -z "$MODULES" ] && ! grep -q '^export MODULES=' "$ANS" 2> /dev/null; then
-    ask MODULES "the environment modules that give a Python with a CUDA build of torch and nvcc (space separated; empty for none)"
+    ask MODULES "the environment modules that give Python 3.11 or newer with a CUDA build of torch, and nvcc (space separated; empty for none)"
     load_modules
   fi
 fi
-if ! torch_ok; then
-  ask PYTHON "the path of a Python interpreter with a CUDA build of torch ($PYTHON has none)"
-  torch_ok || stop "$PYTHON has no CUDA build of torch"
+if ! find_python; then
+  ask PYTHON "the path of a Python 3.11 or newer with a CUDA build of torch (none of python3, python3.11, python3.12 qualifies)"
+  py_ok "$PYTHON" || stop "$PYTHON is not Python 3.11 or newer with a CUDA build of torch"
 fi
-command -v "$PYTHON" > /dev/null 2>&1 && PYTHON="$(command -v "$PYTHON")"
 
 # ------------------------------------------------------------------ a chain already in Slurm is not submitted twice
 if [ -f "$OUT_ROOT/_chain/jobs.txt" ] && command -v squeue > /dev/null 2>&1; then
@@ -124,7 +134,7 @@ printf '%-15s %s\n' "project folder" "$PROJ" \
   "nodes" "$NN: $NODELIST ($SRC_NODELIST); the probe keeps the first $NODES_EXPECTED healthy ones" \
   "reservation" "${RESERVATION:-none}" \
   "modules" "${MODULES:-none}" \
-  "python" "$PYTHON (torch ${TORCH_INFO:-?})" \
+  "python" "$PYTHON (${TORCH_INFO:-?}); all four venvs use it" \
   "nvcc" "$(command -v nvcc || echo "none (setup lists what to supply)")" \
   "folders" "out $OUT_ROOT, weights $PROJ/hf and $PROJ/ckpt, repository $(dirname "$LC")"
 echo "To change a value, run again with it set, for example: ACCOUNT=<name> bash $HERE/run_all.sh"
@@ -137,6 +147,7 @@ mkdir -p "$OUT_ROOT"
 bash "$HERE/env/setup_cluster.sh" --out-root "$OUT_ROOT" --log-root "$OUT_ROOT/logs" --hf-home "$PROJ/hf" \
   --weights-root "$PROJ/ckpt" --partition "$PARTITION" --account "$ACCOUNT" --nodelist "$NODELIST" \
   --nodes-expected "$NODES_EXPECTED" --reservation "$RESERVATION" --modules "$MODULES" --python "$PYTHON" \
+  --project-root "$PROJ" \
   2>&1 | tee "$OUT_ROOT/run_all_setup.log"
 rc=${PIPESTATUS[0]}
 [ "$rc" -eq 0 ] || stop "setup_cluster.sh exited $rc: fix the FAIL lines of its checklist above, then run this script again" "$rc"
