@@ -933,9 +933,12 @@ export SETTLE="${{SETTLE:-$REPO/loopedcot/cluster/data}}"
 for v in REPO OUT_ROOT DATA_ROOT HF_HOME SETTLE WEIGHTS_ROOT IFM_CKPT_ROOT XLLM_ROOT; do
   p="${{!v:-}}"; [ -n "$p" ] || continue
   case "$(readlink -f "$p")/" in
-    "$(readlink -f "$HOME")"/*|/home/*|/Users/*|/root/*) echo "$v=$p is inside a home directory; use a project or scratch folder" | tee -a "$TL"; exit 2;;
+    "$(readlink -f "$HOME")"/*|/home/*|/Users/*|/root/*)
+      if [ "${{ALLOW_HOME:-0}}" = 1 ]; then HOME_RUN=1
+      else echo "$v=$p is inside a home directory; use a project or scratch folder (or ALLOW_HOME=1 when the cluster has no scratch)" | tee -a "$TL"; exit 2; fi;;
   esac
 done
+[ -z "${{HOME_RUN:-}}" ] || echo "running inside a home directory; records will be scrubbed at merge" | tee -a "$TL"
 export HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
 if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "done already: $ID"; exit 0; fi
 echo "task $ID" | tee -a "$TL"

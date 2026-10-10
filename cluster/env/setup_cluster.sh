@@ -106,13 +106,48 @@ in_home() {     # the template's rule: records carry paths, so no run folder may
   case "$r" in "$(norm "$HOME")"/*|/home/*|/Users/*|/root/*) return 0;; esac
   return 1
 }
+ALLOW_HOME="${ALLOW_HOME:-0}"; HOME_RUN=0
 for v in REPO OUT_ROOT LOG_ROOT HF_HOME WEIGHTS_ROOT XLLM_ROOT VENV_ROOT PLAN_DIR SETTLE; do
   p="${!v:-}"; [ -n "$p" ] || continue
   case "$p" in /*|[A-Za-z]:/*) ;; *) bad "$v=$p is not an absolute path"; continue;; esac
-  if in_home "$p"; then bad "$v=$p is inside a home directory; use a project or scratch folder"; fi
+  if in_home "$p"; then
+    if [ "$ALLOW_HOME" = 1 ]; then HOME_RUN=1
+    else bad "$v=$p is inside a home directory; use a project or scratch folder (or ALLOW_HOME=1 when the cluster has no scratch)"; fi
+  fi
 done
+[ "$HOME_RUN" = 1 ] && echo "running inside a home directory; records will be scrubbed at merge"
 if [ ${#FAILS[@]} -gt 0 ]; then echo "[setup] stopped before creating anything: fix the paths above"; exit 2; fi
 [ -n "$OUT_ROOT" ] || todo "OUT_ROOT: pass --out-root (output tree; outside any home directory)"
+# the project root: the deepest folder that holds the repository and the output tree (the merge job writes it as
+# <PROJECT_ROOT> in every record when the run sits in a home directory)
+PROJECT_ROOT=""
+if [ -n "$OUT_ROOT" ]; then
+  PROJECT_ROOT="$(norm "$REPO")"
+  until [ "$PROJECT_ROOT" = / ] || [ "${PROJECT_ROOT:0:1}" != / ]; do
+    case "$(norm "$OUT_ROOT")/" in "$PROJECT_ROOT"/*) break;; esac
+    PROJECT_ROOT=$(dirname "$PROJECT_ROOT")
+  done
+  case "$PROJECT_ROOT" in /|"") PROJECT_ROOT="";; esac
+fi
+# ALLOW_HOME=1: a home directory usually has a quota; the space for weights, HF cache, venvs and outputs is checked
+# now, before anything is created (estimates: HF cache 50.6 GB, IFM weights 27.4 GB, four venvs and the xllm build
+# 15 GB, outputs of all jobs 20 GB; what is already in place counts against the estimate)
+if [ "$HOME_RUN" = 1 ] && [ -n "$OUT_ROOT" ]; then
+  root="${PROJECT_ROOT:-$OUT_ROOT}"; probe="$root"; while [ ! -d "$probe" ]; do probe=$(dirname "$probe"); done
+  used_gb() { [ -n "$1" ] && [ -d "$1" ] && du -sk "$1" 2> /dev/null | awk '{printf "%.1f", $1 / 1048576}' || echo 0; }
+  need=$(awk -v a="$(used_gb "$HF_HOME")" -v b="$(used_gb "$WEIGHTS_ROOT")" -v c="$(used_gb "$VENV_ROOT")" -v d="$(used_gb "$OUT_ROOT")"     'function m(x) {return x > 0 ? x : 0} BEGIN {printf "%.1f", m(50.6 - a) + m(27.4 - b) + m(15 - c) + m(20 - d)}')
+  free=$(df -Pk "$probe" 2> /dev/null | awk 'NR == 2 {printf "%.1f", $4 / 1048576}')
+  qfree=$(quota -w 2> /dev/null | awk '$2 ~ /^[0-9]+\*?$/ {u = $2; sub(/\*/, "", u); l = ($3 > 0) ? $3 : $4; if (l > 0) {f = (l - u) / 1048576; if (best == "" || f < best) best = f}}
+    END {if (best != "") printf "%.1f", (best > 0 ? best : 0)}')
+  say "home directory space: need about $need GB more (HF cache, IFM weights, venvs, outputs); df free ${free:-?} GB on $probe; quota free ${qfree:-no quota found} GB"
+  say "df -h $probe:"; df -h "$probe" 2> /dev/null | sed 's/^/[setup]   /'
+  say "quota -s:"; { quota -s 2>&1 || true; } | sed 's/^/[setup]   /'
+  avail="$free"; [ -n "$qfree" ] && avail=$(awk -v a="${free:-0}" -v b="$qfree" 'BEGIN {print (b < a ? b : a)}')
+  if [ -z "$avail" ] || awk -v n="$need" -v a="$avail" 'BEGIN {exit !(a < n * 1.1)}'; then
+    echo "[setup] stopped before creating anything: about $need GB is needed (10 percent margin), ${avail:-unknown} GB is free in the home directory"
+    exit 2
+  fi
+fi
 [ -n "$HF_HOME" ] || todo "HF_HOME: pass --hf-home (about 50.6 GB of hub snapshots)"
 [ -n "$WEIGHTS_ROOT" ] || todo "WEIGHTS_ROOT: pass --weights-root (IFM checkpoint folders, about 27.4 GB)"
 [ -n "$PARTITION" ] || todo "PARTITION: pass --partition (passed on every sbatch command line)"
@@ -341,6 +376,8 @@ export IFM_CKPT_ROOT="$(ph "$WEIGHTS_ROOT" WEIGHTS_ROOT)"
 export XLLM_ROOT="$XLLM_ROOT"
 export VENV_OURO="$VENV_ROOT/ouro" VENV_RAVEN="$VENV_ROOT/raven" VENV_PARCAE="$VENV_ROOT/parcae" VENV_IFM="$VENV_ROOT/ifm"
 export RUN_ROLE=cluster
+export ALLOW_HOME=$ALLOW_HOME                  # 1: the run sits in a home directory (no scratch); the merge job scrubs it
+export PROJECT_ROOT="$PROJECT_ROOT"          # written as <PROJECT_ROOT> in every record by the merge job
 export VB_PLAN="$PLAN_DIR/${PLAN[VB_PLAN]}" VB_PLAN_SHA="${SHA[VB_PLAN]}"
 export PUB_PLAN="$PLAN_DIR/${PLAN[PUB_PLAN]}"
 export PAR_PLAN="$PLAN_DIR/${PLAN[PAR_PLAN]}"

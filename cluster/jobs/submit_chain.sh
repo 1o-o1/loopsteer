@@ -107,9 +107,13 @@ if [ "${1:-}" = "--step" ]; then
         if [ -z "$val" ]; then bad+=("$v is not set in cluster.env")
         else case "$val" in *"<"*">"*) bad+=("$v is a placeholder: $val");; esac; fi
       done
+      home_run=0
       for v in REPO OUT_ROOT LOG_ROOT DATA_ROOT HF_HOME WEIGHTS_ROOT XLLM_ROOT SETTLE VENV_OURO VENV_RAVEN VENV_PARCAE VENV_IFM; do
-        if [ -n "${!v:-}" ] && home_path "${!v}"; then bad+=("$v=${!v} is inside a home directory"); fi
+        if [ -n "${!v:-}" ] && home_path "${!v}"; then
+          if [ "${ALLOW_HOME:-0}" = 1 ]; then home_run=1; else bad+=("$v=${!v} is inside a home directory (ALLOW_HOME=1 when the cluster has no scratch)"); fi
+        fi
       done
+      [ "$home_run" = 0 ] || echo "running inside a home directory; records will be scrubbed at merge"
       (cd "$REPO" && sha256sum -c --quiet loopedcot/cluster/jobs/scripts_sha256.txt) || bad+=("pinned hashes: sha256sum -c failed")
       for p in VB FRZ FRZO; do
         f="$(eval echo "\${${p}_PLAN:-}")"; want="$(eval echo "\${${p}_PLAN_SHA:-}")"
@@ -236,6 +240,10 @@ for v in PARTITION ACCOUNT LOG_ROOT SLURM_RESTRICT NODELIST VENV_OURO; do
   case "${!v:-<>}" in *"<"*">"*) fail "$v is not set or still a placeholder in cluster.env (setup_cluster.sh)" 7;; esac
 done
 command -v sbatch > /dev/null 2>&1 || fail "no sbatch on this host" 2
+if home_path "$OUT_ROOT"; then
+  [ "${ALLOW_HOME:-0}" = 1 ] || fail "OUT_ROOT=$OUT_ROOT is inside a home directory (ALLOW_HOME=1 when the cluster has no scratch)" 2
+  echo "running inside a home directory; records will be scrubbed at merge"
+fi
 mkdir -p "$LOG_ROOT" "$PR"
 # a new chain chooses its nodes again: back to the restriction that setup wrote
 export SLURM_RESTRICT="${SLURM_RESTRICT_BASE:-$SLURM_RESTRICT}"

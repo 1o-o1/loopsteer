@@ -18,6 +18,10 @@ Order of writing (the paper chat reads the matrix first):
      shared = own. A row with a pending model, or with done models from different scripts, has no shared readout.
   4. grid_<grid>.md: the grid table (model x dataset per card), skip reasons from cells_skipped.json in the
      cells that have no number; each done cell shows its own n and its shared-set mark.
+Home directory runs (ALLOW_HOME=1, a cluster with no scratch): before anything is read, every text file under
+OUT_ROOT (records, their hash headers, results, logs; not the *.env files the jobs source) has the project root
+($PROJECT_ROOT) rewritten to the token <PROJECT_ROOT>. After writing, the merged outputs are scanned for any home
+path ($HOME, /home/, /Users/, /root/); one hit fails the merge (exit 3, home_scan.json names the files).
 Per job (one output folder): items_done.json from the extractor gives planned and done item ids per
 (model, dataset); the assert is done == planned (and planned non-empty unless the scan kept nothing, which makes the
 cell a skip for ability). The arm check: every arm the script wrote for one dataset in any job of the run must
@@ -161,6 +165,62 @@ def planned_items(out_root, rel, model_key, ds_key):
     return out
 
 
+HOME_TOKEN = b"<PROJECT_ROOT>"
+SKIP_SCRUB = (".env", ".sh", ".sbatch", ".py", ".pt", ".bin", ".safetensors", ".npy", ".npz", ".pkl", ".gz", ".zip")
+
+
+def home_prefixes():
+    """The project root (cluster.env PROJECT_ROOT) as given and resolved, longest first."""
+    pr = os.environ.get("PROJECT_ROOT", "").rstrip("/")
+    out = {x for x in (pr, os.path.realpath(pr) if pr else "") if x and x != "/"}
+    return sorted(out, key=len, reverse=True)
+
+
+def scrub_home(out_root, prefixes):
+    """Rewrite every prefix to <PROJECT_ROOT> in each text file under out_root (line by line through a temporary
+    file, then an atomic replace). Returns the number of files rewritten."""
+    pb = [x.encode() for x in prefixes]
+    n = 0
+    for dirpath, _dirs, files in os.walk(out_root):
+        for fn in files:
+            if fn.endswith(SKIP_SCRUB) or ".scrub." in fn:
+                continue
+            path = os.path.join(dirpath, fn)
+            try:
+                with open(path, "rb") as f:
+                    hit = any(x in line for line in f for x in pb)
+            except OSError:
+                continue
+            if not hit:
+                continue
+            tmp = "%s.scrub.%d" % (path, os.getpid())
+            with open(path, "rb") as f, open(tmp, "wb") as g:
+                for line in f:
+                    for x in pb:
+                        line = line.replace(x, HOME_TOKEN)
+                    g.write(line)
+            os.replace(tmp, path)
+            n += 1
+    return n
+
+
+def home_scan(dest):
+    """Files under dest that still hold a home path: $HOME (as given and resolved), /home/, /Users/, /root/."""
+    pats = [b"/home/", b"/Users/", b"/root/"]
+    for h in (os.environ.get("HOME", ""), os.path.realpath(os.environ.get("HOME", "")) if os.environ.get("HOME") else ""):
+        if h and h.rstrip("/") not in ("", "/"):
+            pats.append(h.rstrip("/").encode() + b"/")
+    hits = []
+    for dirpath, _dirs, files in os.walk(dest):
+        for fn in files:
+            path = os.path.join(dirpath, fn)
+            data = open(path, "rb").read()
+            found = sorted({x.decode() for x in pats if x in data})
+            if found:
+                hits.append({"file": os.path.relpath(path, dest), "patterns": found})
+    return hits
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out_root", required=True)
@@ -175,6 +235,14 @@ def main():
     MIN_KEPT[0] = a.min_kept
     dest = a.dest or os.path.join(a.out_root, "merged")
     os.makedirs(dest, exist_ok=True)
+    scrubbed = None
+    if os.environ.get("ALLOW_HOME") == "1":        # the run sat in a home directory: scrub before anything is read
+        pre = home_prefixes()
+        if not pre:
+            print("merge: ALLOW_HOME=1 but PROJECT_ROOT is not set (cluster.env); nothing can be scrubbed")
+            return 3
+        scrubbed = scrub_home(a.out_root, pre)
+        print("merge: running inside a home directory; %d files under OUT_ROOT now carry <PROJECT_ROOT>" % scrubbed)
     m, order, last, cells = GJ.load_manifest(a.manifest)
     skips = GJ.load_skips(a.skipped)
     labels = {x["id"]: x["label"] for x in m["models"]}
@@ -284,6 +352,14 @@ def main():
                 out += ["CF (CounterFact): %s" % cf_note, ""]
         open(os.path.join(dest, "grid_%s.md" % grid), "w", encoding="utf-8").write("\n".join(out) + "\n")
     lvc = local_vs_cluster(a.out_root, dest)
+    if scrubbed is not None:       # merged files that name OUT_ROOT itself (pending details) get the token too
+        scrubbed += scrub_home(dest, home_prefixes())
+    hits = home_scan(dest)
+    with open(os.path.join(dest, "home_scan.json"), "w", encoding="utf-8") as f:
+        json.dump({"files_scrubbed": scrubbed, "home_path_hits": hits}, f, indent=1)
+    if hits:
+        print("merge: FAIL, home paths remain in the merged outputs: %s" % ", ".join(h["file"] for h in hits))
+        return 3
     print(json.dumps({"cells": len(comp), "states": cnt, "results_rows": {g: len(r) for g, r in rows_by_grid.items()},
                       "shared_rows": {g: len(r) for g, r in sh_rows.items()},
                       "shared_states": collections.Counter(x[7] for x in sh_table),

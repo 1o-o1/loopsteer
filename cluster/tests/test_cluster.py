@@ -1046,7 +1046,7 @@ def test_setup_cluster_dry_run_headers_env_and_home_refusal(tmp_path):
         names |= set(re.findall(r"\$\{?([A-Z][A-Z0-9_]+)", open(f, encoding="utf-8").read()))
     internal = {"SLURM_ARRAY_TASK_ID", "SLURM_ARRAY_JOB_ID", "SLURM_JOB_ID", "SLURMD_NODENAME", "HOME", "LIST", "CMD",
                 "ID", "J", "ALL", "CARDS", "OUT_ROOT", "SN", "TL", "CHECK", "SB", "BAD", "GPUS", "NODE", "RESTRICT",
-                "SLURM_RESTART_COUNT"}
+                "SLURM_RESTART_COUNT", "HOME_RUN"}
     names -= internal | {n for n in names if re.match(r"^J\d+$", n)}
     exported = set(re.findall(r"\b([A-Z][A-Z0-9_]+)=", e))
     assert not names - exported, sorted(names - exported)
@@ -1387,6 +1387,138 @@ def test_run_all_asks_by_name_and_remembers(tmp_path):
     proj3, cl3, env3, log3, _ = _run_all_tree(tmp_path / "c", "gpu*\\n", "g1|gpu:8|idle\\n", "", sshare="acctS  op\\n")
     r = _run_all(cl3, proj3, env3, "yes\n")
     assert r.returncode == 0 and "--account acctS " in open(log3).read(), r.stdout.decode()[-1500:]
+
+
+def test_merge_scrub_and_home_scan_units(tmp_path):
+    """scrub_home: the project root (as given) becomes <PROJECT_ROOT> in every text file, *.env files are left alone;
+    home_scan: names each merged file that still holds a home path."""
+    proj = tmp_path / "home" / "proj"
+    d = proj / "out" / "B" / "job"
+    d.mkdir(parents=True)
+    root = str(proj)
+    (d / "records.jsonl").write_text('{"argv": "%s/repo/x.py", "v": 1}\n{"v": 2}\n' % root.replace("\\", "\\\\"))
+    (d / "results.csv").write_text("a,b\n%s/out,2\n" % root)
+    (proj / "out" / "cluster.env").write_text('export OUT_ROOT="%s/out"\n' % root)
+    (d / "clean.csv").write_text("a\n1\n")
+    n = MG.scrub_home(str(proj / "out"), [root, root.replace("\\", "\\\\")])
+    assert n == 2
+    assert (d / "results.csv").read_text() == "a,b\n<PROJECT_ROOT>/out,2\n"
+    assert json.loads((d / "records.jsonl").read_text().splitlines()[0])["argv"] == "<PROJECT_ROOT>/repo/x.py"
+    assert root in (proj / "out" / "cluster.env").read_text()
+    dest = tmp_path / "merged"
+    dest.mkdir()
+    (dest / "ok.csv").write_text("x\n<PROJECT_ROOT>/out\n")
+    (dest / "bad.md").write_text("see /home/someone/out\n")
+    assert MG.home_scan(str(dest)) == [{"file": "bad.md", "patterns": ["/home/"]}]
+
+
+@needs_artifacts
+def test_merge_home_run_scrubs_and_fails_on_leftovers(tmp_path):
+    """ALLOW_HOME=1: merge.py rewrites the project root in the job folders before reading them, writes the merged
+    outputs with no home path (home_scan.json empty, exit 0); a merged file with another home path fails it (exit 3).
+    Without PROJECT_ROOT it refuses (exit 3)."""
+    home = tmp_path / "home"
+    proj = home / "proj"
+    out = proj / "out"
+    for m in ("parcae-370m", "parcae-1.3b"):
+        d = out / "B" / "k17_parcae" / m
+        d.mkdir(parents=True)
+        for f in glob.glob(os.path.join(ART, "k17_parcae", "full_final", "res_%s_D1.json" % m)) + \
+                glob.glob(os.path.join(ART, "k17_parcae", "full_final", "meta_%s.json" % m)):
+            shutil.copy(f, str(d))
+        src = os.path.join(PILOT, "k17_parcae.py")
+        subprocess.check_call([sys.executable, "-B", src, "--summarize", "--out", str(d)], stdout=subprocess.DEVNULL)
+        subprocess.check_call([sys.executable, "-B", os.path.join(CL, "extract", "run.py"), "--script", "k17_parcae.py",
+                               "--src", src, "--job", str(d)], stdout=subprocess.DEVNULL)
+        (d / "task.log").write_text("python %s/repo/loopedcot/cluster/pilot/k17_parcae.py --out %s\n" % (proj, d))
+    merge = [sys.executable, "-B", os.path.join(CL, "merge.py"), "--out_root", str(out)]
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", ALLOW_HOME="1", HOME=str(home))
+    env.pop("PROJECT_ROOT", None)
+    r = subprocess.run(merge, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 3 and b"PROJECT_ROOT is not set" in r.stdout
+    env["PROJECT_ROOT"] = str(proj)
+    r = subprocess.run(merge, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0 and "running inside a home directory" in so, so[-2000:]
+    log = (out / "B" / "k17_parcae" / "parcae-370m" / "task.log").read_text()
+    assert str(proj) not in log and log.startswith("python <PROJECT_ROOT>/repo/loopedcot/")
+    scan = json.loads((out / "merged" / "home_scan.json").read_text())
+    assert scan["home_path_hits"] == [] and scan["files_scrubbed"] >= 2
+    (out / "merged" / "stray.md").write_text("left over: /root/x\n")
+    r = subprocess.run(merge, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 3 and b"home paths remain in the merged outputs: stray.md" in r.stdout, r.stdout.decode()[-1500:]
+
+
+@needs_bash
+def test_allow_home_setup_space_check_and_template_guard(tmp_path):
+    """ALLOW_HOME=1: setup accepts a project in the home directory, prints the message, df and quota, and stops when
+    the space is short (df or quota); without it the refusal stays. The array template guard: refused by default,
+    the message with ALLOW_HOME=1."""
+    lc, fake = _setup_tree(tmp_path)
+    proj = (tmp_path / "proj").as_posix()
+    py = sys.executable.replace("\\", "/")
+    setup = (lc / "env" / "setup_cluster.sh").as_posix()
+
+    def tools(df_free_kb, quota_lines):
+        (fake / "df").write_bytes(("#!/bin/bash\necho 'Filesystem 1024-blocks Used Available Capacity Mounted on'\n"
+                                   "echo 'fs 900000000 1 %d 1%% /h'\n" % df_free_kb).encode())
+        (fake / "quota").write_bytes(("#!/bin/bash\necho 'Disk quotas for user op'\necho 'Filesystem blocks quota limit "
+                                      "grace files quota limit grace'\n%s\n" % quota_lines).encode())
+        for n in ("df", "quota"):
+            os.chmod(str(fake / n), 0o755)
+
+    env = dict(os.environ, HOME=proj, PATH=fake.as_posix() + os.pathsep + os.environ.get("PATH", ""))
+    for k in ("OUT_ROOT", "HF_HOME", "WEIGHTS_ROOT", "PARTITION", "ACCOUNT", "NODELIST", "ALLOW_HOME", "PROJECT_ROOT"):
+        env.pop(k, None)
+    cmd = [_bash(), "-c", 'PATH="$(cygpath -u "$0" 2> /dev/null || echo "$0"):$PATH"; exec bash "$@"', fake.as_posix(), setup, "--dry-run", "--python", py,
+           "--out-root", proj + "/out", "--hf-home", proj + "/hf",
+           "--weights-root", proj + "/ckpt", "--partition", "gpuq", "--account", "acct1", "--nodelist",
+           "n01,n02,n03,n04,n05,n06"]
+    r = subprocess.run(cmd, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 2 and b"ALLOW_HOME=1 when the cluster has no scratch" in r.stdout
+    tools(500 * 1048576, "echo 'fs 1000 0 0 0 1 0 0 0'")          # 500 GB free, no quota limit
+    r = subprocess.run(cmd, env=dict(env, ALLOW_HOME="1"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert "running inside a home directory; records will be scrubbed at merge" in so, so[-2000:]
+    assert "need about 113.0 GB more" in so and "quota free no quota found" in so and "quota -s:" in so
+    assert "stopped before creating anything" not in so
+    e = open(proj + "/out/cluster.env", encoding="utf-8").read()
+    assert "export ALLOW_HOME=1" in e and re.search(r'export PROJECT_ROOT="[^"<]+/proj"', e), e
+    tools(50 * 1048576, "echo 'fs 1000 0 0 0 1 0 0 0'")           # 50 GB free: short
+    r = subprocess.run(cmd, env=dict(env, ALLOW_HOME="1"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 2 and b"stopped before creating anything: about 113.0 GB is needed" in r.stdout, r.stdout.decode()[-1500:]
+    tools(500 * 1048576, "echo 'fs 10485760 20971520 20971520 0 1 0 0 0'")   # quota: 10 GB of 20 GB used
+    r = subprocess.run(cmd, env=dict(env, ALLOW_HOME="1"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 2 and b"10.0 GB is free in the home directory" in r.stdout, r.stdout.decode()[-1500:]
+    # the array template guard, run on its own
+    t = open(os.path.join(JOBS, "task_g2_gen.sbatch"), encoding="utf-8").read()
+    i = t.index("for v in REPO OUT_ROOT DATA_ROOT HF_HOME")
+    j = t.index("records will be scrubbed at merge", i)
+    guard = t[i:t.index("\n", j)] + "\necho passed\n"
+    if os.name == "nt":          # Git bash: the template compares POSIX paths, as on the cluster
+        guard = 'HOME=$(cygpath -u "$HOME"); OUT_ROOT=$(cygpath -u "$OUT_ROOT")\n' + guard
+    genv = dict(env, OUT_ROOT=proj + "/out", TL=(tmp_path / "tl.log").as_posix())
+    r = subprocess.run([_bash(), "-c", guard], env=genv, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 2 and b"inside a home directory" in r.stdout and b"passed" not in r.stdout
+    r = subprocess.run([_bash(), "-c", guard], env=dict(genv, ALLOW_HOME="1"), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 0 and b"running inside a home directory; records will be scrubbed at merge\npassed" in r.stdout
+
+
+@needs_bash
+def test_run_all_allow_home(tmp_path):
+    """run_all.sh in a home folder: refused, then accepted with ALLOW_HOME=1 (message, ALLOW_HOME=1 reaches setup)."""
+    proj, cl, env, log, home = _run_all_tree(tmp_path, "gpu*\\n", "g1|gpu:8|idle\\n", "acctA\\n")
+    env = dict(env, HOME=proj.as_posix())
+    env.pop("ALLOW_HOME", None)
+    r = _run_all(cl, proj, env, "yes\n")
+    assert r.returncode == 2 and b"ALLOW_HOME=1 bash" in r.stdout and not os.path.exists(log)
+    (cl / "env" / "setup_cluster.sh").write_bytes(
+        ('#!/bin/bash\necho "setup ALLOW_HOME=$ALLOW_HOME $*" >> "%s"\nmkdir -p "$2"\n: > "$2/cluster.env"\n'
+         'echo "nothing left"\n' % log).encode())
+    r = _run_all(cl, proj, dict(env, ALLOW_HOME="1"), "yes\n")
+    so = r.stdout.decode()
+    assert r.returncode == 0 and "running inside a home directory; records will be scrubbed at merge" in so, so[-1500:]
+    assert open(log).read().startswith("setup ALLOW_HOME=1 ")
 
 
 @pytest.mark.parametrize("case", ["nvidia_smi_signature", "output_signature", "second_failure", "plain_failure"])

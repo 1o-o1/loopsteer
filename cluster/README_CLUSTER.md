@@ -25,6 +25,7 @@ Three commands, on a login node, from your project or scratch folder (never a ho
    never uses more.
    - A value it cannot find is asked for by name (for example `ACCOUNT = `). The answer is kept in
      `<PROJECT_DIR>/out/run_all.env`, so a rerun does not ask again.
+   - If the cluster has no scratch: `ALLOW_HOME=1 bash repo/loopedcot/cluster/run_all.sh`
    - To change a value, set it on the command line, for example
      `ACCOUNT=<ACCOUNT> MODULES="<MODULES>" bash repo/loopedcot/cluster/run_all.sh`.
    - When it stops at the setup checklist, do what the `FAIL` or `SUPPLY` lines say and run the same command again. A

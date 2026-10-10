@@ -4,7 +4,8 @@
 # It discovers
 #   PARTITION  the default partition (the one sinfo marks with *)
 #   ACCOUNT    the first association of the user (sacctmgr show assoc, else sshare)
-#   project    the current folder (refused inside a home directory); out/, hf/ and ckpt/ go there
+#   project    the current folder (refused inside a home directory unless ALLOW_HOME=1, for a cluster with no
+#              scratch; the merge job then scrubs the folder from every record); out/, hf/ and ckpt/ go there
 #   NODELIST   the GPU nodes of the partition that Slurm reports usable, idle ones first; the probe step of
 #              submit_chain.sh keeps the first NODES_EXPECTED (6) healthy ones, so no node list is needed
 #   PYTHON     python3 when it has a CUDA build of torch (after module load $MODULES when MODULES is set)
@@ -28,7 +29,11 @@ in_home() {          # the rule of setup_cluster.sh: no run folder inside a home
   case "$r" in "$(norm "$HOME")"/*|/home/*|/Users/*|/root/*) return 0;; esac
   return 1
 }
-in_home "$PROJ" && stop "the current folder $PROJ is inside a home directory; cd to a project or scratch folder and run again" 2
+if in_home "$PROJ"; then
+  [ "${ALLOW_HOME:-0}" = 1 ] || stop "the current folder $PROJ is inside a home directory; cd to a project or scratch folder and run again (or, when the cluster has no scratch: ALLOW_HOME=1 bash $HERE/run_all.sh)" 2
+  echo "running inside a home directory; records will be scrubbed at merge"
+fi
+export ALLOW_HOME="${ALLOW_HOME:-0}"
 
 # ------------------------------------------------------------------ remembered answers, then discovery
 for v in PARTITION ACCOUNT NODELIST NODES_EXPECTED MODULES PYTHON RESERVATION; do
