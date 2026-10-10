@@ -1,0 +1,23 @@
+# Raven family venv on the cluster ($VENV_RAVEN): k17_public (McLeish, its twin, Huginn, Ouro Thinking group),
+# k17_freeze_raven, steer_gen_raven. Python >= 3.10: the McLeish and Huginn modeling files use X | Y unions at import.
+# Built by cluster/env/setup_cluster.sh with --system-site-packages (torch from the node image, never installed here).
+# Pins = requirements_raven.txt (the pilot venv, Python 3.12) for the packages the scripts and the remote modeling code
+# import; torch, torchvision, triton, nvidia-*, cuda-* and the OS packages of that freeze removed. numpy 2.4.4,
+# pandas 3.0.2 and scipy 1.17.1 need Python >= 3.11; on 3.10 the requirements_fasthost.txt pins apply.
+transformers==4.56.2
+tokenizers==0.22.2
+huggingface_hub==0.36.2
+hf-xet==1.5.0
+safetensors==0.7.0
+accelerate==1.13.0
+peft==0.20.0
+einops==0.8.2
+PyYAML==6.0.1
+regex==2026.5.9
+tqdm==4.67.3
+numpy==2.4.4; python_version >= "3.11"
+pandas==3.0.2; python_version >= "3.11"
+scipy==1.17.1; python_version >= "3.11"
+numpy==2.0.2; python_version < "3.11"
+pandas==2.3.3; python_version < "3.11"
+scipy==1.13.1; python_version < "3.11"

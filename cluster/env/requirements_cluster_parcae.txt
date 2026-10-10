@@ -1,0 +1,18 @@
+# Parcae family venv on the cluster ($VENV_PARCAE): k17_parcae (Parcae 370m and 1.3b). Python >= 3.11 (parcae-lm 0.1.0
+# declares Requires-Python >= 3.11). Built by cluster/env/setup_cluster.sh with --system-site-packages (torch from the
+# node image, never installed here; parcae-lm declares an unpinned torch, so the node torch satisfies it).
+# Pins = requirements_parcae.txt (the pilot venv, Python 3.12) without torch, triton, nvidia-* and cuda-*.
+transformers==4.56.2
+tokenizers==0.22.2
+huggingface_hub==0.36.2
+hf-xet==1.7.0
+safetensors==0.7.0
+einops==0.8.2
+sentencepiece==0.2.1
+ninja==1.13.2
+numpy==2.4.4
+PyYAML==6.0.3
+regex==2026.9.29
+tqdm==4.70.1
+packaging==24.0
+parcae-lm @ git+https://github.com/SandyResearch/parcae.git@69284c13746e849104f738d6d1a347b1f457df76#subdirectory=parcae_lm

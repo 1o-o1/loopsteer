@@ -1,0 +1,1 @@
+g1_copy.s3_merge.001	source $VENV_RAVEN/bin/activate && python -u $REPO/loopedcot/cluster/pilot/k17_public.py --run --model mcl_nr --data $DATA_ROOT/public --out $OUT_ROOT/B/k17_public/mcl_nr_VB --plan $PUB_PLAN --datasets VB --targets VB=100000 --budget_min 100000000 --full_search_cap 0 --no_reduced --no_seeds --no_gradient_rank --stage merge

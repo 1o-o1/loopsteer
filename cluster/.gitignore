@@ -1,0 +1,2 @@
+# The bundle is committed whole: undo the repository-wide ignore rules for files inside cluster/.
+!checks.json

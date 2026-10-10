@@ -1,0 +1,82 @@
+{
+ "built_by": "loop-flow/src/k17_build_asdiv_mawps.py",
+ "script_sha256": "7963b3d3ab4fe3b59a5cfddd0adaeb9b710d54aced632e19c6e1bd8a6f2aa73f",
+ "based_on": "loop-flow/src/k17_build_svamp.py (same filters; input source and field mapping differ)",
+ "uses": {
+  "loopedcot/data_steer/build_math.py": "5e3fd16f21c72c90a61058ef85ad2102f29a17acd9ee67616a2d640064bbe8fd"
+ },
+ "date": "2026-10-09",
+ "seed": "k17_asdiv:20261009",
+ "source": {
+  "repo": "EleutherAI/asdiv",
+  "revision": "8f95807222d87b4c688c3c22a6ba2801e1fa03e2",
+  "license": "cc-by-nc-4.0",
+  "files": {
+   "asdiv/validation-00000-of-00001.parquet": {
+    "sha256": "79dbad6536fe3e8cd449e67da859d7a6f5ac0d8f852efe563742ca5faee7fb75",
+    "bytes": 266768
+   },
+   "README.md": {
+    "sha256": "78e51745c443bc98917621e76d414327e9f66045fef967a90deb3b25b9def70b",
+    "bytes": 494
+   }
+  },
+  "role": "ASDiv, all 2305 problems of the hub copy (not only the ASDiv-A arithmetic subset)"
+ },
+ "prompt": {
+  "task": "svamp format (prod/tasks TASKS['svamp'], reused: no ASDiv or MAWPS task exists)",
+  "assembly": "prompt_svamp.txt + 'Question: ' + question + '\\nAnswer:' (sep '')",
+  "prefix_file_sha256": "931391a38fe2cfccb48a624ece3d9949e8034d5d3e75aacc2a361b06b67b8001",
+  "question": "(body.strip() + ' ' + question.strip()).strip()",
+  "equation": "part of `formula` before the single '='; formulas without exactly one '=' have no equation",
+  "answer": "leading number of `answer`"
+ },
+ "tokenizers": {
+  "ouro": {
+   "repo": "ByteDance/Ouro-1.4B",
+   "revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+   "from": "local HF cache (pinned revision)",
+   "rule": "add_special_tokens=False",
+   "sha256_tokenizer.json": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d",
+   "md5_tokenizer.json": "5473993dd92e266357a2c67fd01b8faf",
+   "md5_same_as": {
+    "ByteDance/Ouro-1.4B-Thinking@3aaa222": "5473993dd92e266357a2c67fd01b8faf",
+    "ByteDance/Ouro-2.6B@1ed0425": "5473993dd92e266357a2c67fd01b8faf",
+    "ByteDance/Ouro-2.6B-Thinking@f1edd81": "5473993dd92e266357a2c67fd01b8faf"
+   }
+  },
+  "huginn": {
+   "repo": "tomg-group-umd/huginn-0125",
+   "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+   "from": "local HF cache (pinned revision)",
+   "rule": "add_special_tokens=False",
+   "sha256_tokenizer.json": "9cc201a5061b70aba0d227ef9766fcfe21e0989e0c0ba442b4d7732c4de12308",
+   "md5_tokenizer.json": "b817ba61e92f6501e188acf309f94c4d"
+  },
+  "mcleish": {
+   "repo": "smcleish/Recurrent-Llama-3.2-train-recurrence-32",
+   "revision": "a5f6f126e9d9302445346844f1d7d29d111a06eb",
+   "from": "local HF cache (pinned revision)",
+   "rule": "add_special_tokens=True (prepends <|begin_of_text|>)",
+   "sha256_tokenizer.json": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+   "md5_tokenizer.json": "f97dc2d5d300c4703d55dede68005737"
+  },
+  "ifm": {
+   "source": "shared GPU host: LoopedLM-P1-dense-ouro-336b/tokenizer",
+   "rule": "[bos_id] + add_special_tokens=False (k10_ifm.py line 311)",
+   "md5_tokenizer.json": "0457edc776d0e5debd101af7ca6c635b",
+   "md5_tokenizer_config.json": "b93bf2db7b5799613616dd07e3edd356",
+   "sha256_tokenizer.json": "e0046eb3a1adc60249aa5310d1adfdb7ae5159f4a22126ac44b260fb424ac944"
+  }
+ },
+ "outputs": {
+  "asdiv/pairs_asdiv.jsonl": {
+   "sha256": "54e07676b8d4923450baf49f2f356191c6e2ab9950b851b8fea61cef128e6cdf",
+   "bytes": 2068554,
+   "rows": 1114
+  },
+  "asdiv/checks.json": {
+   "sha256": "9e2154f4dbd1f5c8158db2dd06a1174e8e9add21b4714d363545ab004f30a22f"
+  }
+ }
+}

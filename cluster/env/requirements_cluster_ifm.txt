@@ -1,0 +1,40 @@
+# IFM family venv on the cluster ($VENV_IFM): k15_full, k15_pairs, k16_path_ifm, k17_varbench (IFM models),
+# k17_freeze_ifm through k10_ifm.py and xllm-loop. Python >= 3.10 (xllm-loop uses `str | None` in a signature at import;
+# fla-core, blobfile, nltk and transformers 5.8.0 declare >= 3.10). Built by cluster/env/setup_cluster.sh with
+# --system-site-packages (torch from the node image, never installed here). xllm itself is not listed: the g0_xllm job
+# builds it into this venv on a GPU node (cluster/env/build_xllm.sh, pip install --no-build-isolation --no-deps -e).
+# Pins = requirements_ifm.txt (the pilot venv, Python 3.12) for the packages the scripts and xllm import, except:
+#   fla-core and flash-linear-attention 0.5.2 -> 0.4.2: 0.5.x declares torch >= 2.7.0; 0.4.2 is the newest release whose
+#     metadata admits torch 2.6 (Requires-Dist torch, no bound) and it keeps the two imports xllm makes at load
+#     (fla.modules.conv.triton causal_conv1d_fwd/_bwd, fla.ops.utils.prepare_chunk_indices); it asks for triton >= 3.2,
+#     the triton of torch 2.6.
+#   torch 2.11.0, torchvision 0.26.0, triton 3.6.0, nvidia-*, cuda-*: removed (node image).
+# numpy 2.4.4, pandas 3.0.2 and scipy 1.17.1 need Python >= 3.11; on 3.10 the requirements_fasthost.txt pins apply.
+transformers==5.8.0
+tokenizers==0.22.2
+huggingface_hub==1.14.0
+hf-xet==1.5.0
+safetensors==0.7.0
+accelerate==1.13.0
+einops==0.8.2
+fla-core==0.4.2
+flash-linear-attention==0.4.2
+tiktoken==0.8.0
+sentencepiece==0.2.1
+typeguard==4.5.1
+blobfile==3.3.0
+fire==0.7.1
+nltk==3.9.4
+rouge-score==0.1.2
+nvidia-ml-py==13.615.71
+ninja==1.13.2
+setuptools==68.1.2
+wheel==0.42.0
+regex==2026.5.9
+tqdm==4.67.3
+numpy==2.4.4; python_version >= "3.11"
+pandas==3.0.2; python_version >= "3.11"
+scipy==1.17.1; python_version >= "3.11"
+numpy==2.0.2; python_version < "3.11"
+pandas==2.3.3; python_version < "3.11"
+scipy==1.13.1; python_version < "3.11"

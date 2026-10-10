@@ -1,0 +1,2 @@
+# Keep every byte as committed (the pins in jobs/scripts_sha256.txt are sha256 of the exact bytes).
+* -text

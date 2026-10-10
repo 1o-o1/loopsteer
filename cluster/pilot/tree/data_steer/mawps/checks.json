@@ -1,0 +1,91 @@
+{
+ "pairs_built": 2082,
+ "equal_length_all_tokenizers": true,
+ "span_only_difference_all": true,
+ "same_span_token_count_all": true,
+ "gold_recomputed_by_eval_all": true,
+ "new_gold_absent_from_text_all": true,
+ "gold_differs_all": true,
+ "gold_type_kept_all": true,
+ "value_once_in_text_all": true,
+ "pair_ids_unique": true,
+ "hf_revision_recorded": true,
+ "yield": {
+  "yield_all": {
+   "problems": 2649,
+   "problems_test": 520,
+   "problems_train": 1089,
+   "problems_validation": 1040,
+   "text_joined": 2648,
+   "equation_parsed": 2648,
+   "equation_equals_answer": 2646,
+   "answer_integer": 2100,
+   "has_number_once_in_text_and_in_equation": 2084,
+   "has_value_valid_B": 2082,
+   "has_token_valid_B": 2082
+  },
+  "rejections": {
+   "candidate_sign_changed": 762,
+   "answer_not_integer": 546,
+   "candidate_fraction": 1056,
+   "candidate_value_B_in_text": 18,
+   "no_candidate_number": 16,
+   "equation_ne_answer": 2,
+   "candidate_gold_B_in_text": 15,
+   "duplicate_text": 1
+  }
+ },
+ "strata": {
+  "all": {
+   "n": 2082,
+   "split": {
+    "test": 349,
+    "train": 1009,
+    "validation": 724
+   },
+   "n_digits": {
+    "1": 339,
+    "2": 1195,
+    "3": 540,
+    "4": 5,
+    "5": 3
+   },
+   "ouro_span_tokens": {
+    "1": 339,
+    "2": 1195,
+    "3": 540,
+    "4": 5,
+    "5": 3
+   },
+   "huginn_span_tokens": {
+    "1": 339,
+    "2": 1195,
+    "3": 540,
+    "4": 5,
+    "5": 3
+   },
+   "mcleish_span_tokens": {
+    "1": 2074,
+    "2": 8
+   },
+   "ifm_span_tokens": {
+    "1": 2074,
+    "2": 8
+   },
+   "first_digit_differs": {
+    "False": 614,
+    "True": 1468
+   },
+   "value_first_digit_differs": {
+    "False": 222,
+    "True": 1860
+   },
+   "src_type": {
+    "none": 2082
+   },
+   "n_equation_occurrences": {
+    "1": 2082
+   }
+  }
+ }
+}

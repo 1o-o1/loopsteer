@@ -1,0 +1,22 @@
+# Ouro family venv on the cluster ($VENV_OURO): k17_varbench (Ouro models), k16_path_ouro, k17_freeze, steer_gen,
+# steer_gen_math, merge and the extractors. Built by cluster/env/setup_cluster.sh with --system-site-packages: torch
+# comes from the node image (torch 2.6.0+cu124 observed) and is never installed here. Pins = requirements_fasthost.txt
+# (the venv of the Ouro pilot runs, Python 3.9), torch, triton and the nvidia-* wheels removed. Python >= 3.9.
+# numpy, pandas and scipy keep the pilot pins up to Python 3.12; on 3.13 the pins of requirements_raven.txt apply
+# (no 3.13 wheel of numpy 2.0.2).
+transformers==4.56.2
+tokenizers==0.22.2
+huggingface_hub==0.36.2
+hf-xet==1.6.0
+safetensors==0.7.0
+accelerate==1.10.1
+peft==0.17.1
+PyYAML==6.0.3
+regex==2026.1.15
+tqdm==4.70.1
+numpy==2.0.2; python_version < "3.13"
+pandas==2.3.3; python_version < "3.13"
+scipy==1.13.1; python_version < "3.13"
+numpy==2.4.4; python_version >= "3.13"
+pandas==3.0.2; python_version >= "3.13"
+scipy==1.17.1; python_version >= "3.13"

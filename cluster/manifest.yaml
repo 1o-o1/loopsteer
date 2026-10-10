@@ -1,0 +1,171 @@
+# Machine-readable copy of notes/ra_cluster_manifest_AB_2026-10-09.md: grids A and B, the decay and schedule
+# rows, the C and D scripts of the script table, the queue order, and the section "Not run on the cluster".
+# Transcribed by the code chat on 2026-10-08. Names follow cluster/cells_skipped.json (model registry names,
+# dataset codes, card names) so the two files join on (card, model, dataset).
+# Cell words as in the manifest:
+#   run  = run at the full pool          done = already at the full pool, do not rerun
+#   scan = the clean-pass scan decides    skip = not run, with its reason (ability, design, time)
+#   scope = in "Not run on the cluster" (2026-10-09), with the manifest's reason
+# note = the manifest's own words for the cell. Skips for missing script support ("time") are not repeated here:
+# they live in cells_skipped.json, which gen_jobs.py and merge.py read.
+version: 2
+source: notes/ra_cluster_manifest_AB_2026-10-09.md
+
+datasets:   # pool = the manifest's "Sizes and cost" pool, before the clean-pass filter
+  D1: {label: "facts (capital, city)", pool: 267}
+  CF: {label: "CounterFact (subject split)", pool: 598}
+  D2: {label: "addition", pool: 263}
+  D4: {label: "code (read, sum)", pool: 160}
+  D5: {label: "two-step math", pool: 160}
+  VB: {label: "GSM8K copy (VarBench pairs)", pool: 1198}
+  VBD: {label: "GSM8K derived", pool: 848}
+  GSM8K_gen: {label: "GSM8K generation pairs", pool: 522}
+  SVAMP_gen: {label: "SVAMP generation pairs", pool: 300}
+  SENT300: {label: "sentiment, 300 new neutral prompts", pool: 300}
+  D3: {label: "countries", pool: 76}
+  LRE: {label: "relational facts, the 47-relation linear-relations set (RA-23 item 5)", pool: 350}
+  ASDIV_gen: {label: "ASDiv generation pairs (RA-23 item 4)", pool: 1114}
+  MAWPS_gen: {label: "MAWPS generation pairs (RA-23 item 4)", pool: 2082}
+
+models:   # in the manifest's row order; last: true = Huginn and Parcae, last in every queue group
+  - {id: ouro_1_4b_base, label: "Ouro 1.4B base"}
+  - {id: ouro_2_6b_base, label: "Ouro 2.6B base"}
+  - {id: ouro_1_4b_think, label: "Ouro 1.4B Thinking"}
+  - {id: ouro_2_6b_think, label: "Ouro 2.6B Thinking"}
+  - {id: ifm_p1_ouro, label: "IFM no-injection"}
+  - {id: ifm_p1_ouro_inj, label: "IFM injection twin"}
+  - {id: ifm_p1_mid, label: "IFM middle pair, no injection"}
+  - {id: ifm_p1_mid_inj, label: "IFM middle pair, prelude injection"}
+  - {id: ifm_p2m_r5, label: "819M design fixed-r5"}
+  - {id: ifm_p2m_diag, label: "819M design fixed-pln5"}
+  - {id: ifm_p2m_ortho, label: "819M design orthoinj"}
+  - {id: ifm_d28, label: "d28"}
+  - {id: ifm_d112, label: "d112"}
+  - {id: mcleish_llama32_r32, label: "McLeish r32"}
+  - {id: llama_nr, label: "McLeish non-recurrent twin"}
+  - {id: huginn_0125, label: "Huginn K32", last: true}
+  - {id: parcae_370m, label: "Parcae 370m", last: true}
+  - {id: parcae_1_3b, label: "Parcae 1.3b", last: true}
+
+rows:   # the manifest tables' rows (RA-20 item 9: the shared set is the items every model of a row keeps).
+        # A model not listed in a grid is its own row. Grids C, D and E list no rows.
+  A:
+    - {id: ifm_family, label: "IFM no-injection, injection twin, middle pair, 819M, d28, d112", models: [ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_r5, ifm_p2m_diag, ifm_p2m_ortho, ifm_d28, ifm_d112]}
+    - {id: parcae, label: "Parcae 370m, 1.3b", models: [parcae_370m, parcae_1_3b]}
+  B:
+    - {id: ifm_mid_pair, label: "IFM middle pair (both)", models: [ifm_p1_mid, ifm_p1_mid_inj]}
+    - {id: ifm_819m, label: "819M designs (three)", models: [ifm_p2m_r5, ifm_p2m_diag, ifm_p2m_ortho]}
+    - {id: d28_d112, label: "d28, d112", models: [ifm_d28, ifm_d112]}
+    - {id: mcleish_pair, label: "McLeish r32 and non-recurrent twin", models: [mcleish_llama32_r32, llama_nr]}
+    - {id: parcae, label: "Parcae 370m, 1.3b", models: [parcae_370m, parcae_1_3b]}
+
+groups:   # "Order and budget", in queue order
+  - {id: g1_copy, label: "(1) GSM8K copy and derived at the full pool"}
+  - {id: g2_gen, label: "(2) generation, GSM8K then SVAMP"}
+  - {id: g3_map, label: "(3) edit-site map at full pools"}
+  - {id: g4_cd, label: "(4) C and D scripts on the models they load"}
+  - {id: g5_huginn, label: "(5) Huginn edit-site and copy cells"}
+
+# One entry per (grid, card, model); cells maps dataset -> status or [status, note/reason].
+cells:
+  # ---- Grid A: generation placement (run-1 rows; batch of run 1) ----
+  - {grid: A, card: generation placement, model: ouro_1_4b_base,  cells: {GSM8K_gen: [run, "150 done; the rest of the pool"], SVAMP_gen: [run, "after the RA-18 build"]}}
+  - {grid: A, card: generation placement, model: ouro_2_6b_base,  cells: {GSM8K_gen: [run, "same"], SVAMP_gen: run}}
+  - {grid: A, card: generation placement, model: ouro_1_4b_think, cells: {GSM8K_gen: [run, "chat template"], SVAMP_gen: run}}
+  - {grid: A, card: generation placement, model: ouro_2_6b_think, cells: {GSM8K_gen: [run, "chat template"], SVAMP_gen: run}}
+  - {grid: A, card: generation placement, model: ifm_p1_ouro,     cells: {GSM8K_gen: [scan, "clean solve rate low; the copy run kept 60 problems by the copy criterion, not by solving"], SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_p1_ouro_inj, cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_p1_mid,      cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_p1_mid_inj,  cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_p2m_r5,      cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_p2m_diag,    cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_p2m_ortho,   cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_d28,         cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: ifm_d112,        cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: mcleish_llama32_r32, cells: {GSM8K_gen: [run, "started this week on the fast card; the cluster takes the rest of the pool"], SVAMP_gen: run}}
+  - {grid: A, card: generation placement, model: huginn_0125,     cells: {GSM8K_gen: [run, "same"], SVAMP_gen: run}}
+  - {grid: A, card: generation placement, model: parcae_370m,     cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: generation placement, model: parcae_1_3b,     cells: {GSM8K_gen: scan, SVAMP_gen: scan}}
+  - {grid: A, card: "appendix: loop-2 contrast", model: ouro_1_4b_base, cells: {GSM8K_gen: [scope, "descriptive result; the frozen test needs a new strength; no claim depends on it"]}}
+  - {grid: A, card: "appendix: LoopCD accuracy rows", model: ouro_1_4b_think, cells: {GSM8K_gen: [scope, "claim dropped (no effect beyond drift)"]}}
+
+  # ---- Grid B: GSM8K copy (VB) and derived (VBD); the map columns are below ----
+  - {grid: B, card: GSM8K copy and derived, model: ouro_1_4b_base,  cells: {VB: [done, "1,053 pairs (production)"], VBD: [run, "RA-19 item 5: derived at the full pool"]}}
+  - {grid: B, card: GSM8K copy and derived, model: ouro_2_6b_base,  cells: {VB: [done, "1,069 (production)"], VBD: [run, "RA-19 item 5"]}}
+  - {grid: B, card: GSM8K copy and derived, model: ouro_1_4b_think, cells: {VB: [run, "pilot 190; full pool"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ouro_2_6b_think, cells: {VB: run, VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_p1_ouro,     cells: {VB: [run, "60 done; full pool"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_p1_ouro_inj, cells: {VB: [run, "60 done; full pool"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_p1_mid,      cells: {VB: run, VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_p1_mid_inj,  cells: {VB: run, VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_p2m_r5,      cells: {VB: run, VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_p2m_diag,    cells: {VB: run, VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_p2m_ortho,   cells: {VB: run, VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_d28,         cells: {VB: run, VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: ifm_d112,        cells: {VB: [run, "d112 60 done; full pool"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: mcleish_llama32_r32, cells: {VB: [run, "60 done"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: llama_nr,        cells: {VB: [run, "60 done"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: huginn_0125,     cells: {VB: [run, "this week at 40; full pool"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: parcae_370m,     cells: {VB: [run, "60 done"], VBD: run}}
+  - {grid: B, card: GSM8K copy and derived, model: parcae_1_3b,     cells: {VB: [run, "40 done"], VBD: run}}
+
+  # ---- Grid B: edit-site map ----
+  - {grid: B, card: edit-site map, model: ouro_1_4b_base,  cells: {D1: [done, "production, 267"], CF: done, D2: done, D4: done, D5: [run, "pilot script; production loader refuses the set"]}}
+  - {grid: B, card: edit-site map, model: ouro_2_6b_base,  cells: {D1: done, CF: done, D2: done, D4: done, D5: run}}
+  - {grid: B, card: edit-site map, model: ouro_1_4b_think, cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ouro_2_6b_think, cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_p1_ouro,     cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_p1_ouro_inj, cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_p1_mid,      cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_p1_mid_inj,  cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_p2m_r5,      cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_p2m_diag,    cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_p2m_ortho,   cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_d28,         cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: ifm_d112,        cells: {D1: run, CF: run, D2: run, D4: run, D5: run}}
+  - {grid: B, card: edit-site map, model: mcleish_llama32_r32, cells: {D1: [run, "40 done"], CF: run, D2: run, D4: run, D5: scan}}
+  - {grid: B, card: edit-site map, model: llama_nr,        cells: {D1: [run, "30 done"], CF: run, D2: run, D4: run, D5: scan}}
+  - {grid: B, card: edit-site map, model: huginn_0125,     cells: {D1: [run, "31 done; pool ran out at 31: scan again on the full pool, expect ability"], CF: scan, D2: [run, "40 done"], D4: scan, D5: scan}}
+  - {grid: B, card: edit-site map, model: parcae_370m,     cells: {D1: [run, "61 done"], CF: scan, D2: [skip, "ability (clean filter 0 to 3 percent, ledger 2026-10-08 02:10)"], D4: [skip, "ability (same)"], D5: [skip, "ability (same)"]}}
+  - {grid: B, card: edit-site map, model: parcae_1_3b,     cells: {D1: [run, "62 done"], CF: scan, D2: [skip, "ability (same)"], D4: [skip, "ability (same)"], D5: [skip, "ability (same)"]}}
+
+  # ---- Decay and schedule rows of B ----
+  - {grid: B, card: decay and schedule rows (sentiment), model: ouro_1_4b_base,  cells: {SENT300: [run, "300 new neutral prompts; loop-1-to-2 rule registered before launch"]}}
+  - {grid: B, card: decay and schedule rows (sentiment), model: ouro_2_6b_base,  cells: {SENT300: run}}
+  - {grid: B, card: decay and schedule rows (sentiment), model: ouro_1_4b_think, cells: {SENT300: run}}
+  - {grid: B, card: decay and schedule rows (sentiment), model: ouro_2_6b_think, cells: {SENT300: run}}
+  - {grid: B, card: decay and schedule rows (sentiment), model: ifm_p1_ouro,     cells: {SENT300: run}}
+  - {grid: B, card: decay and schedule rows (sentiment), model: mcleish_llama32_r32, cells: {SENT300: [run, "only if the sentiment script loads it through the edit-site adapter, else skip, time"]}}
+  - {grid: B, card: decay and schedule rows (sentiment), model: huginn_0125,     cells: {SENT300: [run, "same"]}}
+  - {grid: B, card: loops against depth, model: ifm_p1_ouro, cells: {D1: [done, "done on IFM against d112"], D2: done}}
+  - {grid: B, card: loops against depth, model: mcleish_llama32_r32, cells: {D1: [run, "against its non-recurrent twin from the same records (analysis, no GPU)"], D2: run}}
+  - {grid: B, card: loop trace, model: ouro_1_4b_base, cells: {D1: done, D2: done}}
+  - {grid: B, card: loop trace, model: ouro_2_6b_base, cells: {D1: [run, "only if cards are idle"], D2: [run, "only if cards are idle"]}}
+
+  # ---- Grids C and D: the script table ("the rest is a time skip") ----
+  - {grid: C, card: branch-freeze, model: ouro_1_4b_base, cells: {D1: [done, "k17_freeze full run"], D2: done, D4: done, D5: done}}
+  - {grid: C, card: branch-freeze, model: ouro_2_6b_base, cells: {D1: run, D2: run, D4: run, D5: run}}
+  - {grid: C, card: branch-freeze, model: ouro_1_4b_think, cells: {D1: run, D2: run, D4: run, D5: run}}
+  - {grid: C, card: branch-freeze, model: ouro_2_6b_think, cells: {D1: run, D2: run, D4: run, D5: run}}
+  - {grid: C, card: branch-freeze, model: mcleish_llama32_r32, cells: {D1: run, D2: run}}
+  - {grid: C, card: branch-freeze, model: huginn_0125, cells: {D1: run, D2: run}}
+  - {grid: C, card: carried-state ablation, model: ouro_1_4b_base, cells: {D1: [done, "k17_x4e full run"], D2: done}}
+  - {grid: C, card: carried-state ablation, models: [ouro_2_6b_base, ouro_1_4b_think, ouro_2_6b_think, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_r5, ifm_p2m_diag, ifm_p2m_ortho, ifm_d28, ifm_d112, mcleish_llama32_r32, llama_nr, huginn_0125, parcae_370m, parcae_1_3b], cells: {D1: run, D2: run}}
+  - {grid: C, card: re-read, model: ouro_1_4b_base, cells: {NEUTRAL150: [done, "k17_reread full run"]}}
+  - {grid: D, card: selective control, models: [ouro_1_4b_base, ouro_2_6b_base, ifm_p1_ouro, ifm_p1_ouro_inj], cells: {D3: [scope, "failed as a selectivity claim on four models; about 390 GPU-hours"], CF: [scope, "failed as a selectivity claim on four models; about 390 GPU-hours"]}}
+  - {grid: D, card: site selection, models: [ouro_1_4b_base, ouro_2_6b_base, ouro_1_4b_think, ouro_2_6b_think, ifm_p1_ouro, parcae_370m, parcae_1_3b], cells: {VB: [scope, "never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours"], D1: [scope, "same"], D2: [scope, "same"], D4: [scope, "same"], VBD: [scope, "same"]}}
+  - {grid: D, card: math specificity readout, model: ouro_1_4b_base, cells: {VBD: [scope, "uninformative as built"]}}
+  - {grid: E, card: Huginn K16 and K8, model: huginn_0125, cells: {D2: [scope, "scope"], D4: [scope, "scope"]}}
+  - {grid: E, card: MoE screen, model: ouro_1_4b_base, cells: {D1: [scope, "scope"]}}
+  - {grid: E, card: edit-rank ablation, model: ouro_1_4b_base, cells: {D1: [scope, "scope"]}}
+
+  # ---- RA-23 additions for the spare capacity (2026-10-09; additive, each cut without touching a claim)
+  - {grid: C, card: branch-freeze, model: ifm_p1_ouro, cells: {D1: [run, "RA-23 item 2: the RA-3 rows and identities on the IFM code path (k17_freeze_ifm.py)"], D2: run, D4: run}}
+  - {grid: B, card: edit-site map, models: [mcleish_llama32_r32, llama_nr, huginn_0125, ouro_1_4b_think], cells: {LRE: [run, "RA-23 item 5: the k17_public facts path on the LRE pool files (cluster/build_lre_pool.py)"]}}
+  - {grid: B, card: edit-site map, models: [ouro_1_4b_base, ouro_2_6b_base, ouro_2_6b_think], cells: {LRE: [skip, "time: no pilot script runs the facts edit-site map on this checkpoint (production ran facts on the base models; k17_public loads Ouro-1.4B-Thinking only)"]}}
+  - {grid: B, card: edit-site map, models: [ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_r5, ifm_p2m_diag, ifm_p2m_ortho, ifm_d28, ifm_d112], cells: {LRE: [skip, "time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change"]}}
+  - {grid: B, card: edit-site map, models: [parcae_370m, parcae_1_3b], cells: {LRE: [skip, "time: data_steer/lre holds no pairs on the Parcae tokenizer"]}}
+  - {grid: A, card: generation placement, models: [ouro_1_4b_base, ouro_2_6b_base, ouro_1_4b_think], cells: {ASDIV_gen: [run, "RA-23 item 4: steer_gen_math.py (steer_gen unchanged; no SETTLE pre-filter, both screens on the model)"], MAWPS_gen: [run, "RA-23 item 4: same"]}}
+  - {grid: A, card: generation placement, model: ouro_2_6b_think, cells: {ASDIV_gen: [skip, "time: steer_gen has no Ouro-2.6B-Thinking setting (same as GSM8K and SVAMP)"], MAWPS_gen: [skip, "time: same"]}}
+  - {grid: A, card: generation placement, model: mcleish_llama32_r32, cells: {ASDIV_gen: [skip, "time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row is about 4 card-hours (ASDiv) to 7 (MAWPS) and a model-dataset cell about 100 to 170 card-hours, ten times the RA-23 estimate"], MAWPS_gen: [skip, "time: same"]}}
+  - {grid: B, card: "strength ablation (edit-site map at a 0.25 and 1, three random seeds)", models: [ouro_1_4b_base, ouro_2_6b_base], cells: {D1: [skip, "time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)"], CF: [skip, "time: same"], D2: [skip, "time: same"], D4: [skip, "time: same"]}}

@@ -1,0 +1,5 @@
+{
+ "dataset": "svamp",
+ "n_screen": 100000,
+ "settle": "cells_ouro_2_6b_base_svamp_natural_k4.jsonl"
+}

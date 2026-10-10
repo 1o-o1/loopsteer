@@ -1,0 +1,1 @@
+g9_merge.s1_merge.001	source $VENV_OURO/bin/activate && python -u $REPO/loopedcot/cluster/merge.py --out_root $OUT_ROOT --manifest $REPO/loopedcot/cluster/manifest.yaml --skipped $REPO/loopedcot/cluster/cells_skipped.json --joblist $REPO/loopedcot/cluster/jobs/joblist.tsv

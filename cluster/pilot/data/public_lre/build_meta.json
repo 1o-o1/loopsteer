@@ -1,0 +1,35 @@
+{
+ "built_by": "cluster/build_lre_pool.py",
+ "cap_per_relation": 10,
+ "inputs": {
+  "pairs_lre_huginn.jsonl": "b10e9a7cc8e7e51ba5f6cc651d35c97b7c0ccca601bf3345dc150f4d31048716",
+  "pairs_lre_mcleish.jsonl": "049d46ee7ab48dab0bd5fba4363c06a698d1e9eee40f66e43af2f294cf2c34c5",
+  "pairs_lre_ouro.jsonl": "c07235c75a06088fb9762e8c2906230d50317481c94327bf5f2477572e0bf10e"
+ },
+ "lre_source": {
+  "commit": "1b9ec3cf2b8368e42bde7e80fcef384312a6ec07",
+  "license": "mit",
+  "repo": "evandez/relations"
+ },
+ "outputs": {
+  "cands_huginn_D1.json": {
+   "candidates": 226,
+   "sha256": "3a570dc05c0aba20162e2b21ec2a04ad59daf03244ba642fe632c99a67679b2b"
+  },
+  "cands_llama_D1.json": {
+   "candidates": 350,
+   "sha256": "1275276ee0a9009d7c1bafe9b1d3bae9e7c20fd8d96e5a62f60f301cc358e9be"
+  },
+  "cands_ouro_D1.json": {
+   "candidates": 243,
+   "sha256": "e41dc61dae54305f2dea2bb7bc290390cedc34ea13dea4ded57283fbfd0e4199"
+  }
+ },
+ "rules": "(coordinator, ledger 2026-10-09):\n  1. answer_in_prompt pairs are excluded;\n  2. the runner's position-0 rule is kept: on a family without BOS (Ouro, Huginn) a pair whose source span holds\n     position 0 is dropped here as k17_public.prep_item drops it at run time (so the caps count usable pairs);\n  3. at most 2 pairs per subject (either side) inside a relation;\n  4. a per-relation cap of CAP pairs, filled round-robin over the relation's (template, half) groups in file order,\n     so the largest relations do not dominate; the file is then ordered round-robin over relations.",
+ "subject_cap": 2,
+ "tokenizers": {
+  "huginn": "9cc201a5061b70aba0d227ef9766fcfe21e0989e0c0ba442b4d7732c4de12308",
+  "llama": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+  "ouro": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+ }
+}

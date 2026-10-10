@@ -1,0 +1,5 @@
+{
+ "dataset": "mawps",
+ "n_screen": 100000,
+ "screen_A_from_settle": false
+}
