@@ -51,6 +51,37 @@ FAM_IFM = "C/k17_freeze_ifm/ifm_p1_ouro_D1"
 FAM_MCL = "A/steer_gen_raven/mcleish_smoke"
 
 
+UNITS = ("ouro", "gen", "raven", "mcleish", "parcae", "ifm")
+
+
+def family_of(line):
+    """The hold unit of a task line (gen_jobs.family_of): mcleish, gen (Ouro generation), else the venv."""
+    if "steer_gen_raven" in line:
+        return "mcleish"
+    if "VENV_OURO" in line and "steer_gen" in line:
+        return "gen"
+    for v, f in (("VENV_OURO", "ouro"), ("VENV_RAVEN", "raven"), ("VENV_PARCAE", "parcae"), ("VENV_IFM", "ifm")):
+        if v in line:
+            return f
+    return "none"
+
+
+def tol_units(tol, fams):
+    """Units with a failing reference value (steer_gen values: gen; varbench values and margins: ouro)."""
+    out = set()
+    for ln in tol["diff"].splitlines()[1:]:
+        f = ln.split("\t")
+        if len(f) == 5 and f[4] in ("out_of_tolerance", "undefined_on_one_side", "missing"):
+            u = "gen" if "steer_gen" in f[0] else "ouro"
+            if u in fams:
+                out.add(u)
+    for b in tol.get("binding_problems") or []:
+        u = "gen" if "steer_gen" in b else "ouro"
+        if u in fams:
+            out.add(u)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True)
@@ -60,11 +91,19 @@ def main():
     ap.add_argument("--hashes", default=None, help="cluster/SMOKE_HASHES.txt (binds the reference values)")
     ap.add_argument("--out-root", default=None, help="write _smoke.ok / _smoke_fail.txt / _smoke_override.txt here")
     ap.add_argument("--override-reason", default="", help="operator reason: pass despite a tolerance miss")
+    ap.add_argument("--families", default=" ".join(UNITS),
+                    help="units whose smoke lines ran (ouro gen raven mcleish parcae ifm; a held unit is checked later "
+                         "by jobs/release_family.sh); the tolerance gate covers ouro and gen")
+    ap.add_argument("--held-dir", default=None,
+                    help="per-unit verdict: a unit with a failed check is held (<dir>/<unit>.held) and the others "
+                         "pass (_smoke.ok names both); without it any failure fails the smoke")
     a = ap.parse_args()
+    fams = set(a.families.split())
     checks = []
+    cur = ["none"]          # the unit the checks below belong to
 
-    def ck(name, ok, detail=""):
-        checks.append({"check": name, "ok": bool(ok), "detail": detail})
+    def ck(name, ok, detail="", unit=None):
+        checks.append({"check": name, "ok": bool(ok), "detail": detail, "unit": unit or cur[0]})
 
     def jload(rel):
         p = os.path.join(a.root, rel)
@@ -85,8 +124,8 @@ def main():
     for g in [g for g in ("g1_copy", "g2_gen", "fam") if os.path.exists(os.path.join(a.lists, "smoke_%s.tsv" % g))]:
         for ln in open(os.path.join(a.lists, "smoke_%s.tsv" % g), encoding="utf-8"):
             jid = ln.split("\t", 1)[0]
-            if jid:
-                ck("stage %s exited 0" % jid, os.path.exists(os.path.join(a.root, "_done", jid)))
+            if jid and family_of(ln) in fams:
+                ck("stage %s exited 0" % jid, os.path.exists(os.path.join(a.root, "_done", jid)), unit=family_of(ln))
 
     def results(rel):
         p = os.path.join(a.root, rel, "results.csv")
@@ -102,7 +141,8 @@ def main():
                 for r in csv.DictReader(open(p, encoding="utf-8"))]
 
     # ---- k17_varbench
-    c = jload(VB + "/checks.json")
+    cur[0] = "ouro"
+    c = jload(VB + "/checks.json") if "ouro" in fams else None
     k = "ouro"
     if c is not None:
         hi = get(c, "hook_identity", k) or {}
@@ -126,36 +166,43 @@ def main():
         ck("varbench causality rows_ok == rows", cz.get("rows") and cz.get("rows_ok") == cz.get("rows"),
            "%s of %s" % (cz.get("rows_ok"), cz.get("rows")))
         ck("varbench items kept", (get(c, "items", k, "kept") or 0) > 0, str(get(c, "items", k, "kept")))
-    m = jload(VB + "/merge_ouro.json")
+    m = jload(VB + "/merge_ouro.json") if "ouro" in fams else None
     if m is not None:
         for ds in ("varbench", "vbd"):
             d = m.get(ds) or {}
             ck("varbench merge %s union equals planned" % ds, d.get("union_equals_planned") is True and d.get("duplicates") == 0,
                "planned %s merged %s duplicates %s" % (d.get("planned"), d.get("merged"), d.get("duplicates")))
-    ck("varbench records vb_ouro.json", os.path.exists(os.path.join(a.root, VB, "vb_ouro.json")))
-    results(VB)
+    if "ouro" in fams:
+        ck("varbench records vb_ouro.json", os.path.exists(os.path.join(a.root, VB, "vb_ouro.json")))
+        results(VB)
 
     # ---- steer_gen a1 GSM8K
-    g = jload(GEN + "/chk/checks_a1.json")
+    cur[0] = "gen"
+    g = jload(GEN + "/chk/checks_a1.json") if "gen" in fams else None
     if g is not None:
         for gate in ("gate_zero_edit", "gate_placement", "gate_cache_equiv", "gate_identities"):
             ck("steer_gen %s.pass" % gate, get(g, gate, "pass") is True)
         for f in ("inert_hooks_bit_identical", "prefill_bit_identical"):
             ck("steer_gen gate_zero_edit." + f, get(g, "gate_zero_edit", f) is True)
-    it = jload(GEN + "/items.json")
-    if it is not None:
-        ck("steer_gen items scored", len(it.get("scored") or []) > 0, "%d scored" % len(it.get("scored") or []))
-    sj = jload(GEN + "/r00/steer_job.json")
-    if sj is not None:
-        ck("steer_gen r00 exit 0 (no failed row)", sj.get("exit") == 0, "exit %s" % sj.get("exit"))
-    ck("steer_gen r00 cells written", bool(glob.glob(os.path.join(a.root, GEN, "r00", "cells_*.jsonl"))))
-    ck("steer_gen analysis.json", os.path.exists(os.path.join(a.root, GEN, "analysis.json")))
-    results(GEN)
+    g3dev = get(g, "gate_cache_equiv", "deviation") if g is not None else None
+    if "gen" in fams:
+        it = jload(GEN + "/items.json")
+        if it is not None:
+            ck("steer_gen items scored", len(it.get("scored") or []) > 0, "%d scored" % len(it.get("scored") or []))
+        sj = jload(GEN + "/r00/steer_job.json")
+        if sj is not None:
+            ck("steer_gen r00 exit 0 (no failed row)", sj.get("exit") == 0, "exit %s" % sj.get("exit"))
+        ck("steer_gen r00 cells written", bool(glob.glob(os.path.join(a.root, GEN, "r00", "cells_*.jsonl"))))
+        ck("steer_gen analysis.json", os.path.exists(os.path.join(a.root, GEN, "analysis.json")))
+        results(GEN)
 
     # ---- the further families (smoke_fam.tsv): in-run identities gated, values reported
     fam_values = {}
     if os.path.exists(os.path.join(a.lists, "smoke_fam.tsv")):
         for fam, rel in (("raven", FAM_RAVEN), ("parcae", FAM_PARCAE)):
+            if fam not in fams:
+                continue
+            cur[0] = fam
             c = jload(rel + "/checks.json")
             if c is not None:
                 hi = c.get("hook_identity") or {}
@@ -172,14 +219,17 @@ def main():
                         ck("%s %s.%s.all_exact" % (fam, sec, k_), isinstance(d, dict) and d.get("all_exact") is True)
             results(rel)
             fam_values[fam] = report_values(rel)
-        c = jload(FAM_IFM + "/checks.json")
+        cur[0] = "ifm"
+        c = jload(FAM_IFM + "/checks.json") if "ifm" in fams else None
         if c is not None:
             for f in ("zero_edit_bit_identical", "freeze_no_edit_bit_identical", "source_attn_frozen_e_zero_bit_exact",
                       "pc_exact_all", "sz_exact_all", "readout_identity_all"):
                 ck("ifm freeze %s" % f, c.get(f) is True, str(c.get(f)))
-        results(FAM_IFM)
-        fam_values["ifm"] = report_values(FAM_IFM)
-        if any(ln.startswith("smoke.fam.f_mcleish.") for ln in open(os.path.join(a.lists, "smoke_fam.tsv"), encoding="utf-8")):
+        if "ifm" in fams:
+            results(FAM_IFM)
+            fam_values["ifm"] = report_values(FAM_IFM)
+        cur[0] = "mcleish"
+        if "mcleish" in fams and any(ln.startswith("smoke.fam.f_mcleish.") for ln in open(os.path.join(a.lists, "smoke_fam.tsv"), encoding="utf-8")):
             c = jload(FAM_MCL + "/chk/checks_mcl.json")
             if c is not None:
                 ck("mcleish checks_mcl.pass", c.get("pass") is True)
@@ -193,9 +243,11 @@ def main():
 
     bad = [x for x in checks if not x["ok"]]
     rep = {"ok": not bad, "identity_ok": not bad, "n_checks": len(checks), "failed": bad, "checks": checks,
-           "family_values_reported_not_gated": fam_values}
+           "family_values_reported_not_gated": fam_values,
+           "g3_deviation": g3dev}
     tol = None
-    if a.values:
+    rep["families_checked"] = sorted(fams)
+    if a.values and fams & {"ouro", "gen"}:
         tol = smoke_hash.gate(a.values, a.root, a.hashes)
         rep["tolerance"] = {k: v for k, v in tol.items() if k != "diff"}
         rep["tolerance_ok"] = tol["within_tolerance"]
@@ -209,9 +261,62 @@ def main():
                       "n_checks": len(checks), "failed": [x["check"] for x in bad],
                       "tolerance": {k: rep["tolerance"][k] for k in ("n_ok", "n_fail", "max_abs_diff", "counts")}
                       if tol is not None else None}, indent=1))
-    if a.out_root:
+    if a.out_root and a.held_dir:
+        code = decide_units(a.out_root, a.root, a.held_dir, fams, checks, tol, reason, g3dev)
+    elif a.out_root:
         code = decide(a.out_root, a.root, code, bad, tol, reason)
     sys.exit(code)
+
+
+def decide_units(out_root, smoke_tree, held_dir, fams, checks, tol, reason, g3dev=None):
+    """Per-unit smoke decision (the chain): a unit with a failed identity check, or with a reference value outside the
+    tolerance (unless SMOKE_OVERRIDE_REASON), is held: <held_dir>/<unit>.held names why. The other units pass:
+    _smoke.ok lists units_passed and units_held. Every unit failing: _smoke_fail.txt, exit 1."""
+    for f in ("_smoke.ok", "_smoke_fail.txt", "_smoke_override.txt", "_smoke_tolerance_diff.tsv"):
+        if os.path.exists(os.path.join(out_root, f)):
+            os.remove(os.path.join(out_root, f))
+    os.makedirs(held_dir, exist_ok=True)
+    now = time.strftime("%Y-%m-%d %H:%M:%S")
+    bad = [x for x in checks if not x["ok"]]
+    checked = {x["unit"] for x in checks}           # a unit with no check (no smoke line) neither passes nor is held
+    why = {}
+    for x in bad:
+        why.setdefault(x["unit"], []).append("identity check failed: %s (%s)" % (x["check"], x["detail"]))
+    override = None
+    if tol is not None:
+        open(os.path.join(out_root, "_smoke_tolerance_diff.tsv"), "w", encoding="utf-8", newline="\n").write(tol["diff"])
+        tu = tol_units(tol, fams)
+        if tu and reason:
+            txt = "\n".join(["SMOKE OVERRIDE %s" % now, "reason: %s" % reason,
+                             "cross-host tolerance missed for %s; full diff:" % ", ".join(sorted(tu)), tol["diff"]])
+            open(os.path.join(out_root, "_smoke_override.txt"), "w", encoding="utf-8", newline="\n").write(txt)
+            print(txt)
+            override = {"reason": reason, "units": sorted(tu), "file": "_smoke_override.txt"}
+        else:
+            for u in tu:
+                why.setdefault(u, []).append("cross-host tolerance failed (|new - ref| > %g; %s)"
+                                             % (tol["tol_abs"], os.path.join(out_root, "_smoke_tolerance_diff.tsv")))
+    held = sorted(u for u in why if u in fams or u == "none")
+    passed = sorted((fams & checked) - set(held))
+    for u in held:
+        open(os.path.join(held_dir, "%s.held" % u), "w", encoding="utf-8", newline="\n").write(
+            "smoke failed: %s\n" % "; ".join(why[u][:3]) + "\n".join(why[u]) + "\n")
+        print("family %s held: %s" % (u, why[u][0]))
+    if not passed or "none" in held:
+        lines = ["every family failed its smoke" if not passed else "a check outside every family failed"]
+        lines += ["  %s: %s" % (u, w) for u in held for w in why[u]]
+        open(os.path.join(out_root, "_smoke_fail.txt"), "w", encoding="utf-8", newline="\n").write("\n".join(lines) + "\n")
+        print("\n".join(lines))
+        return 1
+    ok = {"passed_at": now, "node": socket.gethostname(), "smoke_tree": smoke_tree, "units_passed": passed,
+          "units_held": held, "override": override, "g3_deviation": g3dev,
+          "rule": "per unit: identity checks bit-exact and e / margins within %g of SMOKE_VALUES.json; a failing unit "
+                  "is held, the others run" % smoke_hash.GATE_TOL}
+    if tol is not None:
+        ok["tolerance"] = {k: tol[k] for k in ("n_ok", "n_fail", "max_abs_diff", "counts")}
+    json.dump(ok, open(os.path.join(out_root, "_smoke.ok"), "w", encoding="utf-8"), indent=1)
+    print("smoke passed for %s%s" % (", ".join(passed), "; held: " + ", ".join(held) if held else ""))
+    return 0
 
 
 def decide(out_root, smoke_tree, code, bad, tol, reason):

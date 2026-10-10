@@ -248,6 +248,7 @@ mkdir -p "$LOG_ROOT" "$PR"
 # a new chain chooses its nodes again: back to the restriction that setup wrote
 export SLURM_RESTRICT="${SLURM_RESTRICT_BASE:-$SLURM_RESTRICT}"
 rm -f "$OUT_ROOT/run_nodes.env" "$OUT_ROOT/run_nodes.txt"
+rm -f "$OUT_ROOT"/_held/*.held        # a new chain decides the held families again (preflight, smoke)
 rm -f "$CH"/*.ok "$CH"/*.fail "$OUT_ROOT/_smoke_fail.txt" "$PR"/*.out
 rm -f "$OUT_ROOT"/_diag/chain.*.txt
 echo "lists: $LISTS; node restriction: $(restrict)"

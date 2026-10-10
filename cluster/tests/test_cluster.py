@@ -944,15 +944,21 @@ def _fake_smoke_repo(tmp_path, prepared):
 
 
 @needs_bash
-@pytest.mark.parametrize("case", ["pass", "tolerance_fail", "override", "identity_fail"])
+@pytest.mark.parametrize("case", ["pass", "tolerance_fail", "override", "identity_fail", "stage_fail"])
 def test_smoke_cluster_sh_gate_and_override(tmp_path, case):
-    """smoke_cluster.sh end to end with stand-in task lines: SMOKE_OVERRIDE_REASON passes a tolerance miss only."""
+    """smoke_cluster.sh end to end with stand-in task lines, per family: a tolerance miss holds the family whose values
+    miss (SMOKE_OVERRIDE_REASON passes it instead, recorded), an identity failure holds its family (no override), a
+    failing smoke line holds its family and the others go on; _smoke.ok lists the passed and held families."""
     ref, hashes, values = _gate_reference(tmp_path)
     prepared = (tmp_path / "prepared").as_posix()
     _smoke_tree(prepared, pc_exact=2 if case == "identity_fail" else 3)
     _gate_files(prepared, shift={"pass": 0.0}.get(case, 0.002))
     shutil.rmtree(os.path.join(prepared, "_done"))
     repo, cl, bindir, venv = _fake_smoke_repo(tmp_path, prepared)
+    if case == "stage_fail":          # the Parcae line fails (the line names its venv, as the real lines do)
+        fl = (cl / "jobs" / "smoke_fam.tsv").read_text().splitlines()
+        fl = [ln.split("\t")[0] + "\techo VENV_PARCAE; false" if "f_parcae" in ln else ln for ln in fl]
+        (cl / "jobs" / "smoke_fam.tsv").write_bytes(("\n".join(fl) + "\n").encode())
     shutil.copy(hashes, str(cl / "SMOKE_HASHES.txt"))
     shutil.copy(values, str(cl / "SMOKE_VALUES.json"))
     out = (tmp_path / "out").as_posix()
@@ -968,14 +974,24 @@ def test_smoke_cluster_sh_gate_and_override(tmp_path, case):
                        stderr=subprocess.STDOUT)
     so = r.stdout.decode()
     ok, ovr = os.path.exists(out + "/_smoke.ok"), os.path.exists(out + "/_smoke_override.txt")
+    held = sorted(f[:-5] for f in os.listdir(out + "/_held") if f.endswith(".held")) if os.path.isdir(out + "/_held") else []
+    rec = json.load(open(out + "/_smoke.ok")) if ok else {}
     if case == "pass":
-        assert r.returncode == 0 and ok and not ovr and "SMOKE PASSED:" in so, so[-3000:]
+        assert r.returncode == 0 and ok and not ovr and not held and "SMOKE PASSED:" in so, so[-3000:]
     elif case == "tolerance_fail":
-        assert r.returncode == 1 and not ok and "cross-host tolerance" in so, so[-3000:]
+        assert r.returncode == 0 and ok and held == ["ouro"] and rec["units_held"] == ["ouro"], so[-3000:]
+        assert "cross-host tolerance" in open(out + "/_held/ouro.held").read() and "parcae" in rec["units_passed"]
     elif case == "override":
-        assert r.returncode == 0 and ok and ovr and "OPERATOR OVERRIDE" in so and "operator: drift reviewed" in so, so[-3000:]
+        assert r.returncode == 0 and ok and ovr and not held and "OPERATOR OVERRIDE" in so and "operator: drift reviewed" in so, so[-3000:]
+    elif case == "identity_fail":
+        assert r.returncode == 0 and ok and ovr and "ouro" in held, so[-3000:]
+        assert "identity check failed: varbench pc_final exact" in open(out + "/_held/ouro.held").read()
+        assert "ouro" not in rec["units_passed"]
     else:
-        assert r.returncode == 1 and not ok and not ovr and "not overridable" in so, so[-3000:]
+        assert r.returncode == 0 and ok and held == ["ouro", "parcae"] or held == ["parcae"], (held, so[-3000:])
+        assert "smoke stage smoke.fam.f_parcae.001 exited 1" in open(out + "/_held/parcae.held").read()
+        assert "family parcae held, the others go on" in so and "smoke.fam.f_ifm.001" in so
+        assert "parcae" not in rec["units_passed"] and "ifm" in rec["units_passed"]
 
 
 def _setup_tree(tmp_path):
@@ -1597,6 +1613,168 @@ def test_run_all_picks_python311(tmp_path):
     assert re.search(r"python3\.11 \(Python 3\.11\.9, torch 2\.8\.0\+cu128 CUDA 12\.8\); all four venvs use it", so), so[-2000:]
     assert re.search(r"--python \S*python3\.11\b", open(log).read())
     assert re.search(r"--project-root \S*/proj\b", open(log).read())
+
+
+def _posix_path_cmd(fake, *args):
+    """bash with the fake folder first on PATH (Git's bash launcher puts /usr/bin first otherwise)."""
+    return [_bash(), "-c", 'PATH="$(cygpath -u "$0" 2> /dev/null || echo "$0"):$PATH"; exec bash "$@"', fake.as_posix()] + list(args)
+
+
+@needs_bash
+def test_preflight_per_family_markers_and_subset_rerun(tmp_path):
+    """preflight.sh: a failed IFM build marks only ifm as failed (ifm.fail, families_held ["ifm"]) and exits 0, so the
+    chain goes on; PREFLIGHT_FAMILIES=ifm reruns IFM alone and keeps the other markers; no family passing exits 1."""
+    top = tmp_path / "top"
+    env_dir = top / "loopedcot" / "cluster" / "env"
+    shutil.copytree(os.path.join(CL, "env"), str(env_dir), ignore=shutil.ignore_patterns("cluster.env", "__pycache__"))
+    flag = tmp_path / "build_ok"
+    (env_dir / "build_xllm.sh").write_bytes(('#!/bin/bash\n[ -f "%s" ]\n' % flag.as_posix()).encode())
+    fake = tmp_path / "bin"
+    fake.mkdir()
+    (fake / "python3").write_bytes(('#!/bin/bash\nexec "%s" "$@"\n' % sys.executable.replace("\\", "/")).encode())
+    (fake / "nvidia-smi").write_bytes(b"#!/bin/bash\necho 8.0\n")
+    fail_all = tmp_path / "fail_all"
+    venvs = {}
+    for f in ("ouro", "raven", "parcae", "ifm"):
+        b = tmp_path / "venvs" / f / "bin"
+        b.mkdir(parents=True)
+        (b / "python").write_bytes((
+            '#!/bin/bash\ncase "$*" in *preflight.py*) out="${@: -1}"; [ -f "%s" ] && exit 1;'
+            ' echo \'{"ok": true, "failures": []}\' > "$out"; exit 0;; *) echo "Python 3.11.9";; esac\n'
+            % fail_all.as_posix()).encode())
+        venvs["VENV_" + f.upper()] = (tmp_path / "venvs" / f).as_posix()
+    for p in list(fake.iterdir()) + [tmp_path / "venvs" / f / "bin" / "python" for f in ("ouro", "raven", "parcae", "ifm")]:
+        os.chmod(str(p), 0o755)
+    out = tmp_path / "out"
+    env = dict(os.environ, REPO=top.as_posix(), OUT_ROOT=out.as_posix(), XLLM_ROOT=(tmp_path / "x").as_posix(),
+               TORCH_CUDA_ARCH_LIST="8.0", **venvs)
+    env.pop("PREFLIGHT_FAMILIES", None)
+    pre = (env_dir / "preflight.sh").as_posix()
+    r = subprocess.run(_posix_path_cmd(fake, pre), env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    P = out / "_preflight"
+    assert r.returncode == 0, so[-2000:]
+    assert sorted(x.name for x in P.glob("*.ok")) == ["ouro.ok", "parcae.ok", "raven.ok"] and (P / "ifm.fail").exists()
+    rec = json.loads((out / "_preflight.json").read_text())
+    assert rec["families_held"] == ["ifm"] and rec["families_ok"] == ["ouro", "raven", "parcae"] and rec["ok"] is False
+    assert "family ifm: preflight FAILED" in so
+    assert "preflight of the ifm venv failed" in (out / "_held" / "ifm.held").read_text()
+    assert not (out / "_held" / "ouro.held").exists()
+    flag.write_text("1")
+    r = subprocess.run(_posix_path_cmd(fake, pre), env=dict(env, PREFLIGHT_FAMILIES="ifm"), stdout=subprocess.PIPE,
+                       stderr=subprocess.STDOUT)
+    assert r.returncode == 0, r.stdout.decode()[-1500:]
+    assert (P / "ifm.ok").exists() and not (P / "ifm.fail").exists() and (P / "ouro.ok").exists()
+    assert json.loads((out / "_preflight.json").read_text())["families_held"] == []
+    fail_all.write_text("1")
+    r = subprocess.run(_posix_path_cmd(fake, pre), env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 1 and not list(P.glob("*.ok"))
+
+
+@needs_bash
+def test_submit_10_rest_holds_failed_family_and_status_shows_it(tmp_path):
+    """With _preflight/ifm.fail: every IFM stage is submitted with --hold and recorded in _held/ifm.jobs, no other
+    stage is held, and status.sh names the held family and the release command."""
+    nl = os.path.join(JOBS, "nolocal")
+    build = "g0_xllm.s1_build.001"
+    out = tmp_path / "out"
+    for d in ("_done", "_preflight"):
+        (out / d).mkdir(parents=True)
+    (out / "_done" / build).write_text("ok\n")
+    (out / "_smoke.ok").write_text("ok\n")
+    (out / "_preflight" / "ifm.fail").write_text("x\n")
+    (out / "_held").mkdir()
+    (out / "_held" / "ifm.held").write_text("preflight of the ifm venv failed (x)\n")
+    fake, log = _fake_sbatch(tmp_path)
+    env = dict(os.environ, OUT_ROOT=out.as_posix(), LOG_ROOT=(out / "logs").as_posix(), REPO=TOP.replace("\\", "/"),
+               PATH=fake.as_posix() + os.pathsep + os.environ.get("PATH", ""), CARDS="48", **SLURM_ENV)
+    r = subprocess.run([_bash(), os.path.join(nl, "submit_10_rest.sh").replace("\\", "/")], env=env,
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2000:]
+    assert "family ifm held (preflight of the ifm venv failed (x)); its jobs are submitted held" in so
+    calls = open(log).read().splitlines()
+    held = [c for c in calls if "--hold" in c]
+    ifm_lists = {ln.split("\t")[0] for f in glob.glob(os.path.join(nl, "g*.tsv")) for ln in open(f, encoding="utf-8")
+                 if "VENV_IFM" in ln}
+    assert held and all(any(("task_%s.sbatch" % g) in c for g in ("g3_map", "g6_ifm", "g4_cd", "g7_ra23", "g5_huginn",
+                                                                       "g2_gen", "g1_copy")) for c in held)
+    n_ifm_calls = sum(1 for ln in open(os.path.join(nl, "submit_10_rest.sh"), encoding="utf-8") if ln.startswith("K ifm "))
+    assert len(held) == n_ifm_calls and len(ifm_lists) > 0
+    ids = (out / "_held" / "ifm.jobs").read_text().split()
+    assert len(ids) == n_ifm_calls and not (out / "_held" / "ouro.jobs").exists()
+    st = subprocess.run([_bash(), os.path.join(JOBS, "status.sh").replace("\\", "/")], env=env, stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT).stdout.decode()
+    assert "HELD family ifm: preflight of the ifm venv failed (x); %d jobs held" % n_ifm_calls in st and "release_family.sh ifm" in st
+    merge = [c for c in calls if "task_g9_merge.sbatch" in c]
+    assert len(merge) == 1 and "--hold" not in merge[0]
+
+
+def test_g3_decide_cluster_measured_rate():
+    """Gate G3 (cache equivalence): n - n/32 with every disagreement at a near tie passes as before; with
+    --g3-measured-rate a miss of the agreement count alone passes as Deviation D5m with the measured rate recorded
+    (pass_strict False); a disagreement at a recompute margin >= 1 logit fails either way."""
+    sys.path.insert(0, os.path.join(CL, "pilot", "tree"))
+    try:
+        from prod import steer_gen as SG
+    finally:
+        sys.path.pop(0)
+
+    def kinds(agree, n, bad=0):
+        return {"clean": {"argmax_agree": n, "n": n, "max_abs_dz": 1.0, "max_abs_dz_top5": 1.0, "disagree_at_margin_ge_1": 0},
+                "post@1": {"argmax_agree": agree, "n": n, "max_abs_dz": 10.0, "max_abs_dz_top5": 3.0,
+                           "disagree_at_margin_ge_1": bad}}
+    g = SG.g3_decide(kinds(92, 96), 1.0, 1.0)
+    assert g["pass"] is False and "deviation" not in g          # the smoke on the cluster: 92 of 96, rule 93
+    g = SG.g3_decide(kinds(92, 96), 1.0, 1.0, measured_rate_ok=True)
+    assert g["pass"] is True and g["pass_strict"] is False and g["deviation"]["id"] == "D5m"
+    assert g["deviation"]["measured_agreement"]["post@1"] == {"agree": 92, "n": 96, "rate": 0.9583}
+    assert g["deviation"]["kinds_below_n_minus_n_over_32"] == ["post@1"]
+    g = SG.g3_decide(kinds(372, 384), 1.0, 1.0, measured_rate_ok=True)          # 12 items: 384 - 12
+    assert g["pass"] is True and g["pass_strict"] is True and "deviation" not in g
+    g = SG.g3_decide(kinds(380, 384, bad=1), 1.0, 1.0, measured_rate_ok=True)
+    assert g["pass"] is False and "deviation" not in g
+    for f in ("g2_gen.s1_checks.tsv", "nolocal/g2_gen.s1_checks.tsv", "smoke_g2_gen.tsv"):
+        lines = [ln for ln in open(os.path.join(JOBS, f), encoding="utf-8") if "steer_gen checks" in ln]
+        assert lines and all("--n 12 --g3-items 12 --g3-measured-rate" in ln for ln in lines), f
+
+
+def test_smoke_check_families_leave_out_held_checks(tmp_path):
+    """smoke_check.py --families raven: no Ouro, Parcae or IFM check and no tolerance gate; the raven checks run."""
+    root = tmp_path / "sm"
+    root.mkdir()
+    rep = tmp_path / "rep.json"
+    subprocess.run([sys.executable, "-B", os.path.join(CL, "env", "smoke_check.py"), "--root", str(root), "--lists", JOBS,
+                    "--report", str(rep), "--values", os.path.join(CL, "SMOKE_VALUES.json"),
+                    "--hashes", os.path.join(CL, "SMOKE_HASHES.txt"), "--families", "raven"],
+                   stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    r = json.loads(rep.read_text())
+    names = [c["check"] for c in r["checks"]]
+    assert r["families_checked"] == ["raven"] and "tolerance" not in r
+    assert not [n for n in names if n.startswith(("varbench", "steer_gen", "parcae", "ifm", "mcleish"))], names
+    assert any(n.startswith("stage smoke.fam.f_raven") for n in names)
+    assert not [n for n in names if "g1_copy" in n or "g2_gen" in n or "f_ifm" in n or "f_parcae" in n or "f_mcleish" in n]
+
+
+@needs_bash
+def test_release_family_submits_one_gpu_job(tmp_path):
+    """release_family.sh: a family without held jobs is refused; otherwise one one-GPU job runs its --run step."""
+    fake, log = _fake_sbatch(tmp_path)
+    out = tmp_path / "out"
+    (out / "_held").mkdir(parents=True)
+    env = dict(os.environ, OUT_ROOT=out.as_posix(), LOG_ROOT=(out / "logs").as_posix(), REPO=TOP.replace("\\", "/"),
+               PATH=fake.as_posix() + os.pathsep + os.environ.get("PATH", ""), **SLURM_ENV)
+    rel = os.path.join(JOBS, "release_family.sh").replace("\\", "/")
+    r = subprocess.run([_bash(), rel, "ifm"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 3 and not os.path.exists(log)
+    r = subprocess.run([_bash(), rel, "nope"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 2
+    (out / "_held" / "ifm.jobs").write_text("2001\n2002\n")
+    (out / "bad_nodes.txt").write_text("n03\n")
+    r = subprocess.run([_bash(), rel, "ifm"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 0, r.stdout.decode()[-1500:]
+    c = open(log).read().splitlines()
+    assert len(c) == 1 and "--gres=gpu:1" in c[0] and "--exclude=n05,n06,n03" in c[0] and "--run ifm" in c[0]
 
 
 @pytest.mark.parametrize("case", ["nvidia_smi_signature", "output_signature", "second_failure", "plain_failure"])

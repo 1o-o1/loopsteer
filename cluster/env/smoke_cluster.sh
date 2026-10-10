@@ -23,6 +23,10 @@
 #   SMOKE_OVERRIDE_REASON='<text>' bash loopedcot/cluster/env/smoke_cluster.sh
 # writes _smoke.ok anyway and records the reason and the full diff in $OUT_ROOT/_smoke_override.txt (also printed).
 # Identity failures cannot be overridden.
+# Held families (units: ouro, gen, raven, mcleish, parcae, ifm): a unit whose preflight failed ($OUT_ROOT/_held/
+# <unit>.held) is skipped here. A smoke line or check that fails holds its unit (<unit>.held names why) and the other
+# units go on; _smoke.ok lists units_passed and units_held; only every unit failing fails the smoke. SMOKE_FAMILIES="ifm" (jobs/release_family.sh) runs only those families' lines and checks
+# them into $OUT_ROOT/_smoke_report_<families>.json, without touching _smoke.ok or _smoke_fail.txt; exit 0 on pass.
 # Report only, never a gate: the value hashes against SMOKE_HASHES.txt in $OUT_ROOT/_smoke_hashes.json, and, when
 # SMOKE_REF names a copy of the recorded smoke tree, the every-field float comparison (cluster/smoke_hash.py compare,
 # rel 1e-3 / abs 1e-4) in $OUT_ROOT/_smoke_diff_<pipeline>.tsv.
@@ -49,12 +53,32 @@ if ! nvidia-smi -L > /dev/null 2>&1; then
        --time=4:00:00 --job-name=ra20_smoke bash "$0" "$@"
 fi
 
-rm -f "$OUT_ROOT/_smoke.ok" "$OUT_ROOT/_smoke_fail.txt" "$OUT_ROOT/_smoke_override.txt" "$OUT_ROOT/_smoke_tolerance_diff.tsv"
-fail() {
-  printf '%s\n' "$@" > "$OUT_ROOT/_smoke_fail.txt"
-  echo "SMOKE FAILED: $1 (details in $OUT_ROOT/_smoke_fail.txt)"
-  exit 1
+export SETUPTOOLS_USE_DISTUTILS=stdlib
+CPY="$VENV_OURO/bin/python"      # the checks' interpreter; python3 when the Ouro venv is held
+fam_of() {           # the hold unit of a line (gen_jobs.family_of)
+  case "$1" in *steer_gen_raven*) echo mcleish; return;; esac
+  case "$1" in *VENV_OURO*steer_gen*|*steer_gen*VENV_OURO*) echo gen; return;; esac
+  case "$1" in *VENV_OURO*) echo ouro;; *VENV_RAVEN*) echo raven;; *VENV_PARCAE*) echo parcae;; *VENV_IFM*) echo ifm;; *) echo none;; esac
 }
+UNITS="ouro gen raven mcleish parcae ifm"
+mkdir -p "$OUT_ROOT/_held"
+if [ -n "${SMOKE_FAMILIES:-}" ]; then       # release mode: only these families; the run's smoke markers stay as they are
+  RUN_FAMS="$SMOKE_FAMILIES"; TAG=$(echo $RUN_FAMS | tr ' ' '_')
+  fail() { printf '%s\n' "$@" > "$OUT_ROOT/_smoke_fail_$TAG.txt"; echo "SMOKE FAILED ($RUN_FAMS): $1"; exit 1; }
+else
+  RUN_FAMS=""; HELD=""
+  for f in $UNITS; do
+    if [ -f "$OUT_ROOT/_held/$f.held" ]; then HELD="$HELD $f"; else RUN_FAMS="$RUN_FAMS $f"; fi
+  done
+  [ -f "$OUT_ROOT/_preflight/ouro.fail" ] && CPY=python3
+  [ -z "$HELD" ] || echo "held families (preflight failed, skipped here; jobs/release_family.sh):$HELD"
+  rm -f "$OUT_ROOT/_smoke.ok" "$OUT_ROOT/_smoke_fail.txt" "$OUT_ROOT/_smoke_override.txt" "$OUT_ROOT/_smoke_tolerance_diff.tsv"
+  fail() {
+    printf '%s\n' "$@" > "$OUT_ROOT/_smoke_fail.txt"
+    echo "SMOKE FAILED: $1 (details in $OUT_ROOT/_smoke_fail.txt)"
+    exit 1
+  }
+fi
 [ "$FRESH" = 1 ] && rm -rf "$SM"
 mkdir -p "$SM/_logs"
 echo "smoke output tree: $SM ($(nvidia-smi --query-gpu=name,memory.total --format=csv,noheader | head -1), node $(hostname))"
@@ -67,25 +91,42 @@ for g in g1_copy g2_gen fam; do
   n=$(grep -c . "$L")
   for i in $(seq 1 "$n"); do
     id=$(sed -n "${i}p" "$L" | cut -f1)
+    f=$(fam_of "$(sed -n "${i}p" "$L")")
+    case " $RUN_FAMS none " in *" $f "*) ;; *) echo "$(date +%T) $id skipped (family $f held)"; continue;; esac
     echo "$(date +%T) $id"
     OUT_ROOT="$SM" SLURM_ARRAY_TASK_ID="$i" bash "$T" "$L" > "$SM/_logs/$id.log" 2>&1
     rc=$?
-    [ $rc -eq 0 ] || fail "stage $id exited $rc" "log: $SM/_logs/$id.log" "$(tail -30 "$SM/_logs/$id.log")"
+    if [ $rc -ne 0 ]; then
+      # a failed line holds its unit (release mode: the release fails); the other units go on
+      [ -n "${SMOKE_FAMILIES:-}" ] && fail "stage $id exited $rc" "log: $SM/_logs/$id.log" "$(tail -30 "$SM/_logs/$id.log")"
+      [ "$f" = none ] && fail "stage $id exited $rc" "log: $SM/_logs/$id.log" "$(tail -30 "$SM/_logs/$id.log")"
+      { echo "smoke stage $id exited $rc (log: $SM/_logs/$id.log)"; tail -30 "$SM/_logs/$id.log"; } > "$OUT_ROOT/_held/$f.held"
+      echo "$(date +%T) $id exited $rc: family $f held, the others go on"
+      RUN_FAMS=$(echo " $RUN_FAMS " | sed "s/ $f / /" | xargs)
+    fi
   done
 done
 
 # report only: our hosts' value hashes and, with SMOKE_REF, the every-field float comparison
-"$VENV_OURO/bin/python" "$LC/cluster/smoke_hash.py" check "$SM" --hashes "$LC/cluster/SMOKE_HASHES.txt" --prefix out_new/ \
+"$CPY" "$LC/cluster/smoke_hash.py" check "$SM" --hashes "$LC/cluster/SMOKE_HASHES.txt" --prefix out_new/ \
     --present_only > "$OUT_ROOT/_smoke_hashes.json" 2>&1 || true
 if [ -n "${SMOKE_REF:-}" ] && [ -d "$SMOKE_REF" ]; then
   for d in B/k17_varbench/ouro A/steer_gen/a1_gsm8k; do
-    "$VENV_OURO/bin/python" "$LC/cluster/smoke_hash.py" compare "$SMOKE_REF/$d" "$SM/$d" --diff "$OUT_ROOT/_smoke_diff_$(basename "$d").tsv" || true
+    "$CPY" "$LC/cluster/smoke_hash.py" compare "$SMOKE_REF/$d" "$SM/$d" --diff "$OUT_ROOT/_smoke_diff_$(basename "$d").tsv" || true
   done
 fi
 
+# release mode: the families' own checks only, then exit
+if [ -n "${SMOKE_FAMILIES:-}" ]; then
+  "$CPY" "$LC/cluster/env/smoke_check.py" --root "$SM" --lists "$JOBS" --families "$RUN_FAMS" \
+      --report "$OUT_ROOT/_smoke_report_$TAG.json" || fail "smoke checks ($OUT_ROOT/_smoke_report_$TAG.json)"
+  echo "SMOKE PASSED ($RUN_FAMS): $OUT_ROOT/_smoke_report_$TAG.json"
+  exit 0
+fi
 # the gate: (i) identity checks, (ii) e and margins within 0.001; smoke_check.py writes _smoke.ok, _smoke_fail.txt
 # or (tolerance miss with SMOKE_OVERRIDE_REASON) _smoke_override.txt
-"$VENV_OURO/bin/python" "$LC/cluster/env/smoke_check.py" --root "$SM" --lists "$JOBS" --report "$OUT_ROOT/_smoke_report.json" \
+[ -n "$(echo $RUN_FAMS)" ] || fail "every family failed its smoke or is held ($OUT_ROOT/_held/)"
+"$CPY" "$LC/cluster/env/smoke_check.py" --families "$RUN_FAMS" --held-dir "$OUT_ROOT/_held" --root "$SM" --lists "$JOBS" --report "$OUT_ROOT/_smoke_report.json" \
     --values "$LC/cluster/SMOKE_VALUES.json" --hashes "$LC/cluster/SMOKE_HASHES.txt" \
     --out-root "$OUT_ROOT" --override-reason "${SMOKE_OVERRIDE_REASON:-}"
 rc=$?

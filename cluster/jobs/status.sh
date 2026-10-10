@@ -59,6 +59,14 @@ ls "$OUT_ROOT/_chain" 2> /dev/null | sed 's/^/  /' || true
 for m in _smoke.ok _smoke_fail.txt _smoke_override.txt _staged.ok; do [ -e "$OUT_ROOT/$m" ] && echo "  $m"; done
 echo
 echo "bad nodes ($OUT_ROOT/bad_nodes.txt, excluded from every later submission): $(sort -u "$OUT_ROOT/bad_nodes.txt" 2> /dev/null | grep . | paste -sd, - || true)"
+for f in ouro gen raven mcleish parcae ifm; do      # held units (env/preflight.sh, env/smoke_cluster.sh)
+  if [ -f "$OUT_ROOT/_held/$f.held" ]; then
+    echo "HELD family $f: $(head -1 "$OUT_ROOT/_held/$f.held"); $(cat "$OUT_ROOT/_held/$f.jobs" 2> /dev/null | grep -c .) jobs held (release after the fix: bash $(dirname "$0")/release_family.sh $f)"
+  elif [ -f "$OUT_ROOT/_held/$f.released" ]; then
+    echo "family $f: released $(cat "$OUT_ROOT/_held/$f.released")"
+  fi
+done
+[ -f "$OUT_ROOT/_preflight.json" ] && echo "preflight: $(python3 -c 'import json, sys; r = json.load(open(sys.argv[1])); print("ok", r.get("families_ok"), "held", r.get("families_held"))' "$OUT_ROOT/_preflight.json" 2> /dev/null)"
 echo "run nodes ($OUT_ROOT/run_nodes.txt, chosen by the probe step): $(grep . "$OUT_ROOT/run_nodes.txt" 2> /dev/null | paste -sd, - || true)"
 for f in "$OUT_ROOT"/_probe/*.out; do
   [ -e "$f" ] || continue

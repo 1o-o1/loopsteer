@@ -27,11 +27,11 @@
   },
   "g2_gen": {
    "jobs": 188,
-   "card_hours": 72.1,
+   "card_hours": 72.4,
    "card_hours_from_shared_gpu_rates": 38.6,
    "card_hours_from_assumed_rates": 20.7,
-   "wall_hours_at_48_cards": 5.1,
-   "longest_chain_hours": 5.1
+   "wall_hours_at_48_cards": 5.2,
+   "longest_chain_hours": 5.2
   },
   "g3_map": {
    "jobs": 85,
@@ -74,5 +74,5 @@
    "longest_chain_hours": 0.2
   }
  },
- "card_hours_total": 532.6
+ "card_hours_total": 532.9
 }

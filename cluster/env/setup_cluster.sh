@@ -106,6 +106,7 @@ fi
 DATA_ROOT="$LC/cluster/pilot/data"
 
 FAILS=(); TODO=()
+export SETUPTOOLS_USE_DISTUTILS=stdlib      # setuptools' own distutils clashes with the stdlib one over a conda base
 say() { echo "[setup] $*"; }
 bad() { echo "[setup] FAIL: $*"; FAILS+=("$*"); }
 todo() { TODO+=("$*"); }
@@ -397,6 +398,7 @@ export IFM_CKPT_ROOT="$(ph "$WEIGHTS_ROOT" WEIGHTS_ROOT)"
 export XLLM_ROOT="$XLLM_ROOT"
 export VENV_OURO="$VENV_ROOT/ouro" VENV_RAVEN="$VENV_ROOT/raven" VENV_PARCAE="$VENV_ROOT/parcae" VENV_IFM="$VENV_ROOT/ifm"
 export RUN_ROLE=cluster
+export SETUPTOOLS_USE_DISTUTILS=stdlib      # setuptools' own distutils clashes with the stdlib one over a conda base
 export ALLOW_HOME=$ALLOW_HOME                  # 1: the run sits in a home directory (no scratch); the merge job scrubs it
 export PROJECT_ROOT="$PROJECT_ROOT"          # the merge job replaces this folder by a fixed token in every record
 export VB_PLAN="$PLAN_DIR/${PLAN[VB_PLAN]}" VB_PLAN_SHA="${SHA[VB_PLAN]}"

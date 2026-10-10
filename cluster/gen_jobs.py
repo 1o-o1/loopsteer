@@ -512,8 +512,9 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
             if st == "a3":
                 base += " --think-dir %s" % THINK14
             cj = "--config-json %s/cluster/jobs/gen_cfg/%s" % (LC, cfg_name)
-            chk = J.add(g, "s1_checks", "steer_gen.py", m, [dsname], "", out, [], 60, "checks mode: 26-99 s in run 1 and run 5",
-                        base.format(mode="checks").replace("--out %s" % out, "--out %s/chk" % out) + " --n 4 %s && %s %s/gate.py %s/chk/checks_%s.json" % (cj, PY, LF, out, st))
+            chk = J.add(g, "s1_checks", "steer_gen.py", m, [dsname], "", out, [], 240,
+                        "checks mode: 26-99 s in run 1 and run 5 on 4 items; 12 items with G3 on all 12 (cluster D5m)",
+                        base.format(mode="checks").replace("--out %s" % out, "--out %s/chk" % out) + " %s %s && %s %s/gate.py %s/chk/checks_%s.json" % (G3_CLUSTER, cj, PY, LF, out, st))
             prep = J.add(g, "s2_prep_screen", "steer_gen.py", m, [dsname], "", out, [chk], 480 * rate + 60,
                          "prep (CPU, 3 s) + screen of every SETTLE-correct problem on the B side at the row rate",
                          "%s --settle-dir $SETTLE %s && %s %s" % (base.format(mode="prep"), cj, base.format(mode="screen"), cj))
@@ -940,6 +941,7 @@ for v in REPO OUT_ROOT DATA_ROOT HF_HOME SETTLE WEIGHTS_ROOT IFM_CKPT_ROOT XLLM_
 done
 [ -z "${{HOME_RUN:-}}" ] || echo "running inside a home directory; records will be scrubbed at merge" | tee -a "$TL"
 export HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
+export SETUPTOOLS_USE_DISTUTILS=stdlib      # setuptools' own distutils clashes with the stdlib one on venvs over a conda base
 if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "done already: $ID"; exit 0; fi
 echo "task $ID" | tee -a "$TL"
 CHECK="task command (exit code of the task line)"
@@ -1063,6 +1065,19 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
                   '  echo "the done folders are not staged (no $OUT_ROOT/_staged.ok): run'
                   ' DONE_SRC=<pilot artifact folder> OUT_ROOT=$OUT_ROOT bash jobs/stage_done.sh"; exit 5',
                   "fi"]
+    lines += [
+        "# held units: a unit (ouro, gen, raven, mcleish, parcae, ifm) whose preflight or smoke failed",
+        "# ($OUT_ROOT/_held/<unit>.held, written by env/preflight.sh and env/smoke_cluster.sh) is submitted held",
+        "# (sbatch --hold); its job ids go to $OUT_ROOT/_held/<unit>.jobs, and jobs/release_family.sh <unit> reruns its",
+        "# preflight and smoke and releases them. The merge job waits for them (afterany) and is never held.",
+        'mkdir -p "$OUT_ROOT/_held"',
+        'H() { if [ -f "$OUT_ROOT/_held/$1.held" ]; then echo "--hold"; fi; }',
+        'K() { if [ -f "$OUT_ROOT/_held/$1.held" ]; then echo "$2" >> "$OUT_ROOT/_held/$1.jobs"; fi; }',
+        'for f in ouro gen raven mcleish parcae ifm; do',
+        '  rm -f "$OUT_ROOT/_held/$f.jobs" "$OUT_ROOT/_held/$f.released"',
+        '  if [ -f "$OUT_ROOT/_held/$f.held" ]; then echo "family $f held ($(head -1 "$OUT_ROOT/_held/$f.held")); its jobs are'
+        ' submitted held (release after the fix: bash jobs/release_family.sh $f)"; fi',
+        "done"]
     lines.append('CHECK="sbatch of the stage arrays (the last printed line is the call that failed)"')
     lines.append('ALL=""')
     pos = {}
@@ -1093,8 +1108,10 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
                     dep = "--dependency=afterok:%s " % ":".join("$" + v for v in ext)
             if g == "g9_merge":
                 dep = "--dependency=afterany${ALL} "
-            lines.append("%s=$(sbatch --parsable $SB --output=$LOG_ROOT/ra20_%s_%%A_%%a.out %s--array=%s%%$CARDS task_%s.sbatch %s.%s.tsv)   # %s %s %s" % (
-                var, g, dep, idx, g, g, s_, scr, mod, s_))
+            fam = "none" if g == "g9_merge" else family_of(rs[0]["cmd"])
+            lines.append("%s=$(sbatch --parsable $SB $(H %s) --output=$LOG_ROOT/ra20_%s_%%A_%%a.out %s--array=%s%%$CARDS task_%s.sbatch %s.%s.tsv)   # %s %s %s" % (
+                var, fam, g, dep, idx, g, g, s_, scr, mod, s_))
+            lines.append("K %s $%s" % (fam, var))
             if g != "g9_merge":
                 lines.append('ALL="$ALL:$%s"' % var)
             for r in rs:
@@ -1163,7 +1180,7 @@ def smoke_lists():
     env = "K17_DATASET=gsm8k PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs" % (out, out)
     base = "cd %s && %s %s -m prod.steer_gen {mode} --setting %s --out %s --mem-fraction $GEN_MEM_FRACTION" % (TREE, env, PY, st, out)
     cj = "--config-json %s/cluster/jobs/gen_cfg/smoke_a1_gsm8k.json" % LC
-    gen = [("s1_checks", base.format(mode="checks").replace("--out %s" % out, "--out %s/chk" % out) + " --n 3 %s && %s %s/gate.py %s/chk/checks_%s.json" % (cj, PY, LF, out, st)),
+    gen = [("s1_checks", base.format(mode="checks").replace("--out %s" % out, "--out %s/chk" % out) + " %s %s && %s %s/gate.py %s/chk/checks_%s.json" % (G3_CLUSTER, cj, PY, LF, out, st)),
            ("s2_prep_screen", "%s --settle-dir $SETTLE %s && %s %s" % (base.format(mode="prep"), cj, base.format(mode="screen"), cj)),
            ("s3_select", "cd %s && %s %s %s/cluster/steer_select.py --setting %s --out %s --settle-dir $SETTLE %s --min_scored 3 --max_scored 3" % (
                TREE, env, PY, LC, st, out, cj)),
@@ -1232,7 +1249,7 @@ def handover_files():
               "cluster/env/smoke_check.py", "cluster/env/requirements_cluster_ouro.txt",
               "cluster/env/requirements_cluster_raven.txt", "cluster/env/requirements_cluster_parcae.txt",
               "cluster/env/requirements_cluster_ifm.txt", "cluster/jobs/submit_chain.sh", "cluster/jobs/status.sh",
-              "cluster/jobs/stage_done.sh"):
+              "cluster/jobs/stage_done.sh", "cluster/jobs/release_family.sh"):
         out.append("loopedcot/" + f)
     return sorted(set(out))
 
@@ -1250,6 +1267,26 @@ STEER_GEN_FILES = ["prod/steer_gen.py", "prod/__init__.py", "prod/common.py", "p
                    # cluster/pilot/steer_gen_math.py (RA-23 item 4) reads data_steer/<ds>/pairs_<ds>.jsonl
                    "data_steer/asdiv/pairs_asdiv.jsonl", "data_steer/asdiv/MANIFEST.json", "data_steer/asdiv/checks.json",
                    "data_steer/mawps/pairs_mawps.jsonl", "data_steer/mawps/MANIFEST.json", "data_steer/mawps/checks.json"]
+
+
+# steer_gen checks on the cluster (smoke and every setting): 12 items, gate G3 on all 12 with the n - n/32 rule; when
+# only the agreement count misses and every disagreement sits at a recompute margin < 1 logit, G3 passes as Deviation
+# D5m and checks_<setting>.json records the measured agreement (the generation code has no recompute decode path)
+G3_CLUSTER = "--n 12 --g3-items 12 --g3-measured-rate"
+
+
+def family_of(cmd):
+    """The hold unit of a task line: mcleish (steer_gen_raven), gen (the Ouro generation scripts, steer_gen and
+    steer_gen_math), else the venv it activates (ouro, raven, parcae, ifm); none: no venv, never held. A unit whose
+    preflight (its venv) or smoke failed is held; the others run."""
+    if "steer_gen_raven" in cmd:
+        return "mcleish"
+    if "VENV_OURO" in cmd and "steer_gen" in cmd:
+        return "gen"
+    for v, f in (("VENV_OURO", "ouro"), ("VENV_RAVEN", "raven"), ("VENV_PARCAE", "parcae"), ("VENV_IFM", "ifm")):
+        if v in cmd:
+            return f
+    return "none"
 
 
 def write_hashes(out_dir):

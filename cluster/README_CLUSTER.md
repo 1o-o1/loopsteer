@@ -41,7 +41,8 @@ Three commands, on a login node, from your project or scratch folder (never a ho
    ```
 
    Success: the `failed` column is 0 in every row, the last line is `diagnosis files: 0`, and at the end `done` equals
-   `jobs` in the `total` row.
+   `jobs` in the `total` row. A line `HELD family <family>` means that family's preflight or smoke failed: its jobs
+   wait and the rest run. Fix it, then run `bash repo/loopedcot/cluster/jobs/release_family.sh <family>`.
 
 ## What to send back
 
