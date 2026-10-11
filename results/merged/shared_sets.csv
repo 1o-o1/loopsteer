@@ -1,8 +1,11 @@
 grid,card,dataset,row,row_models,done_models,n_shared,state,note
 A,generation placement,GSM8K_gen,ouro_1_4b_base,ouro_1_4b_base,ouro_1_4b_base,391,shared = own,
 A,generation placement,SVAMP_gen,ouro_1_4b_base,ouro_1_4b_base,ouro_1_4b_base,245,shared = own,
+A,generation placement,GSM8K_gen,ouro_2_6b_base,ouro_2_6b_base,ouro_2_6b_base,421,shared = own,
 A,generation placement,SVAMP_gen,ouro_2_6b_base,ouro_2_6b_base,ouro_2_6b_base,248,shared = own,
 A,generation placement,GSM8K_gen,ouro_1_4b_think,ouro_1_4b_think,ouro_1_4b_think,297,shared = own,
+A,generation placement,SVAMP_gen,ouro_1_4b_think,ouro_1_4b_think,ouro_1_4b_think,158,shared = own,
+A,generation placement,GSM8K_gen,mcleish_llama32_r32,mcleish_llama32_r32,mcleish_llama32_r32,237,shared = own,
 B,GSM8K copy and derived,VBD,ouro_1_4b_base,ouro_1_4b_base,ouro_1_4b_base,843,shared = own,
 B,GSM8K copy and derived,VBD,ouro_2_6b_base,ouro_2_6b_base,ouro_2_6b_base,843,shared = own,
 B,GSM8K copy and derived,VB,ouro_1_4b_think,ouro_1_4b_think,ouro_1_4b_think,833,shared = own,

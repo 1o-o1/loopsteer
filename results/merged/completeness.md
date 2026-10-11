@@ -2,15 +2,15 @@
 
 States: done (every planned item and arm has a record), pending (named what is missing; the cell has no number), skip (reason), done earlier (not rerun on the cluster), not run (scope).
 
-Counts: done 86, done earlier (not rerun) 21, not run (scope) 50, pending 3, skip 161
+Counts: done 89, done earlier (not rerun) 21, not run (scope) 50, skip 161
 
 ## Grid A, generation placement
 
 | model | GSM8K_gen | SVAMP_gen | ASDIV_gen | MAWPS_gen |
 |---|---|---|---|---|
 | Ouro 1.4B base | done | done | done | done |
-| Ouro 2.6B base | pending: no results.csv / items_done.json (job not finished or no extractor for this script) | done | done | done |
-| Ouro 1.4B Thinking | done | pending: no results.csv / items_done.json (job not finished or no extractor for this script) | done | done |
+| Ouro 2.6B base | done | done | done | done |
+| Ouro 1.4B Thinking | done | done | done | done |
 | Ouro 2.6B Thinking | skip: time: CKPTS and SETTINGS have no ouro_2_6b_think entry | skip: time: CKPTS and SETTINGS have no ouro_2_6b_think entry | skip: time: steer_gen has no Ouro-2.6B-Thinking setting (same as GSM8K and SVAMP) | skip: time: same |
 | IFM no-injection | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
 | IFM injection twin | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
@@ -21,7 +21,7 @@ Counts: done 86, done earlier (not rerun) 21, not run (scope) 50, pending 3, ski
 | 819M design orthoinj | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
 | d28 | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
 | d112 | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
-| McLeish r32 | pending: no results.csv / items_done.json (job not finished or no extractor for this script) | skip: time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only | skip: time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row | skip: time: same |
+| McLeish r32 | done | skip: time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only | skip: time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row | skip: time: same |
 | Huginn K32 | skip: time: no generation script loads McLeish or Huginn today | skip: time: no generation script loads McLeish or Huginn today |  |  |
 | Parcae 370m | skip: time: steer_gen loads Ouro checkpoints only | skip: time: steer_gen loads Ouro checkpoints only |  |  |
 | Parcae 1.3b | skip: time: steer_gen loads Ouro checkpoints only | skip: time: steer_gen loads Ouro checkpoints only |  |  |

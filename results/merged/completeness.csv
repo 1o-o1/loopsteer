@@ -1,10 +1,10 @@
 grid,card,model,dataset,manifest_status,state,detail
 A,generation placement,ouro_1_4b_base,GSM8K_gen,run,done,"n_planned 8602, 66 result rows, max n_items 391"
 A,generation placement,ouro_1_4b_base,SVAMP_gen,run,done,"n_planned 5390, 66 result rows, max n_items 245"
-A,generation placement,ouro_2_6b_base,GSM8K_gen,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+A,generation placement,ouro_2_6b_base,GSM8K_gen,run,done,"n_planned 9262, 66 result rows, max n_items 421"
 A,generation placement,ouro_2_6b_base,SVAMP_gen,run,done,"n_planned 5456, 66 result rows, max n_items 248"
 A,generation placement,ouro_1_4b_think,GSM8K_gen,run,done,"n_planned 6534, 66 result rows, max n_items 297"
-A,generation placement,ouro_1_4b_think,SVAMP_gen,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+A,generation placement,ouro_1_4b_think,SVAMP_gen,run,done,"n_planned 3476, 66 result rows, max n_items 158"
 A,generation placement,ouro_2_6b_think,GSM8K_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
 A,generation placement,ouro_2_6b_think,SVAMP_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
 A,generation placement,ifm_p1_ouro,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
@@ -25,7 +25,7 @@ A,generation placement,ifm_d28,GSM8K_gen,scan,skip,time: steer_gen loads Ouro ch
 A,generation placement,ifm_d28,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,ifm_d112,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,ifm_d112,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
-A,generation placement,mcleish_llama32_r32,GSM8K_gen,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+A,generation placement,mcleish_llama32_r32,GSM8K_gen,run,done,"n_planned 5214, 66 result rows, max n_items 237"
 A,generation placement,mcleish_llama32_r32,SVAMP_gen,run,skip,time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only; no SVAMP setting is built
 A,generation placement,huginn_0125,GSM8K_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
 A,generation placement,huginn_0125,SVAMP_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
