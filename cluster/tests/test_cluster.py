@@ -1777,6 +1777,167 @@ def test_release_family_submits_one_gpu_job(tmp_path):
     assert len(c) == 1 and "--gres=gpu:1" in c[0] and "--exclude=n05,n06,n03" in c[0] and "--run ifm" in c[0]
 
 
+def _settle_of(line):
+    """The SETTLE file a steer_gen prep or select line reads: its config's settle, else the setting's."""
+    sys.path.insert(0, os.path.join(CL, "pilot", "tree"))
+    try:
+        from prod import steer_gen as SG
+    finally:
+        sys.path.pop(0)
+    st = re.search(r"--setting (\S+)", line).group(1)
+    cj = re.search(r"--config-json \S*/cluster/jobs/(gen_cfg/\S+\.json)", line)
+    cfg = json.load(open(os.path.join(JOBS, cj.group(1)), encoding="utf-8")) if cj else {}
+    return cfg.get("settle") or SG.SETTINGS[st]["settle"]
+
+
+def test_every_settle_file_the_task_lists_name_is_shipped():
+    """Every SETTLE file a task line reads (steer_gen prep, screen and select, in jobs/ and jobs/nolocal/) is in
+    cluster/data/, and setup_check checks all of them (it checks every cluster/data/cells_*.jsonl)."""
+    need = {}
+    for f in glob.glob(os.path.join(JOBS, "g*.tsv")) + glob.glob(os.path.join(JOBS, "nolocal", "g*.tsv")):
+        for ln in open(f, encoding="utf-8"):
+            if "--settle-dir" in ln:
+                need.setdefault(_settle_of(ln), set()).add(ln.split("\t")[0])
+    have = {os.path.basename(p) for p in glob.glob(os.path.join(CL, "data", "cells_*.jsonl"))}
+    assert len(need) == 6 and not set(need) - have, sorted(set(need) - have)
+    for name in ("cells_ouro_2_6b_base_gsm8k_natural_k4.jsonl", "cells_ouro_1_4b_think_svamp_natural2_k4.jsonl"):
+        assert name in need and name in have
+
+
+def _resubmit_env(tmp_path, queue="", merge_pending=True, named="", command="", with_sub=True):
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    fake, log = _fake_sbatch(tmp_path)
+    (fake / "squeue").write_bytes((
+        '#!/bin/bash\ncase "$*" in\n'
+        '  *"%%F %%K"*) printf "%s";;\n'
+        '  *"-n ra20_"*) printf "%s";;\n'
+        '  *"-t PD"*) %s;;\n'
+        '  *"%%E"*) echo "afterany:5001_*(unfulfilled),afterany:5002(unfulfilled)";;\n'
+        '  *) ;;\nesac\n' % (queue, named, 'echo 9999' if merge_pending else 'true')).encode())
+    (fake / "scontrol").write_bytes(('#!/bin/bash\nif [ "$1" = show ]; then printf "%s"; exit 0; fi\n'
+                                     'echo "scontrol $*" >> "%s"\n' % (command, log)).encode())
+    for n in ("squeue", "scontrol"):
+        os.chmod(str(fake / n), 0o755)
+    out = tmp_path / "out"
+    for d in ("_done", "_chain"):
+        (out / d).mkdir(parents=True)
+    nl = os.path.join(JOBS, "nolocal").replace("\\", "/")
+    (out / "_chain" / "jobs.txt").write_text("setup_check 1\nlists %s\n" % nl)
+    rows = [r for r in csv.DictReader(open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8"), delimiter="\t")
+            if r["script"] == "steer_gen.py" and r["model"] == "ouro_2_6b_base" and r["out"].endswith("/a2_gsm8k")]
+    sub = ["9999 g9_merge.s1_merge.tsv 1"]
+    for r in rows:
+        L = "%s.%s.tsv" % (r["group"], r["stage"])
+        idx = [ln.split("\t")[0] for ln in open(os.path.join(JOBS, "nolocal", L), encoding="utf-8")].index(r["id"]) + 1
+        sub.append("700%d %s %d" % (len(sub), L, idx))
+    if with_sub:
+        (out / "_chain" / "submitted.tsv").write_text("\n".join(sub) + "\n")
+    env = dict(os.environ, OUT_ROOT=out.as_posix(), LOG_ROOT=(out / "logs").as_posix(), REPO=TOP.replace("\\", "/"),
+               USER="op", PATH=fake.as_posix() + os.pathsep + os.environ.get("PATH", ""), CARDS="48", **SLURM_ENV)
+    return env, out, log, rows
+
+
+@needs_bash
+def test_resubmit_pipeline_skips_done_chains_stages_and_refuses_queued(tmp_path):
+    """resubmit_pipeline.sh: an ambiguous script and model is refused with the choices; a queued task of the pipeline
+    refuses it; otherwise the stages without done markers are submitted with afterok from one to the next, only their
+    undone task indices, through the same template and stage lists, and the pending merge waits for them too."""
+    rs = os.path.join(JOBS, "resubmit_pipeline.sh").replace("\\", "/")
+    env, out, log, rows = _resubmit_env(tmp_path)
+    r = subprocess.run([_bash(), rs, "steer_gen.py", "ouro_2_6b_base"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 3 and b"a2_gsm8k" in r.stdout and b"a2_svamp" in r.stdout and not os.path.exists(log)
+    for r_ in rows:
+        if r_["stage"] in ("s1_checks",):
+            (out / "_done" / r_["id"]).write_text("ok\n")
+    rows4 = [r_ for r_ in rows if r_["stage"] == "s4_row"]
+    for r_ in rows4[:5]:
+        (out / "_done" / r_["id"]).write_text("ok\n")
+    r = subprocess.run([_bash(), rs, "steer_gen.py", "ouro_2_6b_base", "a2_gsm8k"], env=env, stdout=subprocess.PIPE,
+                       stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2000:]
+    calls = open(log).read().splitlines()
+    sb = [c for c in calls if not c.startswith("scontrol")]
+    stages = list(dict.fromkeys(r_["stage"] for r_ in rows))
+    assert len(sb) == len(stages) - 1 and "g2_gen.s2_prep_screen.tsv" in sb[0] and "--dependency" not in sb[0], sb
+    for k, c in enumerate(sb[1:]):
+        assert "--dependency=afterok:%d" % (1001 + k) in c, c
+    s4 = [c for c in sb if "g2_gen.s4_row.tsv" in c][0]
+    idx4 = [ln.split("\t")[0] for ln in open(os.path.join(JOBS, "nolocal", "g2_gen.s4_row.tsv"), encoding="utf-8")]
+    want = ",".join(str(idx4.index(r_["id"]) + 1) for r_ in rows4[5:])
+    assert "--array=%s%%48" % want in s4 and "task_g2_gen.sbatch" in s4 and "--exclude=n05,n06" in s4
+    sc = [c for c in calls if c.startswith("scontrol")]
+    assert sc and "JobId=9999" in sc[0] and "Dependency=afterany:5001:5002:1001:" in sc[0], sc
+    assert len(open(out / "_chain" / "submitted.tsv").read().splitlines()) == 1 + len(rows) + len(sb)
+    # a queued task of the pipeline: refused
+    one = rows4[7]
+    L = "g2_gen.s4_row.tsv"
+    jid = [ln.split()[0] for ln in open(out / "_chain" / "submitted.tsv") if ln.split()[1] == L and ln.split()[2] == str(idx4.index(one["id"]) + 1)][0]
+    env2, out2, log2, _ = _resubmit_env(tmp_path / "b", queue="%s %d\\n" % (jid, idx4.index(one["id"]) + 1))
+    r = subprocess.run([_bash(), rs, "steer_gen.py", "ouro_2_6b_base", "a2_gsm8k"], env=env2, stdout=subprocess.PIPE,
+                       stderr=subprocess.STDOUT)
+    assert r.returncode == 4 and one["id"].encode() in r.stdout and not os.path.exists(log2), r.stdout.decode()[-1500:]
+    # a run submitted before the log existed: the stage list comes from Slurm's job record; unknown jobs refuse
+    pos = idx4.index(one["id"]) + 1
+    env3, _o3, log3, _ = _resubmit_env(tmp_path / "c", queue="8001 %d\\n8002 3\\n" % pos, named="8001\\n8002\\n",
+                                       command="JobId=8001 Command=/x/task_g2_gen.sbatch g2_gen.s4_row.tsv\\n",
+                                       with_sub=False)
+    r = subprocess.run([_bash(), rs, "steer_gen.py", "ouro_2_6b_base", "a2_gsm8k"], env=env3, stdout=subprocess.PIPE,
+                       stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 4 and ("scancel 8001_%d" % pos) in so and not os.path.exists(log3), so[-1500:]
+    env4, _o4, log4, _ = _resubmit_env(tmp_path / "d", queue="8001 %d\\n" % pos, named="8001\\n", command="",
+                                       with_sub=False)
+    r = subprocess.run([_bash(), rs, "steer_gen.py", "ouro_2_6b_base", "a2_gsm8k"], env=env4, stdout=subprocess.PIPE,
+                       stderr=subprocess.STDOUT)
+    assert r.returncode == 4 and b"whose stage list Slurm does not show: 8001" in r.stdout and not os.path.exists(log4)
+
+
+def test_steer_gen_raven_imports_cluster_extract_from_the_bundle(tmp_path):
+    """The McLeish analyze step imports cluster.extract (results.csv): in an isolated interpreter started outside the
+    repository (as a cluster task is), the module's own path setup finds the bundle's cluster/extract, and prod stays
+    the bundle's tree copy."""
+    code = ("import runpy, sys\n"
+            "runpy.run_path(sys.argv[1], run_name='probe')\n"
+            "from cluster.extract import common, gen\n"
+            "import prod.steer_gen as S\n"
+            "print(common.__file__); print(gen.__file__); print(S.__file__)\n")
+    r = subprocess.run([sys.executable, "-I", "-B", "-c", code, os.path.join(PILOT, "steer_gen_raven.py")],
+                       cwd=str(tmp_path), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    out = r.stdout.decode()
+    assert r.returncode == 0, out[-2000:]
+    paths = [os.path.normcase(os.path.abspath(x)) for x in out.strip().splitlines()[-3:]]
+    assert paths[0] == os.path.normcase(os.path.join(CL, "extract", "common.py"))
+    assert paths[1] == os.path.normcase(os.path.join(CL, "extract", "gen.py"))
+    assert paths[2] == os.path.normcase(os.path.join(PILOT, "tree", "prod", "steer_gen.py"))
+
+
+@needs_bash
+def test_resubmit_pipeline_reruns_only_the_analyze_stage(tmp_path):
+    """The McLeish pipeline with every row task done and the analyze task failed: resubmit_pipeline.sh submits only
+    the analyze task (its index in g2_gen.s6_analyze.tsv), with no dependency, and the pending merge waits for it."""
+    rs = os.path.join(JOBS, "resubmit_pipeline.sh").replace("\\", "/")
+    env, out, log, _rows = _resubmit_env(tmp_path)
+    rows = [r for r in csv.DictReader(open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8"), delimiter="\t")
+            if r["script"] == "steer_gen_raven.py"]
+    assert {r["stage"] for r in rows} == {"s4_row", "s6_analyze"} and len(rows) == 23
+    for r in rows:
+        if r["stage"] != "s6_analyze":
+            (out / "_done" / r["id"]).write_text("ok\n")
+    an = [r for r in rows if r["stage"] == "s6_analyze"][0]
+    idx = [ln.split("\t")[0] for ln in open(os.path.join(JOBS, "nolocal", "g2_gen.s6_analyze.tsv"), encoding="utf-8")].index(an["id"]) + 1
+    r = subprocess.run([_bash(), rs, "steer_gen_raven.py", an["model"]], env=env, stdout=subprocess.PIPE,
+                       stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2000:]
+    calls = open(log).read().splitlines()
+    sb = [c for c in calls if not c.startswith("scontrol")]
+    assert len(sb) == 1 and "g2_gen.s6_analyze.tsv" in sb[0] and "--array=%d%%48" % idx in sb[0], sb
+    assert "--dependency" not in sb[0] and "task_g2_gen.sbatch" in sb[0]
+    assert "s4_row: every task done (22), skipped" in so
+    assert any("JobId=9999" in c and c.endswith(":1001") for c in calls if c.startswith("scontrol")), calls
+
+
 @pytest.mark.parametrize("case", ["nvidia_smi_signature", "output_signature", "second_failure", "plain_failure"])
 def test_task_bad_gpu_node_requeues_once(tmp_path, case):
     """A task whose GPU cannot start ("No devices were found" from nvidia-smi -L, or "CUDA unknown error" in its output)

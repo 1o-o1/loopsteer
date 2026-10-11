@@ -346,7 +346,7 @@ done
 declare -A SETTLE_OF=([a1.gsm8k]=cells_ouro_1_4b_base_gsm8k_natural_k4.jsonl [a2.gsm8k]=cells_ouro_2_6b_base_gsm8k_natural_k4.jsonl
                       [a3.gsm8k]=cells_ouro_1_4b_think_gsm8k_natural2_k4.jsonl [a1.svamp]=cells_ouro_1_4b_base_svamp_natural_k4.jsonl
                       [a2.svamp]=cells_ouro_2_6b_base_svamp_natural_k4.jsonl [a3.svamp]=cells_ouro_1_4b_think_svamp_natural2_k4.jsonl)
-NEED_SETTLE=$( (echo "a1 gsm8k"; grep -h -- "--settle-dir" "$LC"/cluster/jobs/g*.tsv 2>/dev/null \
+NEED_SETTLE=$( (echo "a1 gsm8k"; grep -h -- "--settle-dir" "$LC"/cluster/jobs/g*.tsv "$LC"/cluster/jobs/nolocal/g*.tsv 2>/dev/null \
   | sed -n 's/.*K17_DATASET=\([a-z0-9]*\).*--setting \(a[0-9]\).*/\2 \1/p') | sort -u)
 while read -r st ds; do
   [ -n "$st" ] || continue

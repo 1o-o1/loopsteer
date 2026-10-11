@@ -1073,6 +1073,9 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
         'mkdir -p "$OUT_ROOT/_held"',
         'H() { if [ -f "$OUT_ROOT/_held/$1.held" ]; then echo "--hold"; fi; }',
         'K() { if [ -f "$OUT_ROOT/_held/$1.held" ]; then echo "$2" >> "$OUT_ROOT/_held/$1.jobs"; fi; }',
+        "# every submission: Slurm job id, stage list, task indices (jobs/resubmit_pipeline.sh matches the queue to tasks)",
+        'mkdir -p "$OUT_ROOT/_chain"',
+        'S() { echo "$1 $2 $3" >> "$OUT_ROOT/_chain/submitted.tsv"; }',
         'for f in ouro gen raven mcleish parcae ifm; do',
         '  rm -f "$OUT_ROOT/_held/$f.jobs" "$OUT_ROOT/_held/$f.released"',
         '  if [ -f "$OUT_ROOT/_held/$f.held" ]; then echo "family $f held ($(head -1 "$OUT_ROOT/_held/$f.held")); its jobs are'
@@ -1112,6 +1115,7 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
             lines.append("%s=$(sbatch --parsable $SB $(H %s) --output=$LOG_ROOT/ra20_%s_%%A_%%a.out %s--array=%s%%$CARDS task_%s.sbatch %s.%s.tsv)   # %s %s %s" % (
                 var, fam, g, dep, idx, g, g, s_, scr, mod, s_))
             lines.append("K %s $%s" % (fam, var))
+            lines.append("S $%s %s.%s.tsv %s" % (var, g, s_, idx))
             if g != "g9_merge":
                 lines.append('ALL="$ALL:$%s"' % var)
             for r in rs:
@@ -1249,7 +1253,8 @@ def handover_files():
               "cluster/env/smoke_check.py", "cluster/env/requirements_cluster_ouro.txt",
               "cluster/env/requirements_cluster_raven.txt", "cluster/env/requirements_cluster_parcae.txt",
               "cluster/env/requirements_cluster_ifm.txt", "cluster/jobs/submit_chain.sh", "cluster/jobs/status.sh",
-              "cluster/jobs/stage_done.sh", "cluster/jobs/release_family.sh"):
+              "cluster/jobs/stage_done.sh", "cluster/jobs/release_family.sh",
+              "cluster/jobs/resubmit_pipeline.sh"):
         out.append("loopedcot/" + f)
     return sorted(set(out))
 

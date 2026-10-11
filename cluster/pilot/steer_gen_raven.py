@@ -42,6 +42,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LOOPEDCOT = os.path.join(HERE, "tree")          # the bundle's prod tree: steer_gen and every prod module it imports
 if LOOPEDCOT not in sys.path:
     sys.path.insert(0, LOOPEDCOT)
+BUNDLE_TOP = os.path.dirname(os.path.dirname(HERE))   # the folder that holds cluster/ (cluster.extract, like merge.py)
+if BUNDLE_TOP not in sys.path:
+    sys.path.append(BUNDLE_TOP)                      # after the prod tree, so prod stays the bundle copy
 
 import torch  # noqa: E402
 
