@@ -59,7 +59,18 @@ K15F = {"ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_d112"}     # k15_full.py: D1, D2,
 K15P = {"ifm_p1_mid", "ifm_p1_mid_inj", "ifm_p2m_r5", "ifm_p2m_diag", "ifm_p2m_ortho"}   # k15_pairs.py: D1
 K16O = {"ouro_1_4b_base": "ouro", "ouro_2_6b_base": "ouro26", "ouro_1_4b_think": "ouro_think"}
 K16I = {"ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_p1_mid", "ifm_p1_mid_inj", "ifm_d112", "ifm_p2m_diag"}
-GEN = {"ouro_1_4b_base": "a1", "ouro_2_6b_base": "a2", "ouro_1_4b_think": "a3"}
+GEN = {"ouro_1_4b_base": "a1", "ouro_2_6b_base": "a2", "ouro_1_4b_think": "a3", "ouro_2_6b_think": "a4"}
+THINK_OF = {"a3": THINK14, "a4": THINK26}          # Thinking settings: --think-dir and K17_THINK_DIR (hub folder)
+# cluster extension (2026-10-11): pipelines added while the run was queued get their own queue groups, so the stage
+# lists of the running groups keep every line where it is (array task i = line i)
+GEN_GROUP = {"ouro_2_6b_think": "g11_gen26t"}
+# B-EXT2 item 1: k16_path_ouro (Y1 attention block, Y3 source restore, W2 last-read window) on the Thinking models
+PATH_CARD = "pathway checks (restore, read window, attention block)"
+K16T = {"ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}
+# B-EXT2 item 3: edit-site map cells whose k16_path_ifm run had no Y1 arm; Y1 reruns into <model>_<ds>_y1
+Y1_CELLS = {("ifm_p1_ouro_inj", "D4"), ("ifm_p1_mid", "D2"), ("ifm_p1_mid", "D4"), ("ifm_p1_mid_inj", "D2"),
+            ("ifm_p1_mid_inj", "D4"), ("ifm_p1_mid_inj", "D5"), ("ifm_p2m_diag", "D2")}
+FIRST_RUN_CARD = "IFM pathway rows (first run)"     # item 1: setting a4, GSM8K and SVAMP (steer_gen), ASDiv and MAWPS
 RAVEN_FREEZE = {"mcleish_llama32_r32": "mcleish", "huginn_0125": "huginn"}
 # RA-23 additions (2026-10-09)
 FRZ_OURO = {"ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}   # k17_freeze --model <id>; value =
@@ -96,6 +107,10 @@ def route(card, model, ds):
         if model in GEN and ds in GENM_DS:          # RA-23 item 4: ASDiv and MAWPS through steer_gen_math.py
             return ("steer_gen_math.py", "genm")
         return ("steer_gen.py", "gen") if model in GEN and ds in ("GSM8K_gen", "SVAMP_gen") else None
+    if card == PATH_CARD:
+        return ("k16_path_ouro.py", "k16t") if model in K16T and ds in ("D1", "D2", "D4", "D5") else None
+    if card == FIRST_RUN_CARD:          # the first k16_path_ifm folders of the Y1 cells: read by the merge, no job
+        return ("k16_path_ifm.py", "k16i0") if (model, ds) in Y1_CELLS else None
     if card == "edit-site map" and ds == "LRE":       # RA-23 item 5: the k17_public facts path on the LRE pool files
         return ("k17_public.py", "publre") if model in PUB_GROUP else None
     if card == "edit-site map":
@@ -148,7 +163,11 @@ def cell_target(card, model, ds):
     if u == "k16o":
         return (u, "B/k16_path_ouro/%s_D5" % K16O[model], K16O[model], DS_NAME[ds])
     if u == "k16i":
+        return (u, "B/k16_path_ifm/%s_%s%s" % (model, ds, "_y1" if (model, ds) in Y1_CELLS else ""), model, DS_NAME[ds])
+    if u == "k16i0":
         return (u, "B/k16_path_ifm/%s_%s" % (model, ds), model, DS_NAME[ds])
+    if u == "k16t":
+        return (u, "C/k16_path_ouro/%s_%s" % (K16T[model], ds), K16T[model], DS_NAME[ds])
     if u == "frz":
         return (u, "C/k17_freeze_raven/%s_%s" % (RAVEN_FREEZE[model], ds), None, DS_NAME[ds])
     if u == "frzo":
@@ -206,6 +225,7 @@ RATES = {
     ("gen", "a1"): (0.62, None, "fast", "k17_gen a1: six rows that ran alone, 0.53-0.70 s/item"),
     ("gen", "a2"): (1.45, None, "shared", "k17_gen a2: 1.3-1.6 s/item, card shared with run b2"),
     ("gen", "a3"): (4.96, None, "assumed", "no Thinking placement run exists: a1 rate x 8 (horizon 4096 against 512), not measured"),
+    ("gen", "a4"): (11.6, None, "assumed", "no Ouro-2.6B-Thinking placement run: a2 rate x 8 (horizon 4096 against 512), not measured"),
     # k17_public seconds per item (t_item mean) per runner group and dataset; scan seconds per candidate separate
     ("pub", "mcl_nr", "D1"): (171.0, "shared", "k17_public full: mcleish 153 + llama_nr 18 s/item (E8 full search on; off here)"),
     ("pub", "mcl_nr", "D2"): (84.7, "shared", "k17_public full: mcleish 81.2 + llama_nr 3.5"),
@@ -359,7 +379,8 @@ TREE = LF + "/tree"                 # the bundle's prod tree: steer_gen.py, ever
 DATA = "$DATA_ROOT"                 # pilot inputs: cluster/pilot/data/ unless set otherwise
 GEN_CFG = os.path.join(JOBS, "gen_cfg")      # steer_gen --config-json files (it takes a file path)
 SVAMP_SETTLE = {"a1": "cells_ouro_1_4b_base_svamp_natural_k4.jsonl", "a2": "cells_ouro_2_6b_base_svamp_natural_k4.jsonl",
-                "a3": "cells_ouro_1_4b_think_svamp_natural2_k4.jsonl"}     # file names inside $SETTLE
+                "a3": "cells_ouro_1_4b_think_svamp_natural2_k4.jsonl",
+                "a4": "cells_ouro_2_6b_think_svamp_natural2_k4.jsonl"}     # file names inside $SETTLE
 
 
 def build(cells, order, last, skips, kept, shard_s, done=()):
@@ -494,6 +515,7 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
     for dsname in ("GSM8K_gen", "SVAMP_gen"):
         for m in sorted([m for (u, m), d in want.items() if u == "gen" and dsname in d], key=mkey):
             st = GEN[m]
+            gg = GEN_GROUP.get(m, g)
             rate, _, role, src = RATES[("gen", st)]
             n_items = PLAN_GEN.get((st, dsname), 400) + 22 + 8
             dsenv = "gsm8k" if dsname == "GSM8K_gen" else "svamp"
@@ -501,37 +523,37 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
             cfg = {"n_screen": 100000}
             if dsenv == "svamp":
                 cfg.update({"dataset": "svamp", "settle": SVAMP_SETTLE[st]})
-            if st == "a3":
+            if st in THINK_OF:
                 cfg.update({"rows": GEN_ROWS, "n_sent": 22, "n_shift": 8})
             cfg_name = "%s_%s.json" % (st, dsenv)
             GEN_CFGS[cfg_name] = cfg
             env = "K17_DATASET=%s PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs" % (dsenv, out, out)
-            if st == "a3":
-                env += " K17_THINK_DIR=%s" % THINK14       # select reads the Thinking folder from the environment only
+            if st in THINK_OF:
+                env += " K17_THINK_DIR=%s" % THINK_OF[st]       # select reads the Thinking folder from the environment only
             base = "cd %s && %s %s -m prod.steer_gen {mode} --setting %s --out %s --mem-fraction $GEN_MEM_FRACTION" % (TREE, env, PY, st, out)
-            if st == "a3":
-                base += " --think-dir %s" % THINK14
+            if st in THINK_OF:
+                base += " --think-dir %s" % THINK_OF[st]
             cj = "--config-json %s/cluster/jobs/gen_cfg/%s" % (LC, cfg_name)
-            chk = J.add(g, "s1_checks", "steer_gen.py", m, [dsname], "", out, [], 240,
+            chk = J.add(gg, "s1_checks", "steer_gen.py", m, [dsname], "", out, [], 240,
                         "checks mode: 26-99 s in run 1 and run 5 on 4 items; 12 items with G3 on all 12 (cluster D5m)",
                         base.format(mode="checks").replace("--out %s" % out, "--out %s/chk" % out) + " %s %s && %s %s/gate.py %s/chk/checks_%s.json" % (G3_CLUSTER, cj, PY, LF, out, st))
-            prep = J.add(g, "s2_prep_screen", "steer_gen.py", m, [dsname], "", out, [chk], 480 * rate + 60,
+            prep = J.add(gg, "s2_prep_screen", "steer_gen.py", m, [dsname], "", out, [chk], 480 * rate + 60,
                          "prep (CPU, 3 s) + screen of every SETTLE-correct problem on the B side at the row rate",
                          "%s --settle-dir $SETTLE %s && %s %s" % (base.format(mode="prep"), cj, base.format(mode="screen"), cj))
-            sel = J.add(g, "s3_select", "steer_gen.py", m, [dsname], "", out, [prep], 30, "select (CPU, 3 s)",
+            sel = J.add(gg, "s3_select", "steer_gen.py", m, [dsname], "", out, [prep], 30, "select (CPU, 3 s)",
                         "cd %s && %s %s %s/cluster/steer_select.py --setting %s --out %s --settle-dir $SETTLE %s%s" % (
-                            TREE, env, PY, LC, st, out, cj, " --think-dir %s" % THINK14 if st == "a3" else ""))
-            rows = [J.add(g, "s4_row", "steer_gen.py", m, [dsname], r, out, [sel], n_items * rate + 60,
+                            TREE, env, PY, LC, st, out, cj, " --think-dir %s" % THINK_OF[st] if st in THINK_OF else ""))
+            rows = [J.add(gg, "s4_row", "steer_gen.py", m, [dsname], r, out, [sel], n_items * rate + 60,
                           "%s (%s): %.2f s/item at batch 16; planned %d scored + up to 30 sentinel and shift items" % (src, role, rate, n_items - 30),
                           "%s --row %s %s" % (base.format(mode="run"), r, cj)) for r in GEN_ROWS]
-            rows.append(J.add(g, "s4_row", "steer_gen.py", m, [dsname], "bw1_r00", out, [sel], 20 * 7.2 * rate / 0.62,
+            rows.append(J.add(gg, "s4_row", "steer_gen.py", m, [dsname], "bw1_r00", out, [sel], 20 * 7.2 * rate / 0.62,
                               "bw1 check: 7.2 s/item at batch 1 on 20 items (run 1)", "%s --row bw1_r00 --n 20 %s" % (base.format(mode="run"), cj)))
             post = []
             if dsenv == "gsm8k":
-                post.append(J.add(g, "s5_anschain_presence", "steer_gen.py", m, [dsname], "", out, rows, (832 + 93) * (n_items / 172.0) * rate / 0.62,
+                post.append(J.add(gg, "s5_anschain_presence", "steer_gen.py", m, [dsname], "", out, rows, (832 + 93) * (n_items / 172.0) * rate / 0.62,
                                   "anschain 832 s + presence 93 s for 172 items in run 1, scaled",
                                   "%s %s && %s %s" % (base.format(mode="anschain"), cj, base.format(mode="presence"), cj)))
-            J.add(g, "s6_analyze", "steer_gen.py", m, [dsname], "", out, post or rows, 60, "analyze (CPU)",
+            J.add(gg, "s6_analyze", "steer_gen.py", m, [dsname], "", out, post or rows, 60, "analyze (CPU)",
                   "%s %s && %s $REPO/loopedcot/cluster/extract/run.py --script steer_gen.py --src %s/prod/steer_gen.py --job %s" % (
                       base.format(mode="analyze"), cj, PY, TREE, out))
 
@@ -651,18 +673,18 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
             n_items = int(round(n_pool * GENM_PASS)) + 22 + 8
             out = "$OUT_ROOT/A/steer_gen_math/%s_%s" % (st, dsk)
             cfg = {"dataset": dsk, "n_screen": 100000, "screen_A_from_settle": False}
-            if st == "a3":
+            if st in THINK_OF:
                 cfg.update({"rows": GEN_ROWS, "n_sent": 22, "n_shift": 8})
             cfg_name = "%s_%s.json" % (st, dsk)
             GEN_CFGS[cfg_name] = cfg
             env = "PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs" % (out, out)
-            if st == "a3":
-                env += " K17_THINK_DIR=%s" % THINK14
+            if st in THINK_OF:
+                env += " K17_THINK_DIR=%s" % THINK_OF[st]
             w = "cd %s && %s %s %s/steer_gen_math.py --dataset %s --rows-dir %s ouro" % (TREE, env, PY, LF, dsk, out)
             tail = " --setting %s --config-json %s/cluster/jobs/gen_cfg/%s" % (st, LC, cfg_name)
-            if st == "a3":
-                tail += " --think-dir %s" % THINK14
-            g = "g7_ra23"
+            if st in THINK_OF:
+                tail += " --think-dir %s" % THINK_OF[st]
+            g = GEN_GROUP.get(m, "g7_ra23")
             chk = J.add(g, "s1_checks", "steer_gen_math.py", m, [dsname], "", out, [], 600, "checks mode: 496 s in the ASDiv smoke (Ouro-1.4B, shared card)",
                         "%s checks --out %s/chk --n 4%s && %s %s/gate.py %s/chk/checks_%s.json" % (w, out, tail, PY, LF, out, st))
             prep = J.add(g, "s2_prep_screen", "steer_gen_math.py", m, [dsname], "", out, [chk], 2 * n_pool * rate + 60,
@@ -686,6 +708,32 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
     if "huginn" in lre_want:
         public("g5_huginn", "huginn", ["D1"], lre=True)
 
+    # ---- cluster extension B-EXT2 item 1: k16_path_ouro on the Thinking models (Y1, Y3, W2 at full pools), own group
+    for m in sorted([m for (u, m) in want if u == "k16t"], key=mkey):
+        k = K16T[m]
+        rate = 16.2 if k == "ouro_think" else 16.2 * 234 / 138.0 * 2     # s/item: cluster ouro_think D5 run (W2 on)
+        for ds in [d for d in ("D1", "D2", "D4", "D5") if d in want[("k16t", m)]]:
+            n_plan = K16T_PLAN[ds]
+            out = "$OUT_ROOT/C/k16_path_ouro/%s_%s" % (k, ds)
+            J.add("g13_paththink", "s1_run", "k16_path_ouro.py", m, [ds], "", out, [], n_plan * rate + 600,
+                  "assumed: %.1f s/item (the cluster ouro_think D5 run, 16.2 s with W2 and the scan%s), %d items assumed" % (
+                      rate, "" if k == "ouro_think" else ", x 234/138 forwards x 2 layers for 2.6B", n_plan),
+                  "%s %s/k16_path_ouro.py --models %s --datasets %s --out %s --tag %s_%s --ftag _%s --t3n 0 --full_pool "
+                  "--model_dir %s --arms w2 --min_items 40 && %s %s/k16_path_ouro.py --summarize --out %s && %s "
+                  "$REPO/loopedcot/cluster/extract/run.py --script k16_path_ouro.py --src %s/k16_path_ouro.py --job %s" % (
+                      PY, LF, k, ds, out, k, ds, ds, THINK14 if k == "ouro_think" else THINK26, PY, LF, out, PY, LF, out))
+    # ---- cluster extension B-EXT2 item 3: the Y1 arm (edit-site rows) on the seven cells that ran without it
+    for m, ds in sorted(Y1_CELLS, key=lambda x: (order.index(x[0]), x[1])):
+        if ds not in want.get(("k16i", m), set()):
+            continue
+        rate, role, src = RATES[("k16i", "*")]
+        n_plan = planned_quota("k16i", m, ds, kept)
+        out = "$OUT_ROOT/B/k16_path_ifm/%s_%s_y1" % (m, ds)
+        J.add("g14_ifmy1", "s1_run", "k16_path_ifm.py", m, [ds], "", out, deps(m), n_plan * rate + 300,
+              "%s (%s): %.1f s/item (all arms; Y1 alone is less), planned %d items" % (src, role, rate, n_plan),
+              "%s %s/k16_path_ifm.py --models %s --datasets %s --out %s --tag %s_%s_y1 --data_dir %s/k16_path_ifm --guard 100000000 --full_pool --arms Y1 && %s %s/k16_path_ifm.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k16_path_ifm.py --src %s/k16_path_ifm.py --job %s" % (
+                  PY, LF, m, ds, out, m, ds, DATA, PY, LF, out, PY, LF, out))
+
     # ---- every task line activates its own venv (the raven scripts need Python >= 3.10)
     for r in J.rows:
         v = venv_of(r["script"], r["model"])
@@ -702,11 +750,17 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
 
 # submission order of submit_10_rest.sh (coordinator 2026-10-09): groups one to four, the IFM wave, the RA-23
 # additions, Huginn last, then the merge
-GROUP_ORDER = ["g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g6_ifm", "g7_ra23", "g5_huginn", "g9_merge"]
+GROUP_ORDER = ["g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g6_ifm", "g14_ifmy1", "g7_ra23", "g11_gen26t", "g13_paththink",
+               "g5_huginn",
+               "g9_merge"]
 GROUP_LABEL = {"g0_xllm": "preflight, xllm build and import check", "g1_copy": "GSM8K copy and derived",
                "g2_gen": "generation, GSM8K then SVAMP, McLeish GSM8K rows", "g3_map": "edit-site map at full pools",
                "g4_cd": "C and D scripts (raven branch-freeze)", "g6_ifm": "IFM wave incl. the RA-23 IFM branch-freeze",
-               "g7_ra23": "RA-23: Ouro Thinking branch-freeze, LRE facts", "g5_huginn": "Huginn incl. the RA-23 LRE cell",
+               "g7_ra23": "RA-23: Ouro Thinking branch-freeze, LRE facts",
+               "g13_paththink": "extension: restore, read window and attention block on the Ouro Thinking models",
+               "g14_ifmy1": "extension: the Y1 arm (edit-site rows) on seven IFM cells",
+               "g11_gen26t": "extension item 1: generation on Ouro-2.6B-Thinking (setting a4; GSM8K, SVAMP, ASDiv, MAWPS)",
+               "g5_huginn": "Huginn incl. the RA-23 LRE cell",
                "g9_merge": "merge and grid tables"}
 
 
@@ -794,6 +848,7 @@ FRZ_POOL = {"D1": 267, "D2": 592, "D4": 1311}    # the RA-3 identity list; D2 ca
 #                                                  the cap of 2 per cluster side (counted on the D4 file of either tokenizer)
 FRZ_KEPT = {"D1": 267, "D2": 263, "D4": 1311}
 FRZ_IFM_D1 = 231          # items of the RA-3 list that exist on the IFM tokenizer (smoke 2026-10-09)
+K16T_PLAN = {"D1": 280, "D2": 600, "D4": 1100, "D5": 650}   # items assumed (pilot pass rates x pools; no scan)
 GENR_N = 237              # McLeish problems scored by the shared-host run's select (rows r00, r01 done on them)
 
 
@@ -821,7 +876,9 @@ PAR_PLAN = {("parcae-370m", "D1"): 61, ("parcae-1.3b", "D1"): 62,
 # Thinking: no SETTLE count read, 300 assumed.
 PLAN_GEN = {("a1", "GSM8K_gen"): int(round(428 * 226 / 240.0)), ("a2", "GSM8K_gen"): int(round(451 * 223 / 240.0)),
             ("a3", "GSM8K_gen"): 300, ("a1", "SVAMP_gen"): int(round(252 * 226 / 240.0)),
-            ("a2", "SVAMP_gen"): int(round(252 * 223 / 240.0)), ("a3", "SVAMP_gen"): 300}
+            ("a2", "SVAMP_gen"): int(round(252 * 223 / 240.0)), ("a3", "SVAMP_gen"): 300,
+            ("a4", "GSM8K_gen"): int(round(462 * 223 / 240.0)), ("a4", "SVAMP_gen"): 300}
+# a4 GSM8K: 462 SETTLE-correct problems (prep of the item 1 smoke) x the 2.6B base B-pass rate (assumed)
 
 
 # ----------------------------------------------------------------------------------------------- outputs
@@ -956,6 +1013,11 @@ rm -f "$OUT_ROOT/_diag/$ID.txt"
 """
 
 
+DONE_SKIP = 'if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "done already: $ID"; exit 0; fi\n'
+MERGE_RERUN = ('# the merge reruns every round (merge.py is idempotent): its done marker does not skip it\n'
+               'if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "merge ran before: $ID; running it again"; fi\n')
+
+
 # checks at the top of both submit scripts: the environment file, the smoke marker, and the node restriction of
 # cluster.env (SLURM_RESTRICT, plus the nodes in $OUT_ROOT/bad_nodes.txt) passed on every sbatch command line
 def gates(env_rel):
@@ -1019,8 +1081,11 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
     for g in groups:
         mx = max(r["est_card_seconds"] for r in J.rows if r["group"] == g)
         hours = min(48, max(2, int(math.ceil(mx * 2 / 3600.0))))
-        open(os.path.join(out_dir, "task_%s.sbatch" % g), "w", encoding="utf-8", newline="\n").write(
-            SBATCH.format(group=g, time="%d:00:00" % hours))
+        txt = SBATCH.format(group=g, time="%d:00:00" % hours)
+        if g == "g9_merge":          # B-EXT2 item 0: the merge reruns every round (idempotent), done marker or not
+            assert txt.count(DONE_SKIP) == 1
+            txt = txt.replace(DONE_SKIP, MERGE_RERUN)
+        open(os.path.join(out_dir, "task_%s.sbatch" % g), "w", encoding="utf-8", newline="\n").write(txt)
     build = [r for r in J.rows if r["group"] == "g0_xllm"]
     gsum = {g: (sum(1 for r in J.rows if r["group"] == g), sum(r["est_card_seconds"] for r in J.rows if r["group"] == g) / 3600.0)
             for g in groups}

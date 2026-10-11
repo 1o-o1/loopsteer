@@ -33,6 +33,14 @@
    "wall_hours_at_48_cards": 5.2,
    "longest_chain_hours": 5.2
   },
+  "g11_gen26t": {
+   "jobs": 107,
+   "card_hours": 236.2,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 197.5,
+   "wall_hours_at_48_cards": 30.6,
+   "longest_chain_hours": 30.6
+  },
   "g3_map": {
    "jobs": 85,
    "card_hours": 106.6,
@@ -65,6 +73,22 @@
    "wall_hours_at_48_cards": 4.1,
    "longest_chain_hours": 4.1
   },
+  "g13_paththink": {
+   "jobs": 7,
+   "card_hours": 50.2,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 50.2,
+   "wall_hours_at_48_cards": 17.0,
+   "longest_chain_hours": 17.0
+  },
+  "g14_ifmy1": {
+   "jobs": 7,
+   "card_hours": 12.8,
+   "card_hours_from_shared_gpu_rates": 12.8,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 2.5,
+   "longest_chain_hours": 2.5
+  },
   "g9_merge": {
    "jobs": 1,
    "card_hours": 0.2,
@@ -74,5 +98,5 @@
    "longest_chain_hours": 0.2
   }
  },
- "card_hours_total": 532.9
+ "card_hours_total": 832.1
 }

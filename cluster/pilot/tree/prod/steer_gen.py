@@ -67,6 +67,8 @@ CKPTS = {
     "ouro_1_4b_base": {"layers": 24, "modeling_md5": "5a0c375566aef57873de94ee32bfa265"},
     "ouro_2_6b_base": {"layers": 48, "modeling_md5": "5a0c375566aef57873de94ee32bfa265"},
     "ouro_1_4b_think": {"layers": 24, "modeling_md5_prefix": "7129d9d0", "local_env": "K17_THINK_DIR"},
+    # cluster extension (2026-10-11): the hub snapshot f1edd81 (weights.json), loaded from its folder like 1.4B Thinking
+    "ouro_2_6b_think": {"layers": 48, "modeling_md5_prefix": "4135d08e", "local_env": "K17_THINK_DIR"},
 }
 
 
@@ -676,6 +678,8 @@ class SteeredOuroAdapter(OuroAdapter):
         d.update({"steer_gen": VERSION, "steer_kv_hooks": self.kv, "file_md5": dict(self.file_md5)})
         if self.base_name == "ouro_1_4b_think":
             d["repo"] = "local snapshot copy of ByteDance/Ouro-1.4B-Thinking 3aaa222 (plan U3)"
+        elif self.base_name == "ouro_2_6b_think":
+            d["repo"] = "hub snapshot folder of ByteDance/Ouro-2.6B-Thinking f1edd81"
         return d
 
 
@@ -951,6 +955,11 @@ SETTINGS = {
     "a3": {"arm": "a", "model": "ouro_1_4b_think", "k": 4, "horizon": 4096, "chat": True, "think_stop": False,
            "n_scored": 30, "n_sent": 8, "n_shift": 8, "n_screen": 45, "screen_extend": 20,
            "settle": "cells_ouro_1_4b_think_gsm8k_natural2_k4.jsonl",
+           "rows": ["r00", "r01", "r02", "r03", "r07", "r10", "r20"]},
+    # cluster extension (2026-10-11): setting a3 on Ouro-2.6B-Thinking (the cluster config sets rows and counts)
+    "a4": {"arm": "a", "model": "ouro_2_6b_think", "k": 4, "horizon": 4096, "chat": True, "think_stop": False,
+           "n_scored": 30, "n_sent": 8, "n_shift": 8, "n_screen": 45, "screen_extend": 20,
+           "settle": "cells_ouro_2_6b_think_gsm8k_natural2_k4.jsonl",
            "rows": ["r00", "r01", "r02", "r03", "r07", "r10", "r20"]},
     "b2": {"arm": "b", "model": "ouro_1_4b_base", "k": 4, "horizon": 4096, "chat": False, "think_stop": True,
            "task": "gsm8k", "n_eval": 400, "n_sent": 50, "n_shift": 8, "n_train": 200,

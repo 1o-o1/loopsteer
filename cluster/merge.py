@@ -9,13 +9,20 @@ Order of writing (the paper chat reads the matrix first):
      skip with its reason, done earlier (not rerun), or not run (scope) with the manifest's reason.
   2. results_all_<grid>.csv: rows of complete cells only. A cell missing any planned item or any arm is pending
      as a whole and contributes no row. Rows of cards that are not run (site selection, selective control) that a
-     script writes as a by-product are left out.
-  3. shared_sets.csv and the shared-set rows (RA-20 item 9): per manifest table row (manifest.yaml rows; a
-     model not listed is its own row), card and dataset, the items every done model of the row keeps (the
-     intersection of the planned sets in items_done.json). Each done cell is reported on its own kept set
-     (item_set own) and on the shared set (item_set shared: the script's own summarize re-run on the shared
-     items, extract/shared.py). Shared set below 40 items: own set only, marked. A row with one done model has
-     shared = own. A row with a pending model, or with done models from different scripts, has no shared readout.
+     script writes as a by-product are left out. A cell the manifest marks done earlier is read like a run cell
+     when a routed job wrote it again (k17_varbench --datasets VBD on the Ouro base models also runs the copy
+     pairs) and its folder holds it complete: state done, its rows go in. The dataset column names the cell's own
+     dataset: a row labelled with the name of another manifest dataset (k17_public runs the LRE pool as D1 and
+     labels it facts) takes the cell's code in lower case (lre). Rows of a folder with a done cell that no cell
+     claims go in with empty cell columns (rows_without_cell). No two rows of one results_all file may share the
+     key LVC_KEY; a shared key fails the merge (exit 3).
+  3. shared_sets.csv and the shared-set rows (B-EXT2 item 0): per benchmark (grid, card, dataset) across every
+     model whose cell is done, the items all of them keep (the intersection of the planned sets in items_done.json,
+     ids made comparable across scripts by extract/shared.canon; k15_pairs ids form their own space). Each done
+     cell is reported on its own kept set (item_set own) and on the shared set (item_set shared: the script's own
+     summarize re-run on the shared items, or for generation the per-item cells re-read, extract/shared.py), each
+     row with its n. Small sets are kept and marked (own set or shared set below 40). One done model: shared =
+     own. Models still pending are named in the note.
   4. grid_<grid>.md: the grid table (model x dataset per card), skip reasons from cells_skipped.json in the
      cells that have no number; each done cell shows its own n and its shared-set mark.
 Home directory runs (ALLOW_HOME=1, a cluster with no scratch): before anything is read, every text file of the
@@ -64,61 +71,90 @@ def row_groups(m, grid):
 
 
 def shared_readout(m, cells, info, out_root, pilot_dir):
-    """RA-20 item 9. Returns (shared rows per grid, shared_sets table rows, mark per cell key)."""
+    """B-EXT2 item 0. The shared set of a benchmark (grid, card, dataset) is defined across every model whose cell is
+    done: the items all of them keep (each script keeps the items the model solves on the clean run). Item ids are
+    put in one space per script family (extract/shared.canon); k15_pairs ids are positions in its own scan, so its
+    models form their own space (shared.space) with their own intersection. Every done model of a space with two or
+    more models gets its rows recomputed on the shared set (item_set shared, n_items = the shared n), however small
+    the set (a set below 40 is marked small; an empty one has no rows). One model alone: shared = own. Models still
+    pending are named: the set can shrink when they finish (the merge reruns every round). Returns (shared rows per
+    grid, shared_sets table rows, mark per cell key)."""
     rows_by_grid = collections.defaultdict(list)
     table, mark = [], {}
     groups = collections.OrderedDict()
     for c in cells:
         key = (c["card"], c["model"], c["dataset"])
-        if key not in info:
-            continue
-        rid, rmods = row_groups(m, c["grid"]).get(c["model"], (c["model"], [c["model"]]))
-        groups.setdefault((c["grid"], c["card"], c["dataset"], rid), []).append((c, rmods))
-    for (grid, card, ds, rid), members in groups.items():
-        row_models = members[0][1]
-        st = {c["model"]: info[(c["card"], c["model"], c["dataset"])] for c, _ in members}
-        done = [mo for mo in st if st[mo]["state"] == "done"]
-        pend = [mo for mo in st if st[mo]["state"] == "pending"]
-        outside = [mo for mo in row_models if mo not in st or st[mo]["state"] not in ("done", "pending")]
+        if key in info:
+            groups.setdefault((c["grid"], c["card"], c["dataset"]), []).append(c["model"])
+    for (grid, card, ds), mods in groups.items():
+        st = {mo: info[(card, mo, ds)] for mo in mods}
+        done = [mo for mo in mods if st[mo]["state"] == "done"]
+        pend = [mo for mo in mods if st[mo]["state"] == "pending"]
         if not done:
             continue
-        note = []
-        if outside:
-            note.append("not in the shared set (no routed run cell, or skipped): %s" % ",".join(outside))
-        scripts = sorted(set(st[mo]["script"] for mo in done))
-        n = ""
-        if pend:
-            state = "pending"
-            note.append("models pending: %s" % ",".join(pend))
-        elif len(scripts) > 1:
-            state = "not comparable"
-            note.append("done models come from different scripts: %s" % ",".join(scripts))
-        else:
-            shared = set.intersection(*[set(st[mo]["planned"]) for mo in done])
+        spaces = collections.OrderedDict()
+        for mo in done:
+            spaces.setdefault(SH.space(st[mo]["script"]), []).append(mo)
+        for sp, members in spaces.items():
+            note = []
+            if pend:
+                note.append("models pending (the set can shrink): %s" % ",".join(pend))
+            if len(spaces) > 1:
+                note.append("item ids of the %s space are not comparable with the other space%s" % (
+                    sp, "s" if len(spaces) > 2 else ""))
+            canon = {}
+            for mo in members:
+                cm = canon.setdefault(mo, collections.defaultdict(set))
+                for i in st[mo]["planned"]:
+                    cm[SH.canon(st[mo]["script"], i)].add(i)
+            shared = set.intersection(*[set(v) for v in canon.values()])
             n = len(shared)
-            if len(done) == 1:
+            if len(members) == 1:
                 state = "shared = own"
+            elif n == 0:
+                state = "no common items"
             elif n < MIN_KEPT[0]:
-                state = "own only (shared n %d < %d)" % (n, MIN_KEPT[0])
+                state = "shared (small: n %d < %d)" % (n, MIN_KEPT[0])
             else:
                 state = "shared"
-        for mo in done:
-            i = st[mo]
-            ck = (card, mo, ds)
-            if state != "shared":
-                mark[ck] = state if state != "pending" else "shared set pending"
-                continue
-            if not SH.supported(i["script"]):
-                mark[ck] = "shared readout not built for %s" % i["script"]
-                continue
-            for r in SH.rows(i["script"], src_of(i["script"], pilot_dir), os.path.join(out_root, i["rel"]),
-                             i["mk"], i["dk"], shared):
-                if r["card"] in SCOPE_CARDS:
+            for mo in members:
+                i = st[mo]
+                ck = (card, mo, ds)
+                if state == "shared = own" or n == 0:
+                    mark[ck] = state
                     continue
-                rows_by_grid[grid].append(dict(r, cell_card=card, cell_model=mo, cell_dataset=ds))
-            mark[ck] = "shared n %d" % n
-        table.append([grid, card, ds, rid, ",".join(row_models), ",".join(done), n, state, "; ".join(note)])
+                if not SH.supported(i["script"]):
+                    mark[ck] = "shared n %d; readout not built for %s" % (n, i["script"])
+                    continue
+                keep = set().union(*[canon[mo][x] for x in shared])
+                try:
+                    got = SH.rows(i["script"], src_of(i["script"], pilot_dir), os.path.join(out_root, i["rel"]),
+                                  i["mk"], i["dk"], keep)
+                except Exception as e:                       # noqa: BLE001  (named in the mark; own rows stay)
+                    mark[ck] = "shared n %d; readout failed: %s" % (n, repr(e)[:160])
+                    continue
+                for r in got:
+                    if r["card"] in SCOPE_CARDS:
+                        continue
+                    rows_by_grid[grid].append(cell_row(r, {"card": card, "model": mo, "dataset": ds}))
+                mark[ck] = "shared n %d" % n + (" (small)" if n < MIN_KEPT[0] else "")
+            table.append([grid, card, ds, sp, ",".join(mods), ",".join(members), n, state, "; ".join(note)])
     return rows_by_grid, table, mark
+
+
+def takes(r, model_key, ds_key):
+    """True when a results.csv row belongs to the cell read with this model key and dataset key."""
+    return (model_key in (None, "row") or r["model"] == model_key) and (ds_key is None or r["dataset"] == ds_key)
+
+
+def cell_row(r, c):
+    """One results_all row of manifest cell c (card, model, dataset). The dataset column names the cell's own
+    dataset: a label that names another manifest dataset (GJ.DS_NAME, e.g. facts for D1 on the LRE cell) is replaced
+    by the cell's dataset code in lower case, so the D1 and LRE rows of one model do not share a key."""
+    out = dict(r, cell_card=c["card"], cell_model=c["model"], cell_dataset=c["dataset"])
+    if c["dataset"] not in GJ.DS_NAME and r.get("dataset") in GJ.DS_NAME.values():
+        out["dataset"] = c["dataset"].lower()
+    return out
 
 
 def job_state(out_root, rel, model_key, ds_key):
@@ -145,17 +181,16 @@ def job_state(out_root, rel, model_key, ds_key):
         return "pending", "; ".join(bad), []
     if n_planned == 0:
         return "skip", "ability (the clean-pass scan kept 0 items)", []
-    rows = [r for r in common.read_results(rpath)
-            if (model_key in (None, "row") or r["model"] == model_key) and (ds_key is None or r["dataset"] == ds_key)]
+    rows = [r for r in common.read_results(rpath) if takes(r, model_key, ds_key)]
     if not rows:
         return "pending", "item sets complete but no result rows", []
     n_max = max(int(r["n_items"] or 0) for r in rows)
-    if 0 < n_planned < MIN_KEPT[0] and ds_key is not None:
-        return "skip", "ability (the clean-pass scan kept %d items, fewer than %d)" % (n_planned, MIN_KEPT[0]), []
     empty = [r["arm"] for r in rows if not r["n_items"] or int(r["n_items"]) == 0]
     if empty:
         return "pending", "arms without items: %s" % ",".join(sorted(set(empty))[:6]), []
-    return "done", "n_planned %d, %d result rows, max n_items %d" % (n_planned, len(rows), n_max), rows
+    small = ("small set (n_planned %d < %d), kept; " % (n_planned, MIN_KEPT[0])
+             if 0 < n_planned < MIN_KEPT[0] and ds_key is not None else "")
+    return "done", "%sn_planned %d, %d result rows, max n_items %d" % (small, n_planned, len(rows), n_max), rows
 
 
 def planned_items(out_root, rel, model_key, ds_key):
@@ -290,6 +325,27 @@ def main():
     rows_by_grid = collections.defaultdict(list)
     union_ok = True
     info = {}
+    claims = collections.defaultdict(list)      # folder -> (model key, dataset key, grid) of every cell routed to it
+    done_rel = set()                            # folders with at least one done cell
+
+    def read_cell(c, key, tgt, by_product=False):
+        """Judge one routed cell on its folder; a done cell's rows go into results_all. by_product: a cell the
+        manifest marks done earlier, read only when the folder holds it complete (else None, nothing recorded)."""
+        u, rel, mk, dk = tgt
+        claims[rel].append((mk, dk, c["grid"]))
+        word, det, rows = job_state(a.out_root, rel, mk, dk)
+        if by_product and word != "done":
+            return None
+        if word == "done":
+            done_rel.add(rel)
+        info[key] = {"state": word, "rel": rel, "mk": mk, "dk": dk, "script": GJ.route(*key)[0],
+                     "planned": planned_items(a.out_root, rel, mk, dk) if word == "done" else set()}
+        for r in rows:
+            if r["card"] in SCOPE_CARDS:        # rows a script writes for a card that is not run (scope)
+                continue
+            rows_by_grid[c["grid"]].append(cell_row(r, c))
+        return word, det
+
     for c in cells:
         key = (c["card"], c["model"], c["dataset"])
         st, note = c["status"], c["note"]
@@ -300,23 +356,29 @@ def main():
             word, det = "skip", note
         elif st == "done":
             word, det = "done earlier (not rerun)", note
+            tgt = GJ.cell_target(*key)
+            got = read_cell(c, key, tgt, by_product=True) if tgt is not None else None
+            if got is not None:
+                word, det = got[0], "written again by a routed job (manifest: done earlier%s); %s" % (
+                    ", " + note if note else "", got[1])
         else:
             tgt = GJ.cell_target(*key)
             if tgt is None:
                 word, det = ("skip", "%s: %s" % (sk["reason"], sk["why"])) if sk else ("pending", "no pilot script route")
             else:
-                u, rel, mk, dk = tgt
-                word, det, rows = job_state(a.out_root, rel, mk, dk)
+                word, det = read_cell(c, key, tgt)
                 if word == "pending" and "planned items done" in det:
                     union_ok = False
-                info[key] = {"state": word, "rel": rel, "mk": mk, "dk": dk, "script": GJ.route(*key)[0],
-                             "planned": planned_items(a.out_root, rel, mk, dk) if word == "done" else set()}
-                for r in rows:
-                    if r["card"] in SCOPE_CARDS:        # rows a script writes for a card that is not run (scope)
-                        continue
-                    rows_by_grid[c["grid"]].append(dict(r, cell_card=c["card"], cell_model=c["model"],
-                                                        cell_dataset=c["dataset"]))
         comp.append([c["grid"], c["card"], c["model"], c["dataset"], c["status"], word, det])
+    # every row of a folder with a done cell reaches results_all: rows no routed cell claims (not a scope card) go in
+    # with empty cell columns, in the grid of the folder's first cell
+    orphans = collections.Counter()
+    for rel in sorted(done_rel):
+        for r in common.read_results(os.path.join(a.out_root, rel, "results.csv")):
+            if r["card"] in SCOPE_CARDS or any(takes(r, mk, dk) for mk, dk, _g in claims[rel]):
+                continue
+            rows_by_grid[claims[rel][0][2]].append(dict(r, cell_card="", cell_model="", cell_dataset=""))
+            orphans[rel] += 1
     with open(os.path.join(dest, "completeness.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["grid", "card", "model", "dataset", "manifest_status", "state", "detail"])
@@ -342,7 +404,7 @@ def main():
         rows_by_grid[g].extend(rr)
     with open(os.path.join(dest, "shared_sets.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
-        w.writerow(["grid", "card", "dataset", "row", "row_models", "done_models", "n_shared", "state", "note"])
+        w.writerow(["grid", "card", "dataset", "id_space", "models", "done_models", "n_shared", "state", "note"])
         w.writerows(sh_table)
 
     # ---- 3. results_all per grid (complete cells only; item_set own and shared)
@@ -362,8 +424,8 @@ def main():
         out = ["# Grid %s" % grid, "",
                "Generated by cluster/merge.py from results_all_%s.csv and the completeness matrix. A number appears "
                "only in a complete cell: n items on the model's own kept set (result rows), then the shared-set "
-               "mark of the cell's manifest row (shared n, shared = own, or own only when the shared set is below "
-               "40). Every estimate with its 90 percent CI is in results_all_%s.csv, item_set own and shared. "
+               "mark of the cell's benchmark (shared n, small when below 40, shared = own, or no common items). "
+               "Every estimate with its 90 percent CI is in results_all_%s.csv, item_set own and shared. "
                "Empty cells carry the skip reason or the state." % (grid, grid), ""]
         rows = rows_by_grid.get(grid, [])
         for card, gc in _by(g, lambda x: x[1]):
@@ -398,14 +460,23 @@ def main():
         if moved:
             print("merge: FAIL, the scrub changed %s" % ", ".join(moved))
             return 3
+    dup_keys = {}
+    for g, rr in rows_by_grid.items():
+        kc = collections.Counter(tuple(r.get(k) or "" for k in LVC_KEY) for r in rr)
+        if any(v > 1 for v in kc.values()):
+            dup_keys[g] = sum(v - 1 for v in kc.values() if v > 1)
     hits = home_scan(dest)
     with open(os.path.join(dest, "home_scan.json"), "w", encoding="utf-8") as f:
         json.dump({"files_scrubbed": scrubbed, "home_path_hits": hits}, f, indent=1)
     if hits:
         print("merge: FAIL, home paths remain in the merged outputs: %s" % ", ".join(h["file"] for h in hits))
         return 3
+    if dup_keys:
+        print("merge: FAIL, results_all rows share a key (rows beyond the first, per grid): %s" % json.dumps(dup_keys))
+        return 3
     print(json.dumps({"cells": len(comp), "states": cnt, "results_rows": {g: len(r) for g, r in rows_by_grid.items()},
                       "shared_rows": {g: len(r) for g, r in sh_rows.items()},
+                      "rows_without_cell": dict(orphans), "duplicate_keys": dup_keys,
                       "shared_states": collections.Counter(x[7] for x in sh_table),
                       "union_equals_planned_all_jobs": union_ok, "local_vs_cluster_rows": lvc, "dest": "merged"}))
     return 0

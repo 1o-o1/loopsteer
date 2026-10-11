@@ -1012,9 +1012,16 @@ def main():
     ap.add_argument("--n_w2", type=int, default=N_W2)
     ap.add_argument("--data_dir", default="")
     ap.add_argument("--guard", type=float, default=GUARD_MIN)
+    ap.add_argument("--arms", default="", help="cluster extension: comma list of arms (Y1, Y2, Y3, W2) that replaces "
+                    "ARMS for every --models entry (records keep the arms they ran)")
     a = ap.parse_args()
     FULL_POOL[0] = a.full_pool
     GUARD_MIN = a.guard
+    if a.arms:
+        arms = [x for x in a.arms.split(",") if x]
+        assert arms and set(arms) <= {"Y1", "Y2", "Y3", "W2"}, arms
+        for name in [x for x in a.models.split(",") if x]:
+            ARMS[name] = arms
     if a.selftest:
         sys.exit(0 if selftest() else 1)
     os.makedirs(a.out, exist_ok=True)

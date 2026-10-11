@@ -40,10 +40,15 @@ def _sg(src_py):
     return importlib.import_module("prod.steer_gen")
 
 
-def recompute(job_dir, src_py, ninety):
+def recompute(job_dir, src_py, ninety, keep=None):
+    """Per row and metric [mean, lo, hi, n_items, n_clusters] from the per-item cells of the scored problems (keep:
+    only the scored problems whose idx is in it, the shared-set readout of extract/shared.py)."""
     SG = _sg(src_py)
     sel = common.load_json(os.path.join(job_dir, "items.json"))
     scored = {int(it["idx"]): it for it in sel["scored"]}
+    if keep is not None:
+        keep = {int(i) for i in keep}
+        scored = {i: it for i, it in scored.items() if i in keep}
     out = {}
     hits = {}
     for r in ROWS:

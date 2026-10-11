@@ -22,6 +22,8 @@ CF (CounterFact): CounterFact pool of the cluster run: the 3,741 candidate pairs
 | A | generation placement | ouro_2_6b_base | SVAMP_gen | run | steer_gen.py | 995 | none: every problem that passes both clean filters is scored (sentinels from the prep items left over) | none | 234 | SETTLE-correct (GSM8K 428 / 451; SVAMP 252 / 252) x B-pass rate of run 1 / run 5 |
 | A | generation placement | ouro_1_4b_think | GSM8K_gen | run | steer_gen.py | 522 | none: every problem that passes both clean filters is scored (sentinels from the prep items left over) | none | 300 | no SETTLE count read; assumed |
 | A | generation placement | ouro_1_4b_think | SVAMP_gen | run | steer_gen.py | 995 | none: every problem that passes both clean filters is scored (sentinels from the prep items left over) | none | 300 | no SETTLE count read; assumed |
+| A | generation placement | ouro_2_6b_think | GSM8K_gen | run | steer_gen.py | 522 | none: every problem that passes both clean filters is scored (sentinels from the prep items left over) | none | 429 | no SETTLE count read; assumed |
+| A | generation placement | ouro_2_6b_think | SVAMP_gen | run | steer_gen.py | 995 | none: every problem that passes both clean filters is scored (sentinels from the prep items left over) | none | 300 | no SETTLE count read; assumed |
 | A | generation placement | mcleish_llama32_r32 | GSM8K_gen | run | steer_gen_raven.py | 522 | none (every problem that passed both screens of the shared-host run) | 237 selected | 237 | the shared-host run's select (rows r00, r01 done on the same problems) |
 | B | GSM8K copy and derived | ouro_2_6b_think | VB | run | k17_varbench.py | 913 | none (--pool pairs, --n_vb 100000) | 190 of 200 scanned (s200) | 867 | clean-pass rate of the s200 scan applied to the pool |
 | B | GSM8K copy and derived | ouro_2_6b_think | VBD | run | k17_varbench.py | 848 | none (--pool pairs, --vbd_n 100000) | 80 (vbd_n cap) | 806 | clean-pass rate of the s200 scan applied to the pool |
@@ -106,3 +108,19 @@ CF (CounterFact): CounterFact pool of the cluster run: the 3,741 candidate pairs
 | A | generation placement | ouro_2_6b_base | MAWPS_gen | run | steer_gen_math.py | 2082 | none: every problem that passes both screens is scored | none (smoke only) | 1249 | pool x pass rate 0.6 assumed |
 | A | generation placement | ouro_1_4b_think | ASDIV_gen | run | steer_gen_math.py | 1114 | none: every problem that passes both screens is scored | none (smoke only) | 668 | pool x pass rate 0.6 assumed |
 | A | generation placement | ouro_1_4b_think | MAWPS_gen | run | steer_gen_math.py | 2082 | none: every problem that passes both screens is scored | none (smoke only) | 1249 | pool x pass rate 0.6 assumed |
+| A | generation placement | ouro_2_6b_think | ASDIV_gen | run | steer_gen_math.py | 1114 | none: every problem that passes both screens is scored | none (smoke only) | 668 | pool x pass rate 0.6 assumed |
+| A | generation placement | ouro_2_6b_think | MAWPS_gen | run | steer_gen_math.py | 2082 | none: every problem that passes both screens is scored | none (smoke only) | 1249 | pool x pass rate 0.6 assumed |
+| C | pathway checks (restore, read window, attention block) | ouro_1_4b_think | D1 | run | k16_path_ouro.py |  |  |  |  |  |
+| C | pathway checks (restore, read window, attention block) | ouro_1_4b_think | D2 | run | k16_path_ouro.py |  |  |  |  |  |
+| C | pathway checks (restore, read window, attention block) | ouro_1_4b_think | D4 | run | k16_path_ouro.py |  |  |  |  |  |
+| C | pathway checks (restore, read window, attention block) | ouro_2_6b_think | D1 | run | k16_path_ouro.py |  |  |  |  |  |
+| C | pathway checks (restore, read window, attention block) | ouro_2_6b_think | D2 | run | k16_path_ouro.py |  |  |  |  |  |
+| C | pathway checks (restore, read window, attention block) | ouro_2_6b_think | D4 | run | k16_path_ouro.py |  |  |  |  |  |
+| C | pathway checks (restore, read window, attention block) | ouro_2_6b_think | D5 | run | k16_path_ouro.py |  |  |  |  |  |
+| B | IFM pathway rows (first run) | ifm_p1_ouro_inj | D4 | run | k16_path_ifm.py |  |  |  |  |  |
+| B | IFM pathway rows (first run) | ifm_p1_mid | D2 | run | k16_path_ifm.py |  |  |  |  |  |
+| B | IFM pathway rows (first run) | ifm_p1_mid | D4 | run | k16_path_ifm.py |  |  |  |  |  |
+| B | IFM pathway rows (first run) | ifm_p1_mid_inj | D2 | run | k16_path_ifm.py |  |  |  |  |  |
+| B | IFM pathway rows (first run) | ifm_p1_mid_inj | D4 | run | k16_path_ifm.py |  |  |  |  |  |
+| B | IFM pathway rows (first run) | ifm_p1_mid_inj | D5 | run | k16_path_ifm.py |  |  |  |  |  |
+| B | IFM pathway rows (first run) | ifm_p2m_diag | D2 | run | k16_path_ifm.py |  |  |  |  |  |

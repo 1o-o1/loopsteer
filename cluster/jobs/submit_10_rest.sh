@@ -502,298 +502,441 @@ J109=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g6_ifm_%A_%a.out -
 K ifm $J109
 S $J109 g6_ifm.s1_run.tsv 23
 ALL="$ALL:$J109"
-echo "group g7_ra23: 175 jobs, 112.1 card-hours (RA-23: Ouro Thinking branch-freeze, LRE facts)"
-J110=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_1_4b_think s1_run
-K ouro $J110
-S $J110 g7_ra23.s1_run.tsv 1
+echo "group g14_ifmy1: 7 jobs, 12.8 card-hours (extension: the Y1 arm (edit-site rows) on seven IFM cells)"
+J110=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g14_ifmy1_%A_%a.out --array=1%$CARDS task_g14_ifmy1.sbatch g14_ifmy1.s1_run.tsv)   # k16_path_ifm.py ifm_p1_ouro_inj s1_run
+K ifm $J110
+S $J110 g14_ifmy1.s1_run.tsv 1
 ALL="$ALL:$J110"
-J111=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_1_4b_think s1_run
-K ouro $J111
-S $J111 g7_ra23.s1_run.tsv 2
+J111=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g14_ifmy1_%A_%a.out --array=2%$CARDS task_g14_ifmy1.sbatch g14_ifmy1.s1_run.tsv)   # k16_path_ifm.py ifm_p1_mid s1_run
+K ifm $J111
+S $J111 g14_ifmy1.s1_run.tsv 2
 ALL="$ALL:$J111"
-J112=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_1_4b_think s1_run
-K ouro $J112
-S $J112 g7_ra23.s1_run.tsv 3
+J112=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g14_ifmy1_%A_%a.out --array=3%$CARDS task_g14_ifmy1.sbatch g14_ifmy1.s1_run.tsv)   # k16_path_ifm.py ifm_p1_mid s1_run
+K ifm $J112
+S $J112 g14_ifmy1.s1_run.tsv 3
 ALL="$ALL:$J112"
-J113=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_2_6b_think s1_run
-K ouro $J113
-S $J113 g7_ra23.s1_run.tsv 4
+J113=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g14_ifmy1_%A_%a.out --array=4%$CARDS task_g14_ifmy1.sbatch g14_ifmy1.s1_run.tsv)   # k16_path_ifm.py ifm_p1_mid_inj s1_run
+K ifm $J113
+S $J113 g14_ifmy1.s1_run.tsv 4
 ALL="$ALL:$J113"
-J114=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_2_6b_think s1_run
-K ouro $J114
-S $J114 g7_ra23.s1_run.tsv 5
+J114=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g14_ifmy1_%A_%a.out --array=5%$CARDS task_g14_ifmy1.sbatch g14_ifmy1.s1_run.tsv)   # k16_path_ifm.py ifm_p1_mid_inj s1_run
+K ifm $J114
+S $J114 g14_ifmy1.s1_run.tsv 5
 ALL="$ALL:$J114"
-J115=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_2_6b_think s1_run
-K ouro $J115
-S $J115 g7_ra23.s1_run.tsv 6
+J115=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g14_ifmy1_%A_%a.out --array=6%$CARDS task_g14_ifmy1.sbatch g14_ifmy1.s1_run.tsv)   # k16_path_ifm.py ifm_p1_mid_inj s1_run
+K ifm $J115
+S $J115 g14_ifmy1.s1_run.tsv 6
 ALL="$ALL:$J115"
-J116=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s1_scan.tsv)   # k17_public.py mcl_nr s1_scan
-K raven $J116
-S $J116 g7_ra23.s1_scan.tsv 1
+J116=$(sbatch --parsable $SB $(H ifm) --output=$LOG_ROOT/ra20_g14_ifmy1_%A_%a.out --array=7%$CARDS task_g14_ifmy1.sbatch g14_ifmy1.s1_run.tsv)   # k16_path_ifm.py ifm_p2m_diag s1_run
+K ifm $J116
+S $J116 g14_ifmy1.s1_run.tsv 7
 ALL="$ALL:$J116"
-J117=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J116 --array=1,2,3,4,5,6%$CARDS task_g7_ra23.sbatch g7_ra23.s2_rows.tsv)   # k17_public.py mcl_nr s2_rows
-K raven $J117
-S $J117 g7_ra23.s2_rows.tsv 1,2,3,4,5,6
+echo "group g7_ra23: 175 jobs, 112.1 card-hours (RA-23: Ouro Thinking branch-freeze, LRE facts)"
+J117=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_1_4b_think s1_run
+K ouro $J117
+S $J117 g7_ra23.s1_run.tsv 1
 ALL="$ALL:$J117"
-J118=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J117 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s3_merge.tsv)   # k17_public.py mcl_nr s3_merge
-K raven $J118
-S $J118 g7_ra23.s3_merge.tsv 1
+J118=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_1_4b_think s1_run
+K ouro $J118
+S $J118 g7_ra23.s1_run.tsv 2
 ALL="$ALL:$J118"
-J119=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J118 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s4_summarize.tsv)   # k17_public.py mcl_nr s4_summarize
-K raven $J119
-S $J119 g7_ra23.s4_summarize.tsv 1
+J119=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_1_4b_think s1_run
+K ouro $J119
+S $J119 g7_ra23.s1_run.tsv 3
 ALL="$ALL:$J119"
-J120=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s1_scan.tsv)   # k17_public.py ouro_think s1_scan
-K raven $J120
-S $J120 g7_ra23.s1_scan.tsv 2
+J120=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_2_6b_think s1_run
+K ouro $J120
+S $J120 g7_ra23.s1_run.tsv 4
 ALL="$ALL:$J120"
-J121=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J120 --array=7%$CARDS task_g7_ra23.sbatch g7_ra23.s2_rows.tsv)   # k17_public.py ouro_think s2_rows
-K raven $J121
-S $J121 g7_ra23.s2_rows.tsv 7
+J121=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_2_6b_think s1_run
+K ouro $J121
+S $J121 g7_ra23.s1_run.tsv 5
 ALL="$ALL:$J121"
-J122=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J121 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s3_merge.tsv)   # k17_public.py ouro_think s3_merge
-K raven $J122
-S $J122 g7_ra23.s3_merge.tsv 2
+J122=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s1_run.tsv)   # k17_freeze.py ouro_2_6b_think s1_run
+K ouro $J122
+S $J122 g7_ra23.s1_run.tsv 6
 ALL="$ALL:$J122"
-J123=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J122 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s4_summarize.tsv)   # k17_public.py ouro_think s4_summarize
+J123=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s1_scan.tsv)   # k17_public.py mcl_nr s1_scan
 K raven $J123
-S $J123 g7_ra23.s4_summarize.tsv 2
+S $J123 g7_ra23.s1_scan.tsv 1
 ALL="$ALL:$J123"
-J124=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_base s1_checks
-K gen $J124
-S $J124 g7_ra23.s1_checks.tsv 1
+J124=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J123 --array=1,2,3,4,5,6%$CARDS task_g7_ra23.sbatch g7_ra23.s2_rows.tsv)   # k17_public.py mcl_nr s2_rows
+K raven $J124
+S $J124 g7_ra23.s2_rows.tsv 1,2,3,4,5,6
 ALL="$ALL:$J124"
-J125=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J124 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_base s2_prep_screen
-K gen $J125
-S $J125 g7_ra23.s2_prep_screen.tsv 1
+J125=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J124 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s3_merge.tsv)   # k17_public.py mcl_nr s3_merge
+K raven $J125
+S $J125 g7_ra23.s3_merge.tsv 1
 ALL="$ALL:$J125"
-J126=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J125 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_base s3_select
-K gen $J126
-S $J126 g7_ra23.s3_select.tsv 1
+J126=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J125 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s4_summarize.tsv)   # k17_public.py mcl_nr s4_summarize
+K raven $J126
+S $J126 g7_ra23.s4_summarize.tsv 1
 ALL="$ALL:$J126"
-J127=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J126 --array=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_base s4_row
-K gen $J127
-S $J127 g7_ra23.s4_row.tsv 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+J127=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s1_scan.tsv)   # k17_public.py ouro_think s1_scan
+K raven $J127
+S $J127 g7_ra23.s1_scan.tsv 2
 ALL="$ALL:$J127"
-J128=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J127 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_base s6_analyze
-K gen $J128
-S $J128 g7_ra23.s6_analyze.tsv 1
+J128=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J127 --array=7%$CARDS task_g7_ra23.sbatch g7_ra23.s2_rows.tsv)   # k17_public.py ouro_think s2_rows
+K raven $J128
+S $J128 g7_ra23.s2_rows.tsv 7
 ALL="$ALL:$J128"
-J129=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_2_6b_base s1_checks
-K gen $J129
-S $J129 g7_ra23.s1_checks.tsv 2
+J129=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J128 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s3_merge.tsv)   # k17_public.py ouro_think s3_merge
+K raven $J129
+S $J129 g7_ra23.s3_merge.tsv 2
 ALL="$ALL:$J129"
-J130=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J129 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_2_6b_base s2_prep_screen
-K gen $J130
-S $J130 g7_ra23.s2_prep_screen.tsv 2
+J130=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J129 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s4_summarize.tsv)   # k17_public.py ouro_think s4_summarize
+K raven $J130
+S $J130 g7_ra23.s4_summarize.tsv 2
 ALL="$ALL:$J130"
-J131=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J130 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_2_6b_base s3_select
+J131=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_base s1_checks
 K gen $J131
-S $J131 g7_ra23.s3_select.tsv 2
+S $J131 g7_ra23.s1_checks.tsv 1
 ALL="$ALL:$J131"
-J132=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J131 --array=23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_2_6b_base s4_row
+J132=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J131 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_base s2_prep_screen
 K gen $J132
-S $J132 g7_ra23.s4_row.tsv 23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44
+S $J132 g7_ra23.s2_prep_screen.tsv 1
 ALL="$ALL:$J132"
-J133=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J132 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_2_6b_base s6_analyze
+J133=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J132 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_base s3_select
 K gen $J133
-S $J133 g7_ra23.s6_analyze.tsv 2
+S $J133 g7_ra23.s3_select.tsv 1
 ALL="$ALL:$J133"
-J134=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_think s1_checks
+J134=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J133 --array=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_base s4_row
 K gen $J134
-S $J134 g7_ra23.s1_checks.tsv 3
+S $J134 g7_ra23.s4_row.tsv 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
 ALL="$ALL:$J134"
-J135=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J134 --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_think s2_prep_screen
+J135=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J134 --array=1%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_base s6_analyze
 K gen $J135
-S $J135 g7_ra23.s2_prep_screen.tsv 3
+S $J135 g7_ra23.s6_analyze.tsv 1
 ALL="$ALL:$J135"
-J136=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J135 --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_think s3_select
+J136=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_2_6b_base s1_checks
 K gen $J136
-S $J136 g7_ra23.s3_select.tsv 3
+S $J136 g7_ra23.s1_checks.tsv 2
 ALL="$ALL:$J136"
-J137=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J136 --array=45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_think s4_row
+J137=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J136 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_2_6b_base s2_prep_screen
 K gen $J137
-S $J137 g7_ra23.s4_row.tsv 45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66
+S $J137 g7_ra23.s2_prep_screen.tsv 2
 ALL="$ALL:$J137"
-J138=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J137 --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_think s6_analyze
+J138=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J137 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_2_6b_base s3_select
 K gen $J138
-S $J138 g7_ra23.s6_analyze.tsv 3
+S $J138 g7_ra23.s3_select.tsv 2
 ALL="$ALL:$J138"
-J139=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_base s1_checks
+J139=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J138 --array=23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_2_6b_base s4_row
 K gen $J139
-S $J139 g7_ra23.s1_checks.tsv 4
+S $J139 g7_ra23.s4_row.tsv 23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44
 ALL="$ALL:$J139"
-J140=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J139 --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_base s2_prep_screen
+J140=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J139 --array=2%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_2_6b_base s6_analyze
 K gen $J140
-S $J140 g7_ra23.s2_prep_screen.tsv 4
+S $J140 g7_ra23.s6_analyze.tsv 2
 ALL="$ALL:$J140"
-J141=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J140 --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_base s3_select
+J141=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_think s1_checks
 K gen $J141
-S $J141 g7_ra23.s3_select.tsv 4
+S $J141 g7_ra23.s1_checks.tsv 3
 ALL="$ALL:$J141"
-J142=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J141 --array=67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_base s4_row
+J142=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J141 --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_think s2_prep_screen
 K gen $J142
-S $J142 g7_ra23.s4_row.tsv 67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88
+S $J142 g7_ra23.s2_prep_screen.tsv 3
 ALL="$ALL:$J142"
-J143=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J142 --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_base s6_analyze
+J143=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J142 --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_think s3_select
 K gen $J143
-S $J143 g7_ra23.s6_analyze.tsv 4
+S $J143 g7_ra23.s3_select.tsv 3
 ALL="$ALL:$J143"
-J144=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_2_6b_base s1_checks
+J144=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J143 --array=45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_think s4_row
 K gen $J144
-S $J144 g7_ra23.s1_checks.tsv 5
+S $J144 g7_ra23.s4_row.tsv 45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66
 ALL="$ALL:$J144"
-J145=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J144 --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_2_6b_base s2_prep_screen
+J145=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J144 --array=3%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_think s6_analyze
 K gen $J145
-S $J145 g7_ra23.s2_prep_screen.tsv 5
+S $J145 g7_ra23.s6_analyze.tsv 3
 ALL="$ALL:$J145"
-J146=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J145 --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_2_6b_base s3_select
+J146=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_base s1_checks
 K gen $J146
-S $J146 g7_ra23.s3_select.tsv 5
+S $J146 g7_ra23.s1_checks.tsv 4
 ALL="$ALL:$J146"
-J147=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J146 --array=89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_2_6b_base s4_row
+J147=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J146 --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_base s2_prep_screen
 K gen $J147
-S $J147 g7_ra23.s4_row.tsv 89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110
+S $J147 g7_ra23.s2_prep_screen.tsv 4
 ALL="$ALL:$J147"
-J148=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J147 --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_2_6b_base s6_analyze
+J148=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J147 --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_base s3_select
 K gen $J148
-S $J148 g7_ra23.s6_analyze.tsv 5
+S $J148 g7_ra23.s3_select.tsv 4
 ALL="$ALL:$J148"
-J149=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_think s1_checks
+J149=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J148 --array=67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_base s4_row
 K gen $J149
-S $J149 g7_ra23.s1_checks.tsv 6
+S $J149 g7_ra23.s4_row.tsv 67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88
 ALL="$ALL:$J149"
-J150=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J149 --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_think s2_prep_screen
+J150=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J149 --array=4%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_base s6_analyze
 K gen $J150
-S $J150 g7_ra23.s2_prep_screen.tsv 6
+S $J150 g7_ra23.s6_analyze.tsv 4
 ALL="$ALL:$J150"
-J151=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J150 --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_think s3_select
+J151=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_2_6b_base s1_checks
 K gen $J151
-S $J151 g7_ra23.s3_select.tsv 6
+S $J151 g7_ra23.s1_checks.tsv 5
 ALL="$ALL:$J151"
-J152=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J151 --array=111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_think s4_row
+J152=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J151 --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_2_6b_base s2_prep_screen
 K gen $J152
-S $J152 g7_ra23.s4_row.tsv 111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132
+S $J152 g7_ra23.s2_prep_screen.tsv 5
 ALL="$ALL:$J152"
-J153=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J152 --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_think s6_analyze
+J153=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J152 --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_2_6b_base s3_select
 K gen $J153
-S $J153 g7_ra23.s6_analyze.tsv 6
+S $J153 g7_ra23.s3_select.tsv 5
 ALL="$ALL:$J153"
-echo "group g5_huginn: 88 jobs, 135.1 card-hours (Huginn incl. the RA-23 LRE cell)"
-J154=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=1%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
-K raven $J154
-S $J154 g5_huginn.s1_scan.tsv 1
+J154=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J153 --array=89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_2_6b_base s4_row
+K gen $J154
+S $J154 g7_ra23.s4_row.tsv 89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110
 ALL="$ALL:$J154"
-J155=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J154 --array=1,2%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
-K raven $J155
-S $J155 g5_huginn.s2_rows.tsv 1,2
+J155=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J154 --array=5%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_2_6b_base s6_analyze
+K gen $J155
+S $J155 g7_ra23.s6_analyze.tsv 5
 ALL="$ALL:$J155"
-J156=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J155 --array=1%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
-K raven $J156
-S $J156 g5_huginn.s3_merge.tsv 1
+J156=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s1_checks.tsv)   # steer_gen_math.py ouro_1_4b_think s1_checks
+K gen $J156
+S $J156 g7_ra23.s1_checks.tsv 6
 ALL="$ALL:$J156"
-J157=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J156 --array=1%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
-K raven $J157
-S $J157 g5_huginn.s4_summarize.tsv 1
+J157=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J156 --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s2_prep_screen.tsv)   # steer_gen_math.py ouro_1_4b_think s2_prep_screen
+K gen $J157
+S $J157 g7_ra23.s2_prep_screen.tsv 6
 ALL="$ALL:$J157"
-J158=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=2%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
-K raven $J158
-S $J158 g5_huginn.s1_scan.tsv 2
+J158=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J157 --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s3_select.tsv)   # steer_gen_math.py ouro_1_4b_think s3_select
+K gen $J158
+S $J158 g7_ra23.s3_select.tsv 6
 ALL="$ALL:$J158"
-J159=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J158 --array=3,4,5,6,7,8,9,10,11,12,13,14,15,16%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
-K raven $J159
-S $J159 g5_huginn.s2_rows.tsv 3,4,5,6,7,8,9,10,11,12,13,14,15,16
+J159=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J158 --array=111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132%$CARDS task_g7_ra23.sbatch g7_ra23.s4_row.tsv)   # steer_gen_math.py ouro_1_4b_think s4_row
+K gen $J159
+S $J159 g7_ra23.s4_row.tsv 111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132
 ALL="$ALL:$J159"
-J160=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J159 --array=2%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
-K raven $J160
-S $J160 g5_huginn.s3_merge.tsv 2
+J160=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g7_ra23_%A_%a.out --dependency=afterok:$J159 --array=6%$CARDS task_g7_ra23.sbatch g7_ra23.s6_analyze.tsv)   # steer_gen_math.py ouro_1_4b_think s6_analyze
+K gen $J160
+S $J160 g7_ra23.s6_analyze.tsv 6
 ALL="$ALL:$J160"
-J161=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J160 --array=2%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
-K raven $J161
-S $J161 g5_huginn.s4_summarize.tsv 2
+echo "group g11_gen26t: 107 jobs, 236.2 card-hours (extension item 1: generation on Ouro-2.6B-Thinking (setting a4; GSM8K, SVAMP, ASDiv, MAWPS))"
+J161=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --array=1%$CARDS task_g11_gen26t.sbatch g11_gen26t.s1_checks.tsv)   # steer_gen.py ouro_2_6b_think s1_checks
+K gen $J161
+S $J161 g11_gen26t.s1_checks.tsv 1
 ALL="$ALL:$J161"
-J162=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=3%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
-K raven $J162
-S $J162 g5_huginn.s1_scan.tsv 3
+J162=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J161 --array=1%$CARDS task_g11_gen26t.sbatch g11_gen26t.s2_prep_screen.tsv)   # steer_gen.py ouro_2_6b_think s2_prep_screen
+K gen $J162
+S $J162 g11_gen26t.s2_prep_screen.tsv 1
 ALL="$ALL:$J162"
-J163=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J162 --array=17,18,19,20,21,22,23,24%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
-K raven $J163
-S $J163 g5_huginn.s2_rows.tsv 17,18,19,20,21,22,23,24
+J163=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J162 --array=1%$CARDS task_g11_gen26t.sbatch g11_gen26t.s3_select.tsv)   # steer_gen.py ouro_2_6b_think s3_select
+K gen $J163
+S $J163 g11_gen26t.s3_select.tsv 1
 ALL="$ALL:$J163"
-J164=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J163 --array=3%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
-K raven $J164
-S $J164 g5_huginn.s3_merge.tsv 3
+J164=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J163 --array=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23%$CARDS task_g11_gen26t.sbatch g11_gen26t.s4_row.tsv)   # steer_gen.py ouro_2_6b_think s4_row
+K gen $J164
+S $J164 g11_gen26t.s4_row.tsv 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
 ALL="$ALL:$J164"
-J165=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J164 --array=3%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
-K raven $J165
-S $J165 g5_huginn.s4_summarize.tsv 3
+J165=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J164 --array=1%$CARDS task_g11_gen26t.sbatch g11_gen26t.s5_anschain_presence.tsv)   # steer_gen.py ouro_2_6b_think s5_anschain_presence
+K gen $J165
+S $J165 g11_gen26t.s5_anschain_presence.tsv 1
 ALL="$ALL:$J165"
-J166=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=4%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
-K raven $J166
-S $J166 g5_huginn.s1_scan.tsv 4
+J166=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J165 --array=1%$CARDS task_g11_gen26t.sbatch g11_gen26t.s6_analyze.tsv)   # steer_gen.py ouro_2_6b_think s6_analyze
+K gen $J166
+S $J166 g11_gen26t.s6_analyze.tsv 1
 ALL="$ALL:$J166"
-J167=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J166 --array=25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
-K raven $J167
-S $J167 g5_huginn.s2_rows.tsv 25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40
+J167=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --array=2%$CARDS task_g11_gen26t.sbatch g11_gen26t.s1_checks.tsv)   # steer_gen.py ouro_2_6b_think s1_checks
+K gen $J167
+S $J167 g11_gen26t.s1_checks.tsv 2
 ALL="$ALL:$J167"
-J168=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J167 --array=4%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
-K raven $J168
-S $J168 g5_huginn.s3_merge.tsv 4
+J168=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J167 --array=2%$CARDS task_g11_gen26t.sbatch g11_gen26t.s2_prep_screen.tsv)   # steer_gen.py ouro_2_6b_think s2_prep_screen
+K gen $J168
+S $J168 g11_gen26t.s2_prep_screen.tsv 2
 ALL="$ALL:$J168"
-J169=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J168 --array=4%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
-K raven $J169
-S $J169 g5_huginn.s4_summarize.tsv 4
+J169=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J168 --array=2%$CARDS task_g11_gen26t.sbatch g11_gen26t.s3_select.tsv)   # steer_gen.py ouro_2_6b_think s3_select
+K gen $J169
+S $J169 g11_gen26t.s3_select.tsv 2
 ALL="$ALL:$J169"
-J170=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=5%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
-K raven $J170
-S $J170 g5_huginn.s1_scan.tsv 5
+J170=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J169 --array=24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46%$CARDS task_g11_gen26t.sbatch g11_gen26t.s4_row.tsv)   # steer_gen.py ouro_2_6b_think s4_row
+K gen $J170
+S $J170 g11_gen26t.s4_row.tsv 24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46
 ALL="$ALL:$J170"
-J171=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J170 --array=41,42,43,44,45%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
-K raven $J171
-S $J171 g5_huginn.s2_rows.tsv 41,42,43,44,45
+J171=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J170 --array=2%$CARDS task_g11_gen26t.sbatch g11_gen26t.s6_analyze.tsv)   # steer_gen.py ouro_2_6b_think s6_analyze
+K gen $J171
+S $J171 g11_gen26t.s6_analyze.tsv 2
 ALL="$ALL:$J171"
-J172=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J171 --array=5%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
-K raven $J172
-S $J172 g5_huginn.s3_merge.tsv 5
+J172=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --array=3%$CARDS task_g11_gen26t.sbatch g11_gen26t.s1_checks.tsv)   # steer_gen_math.py ouro_2_6b_think s1_checks
+K gen $J172
+S $J172 g11_gen26t.s1_checks.tsv 3
 ALL="$ALL:$J172"
-J173=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J172 --array=5%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
-K raven $J173
-S $J173 g5_huginn.s4_summarize.tsv 5
+J173=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J172 --array=3%$CARDS task_g11_gen26t.sbatch g11_gen26t.s2_prep_screen.tsv)   # steer_gen_math.py ouro_2_6b_think s2_prep_screen
+K gen $J173
+S $J173 g11_gen26t.s2_prep_screen.tsv 3
 ALL="$ALL:$J173"
-J174=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=6%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
-K raven $J174
-S $J174 g5_huginn.s1_scan.tsv 6
+J174=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J173 --array=3%$CARDS task_g11_gen26t.sbatch g11_gen26t.s3_select.tsv)   # steer_gen_math.py ouro_2_6b_think s3_select
+K gen $J174
+S $J174 g11_gen26t.s3_select.tsv 3
 ALL="$ALL:$J174"
-J175=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J174 --array=46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
-K raven $J175
-S $J175 g5_huginn.s2_rows.tsv 46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61
+J175=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J174 --array=47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68%$CARDS task_g11_gen26t.sbatch g11_gen26t.s4_row.tsv)   # steer_gen_math.py ouro_2_6b_think s4_row
+K gen $J175
+S $J175 g11_gen26t.s4_row.tsv 47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68
 ALL="$ALL:$J175"
-J176=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J175 --array=6%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
-K raven $J176
-S $J176 g5_huginn.s3_merge.tsv 6
+J176=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J175 --array=3%$CARDS task_g11_gen26t.sbatch g11_gen26t.s6_analyze.tsv)   # steer_gen_math.py ouro_2_6b_think s6_analyze
+K gen $J176
+S $J176 g11_gen26t.s6_analyze.tsv 3
 ALL="$ALL:$J176"
-J177=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J176 --array=6%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
-K raven $J177
-S $J177 g5_huginn.s4_summarize.tsv 6
+J177=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --array=4%$CARDS task_g11_gen26t.sbatch g11_gen26t.s1_checks.tsv)   # steer_gen_math.py ouro_2_6b_think s1_checks
+K gen $J177
+S $J177 g11_gen26t.s1_checks.tsv 4
 ALL="$ALL:$J177"
-J178=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=7%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
-K raven $J178
-S $J178 g5_huginn.s1_scan.tsv 7
+J178=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J177 --array=4%$CARDS task_g11_gen26t.sbatch g11_gen26t.s2_prep_screen.tsv)   # steer_gen_math.py ouro_2_6b_think s2_prep_screen
+K gen $J178
+S $J178 g11_gen26t.s2_prep_screen.tsv 4
 ALL="$ALL:$J178"
-J179=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J178 --array=62,63,64,65,66,67%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
-K raven $J179
-S $J179 g5_huginn.s2_rows.tsv 62,63,64,65,66,67
+J179=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J178 --array=4%$CARDS task_g11_gen26t.sbatch g11_gen26t.s3_select.tsv)   # steer_gen_math.py ouro_2_6b_think s3_select
+K gen $J179
+S $J179 g11_gen26t.s3_select.tsv 4
 ALL="$ALL:$J179"
-J180=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J179 --array=7%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
-K raven $J180
-S $J180 g5_huginn.s3_merge.tsv 7
+J180=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J179 --array=69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90%$CARDS task_g11_gen26t.sbatch g11_gen26t.s4_row.tsv)   # steer_gen_math.py ouro_2_6b_think s4_row
+K gen $J180
+S $J180 g11_gen26t.s4_row.tsv 69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90
 ALL="$ALL:$J180"
-J181=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J180 --array=7%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
-K raven $J181
-S $J181 g5_huginn.s4_summarize.tsv 7
+J181=$(sbatch --parsable $SB $(H gen) --output=$LOG_ROOT/ra20_g11_gen26t_%A_%a.out --dependency=afterok:$J180 --array=4%$CARDS task_g11_gen26t.sbatch g11_gen26t.s6_analyze.tsv)   # steer_gen_math.py ouro_2_6b_think s6_analyze
+K gen $J181
+S $J181 g11_gen26t.s6_analyze.tsv 4
 ALL="$ALL:$J181"
+echo "group g13_paththink: 7 jobs, 50.2 card-hours (extension: restore, read window and attention block on the Ouro Thinking models)"
+J182=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g13_paththink_%A_%a.out --array=1%$CARDS task_g13_paththink.sbatch g13_paththink.s1_run.tsv)   # k16_path_ouro.py ouro_1_4b_think s1_run
+K ouro $J182
+S $J182 g13_paththink.s1_run.tsv 1
+ALL="$ALL:$J182"
+J183=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g13_paththink_%A_%a.out --array=2%$CARDS task_g13_paththink.sbatch g13_paththink.s1_run.tsv)   # k16_path_ouro.py ouro_1_4b_think s1_run
+K ouro $J183
+S $J183 g13_paththink.s1_run.tsv 2
+ALL="$ALL:$J183"
+J184=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g13_paththink_%A_%a.out --array=3%$CARDS task_g13_paththink.sbatch g13_paththink.s1_run.tsv)   # k16_path_ouro.py ouro_1_4b_think s1_run
+K ouro $J184
+S $J184 g13_paththink.s1_run.tsv 3
+ALL="$ALL:$J184"
+J185=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g13_paththink_%A_%a.out --array=4%$CARDS task_g13_paththink.sbatch g13_paththink.s1_run.tsv)   # k16_path_ouro.py ouro_2_6b_think s1_run
+K ouro $J185
+S $J185 g13_paththink.s1_run.tsv 4
+ALL="$ALL:$J185"
+J186=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g13_paththink_%A_%a.out --array=5%$CARDS task_g13_paththink.sbatch g13_paththink.s1_run.tsv)   # k16_path_ouro.py ouro_2_6b_think s1_run
+K ouro $J186
+S $J186 g13_paththink.s1_run.tsv 5
+ALL="$ALL:$J186"
+J187=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g13_paththink_%A_%a.out --array=6%$CARDS task_g13_paththink.sbatch g13_paththink.s1_run.tsv)   # k16_path_ouro.py ouro_2_6b_think s1_run
+K ouro $J187
+S $J187 g13_paththink.s1_run.tsv 6
+ALL="$ALL:$J187"
+J188=$(sbatch --parsable $SB $(H ouro) --output=$LOG_ROOT/ra20_g13_paththink_%A_%a.out --array=7%$CARDS task_g13_paththink.sbatch g13_paththink.s1_run.tsv)   # k16_path_ouro.py ouro_2_6b_think s1_run
+K ouro $J188
+S $J188 g13_paththink.s1_run.tsv 7
+ALL="$ALL:$J188"
+echo "group g5_huginn: 88 jobs, 135.1 card-hours (Huginn incl. the RA-23 LRE cell)"
+J189=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=1%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
+K raven $J189
+S $J189 g5_huginn.s1_scan.tsv 1
+ALL="$ALL:$J189"
+J190=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J189 --array=1,2%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
+K raven $J190
+S $J190 g5_huginn.s2_rows.tsv 1,2
+ALL="$ALL:$J190"
+J191=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J190 --array=1%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
+K raven $J191
+S $J191 g5_huginn.s3_merge.tsv 1
+ALL="$ALL:$J191"
+J192=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J191 --array=1%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
+K raven $J192
+S $J192 g5_huginn.s4_summarize.tsv 1
+ALL="$ALL:$J192"
+J193=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=2%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
+K raven $J193
+S $J193 g5_huginn.s1_scan.tsv 2
+ALL="$ALL:$J193"
+J194=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J193 --array=3,4,5,6,7,8,9,10,11,12,13,14,15,16%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
+K raven $J194
+S $J194 g5_huginn.s2_rows.tsv 3,4,5,6,7,8,9,10,11,12,13,14,15,16
+ALL="$ALL:$J194"
+J195=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J194 --array=2%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
+K raven $J195
+S $J195 g5_huginn.s3_merge.tsv 2
+ALL="$ALL:$J195"
+J196=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J195 --array=2%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
+K raven $J196
+S $J196 g5_huginn.s4_summarize.tsv 2
+ALL="$ALL:$J196"
+J197=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=3%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
+K raven $J197
+S $J197 g5_huginn.s1_scan.tsv 3
+ALL="$ALL:$J197"
+J198=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J197 --array=17,18,19,20,21,22,23,24%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
+K raven $J198
+S $J198 g5_huginn.s2_rows.tsv 17,18,19,20,21,22,23,24
+ALL="$ALL:$J198"
+J199=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J198 --array=3%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
+K raven $J199
+S $J199 g5_huginn.s3_merge.tsv 3
+ALL="$ALL:$J199"
+J200=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J199 --array=3%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
+K raven $J200
+S $J200 g5_huginn.s4_summarize.tsv 3
+ALL="$ALL:$J200"
+J201=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=4%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
+K raven $J201
+S $J201 g5_huginn.s1_scan.tsv 4
+ALL="$ALL:$J201"
+J202=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J201 --array=25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
+K raven $J202
+S $J202 g5_huginn.s2_rows.tsv 25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40
+ALL="$ALL:$J202"
+J203=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J202 --array=4%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
+K raven $J203
+S $J203 g5_huginn.s3_merge.tsv 4
+ALL="$ALL:$J203"
+J204=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J203 --array=4%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
+K raven $J204
+S $J204 g5_huginn.s4_summarize.tsv 4
+ALL="$ALL:$J204"
+J205=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=5%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
+K raven $J205
+S $J205 g5_huginn.s1_scan.tsv 5
+ALL="$ALL:$J205"
+J206=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J205 --array=41,42,43,44,45%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
+K raven $J206
+S $J206 g5_huginn.s2_rows.tsv 41,42,43,44,45
+ALL="$ALL:$J206"
+J207=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J206 --array=5%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
+K raven $J207
+S $J207 g5_huginn.s3_merge.tsv 5
+ALL="$ALL:$J207"
+J208=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J207 --array=5%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
+K raven $J208
+S $J208 g5_huginn.s4_summarize.tsv 5
+ALL="$ALL:$J208"
+J209=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=6%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
+K raven $J209
+S $J209 g5_huginn.s1_scan.tsv 6
+ALL="$ALL:$J209"
+J210=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J209 --array=46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
+K raven $J210
+S $J210 g5_huginn.s2_rows.tsv 46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61
+ALL="$ALL:$J210"
+J211=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J210 --array=6%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
+K raven $J211
+S $J211 g5_huginn.s3_merge.tsv 6
+ALL="$ALL:$J211"
+J212=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J211 --array=6%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
+K raven $J212
+S $J212 g5_huginn.s4_summarize.tsv 6
+ALL="$ALL:$J212"
+J213=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --array=7%$CARDS task_g5_huginn.sbatch g5_huginn.s1_scan.tsv)   # k17_public.py huginn s1_scan
+K raven $J213
+S $J213 g5_huginn.s1_scan.tsv 7
+ALL="$ALL:$J213"
+J214=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J213 --array=62,63,64,65,66,67%$CARDS task_g5_huginn.sbatch g5_huginn.s2_rows.tsv)   # k17_public.py huginn s2_rows
+K raven $J214
+S $J214 g5_huginn.s2_rows.tsv 62,63,64,65,66,67
+ALL="$ALL:$J214"
+J215=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J214 --array=7%$CARDS task_g5_huginn.sbatch g5_huginn.s3_merge.tsv)   # k17_public.py huginn s3_merge
+K raven $J215
+S $J215 g5_huginn.s3_merge.tsv 7
+ALL="$ALL:$J215"
+J216=$(sbatch --parsable $SB $(H raven) --output=$LOG_ROOT/ra20_g5_huginn_%A_%a.out --dependency=afterok:$J215 --array=7%$CARDS task_g5_huginn.sbatch g5_huginn.s4_summarize.tsv)   # k17_public.py huginn s4_summarize
+K raven $J216
+S $J216 g5_huginn.s4_summarize.tsv 7
+ALL="$ALL:$J216"
 echo "group g9_merge: 1 jobs, 0.2 card-hours (merge and grid tables)"
-J182=$(sbatch --parsable $SB $(H none) --output=$LOG_ROOT/ra20_g9_merge_%A_%a.out --dependency=afterany${ALL} --array=1%$CARDS task_g9_merge.sbatch g9_merge.s1_merge.tsv)   # merge.py all s1_merge
-K none $J182
-S $J182 g9_merge.s1_merge.tsv 1
-echo "submitted: 567 jobs, 496.3 card-hours (the xllm build excluded)"
+J217=$(sbatch --parsable $SB $(H none) --output=$LOG_ROOT/ra20_g9_merge_%A_%a.out --dependency=afterany${ALL} --array=1%$CARDS task_g9_merge.sbatch g9_merge.s1_merge.tsv)   # merge.py all s1_merge
+K none $J217
+S $J217 g9_merge.s1_merge.tsv 1
+echo "submitted: 688 jobs, 795.5 card-hours (the xllm build excluded)"

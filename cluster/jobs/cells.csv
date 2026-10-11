@@ -5,8 +5,8 @@ A,generation placement,ouro_2_6b_base,GSM8K_gen,run,run,"job: steer_gen.py; done
 A,generation placement,ouro_2_6b_base,SVAMP_gen,run,run,job: steer_gen.py
 A,generation placement,ouro_1_4b_think,GSM8K_gen,run,run,job: steer_gen.py
 A,generation placement,ouro_1_4b_think,SVAMP_gen,run,run,"job: steer_gen.py; done on our cards: g2_gen.s1_checks.006,g2_gen.s2_prep_screen.006,g2_gen.s3_select.006,r00,r01,r02,r10"
-A,generation placement,ouro_2_6b_think,GSM8K_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
-A,generation placement,ouro_2_6b_think,SVAMP_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
+A,generation placement,ouro_2_6b_think,GSM8K_gen,run,run,job: steer_gen.py
+A,generation placement,ouro_2_6b_think,SVAMP_gen,run,run,job: steer_gen.py
 A,generation placement,ifm_p1_ouro,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,ifm_p1_ouro,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,ifm_p1_ouro_inj,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
@@ -308,8 +308,22 @@ A,generation placement,ouro_2_6b_base,ASDIV_gen,run,run,job: steer_gen_math.py
 A,generation placement,ouro_2_6b_base,MAWPS_gen,run,run,job: steer_gen_math.py
 A,generation placement,ouro_1_4b_think,ASDIV_gen,run,run,job: steer_gen_math.py
 A,generation placement,ouro_1_4b_think,MAWPS_gen,run,run,job: steer_gen_math.py
-A,generation placement,ouro_2_6b_think,ASDIV_gen,skip,skip,time: steer_gen has no Ouro-2.6B-Thinking setting (same as GSM8K and SVAMP)
-A,generation placement,ouro_2_6b_think,MAWPS_gen,skip,skip,time: same
+A,generation placement,ouro_2_6b_think,ASDIV_gen,run,run,job: steer_gen_math.py
+A,generation placement,ouro_2_6b_think,MAWPS_gen,run,run,job: steer_gen_math.py
+C,"pathway checks (restore, read window, attention block)",ouro_1_4b_think,D1,run,run,job: k16_path_ouro.py
+C,"pathway checks (restore, read window, attention block)",ouro_1_4b_think,D2,run,run,job: k16_path_ouro.py
+C,"pathway checks (restore, read window, attention block)",ouro_1_4b_think,D4,run,run,job: k16_path_ouro.py
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D1,run,run,job: k16_path_ouro.py
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D2,run,run,job: k16_path_ouro.py
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D4,run,run,job: k16_path_ouro.py
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D5,run,run,job: k16_path_ouro.py
+B,IFM pathway rows (first run),ifm_p1_ouro_inj,D4,run,run,job: k16_path_ifm.py
+B,IFM pathway rows (first run),ifm_p1_mid,D2,run,run,job: k16_path_ifm.py
+B,IFM pathway rows (first run),ifm_p1_mid,D4,run,run,job: k16_path_ifm.py
+B,IFM pathway rows (first run),ifm_p1_mid_inj,D2,run,run,job: k16_path_ifm.py
+B,IFM pathway rows (first run),ifm_p1_mid_inj,D4,run,run,job: k16_path_ifm.py
+B,IFM pathway rows (first run),ifm_p1_mid_inj,D5,run,run,job: k16_path_ifm.py
+B,IFM pathway rows (first run),ifm_p2m_diag,D2,run,run,job: k16_path_ifm.py
 A,generation placement,mcleish_llama32_r32,ASDIV_gen,skip,skip,"time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row is about 4 card-hours (ASDiv) to 7 (MAWPS) and a model-dataset cell about 100 to 170 card-hours, ten times the RA-23 estimate"
 A,generation placement,mcleish_llama32_r32,MAWPS_gen,skip,skip,time: same
 B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D1,skip,skip,time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)

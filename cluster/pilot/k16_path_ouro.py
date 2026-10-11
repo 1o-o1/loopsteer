@@ -49,7 +49,8 @@ OURO_REVISION = {"ByteDance/Ouro-1.4B": "574fa66cb8bf5abdc979642d01cf2b79b16bfab
 RUN_ROLE = os.environ.get("RUN_ROLE", "cluster")   # written into records instead of the host name
 FULL_POOL = [False]     # cluster copy (--full_pool): lift the per-dataset quotas; every candidate is scanned
 
-REPOS = {"ouro": "ByteDance/Ouro-1.4B", "ouro26": "ByteDance/Ouro-2.6B", "ouro_think": "ByteDance/Ouro-1.4B-Thinking"}
+REPOS = {"ouro": "ByteDance/Ouro-1.4B", "ouro26": "ByteDance/Ouro-2.6B", "ouro_think": "ByteDance/Ouro-1.4B-Thinking",
+         "ouro26_think": "ByteDance/Ouro-2.6B-Thinking"}
 EDITS = ["off", "ans_O1", "ans_para", "src_O1"]
 KOS = ["none", "src_all", "src_l2", "src_lo", "src_hi", "rand0", "rand1", "rand2", "nonsrc", "allbut"]
 A_PARA = 2.0

@@ -114,7 +114,8 @@ done
 [ -z "${HOME_RUN:-}" ] || echo "running inside a home directory; records will be scrubbed at merge" | tee -a "$TL"
 export HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
 export SETUPTOOLS_USE_DISTUTILS=stdlib      # setuptools' own distutils clashes with the stdlib one on venvs over a conda base
-if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "done already: $ID"; exit 0; fi
+# the merge reruns every round (merge.py is idempotent): its done marker does not skip it
+if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "merge ran before: $ID; running it again"; fi
 echo "task $ID" | tee -a "$TL"
 CHECK="task command (exit code of the task line)"
 (eval "$CMD") 2>&1 | tee -a "$TL" || {

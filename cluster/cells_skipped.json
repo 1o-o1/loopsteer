@@ -7,25 +7,14 @@
  },
  "scope": "C and D cards are enumerated over the RA-20 item 2 model list (18 checkpoints), except the loop trace and the sentiment rows, where the manifest names the models. Manifest cells marked done are not listed.",
  "counts": {
-  "total": 142,
+  "total": 140,
   "by_reason": {
-   "time": 135,
+   "time": 133,
    "design": 1,
    "ability": 6
   }
  },
  "cells": [
-  {
-   "grid": "A",
-   "card": "generation placement",
-   "model": "ouro_2_6b_think",
-   "model_label": "Ouro 2.6B Thinking",
-   "dataset": "GSM8K_gen",
-   "dataset_label": "GSM8K generation pairs",
-   "reason": "time",
-   "script": "loopedcot/prod/steer_gen.py",
-   "why": "CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
-  },
   {
    "grid": "A",
    "card": "generation placement",
@@ -168,17 +157,6 @@
    "script": "loopedcot/prod/steer_gen.py",
    "why": "steer_gen loads Ouro checkpoints only; no Parcae adapter",
    "note": "manifest status: scan"
-  },
-  {
-   "grid": "A",
-   "card": "generation placement",
-   "model": "ouro_2_6b_think",
-   "model_label": "Ouro 2.6B Thinking",
-   "dataset": "SVAMP_gen",
-   "dataset_label": "SVAMP generation pairs",
-   "reason": "time",
-   "script": "loopedcot/prod/steer_gen.py",
-   "why": "CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
   },
   {
    "grid": "A",
@@ -1803,6 +1781,22 @@
    "dataset": "D1, D2, D4, D5",
    "change": "reason text updated",
    "why": "k17_freeze.py has a --model flag since RA-23 item 1 (Thinking checkpoints only)"
+  },
+  {
+   "date": "2026-10-11",
+   "card": "generation placement",
+   "model": "ouro_2_6b_think",
+   "dataset": "GSM8K_gen",
+   "change": "removed (now routed)",
+   "why": "cluster extension item 1: steer_gen setting a4 (CKPTS and SETTINGS entries for ouro_2_6b_think; SETTLE cells natural2 k4 shipped in cluster/data)"
+  },
+  {
+   "date": "2026-10-11",
+   "card": "generation placement",
+   "model": "ouro_2_6b_think",
+   "dataset": "SVAMP_gen",
+   "change": "removed (now routed)",
+   "why": "cluster extension item 1: steer_gen setting a4 (CKPTS and SETTINGS entries for ouro_2_6b_think; SETTLE cells natural2 k4 shipped in cluster/data)"
   }
  ]
 }

@@ -66,9 +66,10 @@ def test_not_run_table_has_no_job():
         if "k17_public.py --run" in cmd:
             assert "--no_reduced" in cmd                                        # no Huginn K16 / K8 rows
         if r["script"] == "steer_gen.py":
-            assert r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think")
+            assert r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think", "ouro_2_6b_think")
         if r["script"] == "steer_gen_math.py":
-            assert r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think") and "screen_A_from_settle" not in cmd
+            assert r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think", "ouro_2_6b_think") \
+                and "screen_A_from_settle" not in cmd
         if r["script"] == "steer_gen_raven.py":
             assert r["model"] == "mcleish_llama32_r32" and "--setting" not in cmd
 
@@ -79,7 +80,7 @@ def test_job_paths_and_configs():
             assert os.path.exists(os.path.join(TOP, p)), (r["id"], p)
         assert "loop-flow" not in r["cmd"] and "WEIGHTS_ROOT/ouro" not in r["cmd"]
     cfgs = sorted(glob.glob(os.path.join(JOBS, "gen_cfg", "*.json")))
-    assert len(cfgs) == 13                       # 12 job configs + smoke_a1_gsm8k.json (cluster/env/smoke_cluster.sh)
+    assert len(cfgs) == 17                       # 16 job configs + smoke_a1_gsm8k.json (cluster/env/smoke_cluster.sh)
     for p in cfgs:
         d = json.load(open(p, encoding="utf-8"))
         if "svamp" in os.path.basename(p):
@@ -94,7 +95,7 @@ def test_full_pools_ifm_wave_and_generation_rules():
     for r in rows:
         cmd = r["cmd"]
         if r["model"].startswith("ifm_"):
-            assert r["group"] == "g6_ifm", r["id"]
+            assert r["group"] in ("g6_ifm", "g14_ifmy1"), r["id"]          # the IFM waves (after the xllm build)
             if r["stage"] in ("s1_run", "s2_window"):
                 assert build[0]["id"] in r["depends_on"].split(","), r["id"]
         if r["script"] in ("k15_full.py", "k16_path_ifm.py", "k16_path_ouro.py") and "--models" in cmd:
@@ -206,7 +207,7 @@ def test_skip_list_changes():
     for k in (("edit-site map", "ifm_p2m_diag", "D4"), ("edit-site map", "ifm_p2m_diag", "D5"),
               ("loops against depth", "mcleish_llama32_r32", "D1"), ("loops against depth", "mcleish_llama32_r32", "D2")):
         assert k in keys
-    assert len(d["changes"]) == 23
+    assert len(d["changes"]) == 25
 
 
 def test_scripts_sha256_matches_files():
@@ -329,15 +330,22 @@ def test_shared_readout_states(monkeypatch):
         calls.append((model, len(keep)))
         return [{"card": "edit_site_map", "model": model, "n_items": str(len(keep)), "item_set": "shared"}]
     monkeypatch.setattr(SH, "rows", fake_rows)
+    # B-EXT2 item 0: one shared set per benchmark across every done model (manifest rows no longer group); the
+    # k15_pairs ids form their own space; small sets are kept and marked
     rows, table, mark = MG.shared_readout(m, cells, info, "OUT", PILOT)
-    st = {t[3]: t[7] for t in table}
-    assert st["pair"] == "shared" and mark[("edit-site map", "a", "D1")] == "shared n 50"
-    assert st["trio"].startswith("own only (shared n 30") and mark[("edit-site map", "c", "D1")].startswith("own only")
-    assert st["mix"] == "not comparable" and st["h"] == "shared = own"
-    assert sorted(calls) == [("a", 50), ("b", 50)] and len(rows["B"]) == 2
+    st = {t[3]: t for t in table}
+    assert set(st) == {"k15_pairs", "common"}
+    k15 = st["k15_pairs"]
+    assert k15[5].split(",") == ["a", "b", "c", "d", "f", "h"] and k15[6] == 20 and k15[7] == "shared (small: n 20 < 40)"
+    assert st["common"][5] == "g" and st["common"][7] == "shared = own"
+    assert sorted(calls) == [(x, 20) for x in "abcdfh"] and len(rows["B"]) == 6
+    assert mark[("edit-site map", "a", "D1")] == "shared n 20 (small)" and mark[("edit-site map", "g", "D1")] == "shared = own"
     info[("edit-site map", "b", "D1")]["state"] = "pending"
+    calls.clear()
     rows, table, mark = MG.shared_readout(m, cells, info, "OUT", PILOT)
-    assert {t[3]: t[7] for t in table}["pair"] == "pending"
+    k15 = {t[3]: t for t in table}["k15_pairs"]
+    assert k15[6] == 30 and "models pending (the set can shrink): b" in k15[8]
+    assert sorted(calls) == [(x, 30) for x in "acdfh"]
 
 
 @needs_artifacts
@@ -375,26 +383,28 @@ def test_merge_end_to_end_on_artifact_copies(tmp_path):
     assert comp[("edit-site map", "ifm_p1_mid", "D1")] == "done"
     assert comp[("edit-site map", "parcae_370m", "D1")] == "done"
     with open(str(dest / "shared_sets.csv"), encoding="utf-8") as f:
-        sh = {(r["card"], r["dataset"], r["row"]): r for r in csv.DictReader(f)}
-    mid = sh[("edit-site map", "D1", "ifm_mid_pair")]
-    assert mid["done_models"] == "ifm_p1_mid,ifm_p1_mid_inj"
-    sets = [EXR.get("k15_pairs.py").item_sets(str(out / "B" / "k15_pairs" / m))[(m, "facts")][0]
-            for m in ("ifm_p1_mid", "ifm_p1_mid_inj")]
-    n_mid = len(sets[0] & sets[1])
+        sh = {(r["card"], r["dataset"], r["id_space"]): r for r in csv.DictReader(f)}
+    # B-EXT2 item 0: one shared set per benchmark across every done model; the k15_pairs ids form their own space
+    k15m = ("ifm_p1_mid", "ifm_p1_mid_inj", "ifm_p2m_r5", "ifm_p2m_diag", "ifm_p2m_ortho")
+    mid = sh[("edit-site map", "D1", "k15_pairs")]
+    assert set(mid["done_models"].split(",")) == set(k15m)
+    sets = [EXR.get("k15_pairs.py").item_sets(str(out / "B" / "k15_pairs" / m))[(m, "facts")][0] for m in k15m]
+    n_mid = len(set.intersection(*[set(map(str, x)) for x in sets]))
     assert int(mid["n_shared"]) == n_mid
     with open(str(dest / "results_all_B.csv"), encoding="utf-8") as f:
         rr = list(csv.DictReader(f))
     shared_mid = [r for r in rr if r["item_set"] == "shared" and r["cell_model"] == "ifm_p1_mid"]
-    if n_mid >= 40:
-        assert mid["state"] == "shared" and shared_mid
-        assert max(int(r["n_items"]) for r in shared_mid) == n_mid
+    if n_mid:
+        assert mid["state"].startswith("shared") and shared_mid          # small sets are kept (marked)
+        assert max(int(r["n_items"]) for r in shared_mid) <= n_mid
     else:
-        assert mid["state"].startswith("own only") and not shared_mid
-    par = sh[("edit-site map", "D1", "parcae")]
-    assert par["done_models"] == "parcae_370m,parcae_1_3b"
+        assert mid["state"] == "no common items" and not shared_mid
+    par = sh[("edit-site map", "D1", "common")]
+    assert set(par["done_models"].split(",")) == {"parcae_370m", "parcae_1_3b"}
     grid = open(str(dest / "grid_B.md"), encoding="utf-8").read()
     assert "CF (CounterFact): CounterFact pool of the cluster run" in grid
-    assert ("shared n %d" % n_mid in grid) if n_mid >= 40 else ("own only (shared n %d" % n_mid in grid)
+    if n_mid:
+        assert "shared n %d" % n_mid in grid
     assert res["shared_rows"].get("B", 0) == len([r for r in rr if r["item_set"] == "shared"])
 
 
@@ -1728,8 +1738,7 @@ def test_submit_10_rest_holds_failed_family_and_status_shows_it(tmp_path):
     held = [c for c in calls if "--hold" in c]
     ifm_lists = {ln.split("\t")[0] for f in glob.glob(os.path.join(nl, "g*.tsv")) for ln in open(f, encoding="utf-8")
                  if "VENV_IFM" in ln}
-    assert held and all(any(("task_%s.sbatch" % g) in c for g in ("g3_map", "g6_ifm", "g4_cd", "g7_ra23", "g5_huginn",
-                                                                       "g2_gen", "g1_copy")) for c in held)
+    assert held and all(any(("task_%s.sbatch" % g) in c for g in GJ.GROUP_ORDER) for c in held)
     n_ifm_calls = sum(1 for ln in open(os.path.join(nl, "submit_10_rest.sh"), encoding="utf-8") if ln.startswith("K ifm "))
     assert len(held) == n_ifm_calls and len(ifm_lists) > 0
     ids = (out / "_held" / "ifm.jobs").read_text().split()
@@ -1830,7 +1839,7 @@ def test_every_settle_file_the_task_lists_name_is_shipped():
             if "--settle-dir" in ln:
                 need.setdefault(_settle_of(ln), set()).add(ln.split("\t")[0])
     have = {os.path.basename(p) for p in glob.glob(os.path.join(CL, "data", "cells_*.jsonl"))}
-    assert len(need) == 6 and not set(need) - have, sorted(set(need) - have)
+    assert len(need) == 8 and not set(need) - have, sorted(set(need) - have)
     for name in ("cells_ouro_2_6b_base_gsm8k_natural_k4.jsonl", "cells_ouro_1_4b_think_svamp_natural2_k4.jsonl"):
         assert name in need and name in have
 
@@ -2011,3 +2020,78 @@ def test_task_bad_gpu_node_requeues_once(tmp_path, case):
     else:
         assert calls == ["update JobId=500_1 ExcNodeList=n03,n05,n06", "requeue 500_1"], calls
         assert "requeued once with --exclude=n03,n05,n06" in dg
+
+
+# ------------------------------------------------------------------ cluster extension (2026-10-11)
+def _base_lists():
+    """Stage lists and templates of the groups the running cluster has queued: the extension must not touch them."""
+    return {"g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g5_huginn", "g6_ifm", "g7_ra23", "g9_merge"}
+
+
+def test_ext1_ouro_2_6b_think_generation_pipelines():
+    """Item 1: setting a4 (Ouro-2.6B-Thinking) on GSM8K, SVAMP (steer_gen) and ASDiv, MAWPS (steer_gen_math) in its
+    own group g11_gen26t: four pipelines, hold unit gen, the 2.6B Thinking hub folder, SETTLE files shipped."""
+    sg = open(os.path.join(PILOT, "tree", "prod", "steer_gen.py"), "rb").read().decode("utf-8")
+    assert '"ouro_2_6b_think": {"layers": 48, "modeling_md5_prefix": "4135d08e", "local_env": "K17_THINK_DIR"}' in sg
+    assert '"a4": {"arm": "a", "model": "ouro_2_6b_think"' in sg
+    for name in ("cells_ouro_2_6b_think_gsm8k_natural2_k4.jsonl", "cells_ouro_2_6b_think_svamp_natural2_k4.jsonl"):
+        b = open(os.path.join(CL, "data", name), "rb").read()
+        assert b"/home/" not in b and json.loads(b.split(b"\n", 1)[0])["tag"] == name[6:-6]
+    for lists in (JOBS, os.path.join(JOBS, "nolocal")):
+        with open(os.path.join(lists, "joblist.tsv"), encoding="utf-8") as f:
+            rows = [r for r in csv.DictReader(f, delimiter="\t") if r["model"] == "ouro_2_6b_think"
+                    and r["script"] in ("steer_gen.py", "steer_gen_math.py")]
+        pipes = {(r["group"], r["script"], r["out"].rsplit("/", 1)[1]) for r in rows}
+        assert pipes == {("g11_gen26t", "steer_gen.py", "a4_gsm8k"), ("g11_gen26t", "steer_gen.py", "a4_svamp"),
+                         ("g11_gen26t", "steer_gen_math.py", "a4_asdiv"), ("g11_gen26t", "steer_gen_math.py", "a4_mawps")}
+        assert len(rows) == 28 + 27 + 26 + 26
+        for r in rows:
+            assert GJ.family_of(r["cmd"]) == "gen"
+            assert "--setting a4" in r["cmd"] and GJ.THINK26 in r["cmd"] and GJ.THINK14 not in r["cmd"]
+            assert "jobs/gen_cfg/a4_" in r["cmd"]
+        for g in _base_lists():
+            assert not [r for r in rows if r["group"] == g]
+        assert os.path.exists(os.path.join(lists, "task_g11_gen26t.sbatch"))
+    assert GJ.GROUP_ORDER.index("g11_gen26t") < GJ.GROUP_ORDER.index("g5_huginn")
+
+
+def test_ext_items_1_3_lines_routes_and_arms_flag(tmp_path, monkeypatch):
+    """Items 1 and 3: seven k16_path_ouro lines on the Thinking models (g13_paththink, unit ouro), seven k16_path_ifm
+    --arms Y1 lines (g14_ifmy1, unit ifm, after the xllm build); the seven edit-site map cells read the _y1 folders
+    and their first-run folders stay read through their own card; --arms left out keeps every model's arms."""
+    import copy
+    import importlib.util
+    with open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8") as f:
+        rows = list(csv.DictReader(f, delimiter="\t"))
+    t = [r for r in rows if r["group"] == "g13_paththink"]
+    y = [r for r in rows if r["group"] == "g14_ifmy1"]
+    assert len(t) == 7 and len(y) == 7
+    assert all(GJ.family_of(r["cmd"]) == "ouro" and "--arms w2 --min_items 40" in r["cmd"] for r in t)
+    assert {r["out"].rsplit("/", 1)[1] for r in t} == {"ouro_think_D1", "ouro_think_D2", "ouro_think_D4", "ouro26_think_D1",
+                                                       "ouro26_think_D2", "ouro26_think_D4", "ouro26_think_D5"}
+    assert all(GJ.THINK26 in r["cmd"] for r in t if "ouro26_think" in r["out"])
+    assert all(GJ.family_of(r["cmd"]) == "ifm" and "--arms Y1" in r["cmd"] and r["out"].endswith("_y1")
+               and r["depends_on"] == "g0_xllm.s1_build.001" for r in y)
+    for m, ds in GJ.Y1_CELLS:
+        assert GJ.cell_target("edit-site map", m, ds)[1] == "B/k16_path_ifm/%s_%s_y1" % (m, ds)
+        assert GJ.cell_target(GJ.FIRST_RUN_CARD, m, ds)[1] == "B/k16_path_ifm/%s_%s" % (m, ds)
+    assert GJ.cell_target("edit-site map", "ifm_p1_ouro", "D4")[1] == "B/k16_path_ifm/ifm_p1_ouro_D4"
+    w = json.load(open(os.path.join(CL, "weights.json"), encoding="utf-8"))
+    assert [c for c in w["checkpoints"] if c["key"] == "ouro_2_6b_think"][0]["registry_names"]["k16_path_ouro"] == "ouro26_think"
+    assert '"ouro26_think": "ByteDance/Ouro-2.6B-Thinking"' in open(os.path.join(PILOT, "k16_path_ouro.py"), encoding="utf-8").read()
+    spec = importlib.util.spec_from_file_location("k16i_flag", os.path.join(PILOT, "k16_path_ifm.py"))
+    mod = importlib.util.module_from_spec(spec)
+    monkeypatch.syspath_prepend(PILOT)
+    spec.loader.exec_module(mod)
+    base = copy.deepcopy(mod.ARMS)
+    calls = []
+    monkeypatch.setattr(mod, "run_model", lambda name, *a, **k: calls.append((name, list(mod.ARMS[name]))))
+    monkeypatch.setattr(mod, "write_proc", lambda *a, **k: None)
+    for extra, want in (([], base["ifm_p1_mid"]), (["--arms", "Y1"], ["Y1"])):
+        calls.clear()
+        monkeypatch.setattr(sys, "argv", ["k16_path_ifm.py", "--models", "ifm_p1_mid", "--datasets", "D2", "--out",
+                                          str(tmp_path / ("o%d" % len(extra))), "--guard", "100000000", "--full_pool"] + extra)
+        mod.main()
+        assert calls == [("ifm_p1_mid", want)]
+        if not extra:
+            assert mod.ARMS == base

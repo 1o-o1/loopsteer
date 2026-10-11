@@ -166,6 +166,13 @@ cells:
   - {grid: B, card: edit-site map, models: [ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_r5, ifm_p2m_diag, ifm_p2m_ortho, ifm_d28, ifm_d112], cells: {LRE: [skip, "time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change"]}}
   - {grid: B, card: edit-site map, models: [parcae_370m, parcae_1_3b], cells: {LRE: [skip, "time: data_steer/lre holds no pairs on the Parcae tokenizer"]}}
   - {grid: A, card: generation placement, models: [ouro_1_4b_base, ouro_2_6b_base, ouro_1_4b_think], cells: {ASDIV_gen: [run, "RA-23 item 4: steer_gen_math.py (steer_gen unchanged; no SETTLE pre-filter, both screens on the model)"], MAWPS_gen: [run, "RA-23 item 4: same"]}}
-  - {grid: A, card: generation placement, model: ouro_2_6b_think, cells: {ASDIV_gen: [skip, "time: steer_gen has no Ouro-2.6B-Thinking setting (same as GSM8K and SVAMP)"], MAWPS_gen: [skip, "time: same"]}}
+  - {grid: A, card: generation placement, model: ouro_2_6b_think, cells: {ASDIV_gen: [run, "cluster extension 2026-10-11: steer_gen setting a4 (Ouro-2.6B-Thinking) through steer_gen_math.py"], MAWPS_gen: [run, "same"]}}
+  # ---- cluster extension (B-EXT2 items 1 and 3, 2026-10-11) ----
+  - {grid: C, card: "pathway checks (restore, read window, attention block)", model: ouro_1_4b_think, cells: {D1: [run, "B-EXT2 item 1: k16_path_ouro Y1, Y3, W2 at full pools; two-step math is the edit-site map D5 job"], D2: run, D4: run}}
+  - {grid: C, card: "pathway checks (restore, read window, attention block)", model: ouro_2_6b_think, cells: {D1: [run, "B-EXT2 item 1"], D2: run, D4: run, D5: run}}
+  - {grid: B, card: "IFM pathway rows (first run)", model: ifm_p1_ouro_inj, cells: {D4: [run, "B-EXT2 item 3: the first k16_path_ifm run of the cell (no edit-site rows); the edit-site map cell reads the --arms Y1 rerun"]}}
+  - {grid: B, card: "IFM pathway rows (first run)", model: ifm_p1_mid, cells: {D2: run, D4: run}}
+  - {grid: B, card: "IFM pathway rows (first run)", model: ifm_p1_mid_inj, cells: {D2: run, D4: run, D5: run}}
+  - {grid: B, card: "IFM pathway rows (first run)", model: ifm_p2m_diag, cells: {D2: run}}
   - {grid: A, card: generation placement, model: mcleish_llama32_r32, cells: {ASDIV_gen: [skip, "time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row is about 4 card-hours (ASDiv) to 7 (MAWPS) and a model-dataset cell about 100 to 170 card-hours, ten times the RA-23 estimate"], MAWPS_gen: [skip, "time: same"]}}
   - {grid: B, card: "strength ablation (edit-site map at a 0.25 and 1, three random seeds)", models: [ouro_1_4b_base, ouro_2_6b_base], cells: {D1: [skip, "time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)"], CF: [skip, "time: same"], D2: [skip, "time: same"], D4: [skip, "time: same"]}}
