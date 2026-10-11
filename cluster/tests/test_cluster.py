@@ -1406,21 +1406,42 @@ def test_run_all_asks_by_name_and_remembers(tmp_path):
 
 
 def test_merge_scrub_and_home_scan_units(tmp_path):
-    """scrub_home: the project root (as given) becomes <PROJECT_ROOT> in every text file, *.env files are left alone;
-    home_scan: names each merged file that still holds a home path."""
+    """scrub_home over scrub_roots: the project root becomes <PROJECT_ROOT> in the text files of the output trees the
+    job list names, and each changed file is listed. Never touched: the environment files (cluster.env, run_all.env,
+    run_nodes.env, by path, even inside an output tree), top-level files, _* folders (chain markers, job lists) and
+    logs/. home_scan names each merged file that still holds a home path."""
     proj = tmp_path / "home" / "proj"
-    d = proj / "out" / "B" / "job"
+    out = proj / "out"
+    d = out / "B" / "job"
     d.mkdir(parents=True)
     root = str(proj)
     (d / "records.jsonl").write_text('{"argv": "%s/repo/x.py", "v": 1}\n{"v": 2}\n' % root.replace("\\", "\\\\"))
     (d / "results.csv").write_text("a,b\n%s/out,2\n" % root)
-    (proj / "out" / "cluster.env").write_text('export OUT_ROOT="%s/out"\n' % root)
     (d / "clean.csv").write_text("a\n1\n")
-    n = MG.scrub_home(str(proj / "out"), [root, root.replace("\\", "\\\\")])
-    assert n == 2
+    (d / "copy.env").write_text("X=%s\n" % root)
+    keep = {}
+    for rel in ("cluster.env", "run_all.env", "run_nodes.env", "_env.json", "_chain/jobs.txt", "_held/ifm.held",
+                "logs/ra20_g2_gen_1_1.out", "_tasklog/x.log"):
+        f = out / rel
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text('export OUT_ROOT="%s/out"\nlists %s/repo/loopedcot/cluster/jobs/nolocal\n' % (root, root))
+        keep[rel] = f.read_bytes()
+    jl = tmp_path / "joblist.tsv"
+    jl.write_text("id\tgroup\tout\na\tg1\t$OUT_ROOT/B/job\nb\tg0\t$OUT_ROOT/_xllm\nc\tg9\t$OUT_ROOT\n")
+    roots = MG.scrub_roots(str(out), str(jl))
+    assert roots == [os.path.join(str(out), "B")]
+    changed = []
+    n = MG.scrub_home(roots, [root, root.replace("\\", "\\\\")], str(out), changed)
+    assert n == 2 and sorted(changed) == ["B/job/records.jsonl", "B/job/results.csv"]
     assert (d / "results.csv").read_text() == "a,b\n<PROJECT_ROOT>/out,2\n"
     assert json.loads((d / "records.jsonl").read_text().splitlines()[0])["argv"] == "<PROJECT_ROOT>/repo/x.py"
-    assert root in (proj / "out" / "cluster.env").read_text()
+    assert root in (d / "copy.env").read_text()
+    for rel, b in keep.items():
+        assert (out / rel).read_bytes() == b, rel
+    # an environment file inside a scrubbed tree is protected by its path too
+    (out / "B" / "cluster.env").write_text("X=%s\n" % root)
+    assert MG.scrub_home([str(out)], [root], str(out / "B"), []) >= 0
+    assert root in (out / "B" / "cluster.env").read_text()
     dest = tmp_path / "merged"
     dest.mkdir()
     (dest / "ok.csv").write_text("x\n<PROJECT_ROOT>/out\n")
@@ -1447,6 +1468,12 @@ def test_merge_home_run_scrubs_and_fails_on_leftovers(tmp_path):
         subprocess.check_call([sys.executable, "-B", os.path.join(CL, "extract", "run.py"), "--script", "k17_parcae.py",
                                "--src", src, "--job", str(d)], stdout=subprocess.DEVNULL)
         (d / "task.log").write_text("python %s/repo/loopedcot/cluster/pilot/k17_parcae.py --out %s\n" % (proj, d))
+    keep = {}
+    for rel in ("cluster.env", "run_all.env", "run_nodes.env", "_chain/jobs.txt"):
+        f = out / rel
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text('export OUT_ROOT="%s"\nlists %s/repo/loopedcot/cluster/jobs/nolocal\n' % (out, proj))
+        keep[rel] = f.read_bytes()
     merge = [sys.executable, "-B", os.path.join(CL, "merge.py"), "--out_root", str(out)]
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", ALLOW_HOME="1", HOME=str(home))
     env.pop("PROJECT_ROOT", None)
@@ -1460,6 +1487,10 @@ def test_merge_home_run_scrubs_and_fails_on_leftovers(tmp_path):
     assert str(proj) not in log and log.startswith("python <PROJECT_ROOT>/repo/loopedcot/")
     scan = json.loads((out / "merged" / "home_scan.json").read_text())
     assert scan["home_path_hits"] == [] and scan["files_scrubbed"] >= 2
+    for rel, b in keep.items():
+        assert (out / rel).read_bytes() == b, rel
+    changed = (out / "merged" / "home_scrub_changed.txt").read_text().split()
+    assert "B/k17_parcae/parcae-370m/task.log" in changed and not [x for x in changed if x.endswith(".env") or x.startswith("_")]
     (out / "merged" / "stray.md").write_text("left over: /root/x\n")
     r = subprocess.run(merge, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     assert r.returncode == 3 and b"home paths remain in the merged outputs: stray.md" in r.stdout, r.stdout.decode()[-1500:]
