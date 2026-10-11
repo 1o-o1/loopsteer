@@ -1,0 +1,322 @@
+grid,card,model,dataset,manifest_status,state,detail
+A,generation placement,ouro_1_4b_base,GSM8K_gen,run,done,"n_planned 8602, 66 result rows, max n_items 391"
+A,generation placement,ouro_1_4b_base,SVAMP_gen,run,done,"n_planned 5390, 66 result rows, max n_items 245"
+A,generation placement,ouro_2_6b_base,GSM8K_gen,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+A,generation placement,ouro_2_6b_base,SVAMP_gen,run,done,"n_planned 5456, 66 result rows, max n_items 248"
+A,generation placement,ouro_1_4b_think,GSM8K_gen,run,done,"n_planned 6534, 66 result rows, max n_items 297"
+A,generation placement,ouro_1_4b_think,SVAMP_gen,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+A,generation placement,ouro_2_6b_think,GSM8K_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
+A,generation placement,ouro_2_6b_think,SVAMP_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
+A,generation placement,ifm_p1_ouro,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p1_ouro,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p1_ouro_inj,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p1_ouro_inj,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p1_mid,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p1_mid,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p1_mid_inj,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p1_mid_inj,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p2m_r5,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p2m_r5,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p2m_diag,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p2m_diag,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p2m_ortho,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_p2m_ortho,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_d28,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_d28,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_d112,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,ifm_d112,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
+A,generation placement,mcleish_llama32_r32,GSM8K_gen,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+A,generation placement,mcleish_llama32_r32,SVAMP_gen,run,skip,time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only; no SVAMP setting is built
+A,generation placement,huginn_0125,GSM8K_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
+A,generation placement,huginn_0125,SVAMP_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
+A,generation placement,parcae_370m,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
+A,generation placement,parcae_370m,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
+A,generation placement,parcae_1_3b,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
+A,generation placement,parcae_1_3b,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
+A,appendix: loop-2 contrast,ouro_1_4b_base,GSM8K_gen,scope,not run (scope),descriptive result; the frozen test needs a new strength; no claim depends on it
+A,appendix: LoopCD accuracy rows,ouro_1_4b_think,GSM8K_gen,scope,not run (scope),claim dropped (no effect beyond drift)
+B,GSM8K copy and derived,ouro_1_4b_base,VB,done,done earlier (not rerun),"1,053 pairs (production)"
+B,GSM8K copy and derived,ouro_1_4b_base,VBD,run,done,"n_planned 843, 48 result rows, max n_items 843"
+B,GSM8K copy and derived,ouro_2_6b_base,VB,done,done earlier (not rerun),"1,069 (production)"
+B,GSM8K copy and derived,ouro_2_6b_base,VBD,run,done,"n_planned 843, 48 result rows, max n_items 843"
+B,GSM8K copy and derived,ouro_1_4b_think,VB,run,done,"n_planned 833, 52 result rows, max n_items 833"
+B,GSM8K copy and derived,ouro_1_4b_think,VBD,run,done,"n_planned 842, 48 result rows, max n_items 842"
+B,GSM8K copy and derived,ouro_2_6b_think,VB,run,done,"n_planned 849, 52 result rows, max n_items 849"
+B,GSM8K copy and derived,ouro_2_6b_think,VBD,run,done,"n_planned 844, 48 result rows, max n_items 844"
+B,GSM8K copy and derived,ifm_p1_ouro,VB,run,done,"n_planned 793, 52 result rows, max n_items 793"
+B,GSM8K copy and derived,ifm_p1_ouro,VBD,run,done,"n_planned 808, 2 result rows, max n_items 808"
+B,GSM8K copy and derived,ifm_p1_ouro_inj,VB,run,done,"n_planned 814, 52 result rows, max n_items 814"
+B,GSM8K copy and derived,ifm_p1_ouro_inj,VBD,run,done,"n_planned 797, 2 result rows, max n_items 797"
+B,GSM8K copy and derived,ifm_p1_mid,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p1_mid,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p1_mid_inj,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p1_mid_inj,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p2m_r5,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p2m_r5,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p2m_diag,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p2m_diag,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p2m_ortho,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_p2m_ortho,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_d28,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_d28,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
+B,GSM8K copy and derived,ifm_d112,VB,run,done,"n_planned 826, 52 result rows, max n_items 826"
+B,GSM8K copy and derived,ifm_d112,VBD,run,done,"n_planned 813, 2 result rows, max n_items 813"
+B,GSM8K copy and derived,mcleish_llama32_r32,VB,run,done,"n_planned 405, 52 result rows, max n_items 405"
+B,GSM8K copy and derived,mcleish_llama32_r32,VBD,run,skip,"time: derived rows exist only in k17_varbench, which loads Ouro and three IFM models; k17_public runs the copy (VB) only"
+B,GSM8K copy and derived,llama_nr,VB,run,done,"n_planned 405, 64 result rows, max n_items 405"
+B,GSM8K copy and derived,llama_nr,VBD,run,skip,"time: derived rows exist only in k17_varbench, which loads Ouro and three IFM models; k17_public runs the copy (VB) only"
+B,GSM8K copy and derived,huginn_0125,VB,run,done,"n_planned 428, 52 result rows, max n_items 428"
+B,GSM8K copy and derived,huginn_0125,VBD,run,skip,"time: derived rows exist only in k17_varbench, which loads Ouro and three IFM models; k17_public runs the copy (VB) only"
+B,GSM8K copy and derived,parcae_370m,VB,run,done,"n_planned 224, 92 result rows, max n_items 224"
+B,GSM8K copy and derived,parcae_370m,VBD,run,skip,time: derived rows exist only in k17_varbench; k17_parcae runs the copy (VB) only
+B,GSM8K copy and derived,parcae_1_3b,VB,run,done,"n_planned 336, 92 result rows, max n_items 336"
+B,GSM8K copy and derived,parcae_1_3b,VBD,run,skip,time: derived rows exist only in k17_varbench; k17_parcae runs the copy (VB) only
+B,edit-site map,ouro_1_4b_base,D1,done,done earlier (not rerun),"production, 267"
+B,edit-site map,ouro_1_4b_base,CF,done,done earlier (not rerun),
+B,edit-site map,ouro_1_4b_base,D2,done,done earlier (not rerun),
+B,edit-site map,ouro_1_4b_base,D4,done,done earlier (not rerun),
+B,edit-site map,ouro_1_4b_base,D5,run,done,"n_planned 397, 71 result rows, max n_items 397"
+B,edit-site map,ouro_2_6b_base,D1,done,done earlier (not rerun),
+B,edit-site map,ouro_2_6b_base,CF,done,done earlier (not rerun),
+B,edit-site map,ouro_2_6b_base,D2,done,done earlier (not rerun),
+B,edit-site map,ouro_2_6b_base,D4,done,done earlier (not rerun),
+B,edit-site map,ouro_2_6b_base,D5,run,done,"n_planned 534, 71 result rows, max n_items 534"
+B,edit-site map,ouro_1_4b_think,D1,run,done,"n_planned 74, 66 result rows, max n_items 74"
+B,edit-site map,ouro_1_4b_think,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only); k17_public ouro_think TARGET has D1, D2, D4 only"
+B,edit-site map,ouro_1_4b_think,D2,run,done,"n_planned 65, 66 result rows, max n_items 65"
+B,edit-site map,ouro_1_4b_think,D4,run,done,"n_planned 1018, 66 result rows, max n_items 1018"
+B,edit-site map,ouro_1_4b_think,D5,run,done,"n_planned 649, 71 result rows, max n_items 649"
+B,edit-site map,ouro_2_6b_think,D1,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
+B,edit-site map,ouro_2_6b_think,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
+B,edit-site map,ouro_2_6b_think,D2,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
+B,edit-site map,ouro_2_6b_think,D4,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
+B,edit-site map,ouro_2_6b_think,D5,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
+B,edit-site map,ifm_p1_ouro,D1,run,done,"n_planned 141, 136 result rows, max n_items 141"
+B,edit-site map,ifm_p1_ouro,CF,run,done,"n_planned 166, 136 result rows, max n_items 166"
+B,edit-site map,ifm_p1_ouro,D2,run,done,"n_planned 584, 136 result rows, max n_items 584"
+B,edit-site map,ifm_p1_ouro,D4,run,done,"n_planned 328, 193 result rows, max n_items 328"
+B,edit-site map,ifm_p1_ouro,D5,run,done,"n_planned 59, 193 result rows, max n_items 59"
+B,edit-site map,ifm_p1_ouro_inj,D1,run,done,"n_planned 134, 136 result rows, max n_items 134"
+B,edit-site map,ifm_p1_ouro_inj,CF,run,done,"n_planned 292, 136 result rows, max n_items 292"
+B,edit-site map,ifm_p1_ouro_inj,D2,run,done,"n_planned 585, 136 result rows, max n_items 585"
+B,edit-site map,ifm_p1_ouro_inj,D4,run,done,"n_planned 332, 48 result rows, max n_items 332"
+B,edit-site map,ifm_p1_ouro_inj,D5,run,skip,"ability (the clean-pass scan kept 32 items, fewer than 40)"
+B,edit-site map,ifm_p1_mid,D1,run,done,"n_planned 136, 110 result rows, max n_items 136"
+B,edit-site map,ifm_p1_mid,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
+B,edit-site map,ifm_p1_mid,D2,run,done,"n_planned 585, 123 result rows, max n_items 585"
+B,edit-site map,ifm_p1_mid,D4,run,done,"n_planned 333, 123 result rows, max n_items 333"
+B,edit-site map,ifm_p1_mid,D5,run,skip,"ability (the clean-pass scan kept 2 items, fewer than 40)"
+B,edit-site map,ifm_p1_mid_inj,D1,run,done,"n_planned 141, 110 result rows, max n_items 141"
+B,edit-site map,ifm_p1_mid_inj,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
+B,edit-site map,ifm_p1_mid_inj,D2,run,done,"n_planned 581, 48 result rows, max n_items 581"
+B,edit-site map,ifm_p1_mid_inj,D4,run,done,"n_planned 340, 48 result rows, max n_items 340"
+B,edit-site map,ifm_p1_mid_inj,D5,run,done,"n_planned 47, 48 result rows, max n_items 47"
+B,edit-site map,ifm_p2m_r5,D1,run,done,"n_planned 115, 92 result rows, max n_items 115"
+B,edit-site map,ifm_p2m_r5,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
+B,edit-site map,ifm_p2m_r5,D2,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_p2m_r5,D4,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_p2m_r5,D5,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_p2m_diag,D1,run,done,"n_planned 118, 92 result rows, max n_items 118"
+B,edit-site map,ifm_p2m_diag,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
+B,edit-site map,ifm_p2m_diag,D2,run,done,"n_planned 585, 48 result rows, max n_items 585"
+B,edit-site map,ifm_p2m_diag,D4,run,skip,"time: no edit-site route: k15_pairs.py runs D1 (and D2) only; k16_path_ifm.py runs arm Y2 only on ifm_p2m_diag and the pilot ran it on D1 and D2, never on D4 or D5 (no d45 record); gen_jobs.py routes it on D2 only"
+B,edit-site map,ifm_p2m_diag,D5,run,skip,time: same as D4: no pilot route for two-step math on ifm_p2m_diag
+B,edit-site map,ifm_p2m_ortho,D1,run,done,"n_planned 111, 92 result rows, max n_items 111"
+B,edit-site map,ifm_p2m_ortho,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
+B,edit-site map,ifm_p2m_ortho,D2,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_p2m_ortho,D4,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_p2m_ortho,D5,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_d28,D1,run,skip,"time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
+B,edit-site map,ifm_d28,CF,run,skip,"time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
+B,edit-site map,ifm_d28,D2,run,skip,"time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
+B,edit-site map,ifm_d28,D4,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_d28,D5,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_d112,D1,run,done,"n_planned 134, 136 result rows, max n_items 134"
+B,edit-site map,ifm_d112,CF,run,done,"n_planned 283, 136 result rows, max n_items 283"
+B,edit-site map,ifm_d112,D2,run,done,"n_planned 585, 136 result rows, max n_items 585"
+B,edit-site map,ifm_d112,D4,run,done,"n_planned 343, 187 result rows, max n_items 343"
+B,edit-site map,ifm_d112,D5,run,done,"n_planned 79, 187 result rows, max n_items 79"
+B,edit-site map,mcleish_llama32_r32,D1,run,done,"n_planned 83, 149 result rows, max n_items 83"
+B,edit-site map,mcleish_llama32_r32,CF,run,done,"n_planned 199, 149 result rows, max n_items 199"
+B,edit-site map,mcleish_llama32_r32,D2,run,done,"n_planned 65, 149 result rows, max n_items 65"
+B,edit-site map,mcleish_llama32_r32,D4,run,done,"n_planned 1004, 149 result rows, max n_items 1004"
+B,edit-site map,mcleish_llama32_r32,D5,scan,skip,"ability (the clean-pass scan kept 7 items, fewer than 40)"
+B,edit-site map,llama_nr,D1,run,done,"n_planned 83, 88 result rows, max n_items 83"
+B,edit-site map,llama_nr,CF,run,done,"n_planned 199, 88 result rows, max n_items 199"
+B,edit-site map,llama_nr,D2,run,done,"n_planned 65, 88 result rows, max n_items 65"
+B,edit-site map,llama_nr,D4,run,done,"n_planned 1004, 88 result rows, max n_items 1004"
+B,edit-site map,llama_nr,D5,scan,skip,"ability (the clean-pass scan kept 7 items, fewer than 40)"
+B,edit-site map,huginn_0125,D1,run,skip,"ability (the clean-pass scan kept 32 items, fewer than 40)"
+B,edit-site map,huginn_0125,CF,scan,done,"n_planned 179, 149 result rows, max n_items 179"
+B,edit-site map,huginn_0125,D2,run,done,"n_planned 63, 149 result rows, max n_items 63"
+B,edit-site map,huginn_0125,D4,scan,done,"n_planned 702, 149 result rows, max n_items 702"
+B,edit-site map,huginn_0125,D5,scan,skip,ability (the clean-pass scan kept 0 items)
+B,edit-site map,parcae_370m,D1,run,done,"n_planned 61, 127 result rows, max n_items 61"
+B,edit-site map,parcae_370m,CF,scan,skip,"time: k17_parcae DATASETS = D1, D2, D4, D5, VB (no CF)"
+B,edit-site map,parcae_370m,D2,skip,skip,"ability (clean filter 0 to 3 percent, ledger 2026-10-08 02:10)"
+B,edit-site map,parcae_370m,D4,skip,skip,ability (same)
+B,edit-site map,parcae_370m,D5,skip,skip,ability (same)
+B,edit-site map,parcae_1_3b,D1,run,done,"n_planned 62, 127 result rows, max n_items 62"
+B,edit-site map,parcae_1_3b,CF,scan,skip,"time: k17_parcae DATASETS = D1, D2, D4, D5, VB (no CF)"
+B,edit-site map,parcae_1_3b,D2,skip,skip,ability (same)
+B,edit-site map,parcae_1_3b,D4,skip,skip,ability (same)
+B,edit-site map,parcae_1_3b,D5,skip,skip,ability (same)
+B,decay and schedule rows (sentiment),ouro_1_4b_base,SENT300,run,skip,time: no script holds the 300 new neutral prompts (k17_reread uses k15_data.NEUTRAL150); k17_reread loads this model
+B,decay and schedule rows (sentiment),ouro_2_6b_base,SENT300,run,skip,time: no script holds the 300 new neutral prompts (k17_reread uses k15_data.NEUTRAL150); k17_reread loads Ouro-1.4B only (k16_path_ouro T3 loads ouro26 with 50 NEUTRAL150 prompts)
+B,decay and schedule rows (sentiment),ouro_1_4b_think,SENT300,run,skip,time: no script holds the 300 new neutral prompts (k17_reread uses k15_data.NEUTRAL150); k17_reread loads Ouro-1.4B only (k16_path_ouro T3 loads ouro_think with 50 NEUTRAL150 prompts)
+B,decay and schedule rows (sentiment),ouro_2_6b_think,SENT300,run,skip,time: no script holds the 300 new neutral prompts (k17_reread uses k15_data.NEUTRAL150); k17_reread loads Ouro-1.4B only
+B,decay and schedule rows (sentiment),ifm_p1_ouro,SENT300,run,skip,time: no script holds the 300 new neutral prompts (k17_reread uses k15_data.NEUTRAL150); k17_reread loads Ouro-1.4B only
+B,decay and schedule rows (sentiment),mcleish_llama32_r32,SENT300,run,skip,time: no script holds the 300 new neutral prompts (k17_reread uses k15_data.NEUTRAL150); k17_reread loads Ouro-1.4B only
+B,decay and schedule rows (sentiment),huginn_0125,SENT300,run,skip,time: no script holds the 300 new neutral prompts (k17_reread uses k15_data.NEUTRAL150); k17_reread loads Ouro-1.4B only
+B,loops against depth,ifm_p1_ouro,D1,done,done earlier (not rerun),done on IFM against d112
+B,loops against depth,ifm_p1_ouro,D2,done,done earlier (not rerun),
+B,loops against depth,mcleish_llama32_r32,D1,run,skip,time: the manifest asks for an analysis of McLeish against its non-recurrent twin from the edit-site records (no GPU); no pilot script or merge step computes it; the k17_public mcl_nr records it would read are produced by the edit-site map jobs
+B,loops against depth,mcleish_llama32_r32,D2,run,skip,time: same as D1
+B,loop trace,ouro_1_4b_base,D1,done,done earlier (not rerun),
+B,loop trace,ouro_1_4b_base,D2,done,done earlier (not rerun),
+B,loop trace,ouro_2_6b_base,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag)
+B,loop trace,ouro_2_6b_base,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag)
+C,branch-freeze,ouro_1_4b_base,D1,done,done earlier (not rerun),k17_freeze full run
+C,branch-freeze,ouro_1_4b_base,D2,done,done earlier (not rerun),
+C,branch-freeze,ouro_1_4b_base,D4,done,done earlier (not rerun),
+C,branch-freeze,ouro_1_4b_base,D5,done,done earlier (not rerun),
+C,branch-freeze,ouro_2_6b_base,D1,run,skip,time: k17_freeze.py --model loads the two Thinking checkpoints since RA-23 item 1; Ouro-2.6B base is not in the RA-23 scope (adding it to k17_freeze.MODELS is the whole change)
+C,branch-freeze,ouro_2_6b_base,D2,run,skip,time: k17_freeze.py --model loads the two Thinking checkpoints since RA-23 item 1; Ouro-2.6B base is not in the RA-23 scope (adding it to k17_freeze.MODELS is the whole change)
+C,branch-freeze,ouro_2_6b_base,D4,run,skip,time: k17_freeze.py --model loads the two Thinking checkpoints since RA-23 item 1; Ouro-2.6B base is not in the RA-23 scope (adding it to k17_freeze.MODELS is the whole change)
+C,branch-freeze,ouro_2_6b_base,D5,run,skip,time: k17_freeze.py --model loads the two Thinking checkpoints since RA-23 item 1; Ouro-2.6B base is not in the RA-23 scope (adding it to k17_freeze.MODELS is the whole change)
+C,branch-freeze,ouro_1_4b_think,D1,run,done,"n_planned 267, 22 result rows, max n_items 267"
+C,branch-freeze,ouro_1_4b_think,D2,run,done,"n_planned 263, 19 result rows, max n_items 263"
+C,branch-freeze,ouro_1_4b_think,D4,run,done,"n_planned 1284, 57 result rows, max n_items 1284"
+C,branch-freeze,ouro_1_4b_think,D5,run,skip,"time: k17_freeze.py loads both Thinking checkpoints since RA-23 item 1, which runs facts, addition and code; two-step math is not in the RA-23 scope"
+C,branch-freeze,ouro_2_6b_think,D1,run,done,"n_planned 266, 22 result rows, max n_items 266"
+C,branch-freeze,ouro_2_6b_think,D2,run,done,"n_planned 263, 19 result rows, max n_items 263"
+C,branch-freeze,ouro_2_6b_think,D4,run,done,"n_planned 1311, 57 result rows, max n_items 1311"
+C,branch-freeze,ouro_2_6b_think,D5,run,skip,"time: k17_freeze.py loads both Thinking checkpoints since RA-23 item 1, which runs facts, addition and code; two-step math is not in the RA-23 scope"
+C,branch-freeze,mcleish_llama32_r32,D1,run,done,"n_planned 321, 34 result rows, max n_items 321"
+C,branch-freeze,mcleish_llama32_r32,D2,run,done,"n_planned 263, 31 result rows, max n_items 263"
+C,branch-freeze,huginn_0125,D1,run,done,"n_planned 66, 34 result rows, max n_items 66"
+C,branch-freeze,huginn_0125,D2,run,done,"n_planned 242, 31 result rows, max n_items 242"
+C,carried-state ablation,ouro_1_4b_base,D1,done,done earlier (not rerun),k17_x4e full run
+C,carried-state ablation,ouro_1_4b_base,D2,done,done earlier (not rerun),
+C,carried-state ablation,ouro_2_6b_base,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ouro_2_6b_base,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ouro_1_4b_think,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ouro_1_4b_think,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ouro_2_6b_think,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ouro_2_6b_think,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_ouro,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_ouro,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_ouro_inj,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_ouro_inj,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_mid,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_mid,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_mid_inj,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p1_mid_inj,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p2m_r5,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p2m_r5,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p2m_diag,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p2m_diag,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p2m_ortho,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_p2m_ortho,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_d28,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_d28,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_d112,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,ifm_d112,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,mcleish_llama32_r32,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,mcleish_llama32_r32,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,llama_nr,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,llama_nr,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,huginn_0125,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,huginn_0125,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,parcae_370m,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,parcae_370m,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,parcae_1_3b,D1,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,carried-state ablation,parcae_1_3b,D2,run,skip,time: REPO fixed to ByteDance/Ouro-1.4B (no --model flag); items come from the Ouro-1.4B freeze selection
+C,re-read,ouro_1_4b_base,NEUTRAL150,done,done earlier (not rerun),k17_reread full run
+D,selective control,ouro_1_4b_base,D3,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,selective control,ouro_1_4b_base,CF,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,selective control,ouro_2_6b_base,D3,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,selective control,ouro_2_6b_base,CF,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,selective control,ifm_p1_ouro,D3,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,selective control,ifm_p1_ouro,CF,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,selective control,ifm_p1_ouro_inj,D3,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,selective control,ifm_p1_ouro_inj,CF,scope,not run (scope),failed as a selectivity claim on four models; about 390 GPU-hours
+D,site selection,ouro_1_4b_base,VB,scope,not run (scope),never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours
+D,site selection,ouro_1_4b_base,D1,scope,not run (scope),same
+D,site selection,ouro_1_4b_base,D2,scope,not run (scope),same
+D,site selection,ouro_1_4b_base,D4,scope,not run (scope),same
+D,site selection,ouro_1_4b_base,VBD,scope,not run (scope),same
+D,site selection,ouro_2_6b_base,VB,scope,not run (scope),never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours
+D,site selection,ouro_2_6b_base,D1,scope,not run (scope),same
+D,site selection,ouro_2_6b_base,D2,scope,not run (scope),same
+D,site selection,ouro_2_6b_base,D4,scope,not run (scope),same
+D,site selection,ouro_2_6b_base,VBD,scope,not run (scope),same
+D,site selection,ouro_1_4b_think,VB,scope,not run (scope),never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours
+D,site selection,ouro_1_4b_think,D1,scope,not run (scope),same
+D,site selection,ouro_1_4b_think,D2,scope,not run (scope),same
+D,site selection,ouro_1_4b_think,D4,scope,not run (scope),same
+D,site selection,ouro_1_4b_think,VBD,scope,not run (scope),same
+D,site selection,ouro_2_6b_think,VB,scope,not run (scope),never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours
+D,site selection,ouro_2_6b_think,D1,scope,not run (scope),same
+D,site selection,ouro_2_6b_think,D2,scope,not run (scope),same
+D,site selection,ouro_2_6b_think,D4,scope,not run (scope),same
+D,site selection,ouro_2_6b_think,VBD,scope,not run (scope),same
+D,site selection,ifm_p1_ouro,VB,scope,not run (scope),never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours
+D,site selection,ifm_p1_ouro,D1,scope,not run (scope),same
+D,site selection,ifm_p1_ouro,D2,scope,not run (scope),same
+D,site selection,ifm_p1_ouro,D4,scope,not run (scope),same
+D,site selection,ifm_p1_ouro,VBD,scope,not run (scope),same
+D,site selection,parcae_370m,VB,scope,not run (scope),never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours
+D,site selection,parcae_370m,D1,scope,not run (scope),same
+D,site selection,parcae_370m,D2,scope,not run (scope),same
+D,site selection,parcae_370m,D4,scope,not run (scope),same
+D,site selection,parcae_370m,VBD,scope,not run (scope),same
+D,site selection,parcae_1_3b,VB,scope,not run (scope),never beats the latest-site rule; a one-paragraph diagnostic; about 116 GPU-hours
+D,site selection,parcae_1_3b,D1,scope,not run (scope),same
+D,site selection,parcae_1_3b,D2,scope,not run (scope),same
+D,site selection,parcae_1_3b,D4,scope,not run (scope),same
+D,site selection,parcae_1_3b,VBD,scope,not run (scope),same
+D,math specificity readout,ouro_1_4b_base,VBD,scope,not run (scope),uninformative as built
+E,Huginn K16 and K8,huginn_0125,D2,scope,not run (scope),scope
+E,Huginn K16 and K8,huginn_0125,D4,scope,not run (scope),scope
+E,MoE screen,ouro_1_4b_base,D1,scope,not run (scope),scope
+E,edit-rank ablation,ouro_1_4b_base,D1,scope,not run (scope),scope
+C,branch-freeze,ifm_p1_ouro,D1,run,done,"n_planned 293, 22 result rows, max n_items 293"
+C,branch-freeze,ifm_p1_ouro,D2,run,done,"n_planned 263, 19 result rows, max n_items 263"
+C,branch-freeze,ifm_p1_ouro,D4,run,done,"n_planned 1248, 57 result rows, max n_items 1248"
+B,edit-site map,mcleish_llama32_r32,LRE,run,skip,"ability (the clean-pass scan kept 26 items, fewer than 40)"
+B,edit-site map,llama_nr,LRE,run,skip,"ability (the clean-pass scan kept 26 items, fewer than 40)"
+B,edit-site map,huginn_0125,LRE,run,done,"n_planned 41, 149 result rows, max n_items 41"
+B,edit-site map,ouro_1_4b_think,LRE,run,done,"n_planned 65, 66 result rows, max n_items 65"
+B,edit-site map,ouro_1_4b_base,LRE,skip,skip,time: no pilot script runs the facts edit-site map on this checkpoint (production ran facts on the base models; k17_public loads Ouro-1.4B-Thinking only)
+B,edit-site map,ouro_2_6b_base,LRE,skip,skip,time: no pilot script runs the facts edit-site map on this checkpoint (production ran facts on the base models; k17_public loads Ouro-1.4B-Thinking only)
+B,edit-site map,ouro_2_6b_think,LRE,skip,skip,time: no pilot script runs the facts edit-site map on this checkpoint (production ran facts on the base models; k17_public loads Ouro-1.4B-Thinking only)
+B,edit-site map,ifm_p1_ouro,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_p1_ouro_inj,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_p1_mid,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_p1_mid_inj,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_p2m_r5,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_p2m_diag,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_p2m_ortho,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_d28,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,ifm_d112,LRE,skip,skip,time: k15_full and k15_pairs build facts in code from the capital and city tables; an LRE switch is a code change
+B,edit-site map,parcae_370m,LRE,skip,skip,time: data_steer/lre holds no pairs on the Parcae tokenizer
+B,edit-site map,parcae_1_3b,LRE,skip,skip,time: data_steer/lre holds no pairs on the Parcae tokenizer
+A,generation placement,ouro_1_4b_base,ASDIV_gen,run,done,"n_planned 22748, 66 result rows, max n_items 1034"
+A,generation placement,ouro_1_4b_base,MAWPS_gen,run,done,"n_planned 43340, 66 result rows, max n_items 1970"
+A,generation placement,ouro_2_6b_base,ASDIV_gen,run,done,"n_planned 23320, 66 result rows, max n_items 1060"
+A,generation placement,ouro_2_6b_base,MAWPS_gen,run,done,"n_planned 44374, 66 result rows, max n_items 2017"
+A,generation placement,ouro_1_4b_think,ASDIV_gen,run,done,"n_planned 14146, 66 result rows, max n_items 643"
+A,generation placement,ouro_1_4b_think,MAWPS_gen,run,done,"n_planned 27676, 66 result rows, max n_items 1258"
+A,generation placement,ouro_2_6b_think,ASDIV_gen,skip,skip,time: steer_gen has no Ouro-2.6B-Thinking setting (same as GSM8K and SVAMP)
+A,generation placement,ouro_2_6b_think,MAWPS_gen,skip,skip,time: same
+A,generation placement,mcleish_llama32_r32,ASDIV_gen,skip,skip,"time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row is about 4 card-hours (ASDiv) to 7 (MAWPS) and a model-dataset cell about 100 to 170 card-hours, ten times the RA-23 estimate"
+A,generation placement,mcleish_llama32_r32,MAWPS_gen,skip,skip,time: same
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D1,skip,skip,time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,CF,skip,skip,time: same
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D2,skip,skip,time: same
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D4,skip,skip,time: same
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_2_6b_base,D1,skip,skip,time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_2_6b_base,CF,skip,skip,time: same
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_2_6b_base,D2,skip,skip,time: same
+B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_2_6b_base,D4,skip,skip,time: same

@@ -1,0 +1,288 @@
+{
+ "hook_identity": {
+  "ifm_p1_mid": {
+   "wrapped_no_edit": 0.0,
+   "zero_add_every_point": 0.0,
+   "false_mask_every_slot": 0.0,
+   "attn_recording_on": 0.0,
+   "attn_recompute_max_abs": 0.0,
+   "all_bit_identical": true
+  }
+ },
+ "knockout_placement": {
+  "ifm_p1_mid": {
+   "slot": 26,
+   "earlier_positions_identical_all_slots": true,
+   "last_identical_before_slot": true,
+   "last_changed_at_slot": true,
+   "last_to_source_mass_at_slot_max_head": 0.0,
+   "logit_change_max_abs": 0.125,
+   "ok": true
+  }
+ },
+ "injection_placement": {},
+ "injection_call_counts": {},
+ "items": {
+  "ifm_p1_mid": {
+   "D5": {
+    "n": 2,
+    "clusters": 2,
+    "by_rel": {
+     "T2": 2
+    },
+    "scanned": 593,
+    "D_lt_2": 0
+   }
+  }
+ },
+ "y2_protocols": {},
+ "y2_bK_equals_aK": {},
+ "y1_2x2": {},
+ "y1_controls": {},
+ "y1_positive_control": {},
+ "y3_undo": {
+  "ifm_p1_mid": {
+   "D5": {
+    "SE": {
+     "dA": [
+      -1.0625,
+      -2.5,
+      0.375,
+      2,
+      2
+     ],
+     "dB": [
+      1.1875,
+      0.0,
+      2.375,
+      2,
+      2
+     ],
+     "dm": [
+      2.25,
+      2.0,
+      2.5,
+      2,
+      2
+     ],
+     "flip": [
+      1.0,
+      1.0,
+      1.0,
+      2,
+      2
+     ],
+     "e": [
+      0.9706,
+      0.9412,
+      1.0,
+      2,
+      2
+     ]
+    },
+    "SE+R2": {
+     "dA": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "dB": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "dm": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "flip": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "e": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ]
+    },
+    "SE+R3": {
+     "dA": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "dB": [
+      0.0,
+      -0.125,
+      0.125,
+      2,
+      2
+     ],
+     "dm": [
+      0.0,
+      -0.125,
+      0.125,
+      2,
+      2
+     ],
+     "flip": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "e": [
+      -0.0044,
+      -0.0588,
+      0.05,
+      2,
+      2
+     ]
+    },
+    "restore_slots": [
+     19,
+     31,
+     43
+    ],
+    "e_by_rel": {
+     "SE": {
+      "T2": 0.9706
+     },
+     "SE+R2": {
+      "T2": 0.0
+     },
+     "SE+R3": {
+      "T2": -0.0044
+     }
+    }
+   }
+  }
+ },
+ "w2_window": {
+  "ifm_p1_mid": {
+   "D5": {
+    "n_items": 2,
+    "mattering_slots": [
+     81,
+     92
+    ],
+    "dependence_end": 92,
+    "max_single_dm": [
+     81,
+     [
+      0.3125,
+      0.25,
+      0.375,
+      2,
+      2
+     ]
+    ],
+    "suffix_dm": {
+     "28": [
+      1.0625,
+      0.75,
+      1.375,
+      2,
+      2
+     ],
+     "56": [
+      1.125,
+      0.75,
+      1.5,
+      2,
+      2
+     ],
+     "84": [
+      0.375,
+      0.375,
+      0.375,
+      2,
+      2
+     ],
+     "98": [
+      0.0625,
+      0.0,
+      0.125,
+      2,
+      2
+     ],
+     "104": [
+      -0.0625,
+      -0.125,
+      0.0,
+      2,
+      2
+     ]
+    },
+    "suffix_top1A": {
+     "28": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "56": [
+      0.0,
+      0.0,
+      0.0,
+      2,
+      2
+     ],
+     "84": [
+      0.5,
+      0.0,
+      1.0,
+      2,
+      2
+     ],
+     "98": [
+      1.0,
+      1.0,
+      1.0,
+      2,
+      2
+     ],
+     "104": [
+      1.0,
+      1.0,
+      1.0,
+      2,
+      2
+     ]
+    },
+    "mass_mean_peak_slot": 81,
+    "mass_mean_peak": 0.0884
+   }
+  }
+ },
+ "ci": "95% percentile bootstrap over entity clusters (D1: A-side subject (rel, a), plan amendment A1; D2: A problem), 1000 resamples, numpy default_rng(0); [mean, lo, hi, n_items, n_clusters]",
+ "e_rule": "e = dm / D only where D = m(clean B) - m(clean A) >= 2.0 logits",
+ "downloads": [],
+ "gpu_minutes": 2.41,
+ "processes": {
+  "proc_ifm_p1_mid_D5.json": {
+   "models": "ifm_p1_mid",
+   "seconds": 144.3,
+   "skipped": [],
+   "done": true,
+   "host": "cluster"
+  }
+ },
+ "d4_d5": "not run (no data at launch)"
+}

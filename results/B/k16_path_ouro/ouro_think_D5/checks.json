@@ -1,0 +1,19 @@
+{
+"hook_identity": {"ouro_think": {"gpu_all_ok": true, "cpu_check_all_ok": null, "norm_edit_placement": true, "lmid_edit_placement": true, "eager_mask_none_calls": 0}},
+"knockout_placement": {"ouro_think": {"ok": true, "knocked_probs_exactly_zero": true, "row_sum_max_abs_err": 0.00189, "allbut_finite": true}},
+"items": {"ouro_think": {"D5": 649}},
+"y1_2x2": {"ouro_think": {"D5": {"ans_O1": {"E0": [0.17, 0.14, 0.2], "rescue_src_all": [0.12, 0.08, 0.15], "flip_none": 0.02, "flip_src_all": 0.31}, "ans_para": {"E0": [0.88, 0.81, 0.96], "rescue_src_all": [-0.03, -0.1, 0.05], "flip_none": 0.06, "flip_src_all": 0.35}, "off_src_all_dm": [2.5, 2.27, 2.73]}}},
+"y1_controls": {"ouro_think": {"D5": {"ans_O1": {"rand": -0.0, "nonsrc": -0.07, "allbut": 0.01, "src_l2": 0.02, "src_lo": 0.02, "src_hi": 0.09}}}},
+"y1_positive_control": {"ouro_think": {"D5": {"src_O1_E0": [7.39, 7.19, 7.6], "src_O1_E1_src_all": [2.36, 2.16, 2.54], "src_O1_E1_allbut": 0.0}}},
+"y3_undo": {"ouro_think": {"D5": {"src_O1_e": 0.96, "undo2_e": [0.18, 0.17, 0.19], "undo3_e": [0.76, 0.75, 0.78], "undo2_flip": 0.12}}},
+"width_control": {"ouro_think": {}},
+"y4_lin_vs_actual": {"ouro_think": {}},
+"w2_window": {"ouro_think": {"D5": {"summed_dm_by_loop": [0.12, 0.29, 0.8, 0.35], "max_call_by_loop": [[15, 0.01], [13, 0.07], [14, 0.35], [14, 0.13]], "mean_mass_src_by_loop": [0.02, 0.02, 0.02, 0.02]}}},
+"t3_per_loop": {},
+"gpu_minutes": 174.93,
+"gpu_minutes_including_debug_runs": 174.93,
+"eager_vs_sdpa_gap": {"ouro_think": 0.25},
+"e_excluded_small_gap": {"ouro_think": {"D5": 7}},
+"datasets_missing": {"D4": "no B-K16-DATA report or files when the run was launched"},
+"downloads": "none from the hub. Ouro-1.4B and Ouro-2.6B from the HF cache (pinned revisions); Ouro-1.4B-Thinking snapshot 3aaa2224 from the folder given by --model_dir"
+}

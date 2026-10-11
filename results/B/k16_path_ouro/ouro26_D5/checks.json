@@ -1,0 +1,19 @@
+{
+"hook_identity": {"ouro26": {"gpu_all_ok": true, "cpu_check_all_ok": null, "norm_edit_placement": true, "lmid_edit_placement": true, "eager_mask_none_calls": 0}},
+"knockout_placement": {"ouro26": {"ok": true, "knocked_probs_exactly_zero": true, "row_sum_max_abs_err": 0.00195, "allbut_finite": true}},
+"items": {"ouro26": {"D5": 534}},
+"y1_2x2": {"ouro26": {"D5": {"ans_O1": {"E0": [0.09, 0.06, 0.11], "rescue_src_all": [0.04, 0.01, 0.06], "flip_none": 0.01, "flip_src_all": 0.31}, "ans_para": {"E0": [0.62, 0.55, 0.69], "rescue_src_all": [-0.01, -0.06, 0.05], "flip_none": 0.03, "flip_src_all": 0.33}, "off_src_all_dm": [2.99, 2.72, 3.28]}}},
+"y1_controls": {"ouro26": {"D5": {"ans_O1": {"rand": -0.0, "nonsrc": 0.02, "allbut": -0.01, "src_l2": -0.01, "src_lo": 0.03, "src_hi": 0.0}}}},
+"y1_positive_control": {"ouro26": {"D5": {"src_O1_E0": [8.87, 8.62, 9.09], "src_O1_E1_src_all": [2.95, 2.66, 3.24], "src_O1_E1_allbut": 0.0}}},
+"y3_undo": {"ouro26": {"D5": {"src_O1_e": 0.98, "undo2_e": [0.1, 0.09, 0.11], "undo3_e": [0.51, 0.48, 0.53], "undo2_flip": 0.06}}},
+"width_control": {"ouro26": {"D5": {"ans_O1": 0.1, "ans_top1": 0.03, "src_O1": 0.97, "src_top1": 0.72, "src_top10": 0.97}}},
+"y4_lin_vs_actual": {"ouro26": {"D5": {"ans_O1": {"lin_loop1": 0.05, "actual": 0.09, "spearman_by_loop": [0.81, 0.86, 0.88, 0.91]}, "src_O1": {"lin_loop1": 0.26, "actual": 8.87, "spearman_by_loop": [-0.14, -0.02, -0.12, 1.0]}}}},
+"w2_window": {"ouro26": {"D5": {"summed_dm_by_loop": [0.05, 0.29, 0.55, 0.96], "max_call_by_loop": [[16, 0.02], [14, 0.06], [14, 0.25], [14, 0.3]], "mean_mass_src_by_loop": [0.01, 0.01, 0.01, 0.01]}}},
+"t3_per_loop": {},
+"gpu_minutes": 133.47,
+"gpu_minutes_including_debug_runs": 133.47,
+"eager_vs_sdpa_gap": {"ouro26": 0.25},
+"e_excluded_small_gap": {"ouro26": {"D5": 1}},
+"datasets_missing": {"D4": "no B-K16-DATA report or files when the run was launched"},
+"downloads": "none from the hub. Ouro-1.4B and Ouro-2.6B from the HF cache (pinned revisions); Ouro-1.4B-Thinking snapshot 3aaa2224 from the folder given by --model_dir"
+}

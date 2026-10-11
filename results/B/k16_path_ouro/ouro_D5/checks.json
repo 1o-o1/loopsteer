@@ -1,0 +1,19 @@
+{
+"hook_identity": {"ouro": {"gpu_all_ok": true, "cpu_check_all_ok": null, "norm_edit_placement": true, "lmid_edit_placement": true, "eager_mask_none_calls": 0}},
+"knockout_placement": {"ouro": {"ok": true, "knocked_probs_exactly_zero": true, "row_sum_max_abs_err": 0.00208, "allbut_finite": true}},
+"items": {"ouro": {"D5": 397}},
+"y1_2x2": {"ouro": {"D5": {"ans_O1": {"E0": [0.11, 0.09, 0.13], "rescue_src_all": [0.05, 0.02, 0.07], "flip_none": 0.03, "flip_src_all": 0.36}, "ans_para": {"E0": [0.43, 0.39, 0.48], "rescue_src_all": [0.0, -0.04, 0.05], "flip_none": 0.07, "flip_src_all": 0.38}, "off_src_all_dm": [2.38, 2.13, 2.62]}}},
+"y1_controls": {"ouro": {"D5": {"ans_O1": {"rand": -0.02, "nonsrc": -0.19, "allbut": -0.08, "src_l2": 0.02, "src_lo": 0.01, "src_hi": 0.05}}}},
+"y1_positive_control": {"ouro": {"D5": {"src_O1_E0": [6.94, 6.67, 7.16], "src_O1_E1_src_all": [2.23, 2.06, 2.41], "src_O1_E1_allbut": 0.0}}},
+"y3_undo": {"ouro": {"D5": {"src_O1_e": 0.96, "undo2_e": [0.13, 0.12, 0.15], "undo3_e": [0.64, 0.61, 0.65], "undo2_flip": 0.11}}},
+"width_control": {"ouro": {"D5": {"ans_O1": 0.14, "ans_top1": 0.31, "src_O1": 0.98, "src_top1": 0.92, "src_top10": 0.98}}},
+"y4_lin_vs_actual": {"ouro": {"D5": {"ans_O1": {"lin_loop1": 0.02, "actual": 0.11, "spearman_by_loop": [0.67, 0.83, 0.85, 0.91]}, "src_O1": {"lin_loop1": 0.24, "actual": 6.94, "spearman_by_loop": [-0.11, -0.03, 0.0, 1.0]}}}},
+"w2_window": {"ouro": {"D5": {"summed_dm_by_loop": [0.07, 0.22, 0.71, 0.46], "max_call_by_loop": [[20, 0.01], [14, 0.07], [14, 0.34], [14, 0.2]], "mean_mass_src_by_loop": [0.02, 0.02, 0.02, 0.02]}}},
+"t3_per_loop": {},
+"gpu_minutes": 110.4,
+"gpu_minutes_including_debug_runs": 110.4,
+"eager_vs_sdpa_gap": {"ouro": 0.15625},
+"e_excluded_small_gap": {"ouro": {"D5": 1}},
+"datasets_missing": {"D4": "no B-K16-DATA report or files when the run was launched"},
+"downloads": "none from the hub. Ouro-1.4B and Ouro-2.6B from the HF cache (pinned revisions); Ouro-1.4B-Thinking snapshot 3aaa2224 from the folder given by --model_dir"
+}

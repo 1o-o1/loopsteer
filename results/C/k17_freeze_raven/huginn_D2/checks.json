@@ -1,0 +1,28 @@
+{
+ "model": "huginn_0125",
+ "zero_edit_bit_identical": true,
+ "freeze_no_edit_bit_identical": true,
+ "source_attn_frozen_e_zero_bit_exact": true,
+ "source_edit_reaches_r_all": true,
+ "pc_exact_all": true,
+ "sz_exact_all": true,
+ "ans_loop1_state_is_donor_all": true,
+ "readout_identity_all": true,
+ "freeze_rows_loopK_readout_equals_final_n": {
+  "ans_frz_mlp": 0,
+  "ans_frz_attn": 0
+ },
+ "n_items_all": 242,
+ "n_items_facts": null,
+ "n_clusters_facts": null,
+ "n_items_addition": 242,
+ "n_clusters_addition": 74,
+ "verdict_facts": null,
+ "verdict_addition": "R1 supported",
+ "e_attn_facts_lower_bound_ge_0.5": null,
+ "e_attn_facts_upper_bound_le_0.15": null,
+ "e_mlp_facts_upper_bound_le_0.15": null,
+ "gpu_minutes": 27.47,
+ "outputs_hashed": true,
+ "plan_sha256": "ee8c583f5a9652485f2508f5ac15b14266387b168d63726864f9849aba5e936e"
+}

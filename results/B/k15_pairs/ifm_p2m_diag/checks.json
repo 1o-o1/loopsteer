@@ -1,0 +1,277 @@
+{
+ "model_facts": {
+  "ifm_p2m_diag": {
+   "checkpoint": "LoopedLM-P2-huginn-m-fixed-pln5",
+   "class": "DepthControlledHuginn",
+   "loops": 5,
+   "prelude_layers": [
+    0
+   ],
+   "recurrent_layers": [
+    1,
+    2
+   ],
+   "coda_layers": [
+    3
+   ],
+   "state_init": "normal",
+   "init_used": "identity_recurrent_state(example id 0 for every row, seed 42)",
+   "injection": "InputInjection",
+   "sampling_scheme": "poisson-lognormal-capped",
+   "backprop_depth": 10,
+   "source": "ckpt/LoopedLM-P2-huginn-m-fixed-pln5/config.json; xllm-loop/xllm/models/looped.py (Huginn 390-595, DepthControlledHuginn 598-764, InputInjection 69-139, OrthogonalInputInjection 162-179)"
+  }
+ },
+ "injection_decay": {
+  "ifm_p2m_diag": {
+   "input_injection": {
+    "q25": 0.33956,
+    "median": 0.35025,
+    "q75": 0.36408,
+    "min": 0.20253,
+    "max": 0.70533
+   }
+  }
+ },
+ "pairs_per_model": {
+  "ifm_p2m_diag": {
+   "D1": 118
+  }
+ },
+ "d1_clean_pass_scan": {
+  "ifm_p2m_diag": {
+   "pass": 217,
+   "n": 280
+  }
+ },
+ "main_dataset": {
+  "ifm_p2m_diag": "D1"
+ },
+ "coda_readout_used": {
+  "ifm_p2m_diag": {
+   "final_point": [
+    6,
+    3
+   ],
+   "final_is_coda": true,
+   "coda_layers": 1,
+   "readout_vs_runner_fwd_max_abs": 0.0,
+   "native_forward_vs_runner_max_abs": 0.0625,
+   "native_top1_equals_runner": true,
+   "S_O2_a1_LlastK_effect": [
+    0.855,
+    0.838,
+    0.872
+   ],
+   "coda_readout_used": true
+  }
+ },
+ "o5_effect_per_model": {
+  "ifm_p2m_diag": [
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "o5_last_effect_per_model": {
+  "ifm_p2m_diag": [
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "S_effect_by_loop": {
+  "ifm_p2m_diag": {
+   "D1": {
+    "L0@1": {
+     "O2_a1_effect": [
+      0.016,
+      0.012,
+      0.02
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      -0.001,
+      -0.002,
+      0.001
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "Llast@1": {
+     "O2_a1_effect": [
+      0.015,
+      0.012,
+      0.019
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      -0.0,
+      -0.002,
+      0.001
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "L0@2": {
+     "O2_a1_effect": [
+      0.059,
+      0.052,
+      0.066
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      0.004,
+      0.001,
+      0.006
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "Llast@2": {
+     "O2_a1_effect": [
+      0.056,
+      0.05,
+      0.063
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      0.002,
+      0.0,
+      0.004
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "L0@5": {
+     "O2_a1_effect": [
+      0.885,
+      0.87,
+      0.901
+     ],
+     "O2_a1_flip": [
+      0.983,
+      0.958,
+      1.0
+     ],
+     "O4_a1_effect": [
+      0.024,
+      0.018,
+      0.03
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "Llast@5": {
+     "O2_a1_effect": [
+      0.855,
+      0.838,
+      0.872
+     ],
+     "O2_a1_flip": [
+      0.966,
+      0.932,
+      0.992
+     ],
+     "O4_a1_effect": [
+      0.022,
+      0.014,
+      0.029
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   }
+  }
+ },
+ "C_mid_fraction": {
+  "ifm_p2m_diag": {
+   "D1|Llast@1": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "D1|L0@5": [
+    1.0,
+    1.0,
+    1.0
+   ]
+  }
+ },
+ "C_bimodality": {
+  "ifm_p2m_diag": {
+   "D1|Llast@1": [
+    0.4,
+    0.289,
+    0.547
+   ],
+   "D1|L0@5": [
+    0.307,
+    0.239,
+    0.476
+   ]
+  }
+ },
+ "C_mean_effect_a05": {
+  "ifm_p2m_diag": {
+   "D1|Llast@1": [
+    0.005,
+    0.003,
+    0.006
+   ],
+   "D1|L0@5": [
+    0.44,
+    0.428,
+    0.452
+   ]
+  }
+ },
+ "rows_rerun_batch1": {
+  "ifm_p2m_diag": {
+   "D1": "1382/6608"
+  }
+ },
+ "clean_batch_vs_single_max_logit_gap": {
+  "ifm_p2m_diag": {
+   "D1": 0.266
+  }
+ },
+ "ci": "95% percentile bootstrap over items, 1000 resamples, numpy seed 0; values [point, lo, hi]",
+ "downloads": [],
+ "gpu_minutes": 0.97,
+ "models_skipped": []
+}

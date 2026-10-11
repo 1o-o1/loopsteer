@@ -1,0 +1,296 @@
+{
+ "hook_identity": {
+  "ifm_p1_mid": {
+   "wrapped_no_edit": 0.0,
+   "zero_add_every_point": 0.0,
+   "false_mask_every_slot": 0.0,
+   "attn_recording_on": 0.0,
+   "attn_recompute_max_abs": 0.0,
+   "all_bit_identical": true
+  }
+ },
+ "knockout_placement": {
+  "ifm_p1_mid": {
+   "slot": 26,
+   "earlier_positions_identical_all_slots": true,
+   "last_identical_before_slot": true,
+   "last_changed_at_slot": true,
+   "last_to_source_mass_at_slot_max_head": 0.0,
+   "logit_change_max_abs": 0.125,
+   "ok": true
+  }
+ },
+ "injection_placement": {},
+ "injection_call_counts": {},
+ "items": {
+  "ifm_p1_mid": {
+   "D2": {
+    "n": 585,
+    "clusters": 552,
+    "by_rel": {
+     "op1": 292,
+     "op2": 293
+    },
+    "scanned": 585,
+    "D_lt_2": 0
+   }
+  }
+ },
+ "y2_protocols": {},
+ "y2_bK_equals_aK": {},
+ "y1_2x2": {},
+ "y1_controls": {},
+ "y1_positive_control": {},
+ "y3_undo": {
+  "ifm_p1_mid": {
+   "D2": {
+    "SE": {
+     "dA": [
+      -8.1566,
+      -8.3836,
+      -7.928,
+      585,
+      552
+     ],
+     "dB": [
+      8.0498,
+      7.8209,
+      8.253,
+      585,
+      552
+     ],
+     "dm": [
+      16.2064,
+      15.8363,
+      16.5512,
+      585,
+      552
+     ],
+     "flip": [
+      0.9966,
+      0.9914,
+      1.0,
+      585,
+      552
+     ],
+     "e": [
+      0.9942,
+      0.9918,
+      0.996,
+      585,
+      552
+     ]
+    },
+    "SE+R2": {
+     "dA": [
+      -0.0321,
+      -0.0459,
+      -0.0185,
+      585,
+      552
+     ],
+     "dB": [
+      0.0313,
+      0.0186,
+      0.0452,
+      585,
+      552
+     ],
+     "dm": [
+      0.0634,
+      0.0468,
+      0.0788,
+      585,
+      552
+     ],
+     "flip": [
+      0.0,
+      0.0,
+      0.0,
+      585,
+      552
+     ],
+     "e": [
+      0.004,
+      0.0028,
+      0.0051,
+      585,
+      552
+     ]
+    },
+    "SE+R3": {
+     "dA": [
+      -0.0474,
+      -0.0692,
+      -0.0254,
+      585,
+      552
+     ],
+     "dB": [
+      0.116,
+      0.0915,
+      0.1402,
+      585,
+      552
+     ],
+     "dm": [
+      0.1635,
+      0.1375,
+      0.1877,
+      585,
+      552
+     ],
+     "flip": [
+      0.0,
+      0.0,
+      0.0,
+      585,
+      552
+     ],
+     "e": [
+      0.0101,
+      0.0085,
+      0.0117,
+      585,
+      552
+     ]
+    },
+    "restore_slots": [
+     19,
+     31,
+     43
+    ],
+    "e_by_rel": {
+     "SE": {
+      "op1": 0.9896,
+      "op2": 0.9987
+     },
+     "SE+R2": {
+      "op1": 0.0042,
+      "op2": 0.0037
+     },
+     "SE+R3": {
+      "op1": 0.0118,
+      "op2": 0.0084
+     }
+    }
+   }
+  }
+ },
+ "w2_window": {
+  "ifm_p1_mid": {
+   "D2": {
+    "n_items": 40,
+    "mattering_slots": [
+     80,
+     81,
+     87,
+     92,
+     93,
+     104
+    ],
+    "dependence_end": 104,
+    "max_single_dm": [
+     93,
+     [
+      0.4031,
+      0.2156,
+      0.6141,
+      40,
+      40
+     ]
+    ],
+    "suffix_dm": {
+     "28": [
+      7.4219,
+      6.3233,
+      8.4751,
+      40,
+      40
+     ],
+     "56": [
+      7.1531,
+      6.075,
+      8.1644,
+      40,
+      40
+     ],
+     "84": [
+      2.75,
+      2.0605,
+      3.6095,
+      40,
+      40
+     ],
+     "98": [
+      0.2313,
+      0.1406,
+      0.3391,
+      40,
+      40
+     ],
+     "104": [
+      0.1406,
+      0.0891,
+      0.1938,
+      40,
+      40
+     ]
+    },
+    "suffix_top1A": {
+     "28": [
+      0.05,
+      0.0,
+      0.125,
+      40,
+      40
+     ],
+     "56": [
+      0.05,
+      0.0,
+      0.125,
+      40,
+      40
+     ],
+     "84": [
+      0.625,
+      0.475,
+      0.775,
+      40,
+      40
+     ],
+     "98": [
+      1.0,
+      1.0,
+      1.0,
+      40,
+      40
+     ],
+     "104": [
+      1.0,
+      1.0,
+      1.0,
+      40,
+      40
+     ]
+    },
+    "mass_mean_peak_slot": 69,
+    "mass_mean_peak": 0.115
+   }
+  }
+ },
+ "ci": "95% percentile bootstrap over entity clusters (D1: A-side subject (rel, a), plan amendment A1; D2: A problem), 1000 resamples, numpy default_rng(0); [mean, lo, hi, n_items, n_clusters]",
+ "e_rule": "e = dm / D only where D = m(clean B) - m(clean A) >= 2.0 logits",
+ "downloads": [],
+ "gpu_minutes": 22.68,
+ "processes": {
+  "proc_ifm_p1_mid_D2.json": {
+   "models": "ifm_p1_mid",
+   "seconds": 1360.6,
+   "skipped": [],
+   "done": true,
+   "host": "cluster"
+  }
+ },
+ "d4_d5": "not run (no data at launch)"
+}

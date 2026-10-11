@@ -1,0 +1,28 @@
+{
+ "model": "mcleish_llama32_r32",
+ "zero_edit_bit_identical": true,
+ "freeze_no_edit_bit_identical": true,
+ "source_attn_frozen_e_zero_bit_exact": true,
+ "source_edit_reaches_r_all": true,
+ "pc_exact_all": true,
+ "sz_exact_all": true,
+ "ans_loop1_state_is_donor_all": true,
+ "readout_identity_all": true,
+ "freeze_rows_loopK_readout_equals_final_n": {
+  "ans_frz_mlp": 0,
+  "ans_frz_attn": 0
+ },
+ "n_items_all": 321,
+ "n_items_facts": 321,
+ "n_clusters_facts": 66,
+ "n_items_addition": null,
+ "n_clusters_addition": null,
+ "verdict_facts": "R1 supported",
+ "verdict_addition": null,
+ "e_attn_facts_lower_bound_ge_0.5": false,
+ "e_attn_facts_upper_bound_le_0.15": true,
+ "e_mlp_facts_upper_bound_le_0.15": true,
+ "gpu_minutes": 21.49,
+ "outputs_hashed": true,
+ "plan_sha256": "ee8c583f5a9652485f2508f5ac15b14266387b168d63726864f9849aba5e936e"
+}

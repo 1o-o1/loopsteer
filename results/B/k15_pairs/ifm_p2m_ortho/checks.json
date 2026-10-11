@@ -1,0 +1,277 @@
+{
+ "model_facts": {
+  "ifm_p2m_ortho": {
+   "checkpoint": "LoopedLM-P2-huginn-m-orthoinj",
+   "class": "DepthControlledHuginn",
+   "loops": 5,
+   "prelude_layers": [
+    0
+   ],
+   "recurrent_layers": [
+    1,
+    2
+   ],
+   "coda_layers": [
+    3
+   ],
+   "state_init": "normal",
+   "init_used": "identity_recurrent_state(example id 0 for every row, seed 42)",
+   "injection": "OrthogonalInputInjection",
+   "sampling_scheme": "poisson-lognormal-capped",
+   "backprop_depth": 10,
+   "source": "ckpt/LoopedLM-P2-huginn-m-orthoinj/config.json; xllm-loop/xllm/models/looped.py (Huginn 390-595, DepthControlledHuginn 598-764, InputInjection 69-139, OrthogonalInputInjection 162-179)"
+  }
+ },
+ "injection_decay": {
+  "ifm_p2m_ortho": {
+   "input_injection": {
+    "q25": 0.33392,
+    "median": 0.34584,
+    "q75": 0.36152,
+    "min": 0.29456,
+    "max": 0.7813
+   }
+  }
+ },
+ "pairs_per_model": {
+  "ifm_p2m_ortho": {
+   "D1": 111
+  }
+ },
+ "d1_clean_pass_scan": {
+  "ifm_p2m_ortho": {
+   "pass": 199,
+   "n": 280
+  }
+ },
+ "main_dataset": {
+  "ifm_p2m_ortho": "D1"
+ },
+ "coda_readout_used": {
+  "ifm_p2m_ortho": {
+   "final_point": [
+    6,
+    3
+   ],
+   "final_is_coda": true,
+   "coda_layers": 1,
+   "readout_vs_runner_fwd_max_abs": 0.0,
+   "native_forward_vs_runner_max_abs": 0.0625,
+   "native_top1_equals_runner": true,
+   "S_O2_a1_LlastK_effect": [
+    0.877,
+    0.862,
+    0.892
+   ],
+   "coda_readout_used": true
+  }
+ },
+ "o5_effect_per_model": {
+  "ifm_p2m_ortho": [
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "o5_last_effect_per_model": {
+  "ifm_p2m_ortho": [
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "S_effect_by_loop": {
+  "ifm_p2m_ortho": {
+   "D1": {
+    "L0@1": {
+     "O2_a1_effect": [
+      0.045,
+      0.038,
+      0.053
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      0.0,
+      -0.001,
+      0.002
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "Llast@1": {
+     "O2_a1_effect": [
+      0.045,
+      0.038,
+      0.052
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      0.002,
+      0.001,
+      0.004
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "L0@2": {
+     "O2_a1_effect": [
+      0.087,
+      0.077,
+      0.098
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      0.003,
+      0.002,
+      0.005
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "Llast@2": {
+     "O2_a1_effect": [
+      0.085,
+      0.076,
+      0.095
+     ],
+     "O2_a1_flip": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "O4_a1_effect": [
+      0.003,
+      0.001,
+      0.005
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "L0@5": {
+     "O2_a1_effect": [
+      0.888,
+      0.874,
+      0.903
+     ],
+     "O2_a1_flip": [
+      0.955,
+      0.919,
+      0.991
+     ],
+     "O4_a1_effect": [
+      0.035,
+      0.027,
+      0.045
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "Llast@5": {
+     "O2_a1_effect": [
+      0.877,
+      0.862,
+      0.892
+     ],
+     "O2_a1_flip": [
+      0.955,
+      0.919,
+      0.991
+     ],
+     "O4_a1_effect": [
+      0.017,
+      0.009,
+      0.025
+     ],
+     "O4_a2_flip": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   }
+  }
+ },
+ "C_mid_fraction": {
+  "ifm_p2m_ortho": {
+   "D1|Llast@1": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "D1|L0@5": [
+    0.991,
+    0.973,
+    1.0
+   ]
+  }
+ },
+ "C_bimodality": {
+  "ifm_p2m_ortho": {
+   "D1|Llast@1": [
+    0.32,
+    0.257,
+    0.475
+   ],
+   "D1|L0@5": [
+    0.214,
+    0.178,
+    0.375
+   ]
+  }
+ },
+ "C_mean_effect_a05": {
+  "ifm_p2m_ortho": {
+   "D1|Llast@1": [
+    0.014,
+    0.011,
+    0.017
+   ],
+   "D1|L0@5": [
+    0.458,
+    0.444,
+    0.471
+   ]
+  }
+ },
+ "rows_rerun_batch1": {
+  "ifm_p2m_ortho": {
+   "D1": "2022/6216"
+  }
+ },
+ "clean_batch_vs_single_max_logit_gap": {
+  "ifm_p2m_ortho": {
+   "D1": 0.391
+  }
+ },
+ "ci": "95% percentile bootstrap over items, 1000 resamples, numpy seed 0; values [point, lo, hi]",
+ "downloads": [],
+ "gpu_minutes": 1.16,
+ "models_skipped": []
+}

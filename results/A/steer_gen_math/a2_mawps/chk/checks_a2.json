@@ -1,0 +1,207 @@
+{
+ "env": {
+  "file_md5": {
+   "modeling_ouro.py": "5a0c375566aef57873de94ee32bfa265"
+  },
+  "gpu": "NVIDIA PG506-230",
+  "python": "3.11.16",
+  "steer_gen": "k17gen-1",
+  "steer_gen_sha256": "ae2321128e689daf224735459f08d0d47917af27b51c9e7f92971a38be1251a5",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.56.2"
+ },
+ "gate_cache_equiv": {
+  "clean_gap": 1.6953,
+  "clean_gap_top5": 0.625,
+  "g3_items": 3,
+  "kinds": {
+   "clean": {
+    "argmax_agree": 96,
+    "disagree_at_margin_ge_1": 0,
+    "max_abs_dmargin_top2": 0.3125,
+    "max_abs_dz": 1.6953,
+    "max_abs_dz_top5": 0.625,
+    "n": 96,
+    "pass": true,
+    "pass_argmax": true,
+    "pass_full_vocab_dz": true,
+    "pass_ties_only": true,
+    "pass_top5_dz": true
+   },
+   "kv@1": {
+    "argmax_agree": 96,
+    "disagree_at_margin_ge_1": 0,
+    "max_abs_dmargin_top2": 0.3125,
+    "max_abs_dz": 0.4336,
+    "max_abs_dz_top5": 0.3125,
+    "n": 96,
+    "pass": true,
+    "pass_argmax": true,
+    "pass_full_vocab_dz": true,
+    "pass_ties_only": true,
+    "pass_top5_dz": true
+   },
+   "lcdh@2": {
+    "argmax_agree": 96,
+    "disagree_at_margin_ge_1": 0,
+    "max_abs_dmargin_top2": 0.5,
+    "max_abs_dz": 0.5312,
+    "max_abs_dz_top5": 0.5,
+    "n": 96,
+    "pass": true,
+    "pass_argmax": true,
+    "pass_full_vocab_dz": true,
+    "pass_ties_only": true,
+    "pass_top5_dz": true
+   },
+   "lcdh@K": {
+    "argmax_agree": 96,
+    "disagree_at_margin_ge_1": 0,
+    "max_abs_dmargin_top2": 0.375,
+    "max_abs_dz": 0.625,
+    "max_abs_dz_top5": 0.2812,
+    "n": 96,
+    "pass": true,
+    "pass_argmax": true,
+    "pass_full_vocab_dz": true,
+    "pass_ties_only": true,
+    "pass_top5_dz": true
+   },
+   "lcdl": {
+    "argmax_agree": 96,
+    "disagree_at_margin_ge_1": 0,
+    "max_abs_dmargin_top2": 0.2121,
+    "max_abs_dz": 0.555,
+    "max_abs_dz_top5": 0.2566,
+    "n": 96,
+    "pass": true,
+    "pass_argmax": true,
+    "pass_full_vocab_dz": true,
+    "pass_ties_only": true,
+    "pass_top5_dz": true
+   },
+   "post@1": {
+    "argmax_agree": 96,
+    "disagree_at_margin_ge_1": 0,
+    "max_abs_dmargin_top2": 0.3125,
+    "max_abs_dz": 1.0156,
+    "max_abs_dz_top5": 0.5,
+    "n": 96,
+    "pass": true,
+    "pass_argmax": true,
+    "pass_full_vocab_dz": true,
+    "pass_ties_only": true,
+    "pass_top5_dz": true
+   },
+   "rand_pre@2": {
+    "argmax_agree": 95,
+    "disagree_at_margin_ge_1": 0,
+    "max_abs_dmargin_top2": 0.3125,
+    "max_abs_dz": 0.5039,
+    "max_abs_dz_top5": 0.375,
+    "n": 96,
+    "pass": true,
+    "pass_argmax": true,
+    "pass_full_vocab_dz": true,
+    "pass_ties_only": true,
+    "pass_top5_dz": true
+   }
+  },
+  "pass": true,
+  "pass_strict": true,
+  "rule": "argmax >= n - n/32 and every argmax disagreement at a recompute margin < 1 logit (Deviation D5); top-5 (D3) and full-vocabulary |dz| rules reported as pass_top5_dz and pass_full_vocab_dz"
+ },
+ "gate_identities": {
+  "PC2": {
+   "argmax_agree": 1.0,
+   "max_abs_dz": 0.0,
+   "pass": true
+  },
+  "PCK": {
+   "max_abs_z_minus_z1": 0.0,
+   "pass": true
+  },
+  "PCL": {
+   "max_abs_z_minus_z1": 0.0,
+   "pass": true
+  },
+  "pass": true
+ },
+ "gate_placement": {
+  "cases": {
+   "emb@1": {
+    "expected": 0,
+    "first_changed_entry": 0,
+    "pass": true,
+    "violations": []
+   },
+   "kv@1": {
+    "expected": 0,
+    "first_changed_entry": 0,
+    "pass": true,
+    "violations": []
+   },
+   "lcdh@2": {
+    "expected": 96,
+    "first_changed_entry": 96,
+    "pass": true,
+    "violations": []
+   },
+   "lcdh@3": {
+    "expected": 144,
+    "first_changed_entry": 144,
+    "pass": true,
+    "violations": []
+   },
+   "lcdh@K": {
+    "expected": null,
+    "first_changed_entry": null,
+    "pass": true,
+    "violations": []
+   },
+   "post@1": {
+    "expected": 48,
+    "first_changed_entry": 48,
+    "pass": true,
+    "violations": []
+   },
+   "post@3": {
+    "expected": 144,
+    "first_changed_entry": 144,
+    "pass": true,
+    "violations": []
+   },
+   "post@K": {
+    "expected": null,
+    "first_changed_entry": null,
+    "pass": true,
+    "violations": []
+   }
+  },
+  "pass": true,
+  "site_tokens_equal": false
+ },
+ "gate_zero_edit": {
+  "hook_kinds": [
+   "emb",
+   "post",
+   "kv",
+   "pre(lcdh)",
+   "pre(rand)",
+   "lcdl"
+  ],
+  "inert_hooks_bit_identical": true,
+  "inert_hooks_tokens_identical": true,
+  "live_rows_moved_max_abs_logit": 5.6866,
+  "pass": true,
+  "prefill_bit_identical": true,
+  "tokens_identical_32_steps": true
+ },
+ "items": [
+  493,
+  1825,
+  509,
+  1948
+ ],
+ "seconds": 174.8
+}
