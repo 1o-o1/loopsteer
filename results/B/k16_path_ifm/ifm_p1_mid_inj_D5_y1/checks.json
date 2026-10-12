@@ -1,0 +1,612 @@
+{
+ "hook_identity": {
+  "ifm_p1_mid_inj": {
+   "wrapped_no_edit": 0.0,
+   "zero_add_every_point": 0.0,
+   "false_mask_every_slot": 0.0,
+   "attn_recording_on": 0.0,
+   "attn_recompute_max_abs": 0.0,
+   "all_bit_identical": true
+  }
+ },
+ "knockout_placement": {
+  "ifm_p1_mid_inj": {
+   "slot": 26,
+   "earlier_positions_identical_all_slots": true,
+   "last_identical_before_slot": true,
+   "last_changed_at_slot": true,
+   "last_to_source_mass_at_slot_max_head": 0.0,
+   "logit_change_max_abs": 0.125,
+   "ok": true
+  }
+ },
+ "injection_placement": {
+  "ifm_p1_mid_inj": {
+   "call": 2,
+   "post_edit": {
+    "before_call_slots_identical": true,
+    "post_nonsource_identical": true,
+    "post_source_equals_donor": true,
+    "pre_identical": true
+   },
+   "arg_edit": {
+    "pre_identical": true,
+    "arg_nonsource_identical": true,
+    "arg_source_changed": true,
+    "post_nonsource_identical": true,
+    "post_source_changed": true,
+    "before_call_slots_identical": true
+   },
+   "ok": true
+  }
+ },
+ "injection_call_counts": {
+  "ifm_p1_mid_inj": {
+   "K": 8,
+   "calls_per_forward_hist": {
+    "8": 1373
+   }
+  }
+ },
+ "items": {
+  "ifm_p1_mid_inj": {
+   "D5": {
+    "n": 47,
+    "clusters": 47,
+    "by_rel": {
+     "T2": 47
+    },
+    "scanned": 531,
+    "D_lt_2": 6
+   }
+  }
+ },
+ "y2_protocols": {},
+ "y2_bK_equals_aK": {},
+ "y1_2x2": {
+  "ifm_p1_mid_inj": {
+   "D5": {
+    "O1": {
+     "edit": {
+      "dA": [
+       0.0,
+       -0.0266,
+       0.0267,
+       47,
+       47
+      ],
+      "dB": [
+       -0.016,
+       -0.0386,
+       0.008,
+       47,
+       47
+      ],
+      "dm": [
+       -0.016,
+       -0.0439,
+       0.0106,
+       47,
+       47
+      ],
+      "flip": [
+       0.0,
+       0.0,
+       0.0,
+       47,
+       47
+      ],
+      "e": [
+       -0.0026,
+       -0.0075,
+       0.0018,
+       41,
+       41
+      ]
+     },
+     "KO_SRC": {
+      "dA": [
+       -0.9122,
+       -1.1278,
+       -0.6914,
+       47,
+       47
+      ],
+      "dB": [
+       0.859,
+       0.4322,
+       1.2913,
+       47,
+       47
+      ],
+      "dm": [
+       1.7713,
+       1.2925,
+       2.2408,
+       47,
+       47
+      ],
+      "flip": [
+       0.1064,
+       0.0213,
+       0.192,
+       47,
+       47
+      ],
+      "top1A": [
+       0.3617,
+       0.234,
+       0.4899,
+       47,
+       47
+      ]
+     },
+     "edit_given_KO_SRC": {
+      "dA": [
+       -0.0106,
+       -0.0346,
+       0.0133,
+       47,
+       47
+      ],
+      "dB": [
+       -0.0053,
+       -0.0346,
+       0.0239,
+       47,
+       47
+      ],
+      "dm": [
+       0.0053,
+       -0.0213,
+       0.0319,
+       47,
+       47
+      ],
+      "flip": [
+       0.1064,
+       0.0213,
+       0.192,
+       47,
+       47
+      ],
+      "e": [
+       0.0016,
+       -0.0042,
+       0.0074,
+       41,
+       41
+      ]
+     },
+     "interaction_dm": [
+      0.0213,
+      -0.0213,
+      0.0639,
+      47,
+      47
+     ],
+     "interaction_e": [
+      0.0042,
+      -0.0029,
+      0.0117,
+      41,
+      41
+     ]
+    },
+    "PV": {
+     "edit": {
+      "dA": [
+       0.0027,
+       -0.0239,
+       0.0293,
+       47,
+       47
+      ],
+      "dB": [
+       0.0,
+       -0.0226,
+       0.0239,
+       47,
+       47
+      ],
+      "dm": [
+       -0.0027,
+       -0.0279,
+       0.024,
+       47,
+       47
+      ],
+      "flip": [
+       0.0,
+       0.0,
+       0.0,
+       47,
+       47
+      ],
+      "e": [
+       -0.0017,
+       -0.0065,
+       0.0029,
+       41,
+       41
+      ]
+     },
+     "KO_SRC": {
+      "dA": [
+       -0.9122,
+       -1.1278,
+       -0.6914,
+       47,
+       47
+      ],
+      "dB": [
+       0.859,
+       0.4322,
+       1.2913,
+       47,
+       47
+      ],
+      "dm": [
+       1.7713,
+       1.2925,
+       2.2408,
+       47,
+       47
+      ],
+      "flip": [
+       0.1064,
+       0.0213,
+       0.192,
+       47,
+       47
+      ],
+      "top1A": [
+       0.3617,
+       0.234,
+       0.4899,
+       47,
+       47
+      ]
+     },
+     "edit_given_KO_SRC": {
+      "dA": [
+       -0.0106,
+       -0.0346,
+       0.016,
+       47,
+       47
+      ],
+      "dB": [
+       -0.0146,
+       -0.0386,
+       0.012,
+       47,
+       47
+      ],
+      "dm": [
+       -0.004,
+       -0.0346,
+       0.0279,
+       47,
+       47
+      ],
+      "flip": [
+       0.1064,
+       0.0213,
+       0.192,
+       47,
+       47
+      ],
+      "e": [
+       -0.0003,
+       -0.009,
+       0.008,
+       41,
+       41
+      ]
+     },
+     "interaction_dm": [
+      -0.0013,
+      -0.0479,
+      0.0386,
+      47,
+      47
+     ],
+     "interaction_e": [
+      0.0014,
+      -0.008,
+      0.0108,
+      41,
+      41
+     ]
+    },
+    "D_KO_SRC": [
+     2.2207,
+     1.5585,
+     2.9072,
+     47,
+     47
+    ]
+   }
+  }
+ },
+ "y1_controls": {
+  "ifm_p1_mid_inj": {
+   "D5": {
+    "RND0": {
+     "KO_dm": [
+      0.0452,
+      -0.0824,
+      0.2381,
+      47,
+      47
+     ],
+     "KO_top1A": [
+      0.9149,
+      0.8298,
+      0.9787,
+      47,
+      47
+     ],
+     "O1_interaction_e": [
+      0.001,
+      -0.005,
+      0.0077,
+      41,
+      41
+     ],
+     "PV_interaction_e": [
+      0.0027,
+      -0.0045,
+      0.0111,
+      41,
+      41
+     ],
+     "O1_given_KO_e": [
+      -0.0016,
+      -0.0064,
+      0.0033,
+      41,
+      41
+     ],
+     "PV_given_KO_e": [
+      0.001,
+      -0.0044,
+      0.0075,
+      41,
+      41
+     ]
+    },
+    "RND1": {
+     "KO_dm": [
+      0.0372,
+      -0.0612,
+      0.1836,
+      47,
+      47
+     ],
+     "KO_top1A": [
+      0.9574,
+      0.8936,
+      1.0,
+      47,
+      47
+     ],
+     "O1_interaction_e": [
+      -0.0028,
+      -0.0097,
+      0.0045,
+      41,
+      41
+     ],
+     "PV_interaction_e": [
+      -0.0019,
+      -0.0087,
+      0.0041,
+      41,
+      41
+     ],
+     "O1_given_KO_e": [
+      -0.0055,
+      -0.011,
+      0.0002,
+      41,
+      41
+     ],
+     "PV_given_KO_e": [
+      -0.0036,
+      -0.0093,
+      0.0016,
+      41,
+      41
+     ]
+    },
+    "RND2": {
+     "KO_dm": [
+      -0.004,
+      -0.0359,
+      0.0319,
+      47,
+      47
+     ],
+     "KO_top1A": [
+      0.9149,
+      0.8298,
+      0.9787,
+      47,
+      47
+     ],
+     "O1_interaction_e": [
+      0.0004,
+      -0.006,
+      0.0063,
+      41,
+      41
+     ],
+     "PV_interaction_e": [
+      0.0067,
+      0.0004,
+      0.0133,
+      41,
+      41
+     ],
+     "O1_given_KO_e": [
+      -0.0022,
+      -0.0082,
+      0.0032,
+      41,
+      41
+     ],
+     "PV_given_KO_e": [
+      0.005,
+      0.0001,
+      0.0098,
+      41,
+      41
+     ]
+    },
+    "NON": {
+     "KO_dm": [
+      2.8238,
+      2.1841,
+      3.4761,
+      47,
+      47
+     ],
+     "KO_top1A": [
+      0.0,
+      0.0,
+      0.0,
+      47,
+      47
+     ],
+     "O1_interaction_e": [
+      -0.0012,
+      -0.0109,
+      0.0078,
+      41,
+      41
+     ],
+     "PV_interaction_e": [
+      -0.0106,
+      -0.0299,
+      0.0054,
+      41,
+      41
+     ],
+     "O1_given_KO_e": [
+      -0.0038,
+      -0.0117,
+      0.0032,
+      41,
+      41
+     ],
+     "PV_given_KO_e": [
+      -0.0123,
+      -0.0306,
+      0.0022,
+      41,
+      41
+     ]
+    },
+    "ALL": {
+     "KO_dm": [
+      2.6476,
+      1.984,
+      3.304,
+      47,
+      47
+     ],
+     "KO_top1A": [
+      0.0,
+      0.0,
+      0.0,
+      47,
+      47
+     ],
+     "O1_interaction_e": [
+      0.0025,
+      -0.0022,
+      0.0075,
+      41,
+      41
+     ],
+     "PV_interaction_e": [
+      0.0024,
+      -0.0025,
+      0.0074,
+      41,
+      41
+     ],
+     "O1_given_KO_e": [
+      -0.0001,
+      -0.0018,
+      0.0017,
+      41,
+      41
+     ],
+     "PV_given_KO_e": [
+      0.0007,
+      -0.0013,
+      0.0025,
+      41,
+      41
+     ]
+    }
+   }
+  }
+ },
+ "y1_positive_control": {
+  "ifm_p1_mid_inj": {
+   "D5": {
+    "SE_e": [
+     -0.0007,
+     -0.0092,
+     0.0073,
+     41,
+     41
+    ],
+    "SE_dm": [
+     -0.004,
+     -0.0386,
+     0.0332,
+     47,
+     47
+    ],
+    "SE_given_KO_SRC_e": [
+     0.0043,
+     -0.0036,
+     0.0118,
+     41,
+     41
+    ],
+    "SE_given_KO_SRC_dm": [
+     0.0279,
+     -0.012,
+     0.0665,
+     47,
+     47
+    ],
+    "dm_ratio_KO_over_noKO": -6.975,
+    "structural_zero_capital": "0/0",
+    "pass": true
+   }
+  }
+ },
+ "y3_undo": {},
+ "w2_window": {},
+ "ci": "95% percentile bootstrap over entity clusters (D1: A-side subject (rel, a), plan amendment A1; D2: A problem), 1000 resamples, numpy default_rng(0); [mean, lo, hi, n_items, n_clusters]",
+ "e_rule": "e = dm / D only where D = m(clean B) - m(clean A) >= 2.0 logits",
+ "downloads": [],
+ "gpu_minutes": 5.52,
+ "processes": {
+  "proc_ifm_p1_mid_inj_D5_y1.json": {
+   "models": "ifm_p1_mid_inj",
+   "seconds": 331.3,
+   "skipped": [],
+   "done": true,
+   "host": "cluster"
+  }
+ },
+ "d4_d5": "not run (no data at launch)"
+}

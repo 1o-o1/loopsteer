@@ -1,0 +1,19 @@
+{
+"hook_identity": {"ouro_think": {"gpu_all_ok": true, "cpu_check_all_ok": null, "norm_edit_placement": true, "lmid_edit_placement": true, "eager_mask_none_calls": 0}},
+"knockout_placement": {"ouro_think": {"ok": true, "knocked_probs_exactly_zero": true, "row_sum_max_abs_err": 0.00189, "allbut_finite": true}},
+"items": {"ouro_think": {"D2": 585}},
+"y1_2x2": {"ouro_think": {"D2": {"ans_O1": {"E0": [11.21, 10.86, 11.53], "rescue_src_all": [0.33, 0.18, 0.48], "flip_none": 0.86, "flip_src_all": 0.89}, "ans_para": {"E0": [12.13, 11.82, 12.44], "rescue_src_all": [0.71, 0.52, 0.88], "flip_none": 0.87, "flip_src_all": 0.95}, "off_src_all_dm": [0.22, 0.15, 0.31]}}},
+"y1_controls": {"ouro_think": {"D2": {"ans_O1": {"rand": 0.07, "nonsrc": -7.28, "allbut": -4.25, "src_l2": 0.19, "src_lo": -0.01, "src_hi": 0.29}}}},
+"y1_positive_control": {"ouro_think": {"D2": {"src_O1_E0": [2.89, 2.54, 3.29], "src_O1_E1_src_all": [2.03, 1.8, 2.29], "src_O1_E1_allbut": 0.0}}},
+"y3_undo": {"ouro_think": {"D2": {"src_O1_e": 0.19, "undo2_e": [0.09, 0.07, 0.11], "undo3_e": [0.16, 0.14, 0.18], "undo2_flip": 0.08}}},
+"width_control": {"ouro_think": {}},
+"y4_lin_vs_actual": {"ouro_think": {}},
+"w2_window": {"ouro_think": {"D2": {"summed_dm_by_loop": [-0.22, 0.06, 0.0, -0.05], "max_call_by_loop": [[8, 0.01], [14, 0.05], [7, 0.01], [0, 0.0]], "mean_mass_src_by_loop": [0.01, 0.0, 0.0, 0.0]}}},
+"t3_per_loop": {},
+"gpu_minutes": 154.53,
+"gpu_minutes_including_debug_runs": 154.53,
+"eager_vs_sdpa_gap": {"ouro_think": 0.25},
+"e_excluded_small_gap": {"ouro_think": {"D2": 0}},
+"datasets_missing": {"D4": "no B-K16-DATA report or files when the run was launched", "D5": "no B-K16-DATA report or files when the run was launched"},
+"downloads": "none from the hub. Ouro-1.4B and Ouro-2.6B from the HF cache (pinned revisions); Ouro-1.4B-Thinking snapshot 3aaa2224 from the folder given by --model_dir"
+}

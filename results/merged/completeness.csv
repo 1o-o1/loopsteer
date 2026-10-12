@@ -5,8 +5,8 @@ A,generation placement,ouro_2_6b_base,GSM8K_gen,run,done,"n_planned 9262, 66 res
 A,generation placement,ouro_2_6b_base,SVAMP_gen,run,done,"n_planned 5456, 66 result rows, max n_items 248"
 A,generation placement,ouro_1_4b_think,GSM8K_gen,run,done,"n_planned 6534, 66 result rows, max n_items 297"
 A,generation placement,ouro_1_4b_think,SVAMP_gen,run,done,"n_planned 3476, 66 result rows, max n_items 158"
-A,generation placement,ouro_2_6b_think,GSM8K_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
-A,generation placement,ouro_2_6b_think,SVAMP_gen,run,skip,"time: CKPTS and SETTINGS have no ouro_2_6b_think entry; only ouro_1_4b_think loads, from a local copy (K17_THINK_DIR)"
+A,generation placement,ouro_2_6b_think,GSM8K_gen,run,done,"n_planned 5544, 66 result rows, max n_items 252"
+A,generation placement,ouro_2_6b_think,SVAMP_gen,run,done,"n_planned 3124, 66 result rows, max n_items 142"
 A,generation placement,ifm_p1_ouro,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,ifm_p1_ouro,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,ifm_p1_ouro_inj,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
@@ -27,7 +27,7 @@ A,generation placement,ifm_d112,GSM8K_gen,scan,skip,time: steer_gen loads Ouro c
 A,generation placement,ifm_d112,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,mcleish_llama32_r32,GSM8K_gen,run,done,"n_planned 5214, 66 result rows, max n_items 237"
 A,generation placement,mcleish_llama32_r32,SVAMP_gen,run,skip,time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only; no SVAMP setting is built
-A,generation placement,huginn_0125,GSM8K_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
+A,generation placement,huginn_0125,GSM8K_gen,run,done,"n_planned 2222, 66 result rows, max n_items 101"
 A,generation placement,huginn_0125,SVAMP_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
 A,generation placement,parcae_370m,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
 A,generation placement,parcae_370m,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
@@ -35,18 +35,18 @@ A,generation placement,parcae_1_3b,GSM8K_gen,scan,skip,time: steer_gen loads Our
 A,generation placement,parcae_1_3b,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
 A,appendix: loop-2 contrast,ouro_1_4b_base,GSM8K_gen,scope,not run (scope),descriptive result; the frozen test needs a new strength; no claim depends on it
 A,appendix: LoopCD accuracy rows,ouro_1_4b_think,GSM8K_gen,scope,not run (scope),claim dropped (no effect beyond drift)
-B,GSM8K copy and derived,ouro_1_4b_base,VB,done,done earlier (not rerun),"1,053 pairs (production)"
+B,GSM8K copy and derived,ouro_1_4b_base,VB,done,done,"written again by a routed job (manifest: done earlier, 1,053 pairs (production)); n_planned 835, 52 result rows, max n_items 835"
 B,GSM8K copy and derived,ouro_1_4b_base,VBD,run,done,"n_planned 843, 48 result rows, max n_items 843"
-B,GSM8K copy and derived,ouro_2_6b_base,VB,done,done earlier (not rerun),"1,069 (production)"
+B,GSM8K copy and derived,ouro_2_6b_base,VB,done,done,"written again by a routed job (manifest: done earlier, 1,069 (production)); n_planned 847, 52 result rows, max n_items 847"
 B,GSM8K copy and derived,ouro_2_6b_base,VBD,run,done,"n_planned 843, 48 result rows, max n_items 843"
 B,GSM8K copy and derived,ouro_1_4b_think,VB,run,done,"n_planned 833, 52 result rows, max n_items 833"
 B,GSM8K copy and derived,ouro_1_4b_think,VBD,run,done,"n_planned 842, 48 result rows, max n_items 842"
 B,GSM8K copy and derived,ouro_2_6b_think,VB,run,done,"n_planned 849, 52 result rows, max n_items 849"
 B,GSM8K copy and derived,ouro_2_6b_think,VBD,run,done,"n_planned 844, 48 result rows, max n_items 844"
-B,GSM8K copy and derived,ifm_p1_ouro,VB,run,done,"n_planned 793, 52 result rows, max n_items 793"
-B,GSM8K copy and derived,ifm_p1_ouro,VBD,run,done,"n_planned 808, 2 result rows, max n_items 808"
-B,GSM8K copy and derived,ifm_p1_ouro_inj,VB,run,done,"n_planned 814, 52 result rows, max n_items 814"
-B,GSM8K copy and derived,ifm_p1_ouro_inj,VBD,run,done,"n_planned 797, 2 result rows, max n_items 797"
+B,GSM8K copy and derived,ifm_p1_ouro,VB,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+B,GSM8K copy and derived,ifm_p1_ouro,VBD,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+B,GSM8K copy and derived,ifm_p1_ouro_inj,VB,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+B,GSM8K copy and derived,ifm_p1_ouro_inj,VBD,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
 B,GSM8K copy and derived,ifm_p1_mid,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
 B,GSM8K copy and derived,ifm_p1_mid,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
 B,GSM8K copy and derived,ifm_p1_mid_inj,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
@@ -59,8 +59,8 @@ B,GSM8K copy and derived,ifm_p2m_ortho,VB,run,skip,"time: registry has ouro x4, 
 B,GSM8K copy and derived,ifm_p2m_ortho,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
 B,GSM8K copy and derived,ifm_d28,VB,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
 B,GSM8K copy and derived,ifm_d28,VBD,run,skip,"time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts raise KeyError); IfmR also asserts 112 slots and no coda"
-B,GSM8K copy and derived,ifm_d112,VB,run,done,"n_planned 826, 52 result rows, max n_items 826"
-B,GSM8K copy and derived,ifm_d112,VBD,run,done,"n_planned 813, 2 result rows, max n_items 813"
+B,GSM8K copy and derived,ifm_d112,VB,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
+B,GSM8K copy and derived,ifm_d112,VBD,run,pending,no results.csv / items_done.json (job not finished or no extractor for this script)
 B,GSM8K copy and derived,mcleish_llama32_r32,VB,run,done,"n_planned 405, 52 result rows, max n_items 405"
 B,GSM8K copy and derived,mcleish_llama32_r32,VBD,run,skip,"time: derived rows exist only in k17_varbench, which loads Ouro and three IFM models; k17_public runs the copy (VB) only"
 B,GSM8K copy and derived,llama_nr,VB,run,done,"n_planned 405, 64 result rows, max n_items 405"
@@ -99,18 +99,18 @@ B,edit-site map,ifm_p1_ouro,D5,run,done,"n_planned 59, 193 result rows, max n_it
 B,edit-site map,ifm_p1_ouro_inj,D1,run,done,"n_planned 134, 136 result rows, max n_items 134"
 B,edit-site map,ifm_p1_ouro_inj,CF,run,done,"n_planned 292, 136 result rows, max n_items 292"
 B,edit-site map,ifm_p1_ouro_inj,D2,run,done,"n_planned 585, 136 result rows, max n_items 585"
-B,edit-site map,ifm_p1_ouro_inj,D4,run,done,"n_planned 332, 48 result rows, max n_items 332"
-B,edit-site map,ifm_p1_ouro_inj,D5,run,skip,"ability (the clean-pass scan kept 32 items, fewer than 40)"
+B,edit-site map,ifm_p1_ouro_inj,D4,run,done,"n_planned 332, 70 result rows, max n_items 332"
+B,edit-site map,ifm_p1_ouro_inj,D5,run,done,"small set (n_planned 32 < 40), kept; n_planned 32, 48 result rows, max n_items 32"
 B,edit-site map,ifm_p1_mid,D1,run,done,"n_planned 136, 110 result rows, max n_items 136"
 B,edit-site map,ifm_p1_mid,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
-B,edit-site map,ifm_p1_mid,D2,run,done,"n_planned 585, 123 result rows, max n_items 585"
-B,edit-site map,ifm_p1_mid,D4,run,done,"n_planned 333, 123 result rows, max n_items 333"
-B,edit-site map,ifm_p1_mid,D5,run,skip,"ability (the clean-pass scan kept 2 items, fewer than 40)"
+B,edit-site map,ifm_p1_mid,D2,run,done,"n_planned 585, 70 result rows, max n_items 585"
+B,edit-site map,ifm_p1_mid,D4,run,done,"n_planned 333, 70 result rows, max n_items 333"
+B,edit-site map,ifm_p1_mid,D5,run,done,"small set (n_planned 2 < 40), kept; n_planned 2, 123 result rows, max n_items 2"
 B,edit-site map,ifm_p1_mid_inj,D1,run,done,"n_planned 141, 110 result rows, max n_items 141"
 B,edit-site map,ifm_p1_mid_inj,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
-B,edit-site map,ifm_p1_mid_inj,D2,run,done,"n_planned 581, 48 result rows, max n_items 581"
-B,edit-site map,ifm_p1_mid_inj,D4,run,done,"n_planned 340, 48 result rows, max n_items 340"
-B,edit-site map,ifm_p1_mid_inj,D5,run,done,"n_planned 47, 48 result rows, max n_items 47"
+B,edit-site map,ifm_p1_mid_inj,D2,run,done,"n_planned 581, 70 result rows, max n_items 581"
+B,edit-site map,ifm_p1_mid_inj,D4,run,done,"n_planned 340, 70 result rows, max n_items 340"
+B,edit-site map,ifm_p1_mid_inj,D5,run,done,"n_planned 47, 70 result rows, max n_items 47"
 B,edit-site map,ifm_p2m_r5,D1,run,done,"n_planned 115, 92 result rows, max n_items 115"
 B,edit-site map,ifm_p2m_r5,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
 B,edit-site map,ifm_p2m_r5,D2,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
@@ -118,7 +118,7 @@ B,edit-site map,ifm_p2m_r5,D4,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_
 B,edit-site map,ifm_p2m_r5,D5,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
 B,edit-site map,ifm_p2m_diag,D1,run,done,"n_planned 118, 92 result rows, max n_items 118"
 B,edit-site map,ifm_p2m_diag,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
-B,edit-site map,ifm_p2m_diag,D2,run,done,"n_planned 585, 48 result rows, max n_items 585"
+B,edit-site map,ifm_p2m_diag,D2,run,done,"n_planned 585, 70 result rows, max n_items 585"
 B,edit-site map,ifm_p2m_diag,D4,run,skip,"time: no edit-site route: k15_pairs.py runs D1 (and D2) only; k16_path_ifm.py runs arm Y2 only on ifm_p2m_diag and the pilot ran it on D1 and D2, never on D4 or D5 (no d45 record); gen_jobs.py routes it on D2 only"
 B,edit-site map,ifm_p2m_diag,D5,run,skip,time: same as D4: no pilot route for two-step math on ifm_p2m_diag
 B,edit-site map,ifm_p2m_ortho,D1,run,done,"n_planned 111, 92 result rows, max n_items 111"
@@ -140,13 +140,13 @@ B,edit-site map,mcleish_llama32_r32,D1,run,done,"n_planned 83, 149 result rows, 
 B,edit-site map,mcleish_llama32_r32,CF,run,done,"n_planned 199, 149 result rows, max n_items 199"
 B,edit-site map,mcleish_llama32_r32,D2,run,done,"n_planned 65, 149 result rows, max n_items 65"
 B,edit-site map,mcleish_llama32_r32,D4,run,done,"n_planned 1004, 149 result rows, max n_items 1004"
-B,edit-site map,mcleish_llama32_r32,D5,scan,skip,"ability (the clean-pass scan kept 7 items, fewer than 40)"
+B,edit-site map,mcleish_llama32_r32,D5,scan,done,"small set (n_planned 7 < 40), kept; n_planned 7, 149 result rows, max n_items 7"
 B,edit-site map,llama_nr,D1,run,done,"n_planned 83, 88 result rows, max n_items 83"
 B,edit-site map,llama_nr,CF,run,done,"n_planned 199, 88 result rows, max n_items 199"
 B,edit-site map,llama_nr,D2,run,done,"n_planned 65, 88 result rows, max n_items 65"
 B,edit-site map,llama_nr,D4,run,done,"n_planned 1004, 88 result rows, max n_items 1004"
-B,edit-site map,llama_nr,D5,scan,skip,"ability (the clean-pass scan kept 7 items, fewer than 40)"
-B,edit-site map,huginn_0125,D1,run,skip,"ability (the clean-pass scan kept 32 items, fewer than 40)"
+B,edit-site map,llama_nr,D5,scan,done,"small set (n_planned 7 < 40), kept; n_planned 7, 88 result rows, max n_items 7"
+B,edit-site map,huginn_0125,D1,run,done,"small set (n_planned 32 < 40), kept; n_planned 32, 149 result rows, max n_items 32"
 B,edit-site map,huginn_0125,CF,scan,done,"n_planned 179, 149 result rows, max n_items 179"
 B,edit-site map,huginn_0125,D2,run,done,"n_planned 63, 149 result rows, max n_items 63"
 B,edit-site map,huginn_0125,D4,scan,done,"n_planned 702, 149 result rows, max n_items 702"
@@ -284,8 +284,8 @@ E,edit-rank ablation,ouro_1_4b_base,D1,scope,not run (scope),scope
 C,branch-freeze,ifm_p1_ouro,D1,run,done,"n_planned 293, 22 result rows, max n_items 293"
 C,branch-freeze,ifm_p1_ouro,D2,run,done,"n_planned 263, 19 result rows, max n_items 263"
 C,branch-freeze,ifm_p1_ouro,D4,run,done,"n_planned 1248, 57 result rows, max n_items 1248"
-B,edit-site map,mcleish_llama32_r32,LRE,run,skip,"ability (the clean-pass scan kept 26 items, fewer than 40)"
-B,edit-site map,llama_nr,LRE,run,skip,"ability (the clean-pass scan kept 26 items, fewer than 40)"
+B,edit-site map,mcleish_llama32_r32,LRE,run,done,"small set (n_planned 26 < 40), kept; n_planned 26, 149 result rows, max n_items 26"
+B,edit-site map,llama_nr,LRE,run,done,"small set (n_planned 26 < 40), kept; n_planned 26, 88 result rows, max n_items 26"
 B,edit-site map,huginn_0125,LRE,run,done,"n_planned 41, 149 result rows, max n_items 41"
 B,edit-site map,ouro_1_4b_think,LRE,run,done,"n_planned 65, 66 result rows, max n_items 65"
 B,edit-site map,ouro_1_4b_base,LRE,skip,skip,time: no pilot script runs the facts edit-site map on this checkpoint (production ran facts on the base models; k17_public loads Ouro-1.4B-Thinking only)
@@ -308,8 +308,22 @@ A,generation placement,ouro_2_6b_base,ASDIV_gen,run,done,"n_planned 23320, 66 re
 A,generation placement,ouro_2_6b_base,MAWPS_gen,run,done,"n_planned 44374, 66 result rows, max n_items 2017"
 A,generation placement,ouro_1_4b_think,ASDIV_gen,run,done,"n_planned 14146, 66 result rows, max n_items 643"
 A,generation placement,ouro_1_4b_think,MAWPS_gen,run,done,"n_planned 27676, 66 result rows, max n_items 1258"
-A,generation placement,ouro_2_6b_think,ASDIV_gen,skip,skip,time: steer_gen has no Ouro-2.6B-Thinking setting (same as GSM8K and SVAMP)
-A,generation placement,ouro_2_6b_think,MAWPS_gen,skip,skip,time: same
+A,generation placement,ouro_2_6b_think,ASDIV_gen,run,done,"n_planned 15136, 66 result rows, max n_items 688"
+A,generation placement,ouro_2_6b_think,MAWPS_gen,run,done,"n_planned 30756, 66 result rows, max n_items 1398"
+C,"pathway checks (restore, read window, attention block)",ouro_1_4b_think,D1,run,done,"n_planned 130, 71 result rows, max n_items 130"
+C,"pathway checks (restore, read window, attention block)",ouro_1_4b_think,D2,run,done,"n_planned 585, 71 result rows, max n_items 585"
+C,"pathway checks (restore, read window, attention block)",ouro_1_4b_think,D4,run,done,"n_planned 1284, 71 result rows, max n_items 1284"
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D1,run,done,"n_planned 125, 71 result rows, max n_items 125"
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D2,run,done,"n_planned 584, 71 result rows, max n_items 584"
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D4,run,done,"n_planned 1311, 71 result rows, max n_items 1311"
+C,"pathway checks (restore, read window, attention block)",ouro_2_6b_think,D5,run,done,"n_planned 594, 71 result rows, max n_items 594"
+B,IFM pathway rows (first run),ifm_p1_ouro_inj,D4,run,done,"n_planned 332, 48 result rows, max n_items 332"
+B,IFM pathway rows (first run),ifm_p1_mid,D2,run,done,"n_planned 585, 123 result rows, max n_items 585"
+B,IFM pathway rows (first run),ifm_p1_mid,D4,run,done,"n_planned 333, 123 result rows, max n_items 333"
+B,IFM pathway rows (first run),ifm_p1_mid_inj,D2,run,done,"n_planned 581, 48 result rows, max n_items 581"
+B,IFM pathway rows (first run),ifm_p1_mid_inj,D4,run,done,"n_planned 340, 48 result rows, max n_items 340"
+B,IFM pathway rows (first run),ifm_p1_mid_inj,D5,run,done,"n_planned 47, 48 result rows, max n_items 47"
+B,IFM pathway rows (first run),ifm_p2m_diag,D2,run,done,"n_planned 585, 48 result rows, max n_items 585"
 A,generation placement,mcleish_llama32_r32,ASDIV_gen,skip,skip,"time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row is about 4 card-hours (ASDiv) to 7 (MAWPS) and a model-dataset cell about 100 to 170 card-hours, ten times the RA-23 estimate"
 A,generation placement,mcleish_llama32_r32,MAWPS_gen,skip,skip,time: same
 B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D1,skip,skip,time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)

@@ -1,0 +1,19 @@
+{
+"hook_identity": {"ouro26_think": {"gpu_all_ok": true, "cpu_check_all_ok": null, "norm_edit_placement": true, "lmid_edit_placement": true, "eager_mask_none_calls": 0}},
+"knockout_placement": {"ouro26_think": {"ok": true, "knocked_probs_exactly_zero": true, "row_sum_max_abs_err": 0.00189, "allbut_finite": true}},
+"items": {"ouro26_think": {"D4": 1311}},
+"y1_2x2": {"ouro26_think": {"D4/T1": {"ans_O1": {"E0": [0.35, 0.31, 0.38], "rescue_src_all": [0.43, 0.35, 0.5], "flip_none": 0.0, "flip_src_all": 0.03}, "ans_para": {"E0": [1.57, 1.47, 1.67], "rescue_src_all": [0.84, 0.68, 0.99], "flip_none": 0.0, "flip_src_all": 0.07}, "off_src_all_dm": [3.76, 3.6, 3.93]}, "D4/T2": {"ans_O1": {"E0": [0.21, 0.18, 0.23], "rescue_src_all": [0.18, 0.15, 0.21], "flip_none": 0.0, "flip_src_all": 0.04}, "ans_para": {"E0": [2.75, 2.58, 2.93], "rescue_src_all": [0.74, 0.62, 0.86], "flip_none": 0.03, "flip_src_all": 0.24}, "off_src_all_dm": [3.6, 3.43, 3.76]}}},
+"y1_controls": {"ouro26_think": {"D4/T1": {"ans_O1": {"rand": -0.0, "nonsrc": -0.03, "allbut": -0.07, "src_l2": 0.08, "src_lo": 0.03, "src_hi": 0.34}}, "D4/T2": {"ans_O1": {"rand": 0.01, "nonsrc": -0.09, "allbut": -0.19, "src_l2": -0.01, "src_lo": 0.17, "src_hi": -0.0}}}},
+"y1_positive_control": {"ouro26_think": {"D4/T1": {"src_O1_E0": [13.09, 12.97, 13.19], "src_O1_E1_src_all": [5.16, 4.96, 5.38], "src_O1_E1_allbut": 0.0}, "D4/T2": {"src_O1_E0": [13.24, 13.11, 13.37], "src_O1_E1_src_all": [5.4, 5.2, 5.59], "src_O1_E1_allbut": 0.0}}},
+"y3_undo": {"ouro26_think": {"D4": {"src_O1_e": 0.97, "undo2_e": [0.2, 0.19, 0.21], "undo3_e": [0.53, 0.51, 0.54], "undo2_flip": 0.08}}},
+"width_control": {"ouro26_think": {}},
+"y4_lin_vs_actual": {"ouro26_think": {}},
+"w2_window": {"ouro26_think": {"D4/T1": {"summed_dm_by_loop": [-0.04, 0.03, 0.03, -0.04], "max_call_by_loop": [[45, 0.01], [38, 0.07], [41, 0.03], [34, 0.01]], "mean_mass_src_by_loop": [0.01, 0.02, 0.01, 0.01]}, "D4/T2": {"summed_dm_by_loop": [0.07, 0.36, 0.28, 0.09], "max_call_by_loop": [[17, 0.04], [17, 0.23], [17, 0.09], [7, 0.01]], "mean_mass_src_by_loop": [0.01, 0.01, 0.01, 0.01]}}},
+"t3_per_loop": {},
+"gpu_minutes": 1137.63,
+"gpu_minutes_including_debug_runs": 1137.63,
+"eager_vs_sdpa_gap": {"ouro26_think": 0.25},
+"e_excluded_small_gap": {"ouro26_think": {"D4": 0}},
+"datasets_missing": {"D5": "no B-K16-DATA report or files when the run was launched"},
+"downloads": "none from the hub. Ouro-1.4B and Ouro-2.6B from the HF cache (pinned revisions); Ouro-1.4B-Thinking snapshot 3aaa2224 from the folder given by --model_dir"
+}

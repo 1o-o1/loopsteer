@@ -2,7 +2,7 @@
 
 States: done (every planned item and arm has a record), pending (named what is missing; the cell has no number), skip (reason), done earlier (not rerun on the cluster), not run (scope).
 
-Counts: done 89, done earlier (not rerun) 21, not run (scope) 50, skip 161
+Counts: done 111, done earlier (not rerun) 19, not run (scope) 50, pending 6, skip 149
 
 ## Grid A, generation placement
 
@@ -11,7 +11,7 @@ Counts: done 89, done earlier (not rerun) 21, not run (scope) 50, skip 161
 | Ouro 1.4B base | done | done | done | done |
 | Ouro 2.6B base | done | done | done | done |
 | Ouro 1.4B Thinking | done | done | done | done |
-| Ouro 2.6B Thinking | skip: time: CKPTS and SETTINGS have no ouro_2_6b_think entry | skip: time: CKPTS and SETTINGS have no ouro_2_6b_think entry | skip: time: steer_gen has no Ouro-2.6B-Thinking setting (same as GSM8K and SVAMP) | skip: time: same |
+| Ouro 2.6B Thinking | done | done | done | done |
 | IFM no-injection | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
 | IFM injection twin | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
 | IFM middle pair, no injection | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
@@ -22,7 +22,7 @@ Counts: done 89, done earlier (not rerun) 21, not run (scope) 50, skip 161
 | d28 | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
 | d112 | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) | skip: time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter) |  |  |
 | McLeish r32 | done | skip: time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only | skip: time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row | skip: time: same |
-| Huginn K32 | skip: time: no generation script loads McLeish or Huginn today | skip: time: no generation script loads McLeish or Huginn today |  |  |
+| Huginn K32 | done | skip: time: no generation script loads McLeish or Huginn today |  |  |
 | Parcae 370m | skip: time: steer_gen loads Ouro checkpoints only | skip: time: steer_gen loads Ouro checkpoints only |  |  |
 | Parcae 1.3b | skip: time: steer_gen loads Ouro checkpoints only | skip: time: steer_gen loads Ouro checkpoints only |  |  |
 
@@ -42,19 +42,19 @@ Counts: done 89, done earlier (not rerun) 21, not run (scope) 50, skip 161
 
 | model | VB | VBD |
 |---|---|---|
-| Ouro 1.4B base | done earlier (1,053 pairs (production)) | done |
-| Ouro 2.6B base | done earlier (1,069 (production)) | done |
+| Ouro 1.4B base | done | done |
+| Ouro 2.6B base | done | done |
 | Ouro 1.4B Thinking | done | done |
 | Ouro 2.6B Thinking | done | done |
-| IFM no-injection | done | done |
-| IFM injection twin | done | done |
+| IFM no-injection | pending: no results.csv / items_done.json (job not finished or no extractor for this script) | pending: no results.csv / items_done.json (job not finished or no extractor for this script) |
+| IFM injection twin | pending: no results.csv / items_done.json (job not finished or no extractor for this script) | pending: no results.csv / items_done.json (job not finished or no extractor for this script) |
 | IFM middle pair, no injection | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r |
 | IFM middle pair, prelude injection | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r |
 | 819M design fixed-r5 | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r |
 | 819M design fixed-pln5 | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r |
 | 819M design orthoinj | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r |
 | d28 | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r | skip: time: registry has ouro x4, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112 only (per-model dicts r |
-| d112 | done | done |
+| d112 | pending: no results.csv / items_done.json (job not finished or no extractor for this script) | pending: no results.csv / items_done.json (job not finished or no extractor for this script) |
 | McLeish r32 | done | skip: time: derived rows exist only in k17_varbench, which loads Ouro and three IFM models |
 | McLeish non-recurrent twin | done | skip: time: derived rows exist only in k17_varbench, which loads Ouro and three IFM models |
 | Huginn K32 | done | skip: time: derived rows exist only in k17_varbench, which loads Ouro and three IFM models |
@@ -70,17 +70,17 @@ Counts: done 89, done earlier (not rerun) 21, not run (scope) 50, skip 161
 | Ouro 1.4B Thinking | done | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | done | done | done | done |
 | Ouro 2.6B Thinking | skip: time: REPOS has ouro, ouro26, ouro_think only | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | skip: time: REPOS has ouro, ouro26, ouro_think only | skip: time: REPOS has ouro, ouro26, ouro_think only | skip: time: REPOS has ouro, ouro26, ouro_think only | skip: time: no pilot script runs the facts edit-site map on this checkpoint (production ran fact |
 | IFM no-injection | done | done | done | done | done | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
-| IFM injection twin | done | done | done | done | skip: ability (the clean-pass scan kept 32 items, fewer than 40) | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
-| IFM middle pair, no injection | done | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | done | done | skip: ability (the clean-pass scan kept 2 items, fewer than 40) | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
+| IFM injection twin | done | done | done | done | done | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
+| IFM middle pair, no injection | done | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | done | done | done | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
 | IFM middle pair, prelude injection | done | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | done | done | done | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
 | 819M design fixed-r5 | done | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
 | 819M design fixed-pln5 | done | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | done | skip: time: no edit-site route: k15_pairs.py runs D1 (and D2) only | skip: time: same as D4: no pilot route for two-step math on ifm_p2m_diag | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
 | 819M design orthoinj | done | skip: time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm:  | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
 | d28 | skip: time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the mode | skip: time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the mode | skip: time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the mode | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
 | d112 | done | done | done | done | done | skip: time: k15_full and k15_pairs build facts in code from the capital and city tables |
-| McLeish r32 | done | done | done | done | skip: ability (the clean-pass scan kept 7 items, fewer than 40) | skip: ability (the clean-pass scan kept 26 items, fewer than 40) |
-| McLeish non-recurrent twin | done | done | done | done | skip: ability (the clean-pass scan kept 7 items, fewer than 40) | skip: ability (the clean-pass scan kept 26 items, fewer than 40) |
-| Huginn K32 | skip: ability (the clean-pass scan kept 32 items, fewer than 40) | done | done | done | skip: ability (the clean-pass scan kept 0 items) | done |
+| McLeish r32 | done | done | done | done | done | done |
+| McLeish non-recurrent twin | done | done | done | done | done | done |
+| Huginn K32 | done | done | done | done | skip: ability (the clean-pass scan kept 0 items) | done |
 | Parcae 370m | done | skip: time: k17_parcae DATASETS = D1, D2, D4, D5, VB (no CF) | skip: ability (clean filter 0 to 3 percent, ledger 2026-10-08 02:10) | skip: ability (same) | skip: ability (same) | skip: time: data_steer/lre holds no pairs on the Parcae tokenizer |
 | Parcae 1.3b | done | skip: time: k17_parcae DATASETS = D1, D2, D4, D5, VB (no CF) | skip: ability (same) | skip: ability (same) | skip: ability (same) | skip: time: data_steer/lre holds no pairs on the Parcae tokenizer |
 
@@ -195,6 +195,22 @@ Counts: done 89, done earlier (not rerun) 21, not run (scope) 50, skip 161
 | model | D1 |
 |---|---|
 | Ouro 1.4B base | not run (scope): scope |
+
+## Grid C, pathway checks (restore, read window, attention block)
+
+| model | D1 | D2 | D4 | D5 |
+|---|---|---|---|---|
+| Ouro 1.4B Thinking | done | done | done |  |
+| Ouro 2.6B Thinking | done | done | done | done |
+
+## Grid B, IFM pathway rows (first run)
+
+| model | D4 | D2 | D5 |
+|---|---|---|---|
+| IFM injection twin | done |  |  |
+| IFM middle pair, no injection | done | done |  |
+| IFM middle pair, prelude injection | done | done | done |
+| 819M design fixed-pln5 |  | done |  |
 
 ## Grid B, strength ablation (edit-site map at a 0.25 and 1, three random seeds)
 
