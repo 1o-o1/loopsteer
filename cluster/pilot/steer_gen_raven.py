@@ -26,6 +26,14 @@ and `analyze_a`). This file adds only what is McLeish-specific:
     (the gate subset in .../mcleish_gsm8k/gate). results.csv (cluster/extract/common.py columns, neither_rate per
     row) is written in every row folder and in the setting folder by `analyze`.
 
+Huginn-0125 (B-EXT2 item 4, setting "hug", --setting hug): the same rows, gates, K = 32, horizon, batch width and
+x0 policy on the same pairs. Huginn has McLeish's module layout (wte, prelude, core_block, coda, attn.Wqkv and
+chunks, a tensor block_idx passed third, input_states, emb_scale, init_values std), so the hooks and the decode
+port are shared (SteeredRavenMixin). Differences: prod's HuginnAdapter, Huginn's own SETTLE k32 cells as the
+pre-filter, and no special tokens (add_special_tokens=False, SETTLE meta), so spans and lengths have no BOS shift.
+No selection ships: the pipeline runs prep (shipped in cluster/pilot/data/huginn_setting), screen A and B, select,
+then the rows. Output: $OUT_ROOT/A/steer_gen_raven/huginn.
+
 Generation uses SETTLE's own McLeish prompt (prod/tasks gsm8k, natural protocol, add_special_tokens=True: BOS first)
 through prod.generate.main (G.main) at K = 32, horizon 512, batch width 16 (run 1's batch), stop rule of record.
 Python >= 3.10 (the McLeish modeling file uses PEP 604 unions).
@@ -51,6 +59,7 @@ import torch  # noqa: E402
 from prod import steer_gen as S  # noqa: E402
 from prod.models import raven as R  # noqa: E402
 from prod.models.mcleish import McLeishAdapter  # noqa: E402
+from prod.models.huginn import HuginnAdapter  # noqa: E402
 
 VERSION = "k17genraven-1"
 MODEL = "mcleish_llama32_r32"
@@ -70,6 +79,20 @@ S.SETTINGS[SETTING] = {
     "gate_rows": ["r00", "r01", "r02", "r20n", "r20", "r21"],
     "loop_map": {"Llast@1": 1, "Llast@2": 2, "Llast@3 (= K-1 in run 1)": K - 1, "Llast@K": K},
 }
+HUGINN = "huginn_0125"
+HUGINN_REV = "bb6621b65e90b6a4b9b29ef88dc83866d450470c"     # cluster/weights.json huginn_0125
+S.SETTINGS["hug"] = dict(json.loads(json.dumps(S.SETTINGS[SETTING])), model=HUGINN,
+                         settle="cells_huginn_0125_gsm8k_natural_k32.jsonl")
+SPEC = {   # per setting: tokenizer repo, BOS first (G.main's add_special_tokens), the pool's tokenizer key
+    "mcl": {"model": MODEL, "repo": "smcleish/Recurrent-Llama-3.2-train-recurrence-32", "bos": True,
+            "pool_tok": "mcleish"},
+    "hug": {"model": HUGINN, "repo": "tomg-group-umd/huginn-0125", "bos": False, "pool_tok": "huginn"},
+}
+ACTIVE = [SETTING]          # the setting of this process (main --setting); McLeish by default
+
+
+def spec():
+    return SPEC[ACTIVE[0]]
 
 
 # ====================================================================== rows (run 1 by role, K = 32)
@@ -300,12 +323,12 @@ class RavenSteerHooks(S.SteerHooks):
 
 
 # ====================================================================== adapter
-class SteeredMcLeishAdapter(McLeishAdapter):
-    """prod's McLeishAdapter + RavenSteerHooks + the fixed per-item x0 table. Only `decode` differs from prod
-    (raven.py 378-480): x0 and the per-step state come from the row's table at the row's absolute positions."""
+class SteeredRavenMixin(object):
+    """prod's raven adapter (McLeish or Huginn) + RavenSteerHooks + the fixed per-item x0 table. Only `decode` differs
+    from prod (raven.py 378-480): x0 and the per-step state come from the row's table at the row's absolute positions."""
 
     def __init__(self, name=MODEL, steer=None, kv=False, t_max=T_MAX, **kw):
-        super(SteeredMcLeishAdapter, self).__init__(name=name, **kw)
+        super(SteeredRavenMixin, self).__init__(name=name, **kw)
         self.steer = steer
         self.kv = bool(kv)
         self.t_max = int(t_max)
@@ -313,7 +336,7 @@ class SteeredMcLeishAdapter(McLeishAdapter):
         self.file_sha = {}
 
     def load(self, strict_patch=False):
-        super(SteeredMcLeishAdapter, self).load(strict_patch=strict_patch)
+        super(SteeredRavenMixin, self).load(strict_patch=strict_patch)
         noise = float(getattr(self.model.config, "test_time_noise", 0) or 0)
         if noise != 0.0:
             raise SystemExit("test_time_noise %r (must be 0)" % noise)
@@ -330,7 +353,7 @@ class SteeredMcLeishAdapter(McLeishAdapter):
             self.steer.record_fn = self.record_donor
 
     def set_depth(self, k):
-        d = super(SteeredMcLeishAdapter, self).set_depth(k)
+        d = super(SteeredRavenMixin, self).set_depth(k)
         if self.steer is not None:
             self.steer.k = int(k)
         return d
@@ -534,36 +557,59 @@ class SteeredMcLeishAdapter(McLeishAdapter):
                 "kv": {kk: v[0] for kk, v in rec["kv"].items()}}
 
     def meta(self):
-        d = super(SteeredMcLeishAdapter, self).meta()
+        d = super(SteeredRavenMixin, self).meta()
         d.update({"steer_gen_raven": VERSION, "steer_kv_hooks": self.kv, "x0_policy": "fixed_table",
                   "x0_t_max": self.t_max, "x0_seed_rule": "1000003 * row_idx, CPU generator, float32 -> bf16",
                   "file_sha16": dict(self.file_sha)})
         return d
 
 
+class SteeredMcLeishAdapter(SteeredRavenMixin, McLeishAdapter):
+    """prod's McLeishAdapter + the steering mixin."""
+
+    def __init__(self, name=MODEL, **kw):
+        super(SteeredMcLeishAdapter, self).__init__(name=name, **kw)
+
+
+class SteeredHuginnAdapter(SteeredRavenMixin, HuginnAdapter):
+    """prod's HuginnAdapter + the steering mixin."""
+
+    def __init__(self, name=HUGINN, **kw):
+        super(SteeredHuginnAdapter, self).__init__(name=name, **kw)
+
+
+ADAPTERS = {"mcl": SteeredMcLeishAdapter, "hug": SteeredHuginnAdapter}
+
+
 # ====================================================================== tokenizer and geometry
 def load_tokenizer():
     from transformers import AutoTokenizer
     from prod import config as cfgmod
-    tok = AutoTokenizer.from_pretrained("smcleish/Recurrent-Llama-3.2-train-recurrence-32",
-                                        revision=cfgmod.revision_for(MODEL))
+    sp = spec()
+    tok = AutoTokenizer.from_pretrained(sp["repo"], revision=cfgmod.revision_for(sp["model"]))
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
     return tok
 
 
 def enc(tok, text):
-    """G.main's encoding for McLeish: add_special_tokens=True (BOS first), asserted = [BOS] + plain ids."""
-    a = tok(text, add_special_tokens=True)["input_ids"]
+    """G.main's encoding: McLeish add_special_tokens=True (BOS first), asserted = [BOS] + plain ids; Huginn
+    add_special_tokens=False (plain ids)."""
     b = tok(text, add_special_tokens=False)["input_ids"]
+    if not spec()["bos"]:
+        return b
+    a = tok(text, add_special_tokens=True)["input_ids"]
     if a != [tok.bos_token_id] + b:
         raise RuntimeError("McLeish encoding is not BOS + plain ids")
     return a
 
 
 def geometry(tok, prow, srows):
-    """steer_gen.item_geometry (plain ids, character offsets) shifted by the BOS: span +1, plen +1."""
+    """steer_gen.item_geometry (plain ids, character offsets) shifted by the BOS: span +1, plen +1 (McLeish only;
+    Huginn has no BOS)."""
     g = S.item_geometry(tok, prow, False, srows)
+    if not spec()["bos"]:
+        return g
     if g["span"][0] is not None:
         g["span"] = [g["span"][0] + 1, g["span"][1] + 1]
     g["idsA"] = [tok.bos_token_id] + g["idsA"]
@@ -587,7 +633,7 @@ def prep(cfg, out_dir, settle_dir):
     for idx in order:
         pr = by[idx]
         g = geometry(tok, pr, srows)
-        ps = pr["tok"]["mcleish"]          # the pool's McLeish span and length count the BOS
+        ps = pr["tok"][spec()["pool_tok"]]   # the pool's span and length (McLeish's count the BOS)
         g["ok"]["matches_pool_span"] = list(g["span"]) == list(ps["span_A"]) and g["plen"] == ps["len_A"]
         fails = [kk for kk, v in g["ok"].items() if not v]
         if fails:
@@ -723,15 +769,16 @@ def run_gmain(task, only_ids, out_dir, horizon, steer, kv, mem_fraction=None, ba
     steer.decode_log_path = os.path.join(out_dir, "decode_log.jsonl")
     orig = G.get
     holder = {}
-    cls = adapter_cls or SteeredMcLeishAdapter
+    cls = adapter_cls or ADAPTERS[ACTIVE[0]]
+    model = spec()["model"]
 
     def _get(name, adapter_dir=None, **kw):
-        if name != MODEL:
+        if name != model:
             raise KeyError(name)
         ad = cls(name, steer=steer, kv=kv, **kw)
         holder["ad"] = ad
         return ad
-    argv = ["--model", MODEL, "--task", task, "--k", str(K if steer.k is None else steer.k), "--only-rows", only,
+    argv = ["--model", model, "--task", task, "--k", str(K if steer.k is None else steer.k), "--only-rows", only,
             "--out", out_dir, "--caps", str(horizon), "--horizon", str(horizon), "--no-extra-caps",
             "--batch-width", str(int(batch_width))]
     if mem_fraction:
@@ -820,8 +867,10 @@ ROWS_CSV = {   # row -> (arm, site, loop, strength, random row at the same site)
 }
 
 
-def results_rows(an, model=MODEL, dataset="gsm8k", only=None, r90=None):
+def results_rows(an, model=None, dataset="gsm8k", only=None, r90=None):
+    """model: the analysis' setting's model unless given (cluster/extract/genraven.py passes none)."""
     from cluster.extract import common
+    model = model or SPEC.get(an.get("setting"), SPEC[SETTING])["model"]
     r90 = r90 or {}
     pc = ((an["rows"].get("r01") or {}).get("gold_B") or [None])[0]
     out = []
@@ -1009,6 +1058,8 @@ def tiny_mcleish(snapdir, seed=0, dtype=torch.bfloat16):
     for kk, v in dict(n_embd=64, n_heads=4, num_attention_heads=4, num_key_value_heads=2, intermediate_size=128,
                       head_dim=16).items():
         setattr(cfg, kk, v)
+    if getattr(cfg, "qk_bias", False):     # Huginn: the qk bias is per query head, so K and V keep every head
+        cfg.num_key_value_heads = cfg.n_heads
     torch.manual_seed(seed)
     m = AutoModelForCausalLM.from_config(cfg, trust_remote_code=True).float().eval()
     with torch.no_grad():
@@ -1021,7 +1072,7 @@ def tiny_mcleish(snapdir, seed=0, dtype=torch.bfloat16):
 
 
 def fake_adapter_cls(snapdir):
-    class FakeMcLeish(SteeredMcLeishAdapter):
+    class FakeMcLeish(ADAPTERS[ACTIVE[0]]):
         """SteeredMcLeishAdapter on a tiny random McLeish (CPU): prod's load path minus the hub weights."""
 
         def load(self, strict_patch=False):
@@ -1044,7 +1095,7 @@ def selftest(out_dir, snapdir):
     res = {}
     Fk = fake_adapter_cls(snapdir)
     steer = RavenSteerHooks(K)
-    ad = Fk(MODEL, steer=steer, kv=True)
+    ad = Fk(spec()["model"], steer=steer, kv=True)
     ad.load()
     ad.set_depth(K)
     tok = load_tokenizer()
@@ -1074,7 +1125,7 @@ def selftest(out_dir, snapdir):
     root = os.path.join(out_dir, "e2e")
     os.makedirs(root, exist_ok=True)
     S.write_json(os.path.join(root, "items.json"), sel)
-    cfg = S.setting_cfg(SETTING)
+    cfg = S.setting_cfg(ACTIVE[0])
     jobs = {}
     for r in ("r00", "r01", "r02", "r20n", "r10", "r03", "r21", "r20"):
         jobs[r] = job(cfg, root, r, adapter_cls=Fk, horizon=24)
@@ -1132,8 +1183,10 @@ def main(argv=None):
     p.add_argument("--mem-fraction", type=float, default=None)
     p.add_argument("--snap", default=None, help="selftest: McLeish snapshot folder (modeling code + tokenizer)")
     p.add_argument("--n", type=int, default=4)
+    p.add_argument("--setting", default=SETTING, choices=sorted(SPEC), help="mcl (McLeish, default) or hug (Huginn)")
     a = p.parse_args(argv)
-    cfg = S.setting_cfg(SETTING)
+    ACTIVE[0] = a.setting
+    cfg = S.setting_cfg(a.setting)
     os.makedirs(a.out, exist_ok=True)
     if a.mode == "selftest":
         r = selftest(a.out, a.snap)
@@ -1146,7 +1199,7 @@ def main(argv=None):
     if a.mode == "checks":
         kw = {"mem_fraction": a.mem_fraction} if a.mem_fraction else {}
         steer = RavenSteerHooks(K)
-        ad = SteeredMcLeishAdapter(MODEL, steer=steer, kv=True, **kw)
+        ad = ADAPTERS[a.setting](spec()["model"], steer=steer, kv=True, **kw)
         ad.load()
         ad.set_depth(K)
         its = check_items(ad.tok, n=a.n)
@@ -1156,7 +1209,7 @@ def main(argv=None):
         r["env"] = S.env_block(None)
         r["env"].pop("steer_gen_sha256", None)
         r["env"]["file_sha16"] = dict(ad.file_sha)
-        S.write_json(os.path.join(a.out, "checks_mcl.json"), r)
+        S.write_json(os.path.join(a.out, "checks_%s.json" % a.setting), r)
         print(json.dumps({kk: v for kk, v in r.items() if kk != "env"}, default=str))
         return 0 if r["pass"] else 1
     if a.mode == "prep":

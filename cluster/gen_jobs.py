@@ -64,6 +64,9 @@ THINK_OF = {"a3": THINK14, "a4": THINK26}          # Thinking settings: --think-
 # cluster extension (2026-10-11): pipelines added while the run was queued get their own queue groups, so the stage
 # lists of the running groups keep every line where it is (array task i = line i)
 GEN_GROUP = {"ouro_2_6b_think": "g11_gen26t"}
+# B-EXT2 item 5: the IFM k17_varbench pipelines rerun with the VBD V1 cells (--vbd_v1) in their own group and folder
+VB_V1 = {"ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_d112"}
+VB_V1_GROUP = "g12_ifmv1"
 # B-EXT2 item 1: k16_path_ouro (Y1 attention block, Y3 source restore, W2 last-read window) on the Thinking models
 PATH_CARD = "pathway checks (restore, read window, attention block)"
 K16T = {"ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}
@@ -77,8 +80,14 @@ FRZ_OURO = {"ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"} 
 #                                                                                   extractor model name (freeze.py)
 FRZ_IFM = {"ifm_p1_ouro"}           # k17_freeze_ifm.py: the RA-3 rows on the IFM code path (no-injection model)
 FRZ_DS = ("D1", "D2", "D4")         # RA-23 item 1 and 2 scope: facts, addition, code
-GENR = {"mcleish_llama32_r32": "mcleish"}      # steer_gen_raven.py (GSM8K pairs, rows r00-r21 at K = 32)
+GENR = {"mcleish_llama32_r32": "mcleish", "huginn_0125": "huginn"}   # steer_gen_raven.py (GSM8K pairs, rows r00-r21, K = 32)
 GENR_DIR = "A/steer_gen_raven/mcleish"
+GENR_HUG_PREP, GENR_HUG_N = 151, 124   # B-EXT2 item 4: Huginn prep items (shipped prep.json), planned scored
+
+
+def genr_dir(model):
+    """Output folder of a steer_gen_raven model: McLeish's, or A/steer_gen_raven/huginn (B-EXT2 item 4)."""
+    return GENR_DIR if model == "mcleish_llama32_r32" else "A/steer_gen_raven/" + GENR[model]
 GENM_DS = {"ASDIV_gen": "asdiv", "MAWPS_gen": "mawps"}       # steer_gen_math.py --dataset
 GENM_POOL = {"asdiv": 1114, "mawps": 2082}                  # pairs = problems (one pair per problem)
 GENM_PASS = 0.6     # planning only: share of the pool passing both screens, assumed (no full screen yet)         # setting folder: items.json from the shared-host run's select, one folder per row
@@ -137,6 +146,11 @@ def route(card, model, ds):
     return None
 
 
+def vb_dir(model):
+    """Output folder name of a k17_varbench model: <key>_v1 for the IFM reruns with the VBD V1 cells (item 5)."""
+    return VB_KEY[model] + ("_v1" if model in VB_V1 else "")
+
+
 DS_NAME = {"D1": "facts", "CF": "counterfact", "D2": "addition", "D4": "code", "D5": "twostep", "VB": "gsm8k_copy",
            "VBD": "gsm8k_derived"}
 
@@ -149,7 +163,7 @@ def cell_target(card, model, ds):
         return None
     u = r[1]
     if u == "vb":
-        return (u, "B/k17_varbench/%s" % VB_KEY[model], VB_KEY[model], DS_NAME[ds])
+        return (u, "B/k17_varbench/%s" % vb_dir(model), VB_KEY[model], DS_NAME[ds])
     if u == "pub":
         return (u, "B/k17_public/%s_%s" % (PUB_GROUP[model], ds), PUB_RUNNER[model], DS_NAME[ds])
     if u == "par":
@@ -175,7 +189,7 @@ def cell_target(card, model, ds):
     if u == "frzi":
         return (u, "C/k17_freeze_ifm/%s_%s" % (model, ds), model, DS_NAME[ds])
     if u == "genr":
-        return (u, GENR_DIR, "row", None)
+        return (u, genr_dir(model), "row", None)
     if u == "genm":
         return (u, "A/steer_gen_math/%s_%s" % (GEN[model], GENM_DS[ds]), "row", None)
     if u == "publre":        # the records say D1 (facts); the LRE cell is its own output folder
@@ -264,6 +278,7 @@ RATES = {
     ("frzo", "ouro_think"): (0.6, "fast", "k17_freeze RA-3 full run on Ouro-1.4B base: 490.6 s for 850 items (same architecture)"),
     ("frzo", "ouro26_think"): (1.2, "assumed", "the 1.4B rate x 2 (twice the layers), not measured"),
     ("frzi", "*"): (4.4, "shared", "k17_freeze_ifm smoke on the shared host: 4.3-4.6 s/item (3 items per dataset)"),
+    ("genr", "huginn"): (25.0, "shared", "steer_gen_raven Huginn smoke screen B on the shared GB10: 74.6 s for 3 problems at batch 3"),
     ("genr", "mcleish"): (19.5, "shared", "steer_gen_raven row r00 on the shared host: 4616 s for 237 scored + 22 sentinel problems at batch 16"),
 }
 
@@ -430,42 +445,47 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
     # copy of the plan and the copy is re-hashed (cluster/vb_slots.py), then phase M (scan with the shard plan, rows
     # per shard, merge) runs on that copy and its sha256. A full run refuses phase all.
     for m in sorted([m for (u, m) in want if u == "vb"], key=mkey):
-        g = grp("g1_copy", m)
-        k = VB_KEY[m]
-        it_s, vbd_s, role, src = RATES[("vb", k)]
-        kp = kept.get(("vb", k, "VB"))
-        rate_pass = (kp[0] / float(kp[1])) if kp and kp[1] else 0.9
-        n_vb = int(round(VB_POOL * rate_pass))
-        n_vbd = int(round(VBD_POOL * rate_pass))
-        rows_s = n_vb * it_s + n_vbd * vbd_s
-        out = "$OUT_ROOT/B/k17_varbench/%s" % k
-        base = "--models %s --data %s/varbench --out %s --role cluster" % (k, DATA, out)
-        tail = " --pool pairs --n_vb 100000 --vbd_n %s=100000 --datasets VBD --no_gradient_rank" % k
-        if k.endswith("_think"):
-            tail += " --model_dirs %s=%s" % (k, THINK14 if k == "ouro_think" else THINK26)
-        cw = base + " --plan $VB_PLAN --plan_sha $VB_PLAN_SHA" + tail
-        plan_m = "%s/plan_M_%s.md" % (out, k)
-        cm = base + " --plan %s --plan_sha $(sha256sum %s | cut -c1-64)" % (plan_m, plan_m) + tail
-        # no FD and bf16 gradient checks: the gradient score is not computed on the cluster (--no_gradient_rank)
-        win = J.add(g, "s2_window", "k17_varbench.py", m, ["VB", "VBD"], "", out, deps(m), 40 * it_s,
-                    "phase W on the 40-item subset (assumed: the per-item M rate)",
-                    "%s %s/k17_varbench.py %s --phase W --tag W_%s && %s %s/cluster/vb_slots.py --plan $VB_PLAN --out %s --model %s" % (
-                        PY, LF, cw, k, PY, LC, out, k))
-        scan = J.add(g, "s3_scan", "k17_varbench.py", m, ["VB", "VBD"], "", out, [win],
-                     VB_POOL * 1.0 + VBD_POOL * 1.0, "clean-pass scan of %d pairs and %d VBD items (about 1 s per candidate, two forwards)" % (VB_POOL, VBD_POOL),
-                     "%s %s/k17_varbench.py %s --phase M --stage scan --tag M_%s" % (PY, LF, cm, k))
-        n = n_shards(rows_s, shard_s)
-        sh = []
-        for i in range(n):
-            sh.append(J.add(g, "s4_rows", "k17_varbench.py", m, ["VB", "VBD"], "%d/%d" % (i, n), out, [scan],
-                            rows_s / n, "%s (%s): %s" % (src, role, "%.1f s/VarBench item, %.1f s/VBD item; planned %d + %d items" % (it_s, vbd_s, n_vb, n_vbd)),
-                            "%s %s/k17_varbench.py %s --phase M --stage rows --shard %d/%d --tag M_%s" % (PY, LF, cm, i, n, k)))
-        # after a good merge the shard files move to shards/ (the summarize globs vb_*.json in the output folder)
-        mg = J.add(g, "s5_merge", "k17_varbench.py", m, ["VB", "VBD"], "", out, sh, 1800, "merge: dev-tuned passes on the merged items (assumed 30 min)",
-                   "%s %s/k17_varbench.py %s --phase M --stage merge --tag M_%s && mkdir -p %s/shards && mv %s/*.shard*of*.* %s/shards/" % (
-                       PY, LF, cm, k, out, out, out))
-        J.add(g, "s6_summarize", "k17_varbench.py", m, ["VB", "VBD"], "", out, [mg], 300, "CPU summarize",
-              "%s %s/k17_varbench.py --summarize --out %s --plan %s && %s $REPO/loopedcot/cluster/extract/run.py --script k17_varbench.py --src %s/k17_varbench.py --job %s" % (PY, LF, out, plan_m, PY, LF, out))
+        # B-EXT2 item 5: the IFM models keep their first pipeline (group g6_ifm, ids in place, done) and add the V1
+        # rerun (group g12_ifmv1, folder <key>_v1, --vbd_v1); the merge reads the _v1 folder (cell_target)
+        for v1 in ((False, True) if m in VB_V1 else (False,)):
+            g = VB_V1_GROUP if v1 else grp("g1_copy", m)
+            k = VB_KEY[m]
+            it_s, vbd_s, role, src = RATES[("vb", k)]
+            kp = kept.get(("vb", k, "VB"))
+            rate_pass = (kp[0] / float(kp[1])) if kp and kp[1] else 0.9
+            n_vb = int(round(VB_POOL * rate_pass))
+            n_vbd = int(round(VBD_POOL * rate_pass))
+            rows_s = n_vb * it_s + n_vbd * vbd_s
+            out = "$OUT_ROOT/B/k17_varbench/%s" % (vb_dir(m) if v1 else k)
+            base = "--models %s --data %s/varbench --out %s --role cluster" % (k, DATA, out)
+            tail = " --pool pairs --n_vb 100000 --vbd_n %s=100000 --datasets VBD --no_gradient_rank" % k
+            if v1:
+                tail += " --vbd_v1 %s=1" % k
+            if k.endswith("_think"):
+                tail += " --model_dirs %s=%s" % (k, THINK14 if k == "ouro_think" else THINK26)
+            cw = base + " --plan $VB_PLAN --plan_sha $VB_PLAN_SHA" + tail
+            plan_m = "%s/plan_M_%s.md" % (out, k)
+            cm = base + " --plan %s --plan_sha $(sha256sum %s | cut -c1-64)" % (plan_m, plan_m) + tail
+            # no FD and bf16 gradient checks: the gradient score is not computed on the cluster (--no_gradient_rank)
+            win = J.add(g, "s2_window", "k17_varbench.py", m, ["VB", "VBD"], "", out, deps(m), 40 * it_s,
+                        "phase W on the 40-item subset (assumed: the per-item M rate)",
+                        "%s %s/k17_varbench.py %s --phase W --tag W_%s && %s %s/cluster/vb_slots.py --plan $VB_PLAN --out %s --model %s" % (
+                            PY, LF, cw, k, PY, LC, out, k))
+            scan = J.add(g, "s3_scan", "k17_varbench.py", m, ["VB", "VBD"], "", out, [win],
+                         VB_POOL * 1.0 + VBD_POOL * 1.0, "clean-pass scan of %d pairs and %d VBD items (about 1 s per candidate, two forwards)" % (VB_POOL, VBD_POOL),
+                         "%s %s/k17_varbench.py %s --phase M --stage scan --tag M_%s" % (PY, LF, cm, k))
+            n = n_shards(rows_s, shard_s)
+            sh = []
+            for i in range(n):
+                sh.append(J.add(g, "s4_rows", "k17_varbench.py", m, ["VB", "VBD"], "%d/%d" % (i, n), out, [scan],
+                                rows_s / n, "%s (%s): %s" % (src, role, "%.1f s/VarBench item, %.1f s/VBD item; planned %d + %d items" % (it_s, vbd_s, n_vb, n_vbd)),
+                                "%s %s/k17_varbench.py %s --phase M --stage rows --shard %d/%d --tag M_%s" % (PY, LF, cm, i, n, k)))
+            # after a good merge the shard files move to shards/ (the summarize globs vb_*.json in the output folder)
+            mg = J.add(g, "s5_merge", "k17_varbench.py", m, ["VB", "VBD"], "", out, sh, 1800, "merge: dev-tuned passes on the merged items (assumed 30 min)",
+                       "%s %s/k17_varbench.py %s --phase M --stage merge --tag M_%s && mkdir -p %s/shards && mv %s/*.shard*of*.* %s/shards/" % (
+                           PY, LF, cm, k, out, out, out))
+            J.add(g, "s6_summarize", "k17_varbench.py", m, ["VB", "VBD"], "", out, [mg], 300, "CPU summarize",
+                  "%s %s/k17_varbench.py --summarize --out %s --plan %s && %s $REPO/loopedcot/cluster/extract/run.py --script k17_varbench.py --src %s/k17_varbench.py --job %s" % (PY, LF, out, plan_m, PY, LF, out))
 
     # ---- k17_public job groups (scan, rows shards, merge per dataset; summarize per group)
     def public(group, gk, datasets, lre=False):
@@ -560,7 +580,7 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
     # McLeish GSM8K generation (steer_gen_raven.py): rows r00-r21 on the 237 problems the shared-host run selected. The
     # selection ships in the bundle (cluster/pilot/data/mcleish_setting/items.json); each row line puts it into the
     # output folder unless a staged copy is already there (atomic: temp file, then rename)
-    for m in sorted([m for (u, m) in want if u == "genr"], key=mkey):
+    for m in sorted([m for (u, m) in want if u == "genr" and m == "mcleish_llama32_r32"], key=mkey):
         rate, role, src = RATES[("genr", GENR[m])]
         out = "$OUT_ROOT/" + GENR_DIR
         env = "K17_DATASET=gsm8k PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs" % (out, out)
@@ -734,6 +754,29 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
               "%s %s/k16_path_ifm.py --models %s --datasets %s --out %s --tag %s_%s_y1 --data_dir %s/k16_path_ifm --guard 100000000 --full_pool --arms Y1 && %s %s/k16_path_ifm.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k16_path_ifm.py --src %s/k16_path_ifm.py --job %s" % (
                   PY, LF, m, ds, out, m, ds, DATA, PY, LF, out, PY, LF, out))
 
+    # ---- cluster extension B-EXT2 item 4: Huginn GSM8K generation (steer_gen_raven.py --setting hug), own group;
+    # the prep ships (cluster/pilot/data/huginn_setting/prep.json), then screen A and B, select, 22 rows, analyze
+    for m in sorted([m for (u, m) in want if u == "genr" and m == "huginn_0125"], key=mkey):
+        rate, role, src = RATES[("genr", GENR[m])]
+        o = "$OUT_ROOT/" + genr_dir(m)
+        env = "K17_DATASET=gsm8k PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs" % (o, o)
+        guard = ('mkdir -p %s && { test -f %s/prep.json || { cp %s/huginn_setting/prep.json %s/prep.json.$$.tmp && '
+                 'mv -f %s/prep.json.$$.tmp %s/prep.json; }; }' % (o, o, DATA, o, o, o))
+        base = "%s && cd %s && %s %s %s/steer_gen_raven.py" % (guard, TREE, env, PY, LF)
+        mf = " --mem-fraction $GEN_MEM_FRACTION"
+        gh = "g15_hgen"
+        scr = [J.add(gh, "s2_screen", "steer_gen_raven.py", m, ["GSM8K_gen"], side, o, [], GENR_HUG_PREP * rate + 120,
+                     "%s (%s): %.1f s/problem, %d prep problems" % (src, role, rate, GENR_HUG_PREP),
+                     "%s screen --setting hug --out %s --side %s%s" % (base, o, side, mf)) for side in ("A", "B")]
+        sel = J.add(gh, "s3_select", "steer_gen_raven.py", m, ["GSM8K_gen"], "", o, scr, 120, "select (CPU)",
+                    "%s select --setting hug --root %s --out %s" % (base, o, o))
+        rows = [J.add(gh, "s4_row", "steer_gen_raven.py", m, ["GSM8K_gen"], r, o, [sel], (GENR_HUG_N + 22) * rate + 120,
+                      "%s (%s): %.1f s/problem per row; %d scored planned + 22 sentinels" % (src, role, rate, GENR_HUG_N),
+                      "%s run --setting hug --out %s --row %s%s" % (base, o, r, mf)) for r in GENR_ROWS]
+        J.add(gh, "s6_analyze", "steer_gen_raven.py", m, ["GSM8K_gen"], "", o, rows, 120, "analyze (CPU)",
+              "%s analyze --setting hug --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script steer_gen_raven.py --src %s/steer_gen_raven.py --job %s" % (
+                  base, o, PY, LF, o))
+
     # ---- every task line activates its own venv (the raven scripts need Python >= 3.10)
     for r in J.rows:
         v = venv_of(r["script"], r["model"])
@@ -750,15 +793,17 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
 
 # submission order of submit_10_rest.sh (coordinator 2026-10-09): groups one to four, the IFM wave, the RA-23
 # additions, Huginn last, then the merge
-GROUP_ORDER = ["g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g6_ifm", "g14_ifmy1", "g7_ra23", "g11_gen26t", "g13_paththink",
+GROUP_ORDER = ["g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g6_ifm", "g12_ifmv1", "g14_ifmy1", "g7_ra23", "g11_gen26t", "g13_paththink", "g15_hgen",
                "g5_huginn",
                "g9_merge"]
 GROUP_LABEL = {"g0_xllm": "preflight, xllm build and import check", "g1_copy": "GSM8K copy and derived",
                "g2_gen": "generation, GSM8K then SVAMP, McLeish GSM8K rows", "g3_map": "edit-site map at full pools",
                "g4_cd": "C and D scripts (raven branch-freeze)", "g6_ifm": "IFM wave incl. the RA-23 IFM branch-freeze",
                "g7_ra23": "RA-23: Ouro Thinking branch-freeze, LRE facts",
+               "g15_hgen": "extension item 4: Huginn GSM8K generation",
                "g13_paththink": "extension: restore, read window and attention block on the Ouro Thinking models",
                "g14_ifmy1": "extension: the Y1 arm (edit-site rows) on seven IFM cells",
+               "g12_ifmv1": "extension item 5: IFM k17_varbench rerun with the VBD V1 cells (--vbd_v1)",
                "g11_gen26t": "extension item 1: generation on Ouro-2.6B-Thinking (setting a4; GSM8K, SVAMP, ASDiv, MAWPS)",
                "g5_huginn": "Huginn incl. the RA-23 LRE cell",
                "g9_merge": "merge and grid tables"}
@@ -1452,6 +1497,9 @@ def planned_table(cells, words, kept, out_dir):
             last_k = "none (smoke only)"
             plan = int(round(pool * GENM_PASS))
             note = "pool x pass rate %.1f assumed" % GENM_PASS
+        elif unit == "genr" and m == "huginn_0125":
+            pool, cap, last_k, plan = 522, "none (every prep problem that passes both screens)", "none", GENR_HUG_N
+            note = "prep %d (SETTLE k32 pre-filter, shipped prep.json); planned scored assumed" % GENR_HUG_PREP
         elif unit == "genr":
             pool, cap, last_k, plan = 522, "none (every problem that passed both screens of the shared-host run)", "237 selected", GENR_N
             note = "the shared-host run's select (rows r00, r01 done on the same problems)"

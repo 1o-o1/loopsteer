@@ -27,7 +27,7 @@ A,generation placement,ifm_d112,GSM8K_gen,scan,skip,time: steer_gen loads Ouro c
 A,generation placement,ifm_d112,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,mcleish_llama32_r32,GSM8K_gen,run,run,job: steer_gen_raven.py
 A,generation placement,mcleish_llama32_r32,SVAMP_gen,run,skip,time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only; no SVAMP setting is built
-A,generation placement,huginn_0125,GSM8K_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
+A,generation placement,huginn_0125,GSM8K_gen,run,run,job: steer_gen_raven.py
 A,generation placement,huginn_0125,SVAMP_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
 A,generation placement,parcae_370m,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
 A,generation placement,parcae_370m,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter

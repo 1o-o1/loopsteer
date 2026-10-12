@@ -61,3 +61,18 @@ Paths below are relative to the pilot artifact folder (`DONE_SRC`). Line numbers
   `settle_sha256`, but only for its own McLeish SETTLE file, which is not in this bundle and was not changed. The
   reader (`steer_gen.settle_cells`) skips the header line, so the rows the runs read are byte-identical to this
   week's.
+
+## Amendment of 2026-10-11 (B-EXT2 item 5, ordered by the PI)
+
+Reason: --vbd_v1 flag added for the IFM V1 rerun; default unchanged.
+
+| file in the bundle | old sha256 | new sha256 | what changed |
+|---|---|---|---|
+| `pilot/k17_varbench.py` | `a161b00c06238fc00653853306488318ae4e42a09d57564b56c579ee18714468` | `43808060ac3948b6c3c0cd91f0edc06bacfe4254f982ece05c0253dca9f2c0d1` | the optional per-model flag --vbd_v1 (3 added lines and a comment) |
+| `plans/k17_varbench_plan.md` | `cf92be3aa318d676eccddefadf295c2fda81c406b51a99eeeddc838a16d7a332` | `10beefdc3992c9d637d7b2add0f2963c1cafd5357efe9fd58e4bfffd612a9f1f` | the section 9 "Launch code sha256" line names the new code sha256 |
+| `plans/k17_varbench_plan.md`, frozen part (`plan_frozen_sha256`) | `198ff7e4a85e070a109b21b0776d8a2f1759b914c4ed5483ae8eda86450c3222` | `0b7cae853b866f22c011c8014acce2e8d51e08018ae9ecdbfd4f62998e55b2ae` | the same line (outside section 13) |
+
+`VB_PLAN_SHA` changes with the plan: setup (run_all.sh) must run again before the next chain. The finished
+k17_varbench pipelines keep their records and their plan copies (old hashes); the IFM V1 pipelines (group
+g12_ifmv1, folders `B/k17_varbench/<model>_v1`) run window, scan, rows, merge and summarize on the new plan and code.
+

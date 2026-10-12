@@ -697,8 +697,9 @@ direct dep" is no longer a harness row (below). The A2-1 dose clause is scored p
   differs from its phase-W launch. Any code change therefore needs a new line here, a new plan hash in the LEDGER,
   and a rerun of the hook checks (they rerun on a new code hash by themselves). Debug runs record
   `code_matches_plan`. The line is written last, after the v5 debug, on the code that will be launched:
-  Launch code sha256: `a161b00c06238fc00653853306488318ae4e42a09d57564b56c579ee18714468` (cluster copy cluster/pilot/k17_varbench.py, final:
-  shard version f8d3d427 + cluster patches + --no_gradient_rank, md5 f20fc35a; written 2026-10-09; replaces b61194d8)
+  Launch code sha256: `43808060ac3948b6c3c0cd91f0edc06bacfe4254f982ece05c0253dca9f2c0d1` (cluster copy cluster/pilot/k17_varbench.py, final:
+  shard version f8d3d427 + cluster patches + --no_gradient_rank + --vbd_v1 (2026-10-11, default unchanged); replaces
+  a161b00c of 2026-10-09, which replaced b61194d8)
 - v5 checks keys: `code_version`, `host_roles` (per model: file roles, items per role, mixed), `t8`,
   `placement.<m>.<cell>.rnd_pair` (rnd_T3, rnd_primary, rnd_flip, rnd_dzA, rnd_dzB, diff_e, diff_e_LO,
   diff_primary, cite) with `cited`, `cited_label`, `cited_endpoint` and `tost_basis`; `tost_by_ST1e`;

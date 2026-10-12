@@ -7,9 +7,9 @@
  },
  "scope": "C and D cards are enumerated over the RA-20 item 2 model list (18 checkpoints), except the loop trace and the sentiment rows, where the manifest names the models. Manifest cells marked done are not listed.",
  "counts": {
-  "total": 140,
+  "total": 139,
   "by_reason": {
-   "time": 133,
+   "time": 132,
    "design": 1,
    "ability": 6
   }
@@ -122,17 +122,6 @@
    "script": "loopedcot/prod/steer_gen.py",
    "why": "steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter",
    "note": "manifest status: scan"
-  },
-  {
-   "grid": "A",
-   "card": "generation placement",
-   "model": "huginn_0125",
-   "model_label": "Huginn K32",
-   "dataset": "GSM8K_gen",
-   "dataset_label": "GSM8K generation pairs",
-   "reason": "time",
-   "script": "loopedcot/prod/steer_gen.py (or the RA-19 raven generation path)",
-   "why": "no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host"
   },
   {
    "grid": "A",
@@ -1797,6 +1786,14 @@
    "dataset": "SVAMP_gen",
    "change": "removed (now routed)",
    "why": "cluster extension item 1: steer_gen setting a4 (CKPTS and SETTINGS entries for ouro_2_6b_think; SETTLE cells natural2 k4 shipped in cluster/data)"
+  },
+  {
+   "date": "2026-10-11",
+   "card": "generation placement",
+   "model": "huginn_0125",
+   "dataset": "GSM8K_gen",
+   "change": "removed (now routed)",
+   "why": "cluster extension item 4: steer_gen_raven.py --setting hug (prep shipped in cluster/pilot/data/huginn_setting)"
   }
  ]
 }

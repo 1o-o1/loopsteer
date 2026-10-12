@@ -78,6 +78,7 @@ VBD_N = {"ouro": 0, "ouro_think": 0, "ouro26": 0, "ouro26_think": 0,
 SHARD_SALT = "k17vb-shard:"   # RA-20 A2 item 1: stable item partition, shard = sha256(salt + pair_id)[:8] mod n
 VBD_V1 = {"ouro": True, "ouro_think": True, "ouro26": True, "ouro26_think": True,
           "ifm_p1_ouro": False, "ifm_p1_ouro_inj": False, "ifm_d112": False}   # IFM: V6 only (shared-host cap)
+# B-EXT2 item 5: --vbd_v1 name=1 turns the V1 cells on for the named models (default: the dict above)
 FD_A = (1e-3, 1e-2, 0.1)    # v5 (plan critic 3 F4): finite-difference doses for the per-family G check (fp32 model)
 FD_FLOOR = 1e-4             # |a G| below this (logits) is not scored in the FD check
 FD_N = 4                    # VarBench items per model in the FD check
@@ -5385,6 +5386,8 @@ def main():
     ap.add_argument("--n_sub", default="", help="phase-W subset size: 'N' | 'name=N,...' (review F9)")
     ap.add_argument("--a2_n", default="", help="A2 items per dataset: 'N' | 'name=N,...' (review F9)")
     ap.add_argument("--vbd_n", default="", help="v5 VBD items: 'N' | 'name=N,...'")
+    ap.add_argument("--vbd_v1", default="", help="B-EXT2 item 5: VBD V1 cells on (1) or off (0): '0|1' | "
+                    "'name=0|1,...' (default VBD_V1)")
     ap.add_argument("--role", default="", help="host role in records instead of the host name (A7)")
     ap.add_argument("--bf16_check", action="store_true", help="v6 A-F3: bf16 vs fp32 selector check on fresh items")
     ap.add_argument("--bf16_n", type=int, default=BF16_N, help="v6: items in the bf16 check")
@@ -5415,6 +5418,7 @@ def main():
     N_SUB.update(per_model(a.n_sub, N_SUB, int))
     A2_N.update(per_model(a.a2_n, A2_N, int))
     VBD_N.update(per_model(a.vbd_n, VBD_N, int))
+    VBD_V1.update(per_model(a.vbd_v1, VBD_V1, lambda v: {"0": False, "1": True}[v]))
     assert all(v in ("full", "red") for v in GSET.values()), GSET
     if a.selftest:
         sys.exit(0 if selftest() else 1)

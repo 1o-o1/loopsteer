@@ -70,8 +70,8 @@ def test_not_run_table_has_no_job():
         if r["script"] == "steer_gen_math.py":
             assert r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think", "ouro_2_6b_think") \
                 and "screen_A_from_settle" not in cmd
-        if r["script"] == "steer_gen_raven.py":
-            assert r["model"] == "mcleish_llama32_r32" and "--setting" not in cmd
+        if r["script"] == "steer_gen_raven.py":            # McLeish: default setting; Huginn (item 4): --setting hug
+            assert (r["model"], "--setting hug" in cmd) in (("mcleish_llama32_r32", False), ("huginn_0125", True))
 
 
 def test_job_paths_and_configs():
@@ -95,7 +95,7 @@ def test_full_pools_ifm_wave_and_generation_rules():
     for r in rows:
         cmd = r["cmd"]
         if r["model"].startswith("ifm_"):
-            assert r["group"] in ("g6_ifm", "g14_ifmy1"), r["id"]          # the IFM waves (after the xllm build)
+            assert r["group"] in ("g6_ifm", "g12_ifmv1", "g14_ifmy1"), r["id"]          # the IFM waves (after the xllm build)
             if r["stage"] in ("s1_run", "s2_window"):
                 assert build[0]["id"] in r["depends_on"].split(","), r["id"]
         if r["script"] in ("k15_full.py", "k16_path_ifm.py", "k16_path_ouro.py") and "--models" in cmd:
@@ -207,7 +207,7 @@ def test_skip_list_changes():
     for k in (("edit-site map", "ifm_p2m_diag", "D4"), ("edit-site map", "ifm_p2m_diag", "D5"),
               ("loops against depth", "mcleish_llama32_r32", "D1"), ("loops against depth", "mcleish_llama32_r32", "D2")):
         assert k in keys
-    assert len(d["changes"]) == 25
+    assert len(d["changes"]) == 26
 
 
 def test_scripts_sha256_matches_files():
@@ -430,7 +430,8 @@ def test_ra23_routes_done_registry_and_submit_order():
     for f in glob.glob(os.path.join(JOBS, "g*.tsv")):
         txt = open(f, encoding="utf-8").read()
         assert not [d for d in dids if d + "\t" in txt], f
-    mcl = [r for r in rows if r["script"] == "steer_gen_raven.py" and r["stage"] == "s4_row"]
+    mcl = [r for r in rows if r["script"] == "steer_gen_raven.py" and r["stage"] == "s4_row"
+           and r["model"] == "mcleish_llama32_r32"]
     assert sorted(r["shard"] for r in mcl) == sorted(x for x in GJ.GENR_ROWS if x not in ("r00", "r01"))
     assert all("test -f $OUT_ROOT/A/steer_gen_raven/mcleish/items.json" in r["cmd"] for r in mcl)
     for r in rows:
@@ -1111,7 +1112,7 @@ def test_no_local_done_lists_keep_ids():
     assert all(nl.get(k) == v for k, v in main.items())
     assert set(nl) - set(main) == set(done) and len(done) > 0
     assert not os.path.exists(os.path.join(nl_dir, "held_without_staging.tsv"))
-    mcl = [c for c in nl.values() if "steer_gen_raven.py run" in c]
+    mcl = [c for c in nl.values() if "steer_gen_raven.py run" in c and "--setting hug" not in c]
     assert len(mcl) == 22 and all("/mcleish_setting/items.json" in c and "mv -f" in c for c in mcl)
     s1 = open(os.path.join(nl_dir, "submit_10_rest.sh"), encoding="utf-8").read()
     assert "_staged.ok" not in s1 and "task_g1_copy.sbatch" in s1
@@ -1959,7 +1960,7 @@ def test_resubmit_pipeline_reruns_only_the_analyze_stage(tmp_path):
     rs = os.path.join(JOBS, "resubmit_pipeline.sh").replace("\\", "/")
     env, out, log, _rows = _resubmit_env(tmp_path)
     rows = [r for r in csv.DictReader(open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8"), delimiter="\t")
-            if r["script"] == "steer_gen_raven.py"]
+            if r["script"] == "steer_gen_raven.py" and r["model"] == "mcleish_llama32_r32"]
     assert {r["stage"] for r in rows} == {"s4_row", "s6_analyze"} and len(rows) == 23
     for r in rows:
         if r["stage"] != "s6_analyze":
@@ -2095,3 +2096,49 @@ def test_ext_items_1_3_lines_routes_and_arms_flag(tmp_path, monkeypatch):
         assert calls == [("ifm_p1_mid", want)]
         if not extra:
             assert mod.ARMS == base
+
+
+def test_ext_item5_ifm_vbd_v1_rerun():
+    """Item 5: the IFM k17_varbench pipelines rerun with --vbd_v1 in group g12_ifmv1 and folders <key>_v1 (window and
+    scan included); the first g6_ifm pipelines keep their lines; the merge reads _v1; the plan names the new code."""
+    with open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8") as f:
+        rows = [r for r in csv.DictReader(f, delimiter="	") if r["script"] == "k17_varbench.py"]
+    v1 = [r for r in rows if r["group"] == "g12_ifmv1"]
+    old = [r for r in rows if r["group"] == "g6_ifm"]
+    assert {r["model"] for r in v1} == GJ.VB_V1 == {r["model"] for r in old}
+    assert len(v1) == len(old) == 27 and {r["stage"] for r in v1} == {r["stage"] for r in old}
+    for r in v1:
+        k = GJ.VB_KEY[r["model"]]
+        assert r["out"] == "$OUT_ROOT/B/k17_varbench/%s_v1" % k
+        assert ("--vbd_v1 %s=1" % k in r["cmd"]) == (r["stage"] != "s6_summarize")      # summarize reads records only
+        assert GJ.family_of(r["cmd"]) == "ifm"
+    assert not [r for r in old if "--vbd_v1" in r["cmd"] or r["out"].endswith("_v1")]
+    assert not [r for r in rows if r["model"] not in GJ.VB_V1 and "--vbd_v1" in r["cmd"]]
+    for m in GJ.VB_V1:
+        assert GJ.cell_target("GSM8K copy and derived", m, "VBD")[1].endswith("_v1")
+    sys.path.insert(0, PILOT)
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("kvb_item5", os.path.join(PILOT, "k17_varbench.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    ph = mod.plan_hashes(os.path.join(CL, "plans", "k17_varbench_plan.md"))
+    assert ph["plan_code_sha256"] == mod.code_hashes(os.path.join(PILOT, "k17_varbench.py"))["code_sha256"]
+    assert mod.VBD_V1 == {"ouro": True, "ouro_think": True, "ouro26": True, "ouro26_think": True,
+                          "ifm_p1_ouro": False, "ifm_p1_ouro_inj": False, "ifm_d112": False}     # defaults unchanged
+
+
+def test_ext_item4_huginn_generation_pipeline():
+    """Item 4: Huginn GSM8K generation through steer_gen_raven.py --setting hug in group g15_hgen (unit mcleish):
+    two screens, select, the 22 rows, analyze, on the shipped prep; the McLeish pipeline is unchanged."""
+    with open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8") as f:
+        rows = [r for r in csv.DictReader(f, delimiter="	") if r["group"] == "g15_hgen"]
+    assert [r["stage"] for r in rows] == ["s2_screen"] * 2 + ["s3_select"] + ["s4_row"] * 22 + ["s6_analyze"]
+    assert sorted(r["shard"] for r in rows if r["stage"] == "s4_row") == sorted(GJ.GENR_ROWS)
+    for r in rows:
+        assert r["model"] == "huginn_0125" and r["out"] == "$OUT_ROOT/A/steer_gen_raven/huginn"
+        assert GJ.family_of(r["cmd"]) == "mcleish" and "--setting hug" in r["cmd"]
+        assert "$DATA_ROOT/huginn_setting/prep.json" in r["cmd"]
+    assert os.path.exists(os.path.join(PILOT, "data", "huginn_setting", "prep.json"))
+    assert GJ.cell_target("generation placement", "huginn_0125", "GSM8K_gen")[1] == "A/steer_gen_raven/huginn"
+    assert GJ.cell_target("generation placement", "mcleish_llama32_r32", "GSM8K_gen")[1] == GJ.GENR_DIR
+
