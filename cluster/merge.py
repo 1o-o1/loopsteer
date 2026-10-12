@@ -193,6 +193,20 @@ def job_state(out_root, rel, model_key, ds_key):
     return "done", "%sn_planned %d, %d result rows, max n_items %d" % (small, n_planned, len(rows), n_max), rows
 
 
+def round1_fallback(out_root, tgt):
+    """The IFM GSM8K copy and derived cells route to <key>_v1 (the k17_varbench rerun with --vbd_v1). When that
+    folder is missing or holds no results.csv (the rerun has not run or not finished), the cell reads the round-1
+    folder <key> instead, so the round-1 copy rows and the V6 derived rows stay in results_all_B. Returns the target
+    to read and a note for the completeness detail ("" when the routed folder is read)."""
+    u, rel = tgt[0], tgt[1]
+    if u != "vb" or not rel.endswith("_v1") or os.path.exists(os.path.join(out_root, rel, "results.csv")):
+        return tgt, ""
+    r1 = rel[:-len("_v1")]
+    if not os.path.isdir(os.path.join(out_root, r1)):
+        return tgt, ""
+    return (u, r1) + tuple(tgt[2:]), "round-1 folder %s (no results in %s); " % (r1, rel)
+
+
 def planned_items(out_root, rel, model_key, ds_key):
     """Union of the planned item ids of one cell (the model's own kept set) from items_done.json."""
     sets = json.load(open(os.path.join(out_root, rel, "items_done.json"), encoding="utf-8"))
@@ -331,11 +345,13 @@ def main():
     def read_cell(c, key, tgt, by_product=False):
         """Judge one routed cell on its folder; a done cell's rows go into results_all. by_product: a cell the
         manifest marks done earlier, read only when the folder holds it complete (else None, nothing recorded)."""
+        tgt, fb = round1_fallback(a.out_root, tgt)
         u, rel, mk, dk = tgt
         claims[rel].append((mk, dk, c["grid"]))
         word, det, rows = job_state(a.out_root, rel, mk, dk)
         if by_product and word != "done":
             return None
+        det = fb + det
         if word == "done":
             done_rel.add(rel)
         info[key] = {"state": word, "rel": rel, "mk": mk, "dk": dk, "script": GJ.route(*key)[0],

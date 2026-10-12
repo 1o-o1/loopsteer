@@ -1,0 +1,30 @@
+Answer multiple-choice questions about science, technology, engineering and mathematics.
+
+Q: What is the derivative of f(x) = x^3 - 5x with respect to x?
+Options:
+(A) 3x^2 - 5
+(B) x^4/4 - 5x^2/2
+(C) 3x^2
+(D) 3x - 5
+A: Let's think step by step.
+The derivative of x^3 is 3x^2 and the derivative of -5x is -5. Adding the two terms gives 3x^2 - 5. So the answer is (A).
+
+Q: A 2 kg object accelerates at 3 m/s^2. What is the net force acting on it?
+Options:
+(A) 0.67 N
+(B) 5 N
+(C) 6 N
+(D) 9 N
+A: Let's think step by step.
+Newton's second law states that F = m * a. Here the mass is 2 kg and the acceleration is 3 m/s^2, so F = 2 * 3 = 6 N. So the answer is (C).
+
+Q: What is the worst-case time complexity of binary search on a sorted array of n elements?
+Options:
+(A) O(1)
+(B) O(log n)
+(C) O(n)
+(D) O(n log n)
+A: Let's think step by step.
+Binary search halves the remaining interval at every step, so after k steps about n / 2^k elements are left. The search stops when that count reaches 1, which takes about log2(n) steps. So the answer is (B).
+
+Q: 

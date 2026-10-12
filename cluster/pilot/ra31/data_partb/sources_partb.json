@@ -1,0 +1,17 @@
+{
+ "outputs": {
+  "items.json": "b74bcfdea2480ed5809b7bd9e18180dfa6981bd56abc249f74f9b73cb81158a7",
+  "partb_sets_1.4b.json": "5555239233d0083e254b61fc2eb620bba1f1d4cc5fc84d5cef6cc799a3e2e612",
+  "r00_cells.jsonl": "f30818310d81e1968506f4c5fb3ccab30fc57f6efc1886ca6816f305fc652e78",
+  "r00_chains.jsonl": "630e7aa3869e3af2ca55367f17c27e6b6c4829ce099c914bf6bf9ef70d23e200",
+  "r00_meta.json": "0a0fe2bab0b3108ceef6fe1ac6e8bb8ec88c9a8ae7717c5f5ece7bbe27f39e70"
+ },
+ "sources": {
+  "a1_gsm8k/items.json": "b74bcfdea2480ed5809b7bd9e18180dfa6981bd56abc249f74f9b73cb81158a7",
+  "a1_gsm8k/r00/cells_ouro_1_4b_base_gsm8k_natural_k4_sub417.jsonl": "f30818310d81e1968506f4c5fb3ccab30fc57f6efc1886ca6816f305fc652e78",
+  "a1_gsm8k/r00/chains_ouro_1_4b_base_gsm8k_k4.jsonl": "630e7aa3869e3af2ca55367f17c27e6b6c4829ce099c914bf6bf9ef70d23e200",
+  "a1_gsm8k/r00/meta_ouro_1_4b_base_gsm8k_natural_k4_sub417.json": "f5b20f91334f0745292e7ac375fba9466306fb2e3bac1096e8355a9dbe17c92f",
+  "pilot_1.4b/items_D1.jsonl": "76380a874964b4f5525349cf855224bcd368b4987174b3a0db1824359efead2b",
+  "pilot_1.4b/items_D2.jsonl": "c8395d6612645d80a0d97db264e82c54969ef61e2c72d8793d13cdc20d0bfeb2"
+ }
+}

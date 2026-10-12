@@ -1,0 +1,40 @@
+{
+ "arms": [
+  "base",
+  "text",
+  "floor",
+  "cv1",
+  "cv2",
+  "cv3",
+  "kv1",
+  "cvP",
+  "rnd1",
+  "rnd3",
+  "span1",
+  "clean",
+  "nc_full",
+  "nc_t1",
+  "nc_t5",
+  "nc_t20",
+  "nc_r5",
+  "nc_ds5",
+  "ns_full",
+  "ns_t1",
+  "ns_t5",
+  "ns_t20",
+  "ns_r5",
+  "ns_ds5"
+ ],
+ "ds": "gsm8k",
+ "horizon": 512,
+ "identity_arms": [
+  "kv4"
+ ],
+ "k": 4,
+ "model": "ouro_1_4b_base",
+ "n_scored_pilot": 25,
+ "n_split": 10,
+ "stage": "pilot",
+ "tie": 1.0,
+ "use_cap": false
+}

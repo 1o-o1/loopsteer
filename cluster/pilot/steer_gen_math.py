@@ -18,7 +18,7 @@ steer_gen_raven's own code.
 
     python steer_gen_math.py --dataset asdiv --rows-dir OUT ouro    <prod.steer_gen arguments>
     python steer_gen_math.py --dataset asdiv --rows-dir OUT ouro    select_full --setting a1 --out OUT --config-json CFG
-    python steer_gen_math.py --dataset asdiv --rows-dir OUT mcleish <steer_gen_raven arguments>
+    python steer_gen_math.py --dataset asdiv --rows-dir OUT mcleish <steer_gen_raven arguments>   (--setting hug: Huginn)
 """
 import json
 import os
@@ -142,7 +142,8 @@ def item_record(pr, g):
 
 def install_mcleish(S):
     """steer_gen_raven with the dataset installed: its prep without the SETTLE pre-filter, its hash line naming the
-    dataset's pool."""
+    dataset's pool. Both raven settings (mcl: McLeish, hug: Huginn) take the dataset; the pool span is read for the
+    active setting's tokenizer."""
     import steer_gen_raven as R
 
     def prep(cfg, out_dir, settle_dir=None):
@@ -155,7 +156,7 @@ def install_mcleish(S):
         for idx in S.shuffled(by):
             pr = by[idx]
             g = R.geometry(tok, pr, srows)
-            ps = pr["tok"]["mcleish"]
+            ps = pr["tok"][R.spec()["pool_tok"]]
             g["ok"]["matches_pool_span"] = list(g["span"]) == list(ps["span_A"]) and g["plen"] == ps["len_A"]
             fails = [kk for kk, v in g["ok"].items() if not v]
             if fails:
@@ -185,8 +186,9 @@ def install_mcleish(S):
             S.write_json(p, d)
         return json.load(open(p, encoding="utf-8"))
     R.prep, R.hash_line = prep, hash_line
-    R.S.SETTINGS[R.SETTING]["settle"] = None
-    R.S.SETTINGS[R.SETTING]["dataset"] = S.DATASET
+    for st in ("mcl", "hug"):
+        R.S.SETTINGS[st]["settle"] = None
+        R.S.SETTINGS[st]["dataset"] = S.DATASET
     return R
 
 

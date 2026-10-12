@@ -1,0 +1,83 @@
+{
+ "dataset": "asdiv",
+ "chains": "artifacts_spark/cluster_local/ra20_tail2/A/steer_gen_math/a1_asdiv/screen_A/chains_ouro_1_4b_base_asdiv_k4.jsonl",
+ "n_pool": 1036,
+ "n_with_chain": 1036,
+ "counts": {
+  "one_step": 800,
+  "kept": 90,
+  "kept_r1_info": 83,
+  "no_equation": 36,
+  "no_changed_step": 70,
+  "token_count": 20,
+  "inconsistent": 15,
+  "expr_parse": 1,
+  "no_intermediate": 2,
+  "derived_B_format": 2
+ },
+ "kept": 90,
+ "shown": [
+  {
+   "idx": 532,
+   "P": [
+    664,
+    666
+   ],
+   "tokens_A": [
+    "1",
+    "8"
+   ],
+   "tokens_B": [
+    "1",
+    "5"
+   ],
+   "derived_A": "18",
+   "derived_B": "15",
+   "e1": "6+5+7",
+   "answer_edit": "13",
+   "gold_B": "13",
+   "prefix_tail": " 7 = <<6+5+7=18"
+  },
+  {
+   "idx": 1077,
+   "P": [
+    630,
+    631
+   ],
+   "tokens_A": [
+    "8"
+   ],
+   "tokens_B": [
+    "3"
+   ],
+   "derived_A": "8",
+   "derived_B": "3",
+   "e1": "10-2",
+   "answer_edit": "12",
+   "gold_B": "12",
+   "prefix_tail": "0 - 2 = <<10-2=8"
+  },
+  {
+   "idx": 574,
+   "P": [
+    647,
+    649
+   ],
+   "tokens_A": [
+    "3",
+    "8"
+   ],
+   "tokens_B": [
+    "5",
+    "0"
+   ],
+   "derived_A": "38",
+   "derived_B": "50",
+   "e1": "86-48",
+   "answer_edit": "41",
+   "gold_B": "41",
+   "prefix_tail": "48 = <<86-48=38"
+  }
+ ],
+ "note": "estimate on the Table 2 batch-16 chains; the run re-screens its own batch-1 chains"
+}

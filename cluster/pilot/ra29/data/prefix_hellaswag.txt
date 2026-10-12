@@ -1,0 +1,33 @@
+Choose the most plausible continuation of a short description of an everyday activity.
+
+Q: Making tea: A woman fills a kettle at the sink and sets it on the stove. she
+Which ending is most plausible?
+Options:
+(A) pours the cold water straight from the kettle into a mug and drinks it.
+(B) waits for the water to boil, then pours it over a tea bag in a mug.
+(C) puts the kettle into the freezer and closes the door.
+(D) carries the kettle outside and washes the car with it.
+A: Let's think step by step.
+The woman has just put a full kettle on the stove, so the next thing that happens is the water heating up. Waiting for it to boil and pouring it over a tea bag follows directly from that. The other endings ignore the stove or have nothing to do with tea. So the answer is (B).
+
+Q: Changing a bicycle tire: A man leans a bicycle against a wall and removes the front wheel. he
+Which ending is most plausible?
+Options:
+(A) pries the tire off the rim with two levers and pulls out the inner tube.
+(B) inflates the tire he has just removed and rides away on the bicycle.
+(C) paints the wall behind the bicycle with a roller.
+(D) puts the wheel in the oven and sets a timer.
+A: Let's think step by step.
+Taking the front wheel off is the first step of repairing a tire, and the next step of that repair is getting the tire off the rim to reach the tube. Riding away is impossible with the wheel removed, and the remaining endings have nothing to do with the bicycle. So the answer is (A).
+
+Q: Baking bread: A baker kneads a ball of dough on a floured counter and covers it with a towel. he
+Which ending is most plausible?
+Options:
+(A) immediately slices the raw dough and serves it to customers.
+(B) throws the dough in the bin and wipes the counter clean.
+(C) leaves the dough to rise for an hour before shaping it into a loaf.
+(D) freezes the towel and hangs it on a line.
+A: Let's think step by step.
+Covering kneaded dough with a towel is how a baker lets it rise, so the continuation is waiting for it to rise and then shaping it. The other endings throw the work away or have nothing to do with baking. So the answer is (C).
+
+Q: 

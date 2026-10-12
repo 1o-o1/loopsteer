@@ -1,0 +1,22 @@
+{
+ "code_sha256": {
+  "lib/arms.py": "02831127fc1095594287e4aaa8c69321597df8d8d480185c198002356c5158ce",
+  "lib/chain.py": "b703010f5b02423f3c36703033a65b52537deff9ef09a9c20e4212a09fa03706",
+  "lib/ra28_score.py": "91c3d27d22c3050c9e8d9f38f969768e129772838c565dbb235d36f739f47035",
+  "lib/ra30_data.py": "6f166dd5154905c44698f480a9f5c2f83e8ecc998fc19906485c6ea587c5d9e7",
+  "ra30.py": "03c20c4d9e5f9875ece6b1867a012868fe088cb323280bc9aa074c9e1620743d",
+  "tree/prod/models/ouro.py": "c0e5746547c97147023b5b35185fde9e7ce6a648575aa96f4d7cb4ac3e7bd87a",
+  "tree/prod/steer_gen.py": "23430adcb206889dd3c18d87eb30eb1ec032420d2cda34e5966e92fe8dc65596",
+  "tree/prod/tasks/__init__.py": "1378881344b25e24e2727c2d3cf3be9e8c79bcda5e5e7672a0557acb8b1eea18"
+ },
+ "config_sha256": "ca1d28d73a36dc14b542151b616850250e74b018ba91f9d5db863fdaf617ea2e",
+ "data_sha256": {
+  "pool_asdiv.json": "8a028af7b35d632eae7f4cf79adfb2da87b4989d632f12bba924346cbf0c5808",
+  "pool_gsm8k.json": "4e9f4ce5ae6e3ed48c0df2e229fa959bcd59c8bbf656120fd2e29dc06eddb9df",
+  "prescreen_asdiv.json": "0954f6c95adc61d168f57bcf0c7d514df53d6c75ad2e8c9247bb3b752cb03504",
+  "prescreen_gsm8k.json": "0c9fa5a044ca40540014fd5a3364f5d1f7ba9d46e4cf4758fec3399887080973",
+  "split_asdiv.json": "1e76e93946bfa8f8c2dab444df57e1d9d863a7ae46c1e954448b43c6e682340f",
+  "split_gsm8k.json": "92b8ffecb9820e6677f484e816e31fd5c6d215e2d6891d0f5e31a38287d92d7f"
+ },
+ "plan_sha256": "7f96eb63b0b503136fc376c37c123bdd8fa006f9e02e36482caf7dc23290b7bf"
+}

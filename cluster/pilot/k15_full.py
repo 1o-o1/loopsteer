@@ -60,8 +60,25 @@ GEN_TOKENS = 24
 PB = 10
 KNOW_BATCH = 96
 NBOOT = 1000
-MODEL_ORDER = ["ouro", "ouro26", "ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_d112"]
+MODEL_ORDER = ["ouro", "ouro26", "ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_d112", "ifm_d28"]   # d28: cluster fill
 DATASETS = ["D1", "D2", "CF"]
+KNOWN_DATASETS = ["D1", "D2", "CF", "D4", "D5"]     # --datasets choices; seed0 by this order (D1, D2, CF as before)
+D4_DIR = [""]           # cluster extension (--data_dir): the k16_path_ifm data folder (d4/d4_ifm.jsonl and
+#                         d5/d5_ifm.jsonl, IFM tokenizer)
+
+
+def d45_candidates(ds, enc=None):
+    """D4 (code: read and sum) or D5 (two-step) pairs as k16_path_ifm builds them (its rows, paraphrases and template
+    cap 1), on the IFM tokenizer file; with enc, every row's prompt + suffix must encode to its ids (k16_path_ifm's
+    check)."""
+    import k16_path_ifm as K16I
+    cands = K16I.d45_candidates(ds, D4_DIR[0])
+    if enc is not None:
+        bad = [p["id"] for p in cands if enc(p["prompt_A"]) + p["suffix_ids"] != p["ids_A"]
+               or enc(p["prompt_B"]) + p["suffix_ids"] != p["ids_B"]]
+        if bad:
+            raise SystemExit("%s tokenization mismatch on %d of %d rows (first %s)" % (ds, len(bad), len(cands), bad[:3]))
+    return cands, dict(K16I.D45_QUOTA[ds]), K16I.d45_select
 
 
 class Budget(Exception):
@@ -299,6 +316,8 @@ def process_pair(M, p, rA, rB, seed, ctx, cells, tau=TAU):
             "mA_by_loop": [r5(zA[pe][tB] - zA[pe][tA]) for pe in le_pts],
             "mB_by_loop": [r5(zB[pe][tB] - zB[pe][tA]) for pe in le_pts],
             "reruns": reruns, "rows": n, "batch_gap": r5(gap)}
+    if p.get("dataset") in ("d4", "d5"):   # D4, D5 rows (k16_path_ifm data) keep their id: answers repeat across templates
+        item["id"] = p["id"]
     return item
 
 
@@ -330,7 +349,7 @@ def record_pass(cands, table):
     return out
 
 
-def run_dataset(M, ds, cands, quota, ctx, deadline, use_table, seed0):
+def run_dataset(M, ds, cands, quota, ctx, deadline, use_table, seed0, selector=None):
     final = ctx["final"]
     rec_pts = set(ctx["site_pts"]) | set(pe for pe, _ in ctx["loop_ends"])
     t0 = time.time()
@@ -372,8 +391,11 @@ def run_dataset(M, ds, cands, quota, ctx, deadline, use_table, seed0):
     truncated = False
     scanned = None
     try:
-        kept, scanned = (KD.select(cands, know, quota, cap=10 ** 9) if (CF_POOL[0] and ds == "CF")
-                         else KD.select(cands, know, quota))     # shared pool: no subject cap (as production)
+        if selector is not None:                            # D4, D5: k16_path_ifm's selection (template cap 1)
+            kept, scanned = selector(cands, know, quota)
+        else:
+            kept, scanned = (KD.select(cands, know, quota, cap=10 ** 9) if (CF_POOL[0] and ds == "CF")
+                             else KD.select(cands, know, quota))     # shared pool: no subject cap (as production)
     except Budget:
         truncated = True
     by_rel = {}
@@ -381,7 +403,7 @@ def run_dataset(M, ds, cands, quota, ctx, deadline, use_table, seed0):
         by_rel[it["rel"]] = by_rel.get(it["rel"], 0) + 1
     modes = [m for it in items for m in it["modes"]]
     out = {"pairs": len(items), "scanned": scanned, "candidates": len(cands), "by_rel": by_rel,
-           "quota": {"%s:%s" % k: v for k, v in quota.items()}, "truncated": truncated, "know_stats": st,
+           "quota": {("%s:%s" % k if isinstance(k, tuple) else k): v for k, v in quota.items()}, "truncated": truncated, "know_stats": st,
            "para_modes": {m: modes.count(m) for m in sorted(set(modes))},
            "reruns": sum(it["reruns"] for it in items), "rows": sum(it["rows"] for it in items),
            "batch_gap_max": max([it["batch_gap"] for it in items] or [0.0]),
@@ -561,10 +583,16 @@ def run_model(name, out_dir, cf_path, pair_budget_min, debug, n_neutral):
         json.dump(res, open(path + ".tmp", "w"))
         os.replace(path + ".tmp", path)
     for ds in DATASETS:
+        sel = None
         if ds == "D1":
             cands, quota, use_table, dl = KD.d1_candidates(M.enc), dict(KD.D1_QUOTA), False, None
         elif ds == "D2":
             cands, quota, use_table, dl = KD.d2_candidates(M.enc), dict(KD.D2_QUOTA), True, deadline
+        elif ds in ("D4", "D5"):
+            if not name.startswith("ifm_"):
+                raise SystemExit("%s runs on the IFM tokenizer file only (%s_ifm.jsonl): %s" % (ds, ds.lower(), name))
+            cands, quota, sel = d45_candidates(ds, M.enc)
+            use_table, dl = True, deadline
         else:
             if CF_POOL[0]:
                 import cf_pool as CFP
@@ -575,7 +603,8 @@ def run_model(name, out_dir, cf_path, pair_budget_min, debug, n_neutral):
         quota = {k: 10 ** 9 for k in quota} if FULL_POOL[0] else quota
         if debug:
             quota = {k: min(v, 2) for k, v in quota.items()}
-        out = run_dataset(M, ds, cands, quota, ctx, dl, use_table, seed0=1000 * (DATASETS.index(ds) + 1))
+        out = run_dataset(M, ds, cands, quota, ctx, dl, use_table, seed0=1000 * (KNOWN_DATASETS.index(ds) + 1),
+                          selector=sel)
         if ds == "CF":
             out["cand_stats"] = cst
         res["datasets"][ds] = out
@@ -684,13 +713,15 @@ def summarize(out_dir):
     for m in order:
         d = res[m]
         sites = sites_of[m]
+        sum_ds = (DATASETS + [x for x in KNOWN_DATASETS if x in d["datasets"] and x not in DATASETS]
+                  if d.get("partial") else [x for x in KNOWN_DATASETS if x in d["datasets"]])   # a full run: what ran
         checks["pairs_per_model_dataset"][m] = {ds: (d["datasets"][ds]["pairs"] if ds != "CF" else
                                                      dict(d["datasets"][ds]["by_rel"], total=d["datasets"][ds]["pairs"]))
-                                                for ds in DATASETS if ds in d["datasets"]}
+                                                for ds in sum_ds if ds in d["datasets"]}
         checks["partial"][m] = d.get("partial", False)
         checks["para_fallback_last_token"][m] = {ds: "%d/%d" % (d["datasets"][ds]["para_modes"].get("last_token", 0),
                                                                sum(d["datasets"][ds]["para_modes"].values()))
-                                                 for ds in DATASETS if ds in d["datasets"]}
+                                                 for ds in sum_ds if ds in d["datasets"]}
         rp = {ds: d["datasets"][ds].get("record_pass") for ds in ("D2", "CF") if ds in d["datasets"]}
         kf = os.path.join(out_dir, "know_%s.json" % m)
         if os.path.exists(kf):
@@ -705,7 +736,7 @@ def summarize(out_dir):
         L += ["## %s" % m, "", "Host %s, K %d, layers %s, readout: %s. Load %.0fs, total %.0fs." % (
             d["host"], d["K"], d["layers"], d["readout"], d["load_seconds"], d.get("seconds_total", 0)), ""]
         Kk = d["K"]
-        for ds in DATASETS:
+        for ds in sum_ds:
             if ds not in d["datasets"]:
                 L += ["### %s / %s: not run (partial file)" % (m, ds), ""]
                 continue
@@ -1046,9 +1077,15 @@ def main():
     ap.add_argument("--cf_pool", default="", help="cluster copy: CF candidates from this shared pool file")
     ap.add_argument("--n_neutral", type=int, default=150)
     ap.add_argument("--know_only", action="store_true")
+    ap.add_argument("--datasets", default=",".join(DATASETS), help="cluster extension: comma list of D1, D2, CF, D4, D5")
+    ap.add_argument("--data_dir", default="", help="cluster extension: k16_path_ifm data folder (D4, D5 rows)")
     a = ap.parse_args()
     FULL_POOL[0] = a.full_pool
     CF_POOL[0] = a.cf_pool
+    D4_DIR[0] = a.data_dir
+    dss = [x for x in a.datasets.split(",") if x]
+    assert dss and set(dss) <= set(KNOWN_DATASETS) and not ({"D4", "D5"} & set(dss) and not a.data_dir), (dss, a.data_dir)
+    DATASETS[:] = dss
     if a.selftest:
         sys.exit(0 if selftest() else 1)
     os.makedirs(a.out, exist_ok=True)

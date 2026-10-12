@@ -9,6 +9,7 @@ A,generation placement,ouro_2_6b_think,GSM8K_gen,run,steer_gen.py,522,none: ever
 A,generation placement,ouro_2_6b_think,SVAMP_gen,run,steer_gen.py,995,none: every problem that passes both clean filters is scored (sentinels from the prep items left over),none,300,no SETTLE count read; assumed
 A,generation placement,mcleish_llama32_r32,GSM8K_gen,run,steer_gen_raven.py,522,none (every problem that passed both screens of the shared-host run),237 selected,237,"the shared-host run's select (rows r00, r01 done on the same problems)"
 A,generation placement,huginn_0125,GSM8K_gen,run,steer_gen_raven.py,522,none (every prep problem that passes both screens),none,124,"prep 151 (SETTLE k32 pre-filter, shipped prep.json); planned scored assumed"
+A,generation placement,huginn_0125,SVAMP_gen,run,steer_gen_raven.py,298,none (every prep problem screened; every one that passes both screens),none,87,"prep 130 (SETTLE k32 pre-filter, CPU prep) x the GSM8K pass rate 0.67"
 B,GSM8K copy and derived,ouro_1_4b_base,VBD,run,k17_varbench.py,848,"none (--pool pairs, --vbd_n 100000)",80 (vbd_n cap),776,clean-pass rate of the s200 scan applied to the pool
 B,GSM8K copy and derived,ouro_2_6b_base,VBD,run,k17_varbench.py,848,"none (--pool pairs, --vbd_n 100000)",80 (vbd_n cap),797,clean-pass rate of the s200 scan applied to the pool
 B,GSM8K copy and derived,ouro_1_4b_think,VB,run,k17_varbench.py,913,"none (--pool pairs, --n_vb 100000)",184 of 200 scanned (s200),840,clean-pass rate of the s200 scan applied to the pool
@@ -32,10 +33,14 @@ B,edit-site map,ouro_1_4b_think,D1,run,k17_public.py,425,none (--targets D1=1000
 B,edit-site map,ouro_1_4b_think,D2,run,k17_public.py,592,none (--targets D2=100000; selector caps per subject or problem as in every family),none,592,no earlier scan of this family: pass rate assumed from k15 D2 scans
 B,edit-site map,ouro_1_4b_think,D4,run,k17_public.py,1701,none (--targets D4=100000; selector caps per subject or problem as in every family),none,1595,no earlier scan of this family: pass rate assumed from k17_public mcleish D4 scan
 B,edit-site map,ouro_1_4b_think,D5,run,k16_path_ouro.py,1183,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",80 of 110 scanned (quota run),860,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ouro_2_6b_think,D1,run,k17_public.py,425,none (--targets D1=100000; selector caps per subject or problem as in every family),none,400,no earlier scan of this family: pass rate assumed from k15 D1 scans
+B,edit-site map,ouro_2_6b_think,D2,run,k17_public.py,592,none (--targets D2=100000; selector caps per subject or problem as in every family),none,592,no earlier scan of this family: pass rate assumed from k15 D2 scans
+B,edit-site map,ouro_2_6b_think,D4,run,k17_public.py,1701,none (--targets D4=100000; selector caps per subject or problem as in every family),none,1595,no earlier scan of this family: pass rate assumed from k17_public mcleish D4 scan
+B,edit-site map,ouro_2_6b_think,D5,run,k16_path_ouro.py,,,,,
 B,edit-site map,ifm_p1_ouro,D1,run,k15_full.py,313,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",80 of 85 scanned (quota run),295,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_p1_ouro,CF,run,k15_full.py,"1764 of the 3,741-pair CF pool well formed on the IFM tokenizer","none (--full_pool --cf_pool: the shared CF pool, no quota and no subject cap)",none on the shared pool (the pilot scanned another CF pool),369,"pool pairs well formed on the tokenizer x the production pass rate of the pool (783 of 3,741)"
 B,edit-site map,ifm_p1_ouro,D2,run,k15_full.py,600,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",80 of 80 scanned (quota run),600,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
-B,edit-site map,ifm_p1_ouro,D4,run,k16_path_ifm.py,806,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",40 of 40 scanned (quota run),806,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ifm_p1_ouro,D4,run,k15_full.py,,,,,
 B,edit-site map,ifm_p1_ouro,D5,run,k16_path_ifm.py,594,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",40 of 371 scanned (quota run),64,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_p1_ouro_inj,D1,run,k15_full.py,313,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",80 of 85 scanned (quota run),295,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_p1_ouro_inj,CF,run,k15_full.py,"1764 of the 3,741-pair CF pool well formed on the IFM tokenizer","none (--full_pool --cf_pool: the shared CF pool, no quota and no subject cap)",none on the shared pool (the pilot scanned another CF pool),369,"pool pairs well formed on the tokenizer x the production pass rate of the pool (783 of 3,741)"
@@ -51,9 +56,22 @@ B,edit-site map,ifm_p1_mid_inj,D2,run,k16_path_ifm.py,600,"none (--full_pool; at
 B,edit-site map,ifm_p1_mid_inj,D4,run,k16_path_ifm.py,806,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",40 of 42 scanned (quota run),768,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_p1_mid_inj,D5,run,k16_path_ifm.py,594,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",40 of 511 scanned (quota run),46,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_p2m_r5,D1,run,k15_pairs.py,280,none (--n_half 100000; at most 2 pairs per subject),80 of 106 scanned (quota run),211,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ifm_p2m_r5,D2,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,600,another model's pilot kept rate on the dataset (rough)
+B,edit-site map,ifm_p2m_r5,D4,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,806,another model's pilot kept rate on the dataset (rough)
+B,edit-site map,ifm_p2m_r5,D5,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,97,another model's pilot kept rate on the dataset (rough)
 B,edit-site map,ifm_p2m_diag,D1,run,k15_pairs.py,280,none (--n_half 100000; at most 2 pairs per subject),79 of 104 scanned (quota run),213,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_p2m_diag,D2,run,k16_path_ifm.py,600,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",80 of 80 scanned (quota run),600,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ifm_p2m_diag,D4,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,806,another model's pilot kept rate on the dataset (rough)
+B,edit-site map,ifm_p2m_diag,D5,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,97,another model's pilot kept rate on the dataset (rough)
 B,edit-site map,ifm_p2m_ortho,D1,run,k15_pairs.py,280,none (--n_half 100000; at most 2 pairs per subject),80 of 104 scanned (quota run),215,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ifm_p2m_ortho,D2,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,600,another model's pilot kept rate on the dataset (rough)
+B,edit-site map,ifm_p2m_ortho,D4,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,806,another model's pilot kept rate on the dataset (rough)
+B,edit-site map,ifm_p2m_ortho,D5,run,k16_path_ifm.py,,none (--full_pool; 1 per D4/D5 template),none,97,another model's pilot kept rate on the dataset (rough)
+B,edit-site map,ifm_d28,D1,run,k15_full.py,,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",none,266,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ifm_d28,CF,run,k15_full.py,"1764 of the 3,741-pair CF pool well formed on the IFM tokenizer","none (--full_pool --cf_pool: the shared CF pool, no quota and no subject cap)",none on the shared pool (the pilot scanned another CF pool),369,"pool pairs well formed on the tokenizer x the production pass rate of the pool (783 of 3,741)"
+B,edit-site map,ifm_d28,D2,run,k15_full.py,,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",none,600,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ifm_d28,D4,run,k15_full.py,,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",none,80,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
+B,edit-site map,ifm_d28,D5,run,k15_full.py,,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",none,80,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_d112,D1,run,k15_full.py,313,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",80 of 94 scanned (quota run),266,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
 B,edit-site map,ifm_d112,CF,run,k15_full.py,"1764 of the 3,741-pair CF pool well formed on the IFM tokenizer","none (--full_pool --cf_pool: the shared CF pool, no quota and no subject cap)",none on the shared pool (the pilot scanned another CF pool),369,"pool pairs well formed on the tokenizer x the production pass rate of the pool (783 of 3,741)"
 B,edit-site map,ifm_d112,D2,run,k15_full.py,600,"none (--full_pool; at most 2 pairs per subject, 1 per D4/D5 template)",80 of 80 scanned (quota run),600,pool candidates x pass rate of the pilot scan (quota-limited scan; rough)
@@ -115,3 +133,8 @@ B,IFM pathway rows (first run),ifm_p1_mid_inj,D2,run,k16_path_ifm.py,,,,,
 B,IFM pathway rows (first run),ifm_p1_mid_inj,D4,run,k16_path_ifm.py,,,,,
 B,IFM pathway rows (first run),ifm_p1_mid_inj,D5,run,k16_path_ifm.py,,,,,
 B,IFM pathway rows (first run),ifm_p2m_diag,D2,run,k16_path_ifm.py,,,,,
+B,IFM pathway rows (first run),ifm_p1_ouro,D4,run,k16_path_ifm.py,,,,,
+A,generation placement,mcleish_llama32_r32,ASDIV_gen,run,steer_gen_math.py,1114,the first 290 prep problems screened (the GSM8K run's count); every one that passes both,none,237,screened x the GSM8K pass rate 0.82
+A,generation placement,mcleish_llama32_r32,MAWPS_gen,run,steer_gen_math.py,2082,the first 290 prep problems screened (the GSM8K run's count); every one that passes both,none,237,screened x the GSM8K pass rate 0.82
+A,generation placement,huginn_0125,ASDIV_gen,run,steer_gen_math.py,1114,the first 151 prep problems screened (the GSM8K run's count); every one that passes both,none,101,screened x the GSM8K pass rate 0.67
+A,generation placement,huginn_0125,MAWPS_gen,run,steer_gen_math.py,2082,the first 151 prep problems screened (the GSM8K run's count); every one that passes both,none,101,screened x the GSM8K pass rate 0.67

@@ -41,9 +41,11 @@ RUN_ROLE = os.environ.get("RUN_ROLE", "cluster")   # written into records instea
 FULL_POOL = [False]     # cluster copy (--full_pool): lift the per-dataset quotas; every candidate is scanned
 
 ARMS = {"ifm_p1_ouro_inj": ["Y2"], "ifm_p1_mid_inj": ["Y2"], "ifm_p2m_diag": ["Y2"],
-        "ifm_p1_ouro": ["Y1", "Y3", "W2"], "ifm_d112": ["Y1", "W2"], "ifm_p1_mid": ["Y3", "W2"]}
-MODEL_ORDER = ["ifm_p1_ouro_inj", "ifm_p1_mid_inj", "ifm_p2m_diag", "ifm_p1_ouro", "ifm_d112", "ifm_p1_mid"]
-HUGINN = ("ifm_p1_mid", "ifm_p1_mid_inj", "ifm_p2m_diag")
+        "ifm_p1_ouro": ["Y1", "Y3", "W2"], "ifm_d112": ["Y1", "W2"], "ifm_p1_mid": ["Y3", "W2"],
+        "ifm_p2m_r5": ["Y2"], "ifm_p2m_ortho": ["Y2"]}          # cluster fill: the other two 819M designs, as diag
+MODEL_ORDER = ["ifm_p1_ouro_inj", "ifm_p1_mid_inj", "ifm_p2m_diag", "ifm_p1_ouro", "ifm_d112", "ifm_p1_mid",
+               "ifm_p2m_r5", "ifm_p2m_ortho"]
+HUGINN = ("ifm_p1_mid", "ifm_p1_mid_inj", "ifm_p2m_diag", "ifm_p2m_r5", "ifm_p2m_ortho")
 DATASETS = ["D1", "D2"]
 A_Y2 = [0.5, 1.0]
 PV_A = 2.0

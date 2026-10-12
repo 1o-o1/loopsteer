@@ -1,0 +1,7681 @@
+{
+ "filter_fails": {
+  "A_wrong": 0,
+  "B_wrong": 33,
+  "not_screened": 0
+ },
+ "n_scored": 395,
+ "n_screened_A": 428,
+ "n_screened_B": 428,
+ "r20_layout_change": {
+  "group_changed": 417,
+  "n": 417,
+  "padded_len_changed": 344
+ },
+ "scored": [
+  {
+   "first_digit_differs": false,
+   "gold_A": "45",
+   "gold_B": "40",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 989,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 34,
+   "plen": 615,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "peel_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "270",
+   "gold_B": "360",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1095,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 5,
+   "plen": 625,
+   "span": [
+    619,
+    620
+   ],
+   "value_A": 3,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "time"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "100",
+   "gold_B": "125",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 548,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 11,
+   "plen": 614,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 70,
+   "value_B": 95,
+   "value_first_digit_differs": true,
+   "var_name": "final_weight"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "120",
+   "gold_B": "80",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 196,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 621,
+   "span": [
+    603,
+    604
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "carrots_per_restaurant"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "88",
+   "gold_B": "228",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 74,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 702,
+   "span": [
+    685,
+    687
+   ],
+   "value_A": 17,
+   "value_B": 87,
+   "value_first_digit_differs": true,
+   "var_name": "begonia_pots"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "84",
+   "gold_B": "105",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 254,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 644,
+   "span": [
+    622,
+    623
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "robert_multiplier"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "18",
+   "gold_B": "16",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 517,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 632,
+   "span": [
+    617,
+    619
+   ],
+   "value_A": 36,
+   "value_B": 32,
+   "value_first_digit_differs": false,
+   "var_name": "suzanne_cookies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "1",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 839,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 25,
+   "plen": 620,
+   "span": [
+    594,
+    595
+   ],
+   "value_A": 3,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "current_cows"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "6",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 813,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 27,
+   "plen": 663,
+   "span": [
+    635,
+    636
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "dropped_marshmallows"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "1",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 617,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 21,
+   "plen": 638,
+   "span": [
+    614,
+    617
+   ],
+   "value_A": 750,
+   "value_B": 150,
+   "value_first_digit_differs": true,
+   "var_name": "bull_weight"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "3",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 321,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 611,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 4,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "book_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "5",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1044,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 22,
+   "plen": 648,
+   "span": [
+    625,
+    626
+   ],
+   "value_A": 2,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "cole_growth_inches"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "410",
+   "gold_B": "1110",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 934,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 653,
+   "span": [
+    638,
+    640
+   ],
+   "value_A": 12,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "sydney_distance_per_seed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "15",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1260,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 663,
+   "span": [
+    642,
+    643
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "batches_per_day"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "30",
+   "gold_B": "35",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1098,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 45,
+   "plen": 626,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 10,
+   "value_B": 15,
+   "value_first_digit_differs": false,
+   "var_name": "jeff_age_difference"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5600",
+   "gold_B": "20200",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 249,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 645,
+   "span": [
+    614,
+    616
+   ],
+   "value_A": 13,
+   "value_B": 86,
+   "value_first_digit_differs": true,
+   "var_name": "sister_tuesday_cookies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "12",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1099,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 66,
+   "plen": 655,
+   "span": [
+    586,
+    589
+   ],
+   "value_A": 300,
+   "value_B": 900,
+   "value_first_digit_differs": true,
+   "var_name": "biggest_slide_length"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "12",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 536,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 10,
+   "plen": 616,
+   "span": [
+    605,
+    606
+   ],
+   "value_A": 2,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "anne_age_difference"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "400",
+   "gold_B": "416",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 264,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 616,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 50,
+   "value_B": 66,
+   "value_first_digit_differs": true,
+   "var_name": "daisy_extra"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 344,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 35,
+   "plen": 629,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 5,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "increment_B"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "28",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 447,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 46,
+   "plen": 629,
+   "span": [
+    580,
+    583
+   ],
+   "value_A": 214,
+   "value_B": 237,
+   "value_first_digit_differs": false,
+   "var_name": "joey_initial_points"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "10000",
+   "gold_B": "19600",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 129,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 33,
+   "plen": 642,
+   "span": [
+    606,
+    609
+   ],
+   "value_A": 150,
+   "value_B": 102,
+   "value_first_digit_differs": false,
+   "var_name": "doctor_hourly_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "64800",
+   "gold_B": "51840",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 935,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 5,
+   "plen": 678,
+   "span": [
+    671,
+    673
+   ],
+   "value_A": 30,
+   "value_B": 24,
+   "value_first_digit_differs": true,
+   "var_name": "days_per_month"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 579,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 605,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 3,
+   "value_B": 0,
+   "value_first_digit_differs": true,
+   "var_name": "brother_cards_difference"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "50",
+   "gold_B": "48",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1151,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 34,
+   "plen": 616,
+   "span": [
+    579,
+    582
+   ],
+   "value_A": 110,
+   "value_B": 100,
+   "value_first_digit_differs": false,
+   "var_name": "first_distance"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "80",
+   "gold_B": "64",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 474,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 619,
+   "span": [
+    597,
+    599
+   ],
+   "value_A": 20,
+   "value_B": 16,
+   "value_first_digit_differs": true,
+   "var_name": "students_without_desktops"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "28",
+   "gold_B": "126",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 746,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 72,
+   "plen": 672,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 26,
+   "value_B": 75,
+   "value_first_digit_differs": true,
+   "var_name": "adult_fee_park1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "90",
+   "gold_B": "81",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1290,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 612,
+   "span": [
+    590,
+    592
+   ],
+   "value_A": 50,
+   "value_B": 25,
+   "value_first_digit_differs": true,
+   "var_name": "large_additional_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "100",
+   "gold_B": "376",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 572,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 43,
+   "plen": 651,
+   "span": [
+    606,
+    608
+   ],
+   "value_A": 20,
+   "value_B": 89,
+   "value_first_digit_differs": true,
+   "var_name": "first_shop_order"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "32",
+   "gold_B": "48",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 492,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 613,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "family_pizza_multiplier"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "110",
+   "gold_B": "113",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1052,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 56,
+   "plen": 651,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 20,
+   "value_B": 23,
+   "value_first_digit_differs": false,
+   "var_name": "first_stop_board"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "17",
+   "gold_B": "16",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 60,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 617,
+   "span": [
+    599,
+    600
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "sour_oranges"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "16",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 733,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 28,
+   "plen": 621,
+   "span": [
+    591,
+    593
+   ],
+   "value_A": 20,
+   "value_B": 64,
+   "value_first_digit_differs": true,
+   "var_name": "total_money"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1509",
+   "gold_B": "866",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 620,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 30,
+   "plen": 639,
+   "span": [
+    606,
+    609
+   ],
+   "value_A": 356,
+   "value_B": 999,
+   "value_first_digit_differs": true,
+   "var_name": "plays_dvd1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "160",
+   "gold_B": "96",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 515,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 35,
+   "plen": 619,
+   "span": [
+    583,
+    584
+   ],
+   "value_A": 5,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "bags_per_pack"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "160",
+   "gold_B": "80",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 625,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 35,
+   "plen": 628,
+   "span": [
+    591,
+    593
+   ],
+   "value_A": 20,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "flowers_per_row"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "230",
+   "gold_B": "353",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1316,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 655,
+   "span": [
+    640,
+    642
+   ],
+   "value_A": 50,
+   "value_B": 91,
+   "value_first_digit_differs": true,
+   "var_name": "hourly_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "3",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 118,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 61,
+   "plen": 652,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "initial_containers"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "34",
+   "gold_B": "29",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 158,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 629,
+   "span": [
+    615,
+    617
+   ],
+   "value_A": 20,
+   "value_B": 15,
+   "value_first_digit_differs": true,
+   "var_name": "cost_bond_paper"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "360",
+   "gold_B": "600",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1107,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 5,
+   "plen": 605,
+   "span": [
+    597,
+    600
+   ],
+   "value_A": 240,
+   "value_B": 400,
+   "value_first_digit_differs": true,
+   "var_name": "number_of_boys"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "770",
+   "gold_B": "860",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 716,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 642,
+   "span": [
+    603,
+    605
+   ],
+   "value_A": 75,
+   "value_B": 90,
+   "value_first_digit_differs": true,
+   "var_name": "calories_per_egg"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "250",
+   "gold_B": "211",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 213,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 641,
+   "span": [
+    602,
+    604
+   ],
+   "value_A": 50,
+   "value_B": 89,
+   "value_first_digit_differs": true,
+   "var_name": "increment_customers"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "360",
+   "gold_B": "1080",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 190,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 605,
+   "span": [
+    581,
+    582
+   ],
+   "value_A": 3,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "hours"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "762",
+   "gold_B": "803",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 270,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 48,
+   "plen": 655,
+   "span": [
+    605,
+    607
+   ],
+   "value_A": 12,
+   "value_B": 53,
+   "value_first_digit_differs": true,
+   "var_name": "additional_mms_second_bag"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "20",
+   "gold_B": "164",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 680,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 632,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 80,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "average_adult_weight"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "25",
+   "gold_B": "21",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 28,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 630,
+   "span": [
+    595,
+    597
+   ],
+   "value_A": 20,
+   "value_B": 24,
+   "value_first_digit_differs": false,
+   "var_name": "first_stop_miles"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "16",
+   "gold_B": "28",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1146,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 34,
+   "plen": 641,
+   "span": [
+    606,
+    607
+   ],
+   "value_A": 7,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "rock_sale_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "3",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 469,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 19,
+   "plen": 644,
+   "span": [
+    623,
+    625
+   ],
+   "value_A": 12,
+   "value_B": 16,
+   "value_first_digit_differs": false,
+   "var_name": "cupcakes_per_pan"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "32",
+   "gold_B": "27",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 312,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 610,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 3,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "jane_age_difference"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "36",
+   "gold_B": "54",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1229,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 625,
+   "span": [
+    605,
+    607
+   ],
+   "value_A": 50,
+   "value_B": 25,
+   "value_first_digit_differs": true,
+   "var_name": "decrease_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 555,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 626,
+   "span": [
+    601,
+    602
+   ],
+   "value_A": 4,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "days_per_week"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "14400",
+   "gold_B": "11232",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 401,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 618,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 50,
+   "value_B": 39,
+   "value_first_digit_differs": true,
+   "var_name": "daily_pay"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "132",
+   "gold_B": "116",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 669,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 45,
+   "plen": 633,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 5,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "flour_per_muffin"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "2",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 305,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 21,
+   "plen": 604,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 20,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "total_people"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14",
+   "gold_B": "7",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 634,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 613,
+   "span": [
+    599,
+    601
+   ],
+   "value_A": 17,
+   "value_B": 10,
+   "value_first_digit_differs": false,
+   "var_name": "naomi_fish"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "145",
+   "gold_B": "295",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 696,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 64,
+   "plen": 689,
+   "span": [
+    623,
+    625
+   ],
+   "value_A": 50,
+   "value_B": 30,
+   "value_first_digit_differs": true,
+   "var_name": "adam_points"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "26",
+   "gold_B": "13",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1085,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 607,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 8,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "growth_length"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "230",
+   "gold_B": "180",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 16,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 18,
+   "plen": 632,
+   "span": [
+    611,
+    614
+   ],
+   "value_A": 150,
+   "value_B": 100,
+   "value_first_digit_differs": false,
+   "var_name": "north_distance"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1318,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 47,
+   "plen": 627,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "friends"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "5",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 744,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 655,
+   "span": [
+    620,
+    622
+   ],
+   "value_A": 12,
+   "value_B": 19,
+   "value_first_digit_differs": false,
+   "var_name": "horses"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "15",
+   "gold_B": "35",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 889,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 44,
+   "plen": 629,
+   "span": [
+    584,
+    585
+   ],
+   "value_A": 4,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "daisies_count"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2450",
+   "gold_B": "3535",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 281,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 632,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 40,
+   "value_B": 71,
+   "value_first_digit_differs": true,
+   "var_name": "cobra_count"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2400",
+   "gold_B": "7000",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1054,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 635,
+   "span": [
+    604,
+    606
+   ],
+   "value_A": 12,
+   "value_B": 35,
+   "value_first_digit_differs": true,
+   "var_name": "tile_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "221",
+   "gold_B": "393",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 72,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 40,
+   "plen": 629,
+   "span": [
+    588,
+    589
+   ],
+   "value_A": 3,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "brownie_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 647,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 637,
+   "span": [
+    611,
+    613
+   ],
+   "value_A": 24,
+   "value_B": 64,
+   "value_first_digit_differs": true,
+   "var_name": "soil_depth"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "291",
+   "gold_B": "1047",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1145,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 52,
+   "plen": 654,
+   "span": [
+    601,
+    602
+   ],
+   "value_A": 8,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "bouquet_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "12",
+   "gold_B": "3",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 766,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 44,
+   "plen": 632,
+   "span": [
+    586,
+    588
+   ],
+   "value_A": 20,
+   "value_B": 65,
+   "value_first_digit_differs": true,
+   "var_name": "ball_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1170",
+   "gold_B": "676",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 805,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 34,
+   "plen": 630,
+   "span": [
+    593,
+    596
+   ],
+   "value_A": 600,
+   "value_B": 220,
+   "value_first_digit_differs": true,
+   "var_name": "diamond_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14000",
+   "gold_B": "24104",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 857,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 65,
+   "plen": 660,
+   "span": [
+    591,
+    595
+   ],
+   "value_A": 4000,
+   "value_B": 9052,
+   "value_first_digit_differs": true,
+   "var_name": "initial_water"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "100",
+   "gold_B": "260",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 202,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 44,
+   "plen": 629,
+   "span": [
+    583,
+    585
+   ],
+   "value_A": 10,
+   "value_B": 26,
+   "value_first_digit_differs": true,
+   "var_name": "acres"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "63",
+   "gold_B": "78",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 520,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 46,
+   "plen": 684,
+   "span": [
+    637,
+    638
+   ],
+   "value_A": 4,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "scarf_wool"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "40",
+   "gold_B": "80",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 862,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 78,
+   "plen": 663,
+   "span": [
+    584,
+    585
+   ],
+   "value_A": 2,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "loaves_per_hour"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "45",
+   "gold_B": "57",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 560,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 622,
+   "span": [
+    604,
+    605
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "guinea_pigs_per_cage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "296",
+   "gold_B": "352",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1272,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 654,
+   "span": [
+    623,
+    625
+   ],
+   "value_A": 10,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "bus_trip_cost_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "90",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 880,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 45,
+   "plen": 643,
+   "span": [
+    597,
+    598
+   ],
+   "value_A": 2,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "selling_price_per_meter"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "5600",
+   "gold_B": "5662",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 841,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 15,
+   "plen": 633,
+   "span": [
+    615,
+    618
+   ],
+   "value_A": 200,
+   "value_B": 138,
+   "value_first_digit_differs": true,
+   "var_name": "brother_contribution"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "480",
+   "gold_B": "288",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 893,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 37,
+   "plen": 627,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 5,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "days_per_week"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "14",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 470,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 625,
+   "span": [
+    609,
+    611
+   ],
+   "value_A": 10,
+   "value_B": 21,
+   "value_first_digit_differs": true,
+   "var_name": "cash_given"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "7",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 92,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 37,
+   "plen": 633,
+   "span": [
+    595,
+    596
+   ],
+   "value_A": 5,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "amy_jackson_difference"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "45",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1154,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 27,
+   "plen": 613,
+   "span": [
+    585,
+    586
+   ],
+   "value_A": 4,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "carrots_weekdays"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "800",
+   "gold_B": "440",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 776,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 609,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 20,
+   "value_B": 56,
+   "value_first_digit_differs": true,
+   "var_name": "discount_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "5",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 771,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 38,
+   "plen": 639,
+   "span": [
+    599,
+    601
+   ],
+   "value_A": 25,
+   "value_B": 15,
+   "value_first_digit_differs": true,
+   "var_name": "ears_of_corn"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "60",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 929,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 39,
+   "plen": 621,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 60,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "bus_speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "64",
+   "gold_B": "52",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1124,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 631,
+   "span": [
+    613,
+    614
+   ],
+   "value_A": 7,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "stickers_kris_gave"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "78",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1237,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 38,
+   "plen": 620,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 13,
+   "value_B": 71,
+   "value_first_digit_differs": true,
+   "var_name": "sick_teachers"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "260",
+   "gold_B": "312",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 596,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 71,
+   "plen": 673,
+   "span": [
+    598,
+    602
+   ],
+   "value_A": 2000,
+   "value_B": 2390,
+   "value_first_digit_differs": false,
+   "var_name": "base_price_per_implant"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "14",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 18,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 607,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "eggs_per_omelet"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "40",
+   "gold_B": "52",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 54,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 661,
+   "span": [
+    643,
+    645
+   ],
+   "value_A": 12,
+   "value_B": 24,
+   "value_first_digit_differs": true,
+   "var_name": "trixie_kittens"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "23",
+   "gold_B": "17",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1301,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 74,
+   "plen": 655,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 9,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "initial_oatmeal_cookies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "539",
+   "gold_B": "1872",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 448,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 25,
+   "plen": 650,
+   "span": [
+    623,
+    625
+   ],
+   "value_A": 25,
+   "value_B": 68,
+   "value_first_digit_differs": true,
+   "var_name": "department_store_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "385000",
+   "gold_B": "429000",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 715,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 51,
+   "plen": 643,
+   "span": [
+    589,
+    592
+   ],
+   "value_A": 700,
+   "value_B": 780,
+   "value_first_digit_differs": false,
+   "var_name": "budget_per_computer"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "25",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 509,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 23,
+   "plen": 633,
+   "span": [
+    608,
+    610
+   ],
+   "value_A": 12,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "rose_onions"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "3",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 476,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 25,
+   "plen": 626,
+   "span": [
+    599,
+    601
+   ],
+   "value_A": 15,
+   "value_B": 25,
+   "value_first_digit_differs": true,
+   "var_name": "book_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "448",
+   "gold_B": "3104",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1211,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 620,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 14,
+   "value_B": 97,
+   "value_first_digit_differs": true,
+   "var_name": "base_medicine"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "35",
+   "gold_B": "42",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1244,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 27,
+   "plen": 666,
+   "span": [
+    637,
+    639
+   ],
+   "value_A": 40,
+   "value_B": 50,
+   "value_first_digit_differs": true,
+   "var_name": "second_test_questions"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "5",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 277,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 6,
+   "plen": 627,
+   "span": [
+    619,
+    621
+   ],
+   "value_A": 15,
+   "value_B": 21,
+   "value_first_digit_differs": true,
+   "var_name": "num_large_holes"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "70",
+   "gold_B": "76",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 251,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 25,
+   "plen": 616,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 9,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "deleted_apps"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "120",
+   "gold_B": "90",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1253,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 621,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 15,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "call_duration_minutes"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "31",
+   "gold_B": "30",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1298,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 628,
+   "span": [
+    595,
+    597
+   ],
+   "value_A": 95,
+   "value_B": 85,
+   "value_first_digit_differs": true,
+   "var_name": "dimes"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1400",
+   "gold_B": "1506",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 156,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 22,
+   "plen": 651,
+   "span": [
+    626,
+    629
+   ],
+   "value_A": 100,
+   "value_B": 153,
+   "value_first_digit_differs": false,
+   "var_name": "baboons_bananas"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "11",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1247,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 49,
+   "plen": 668,
+   "span": [
+    618,
+    619
+   ],
+   "value_A": 3,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "found_marbles"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "70",
+   "gold_B": "84",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 79,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 19,
+   "plen": 627,
+   "span": [
+    606,
+    608
+   ],
+   "value_A": 30,
+   "value_B": 16,
+   "value_first_digit_differs": true,
+   "var_name": "discount_percentage"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "123",
+   "gold_B": "117",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 852,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 634,
+   "span": [
+    622,
+    623
+   ],
+   "value_A": 2,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "discount_per_red_basket"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "120",
+   "gold_B": "160",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 705,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 616,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 15,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "cat_speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "308",
+   "gold_B": "250",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 571,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 38,
+   "plen": 630,
+   "span": [
+    589,
+    592
+   ],
+   "value_A": 200,
+   "value_B": 142,
+   "value_first_digit_differs": true,
+   "var_name": "spaying_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "18",
+   "gold_B": "21",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 253,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 617,
+   "span": [
+    605,
+    606
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "addition"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "480",
+   "gold_B": "3455",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1097,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 633,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 12,
+   "value_B": 97,
+   "value_first_digit_differs": true,
+   "var_name": "buses"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "250",
+   "gold_B": "237",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 896,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 14,
+   "plen": 628,
+   "span": [
+    611,
+    614
+   ],
+   "value_A": 500,
+   "value_B": 513,
+   "value_first_digit_differs": false,
+   "var_name": "car_payment"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "655",
+   "gold_B": "39",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1050,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 19,
+   "plen": 625,
+   "span": [
+    603,
+    606
+   ],
+   "value_A": 325,
+   "value_B": 479,
+   "value_first_digit_differs": true,
+   "var_name": "daily_distance"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "34",
+   "gold_B": "42",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 355,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 33,
+   "plen": 640,
+   "span": [
+    606,
+    607
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "additional_height"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "225",
+   "gold_B": "1620",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1218,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 71,
+   "plen": 682,
+   "span": [
+    609,
+    611
+   ],
+   "value_A": 10,
+   "value_B": 72,
+   "value_first_digit_differs": true,
+   "var_name": "students_per_grade"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "72",
+   "gold_B": "24",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 336,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 629,
+   "span": [
+    607,
+    609
+   ],
+   "value_A": 25,
+   "value_B": 75,
+   "value_first_digit_differs": true,
+   "var_name": "second_year_decrease"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "82",
+   "gold_B": "85",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 126,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 629,
+   "span": [
+    605,
+    606
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "additional_fish_sausages"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "12",
+   "gold_B": "15",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 845,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 629,
+   "span": [
+    599,
+    600
+   ],
+   "value_A": 8,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "english_only_students"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "350",
+   "gold_B": "73",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 415,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 17,
+   "plen": 693,
+   "span": [
+    673,
+    676
+   ],
+   "value_A": 500,
+   "value_B": 223,
+   "value_first_digit_differs": true,
+   "var_name": "total_apples"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "130",
+   "gold_B": "160",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 179,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 28,
+   "plen": 621,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 5,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "first_week_hours"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "7",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1004,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 21,
+   "plen": 642,
+   "span": [
+    619,
+    621
+   ],
+   "value_A": 56,
+   "value_B": 63,
+   "value_first_digit_differs": true,
+   "var_name": "martha_total_bars"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "12",
+   "gold_B": "18",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 390,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 62,
+   "plen": 648,
+   "span": [
+    585,
+    586
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "gifts_family"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "21",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 379,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 615,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 44,
+   "value_B": 57,
+   "value_first_digit_differs": true,
+   "var_name": "eaten_cookies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "58",
+   "gold_B": "98",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 99,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 57,
+   "plen": 662,
+   "span": [
+    604,
+    605
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "existing_plants_per_ledge"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15",
+   "gold_B": "17",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 164,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 647,
+   "span": [
+    627,
+    629
+   ],
+   "value_A": 90,
+   "value_B": 88,
+   "value_first_digit_differs": true,
+   "var_name": "accountant_fee"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "230",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1008,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 34,
+   "plen": 624,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 4,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "duration_matteo"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "19",
+   "gold_B": "63",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 367,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 660,
+   "span": [
+    636,
+    638
+   ],
+   "value_A": 50,
+   "value_B": 94,
+   "value_first_digit_differs": true,
+   "var_name": "total_kicked_out"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "225",
+   "gold_B": "165",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 90,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 36,
+   "plen": 666,
+   "span": [
+    628,
+    630
+   ],
+   "value_A": 20,
+   "value_B": 14,
+   "value_first_digit_differs": true,
+   "var_name": "adults"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5600",
+   "gold_B": "2800",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 257,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 50,
+   "plen": 631,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 10,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "section_height"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 389,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 39,
+   "plen": 659,
+   "span": [
+    618,
+    620
+   ],
+   "value_A": 30,
+   "value_B": 26,
+   "value_first_digit_differs": true,
+   "var_name": "bracelet_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "24",
+   "gold_B": "54",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1104,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 9,
+   "plen": 606,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 4,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "chris_age"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "72000",
+   "gold_B": "90000",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1080,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 5,
+   "plen": 610,
+   "span": [
+    604,
+    605
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "hours"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "60",
+   "gold_B": "341",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 69,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 12,
+   "plen": 630,
+   "span": [
+    615,
+    618
+   ],
+   "value_A": 100,
+   "value_B": 381,
+   "value_first_digit_differs": true,
+   "var_name": "final_amount"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "91",
+   "gold_B": "63",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 192,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 635,
+   "span": [
+    604,
+    606
+   ],
+   "value_A": 50,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "initial_trees"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "255",
+   "gold_B": "288",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 722,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 17,
+   "plen": 676,
+   "span": [
+    657,
+    659
+   ],
+   "value_A": 25,
+   "value_B": 14,
+   "value_first_digit_differs": true,
+   "var_name": "bucket_cost"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "90",
+   "gold_B": "96",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1226,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 45,
+   "plen": 649,
+   "span": [
+    602,
+    604
+   ],
+   "value_A": 20,
+   "value_B": 12,
+   "value_first_digit_differs": true,
+   "var_name": "discount"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3000",
+   "gold_B": "1000",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 709,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 5,
+   "plen": 633,
+   "span": [
+    626,
+    628
+   ],
+   "value_A": 48,
+   "value_B": 16,
+   "value_first_digit_differs": true,
+   "var_name": "total_time"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "50",
+   "gold_B": "65",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 704,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 22,
+   "plen": 613,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 2,
+   "value_B": 1,
+   "value_first_digit_differs": true,
+   "var_name": "julia_ratio"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 867,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 634,
+   "span": [
+    614,
+    615
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "carrots_difference"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "16",
+   "gold_B": "48",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 899,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 35,
+   "plen": 631,
+   "span": [
+    595,
+    596
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "nephews"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "38",
+   "gold_B": "39",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1108,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 633,
+   "span": [
+    615,
+    616
+   ],
+   "value_A": 7,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "coupon_discount"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "460",
+   "gold_B": "568",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 9,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 637,
+   "span": [
+    619,
+    621
+   ],
+   "value_A": 45,
+   "value_B": 54,
+   "value_first_digit_differs": true,
+   "var_name": "total_hours_worked"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "79",
+   "gold_B": "77",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 973,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 606,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 4,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "india_more"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4400",
+   "gold_B": "5360",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 777,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 4,
+   "plen": 669,
+   "span": [
+    663,
+    665
+   ],
+   "value_A": 10,
+   "value_B": 14,
+   "value_first_digit_differs": false,
+   "var_name": "normal_movie_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "42",
+   "gold_B": "114",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 949,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 9,
+   "plen": 607,
+   "span": [
+    596,
+    598
+   ],
+   "value_A": 26,
+   "value_B": 62,
+   "value_first_digit_differs": true,
+   "var_name": "Deanna_age"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "15",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1256,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 54,
+   "plen": 685,
+   "span": [
+    629,
+    631
+   ],
+   "value_A": 20,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "land_speed"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "306",
+   "gold_B": "357",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1184,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 621,
+   "span": [
+    606,
+    608
+   ],
+   "value_A": 18,
+   "value_B": 21,
+   "value_first_digit_differs": true,
+   "var_name": "bag_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1106,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 28,
+   "plen": 621,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 4,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "initial_cuts"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "100",
+   "gold_B": "248",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 971,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 45,
+   "plen": 628,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 15,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "length"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "80",
+   "gold_B": "67",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 686,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 27,
+   "plen": 636,
+   "span": [
+    607,
+    609
+   ],
+   "value_A": 10,
+   "value_B": 23,
+   "value_first_digit_differs": true,
+   "var_name": "eaten_cookies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "1",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 366,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 644,
+   "span": [
+    609,
+    611
+   ],
+   "value_A": 15,
+   "value_B": 23,
+   "value_first_digit_differs": true,
+   "var_name": "first_test_points"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "56",
+   "gold_B": "51",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 918,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 624,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 16,
+   "value_B": 11,
+   "value_first_digit_differs": false,
+   "var_name": "boys_soccer"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "240",
+   "gold_B": "675",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 676,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 55,
+   "plen": 639,
+   "span": [
+    580,
+    584
+   ],
+   "value_A": 1200,
+   "value_B": 3375,
+   "value_first_digit_differs": true,
+   "var_name": "total_investment"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "159",
+   "gold_B": "259",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 937,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 633,
+   "span": [
+    611,
+    613
+   ],
+   "value_A": 15,
+   "value_B": 35,
+   "value_first_digit_differs": true,
+   "var_name": "goats"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "156",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1254,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 42,
+   "plen": 670,
+   "span": [
+    626,
+    628
+   ],
+   "value_A": 12,
+   "value_B": 33,
+   "value_first_digit_differs": true,
+   "var_name": "new_drying_time"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "16",
+   "gold_B": "14",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 535,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 610,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 5,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "candies_eaten_by_george"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "21",
+   "gold_B": "126",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 229,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 81,
+   "plen": 665,
+   "span": [
+    581,
+    584
+   ],
+   "value_A": 120,
+   "value_B": 720,
+   "value_first_digit_differs": true,
+   "var_name": "total_melons"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "160",
+   "gold_B": "162",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 723,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 629,
+   "span": [
+    603,
+    605
+   ],
+   "value_A": 13,
+   "value_B": 11,
+   "value_first_digit_differs": false,
+   "var_name": "baby_chairs_repair"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "140",
+   "gold_B": "280",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 142,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 43,
+   "plen": 626,
+   "span": [
+    582,
+    583
+   ],
+   "value_A": 2,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "daily_hours_video_games"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "70",
+   "gold_B": "100",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 220,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 25,
+   "plen": 635,
+   "span": [
+    609,
+    610
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "crossword_count"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "48",
+   "gold_B": "12",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 578,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 629,
+   "span": [
+    613,
+    615
+   ],
+   "value_A": 12,
+   "value_B": 18,
+   "value_first_digit_differs": false,
+   "var_name": "subtract_value"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "70",
+   "gold_B": "69",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1231,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 43,
+   "plen": 632,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 50,
+   "value_B": 41,
+   "value_first_digit_differs": true,
+   "var_name": "score1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "2304",
+   "gold_B": "2232",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1055,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 622,
+   "span": [
+    591,
+    593
+   ],
+   "value_A": 60,
+   "value_B": 55,
+   "value_first_digit_differs": true,
+   "var_name": "accident_increase_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 789,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 47,
+   "plen": 660,
+   "span": [
+    612,
+    613
+   ],
+   "value_A": 5,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "heat_per_log"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "11",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 558,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 50,
+   "plen": 634,
+   "span": [
+    582,
+    584
+   ],
+   "value_A": 24,
+   "value_B": 88,
+   "value_first_digit_differs": true,
+   "var_name": "timothy_locker_size"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "32",
+   "gold_B": "39",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 161,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 651,
+   "span": [
+    631,
+    632
+   ],
+   "value_A": 2,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "locsin_clownfish_diff"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "98",
+   "gold_B": "188",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 739,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 17,
+   "plen": 639,
+   "span": [
+    620,
+    622
+   ],
+   "value_A": 10,
+   "value_B": 28,
+   "value_first_digit_differs": true,
+   "var_name": "num_gallon_jars"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "188",
+   "gold_B": "380",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 537,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 53,
+   "plen": 644,
+   "span": [
+    589,
+    591
+   ],
+   "value_A": 31,
+   "value_B": 95,
+   "value_first_digit_differs": true,
+   "var_name": "first_book_thickness"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "34",
+   "gold_B": "43",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1144,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 44,
+   "plen": 632,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 5,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "men_to_women_ratio_men"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "150",
+   "gold_B": "180",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 425,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 39,
+   "plen": 679,
+   "span": [
+    638,
+    640
+   ],
+   "value_A": 10,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "additional_birds_homemade"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "11",
+   "gold_B": "13",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 684,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 25,
+   "plen": 638,
+   "span": [
+    611,
+    613
+   ],
+   "value_A": 13,
+   "value_B": 11,
+   "value_first_digit_differs": false,
+   "var_name": "time_to_fire_station"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "29",
+   "gold_B": "21",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1209,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 33,
+   "plen": 741,
+   "span": [
+    707,
+    708
+   ],
+   "value_A": 5,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "days_high"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "32",
+   "gold_B": "101",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 794,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 621,
+   "span": [
+    605,
+    607
+   ],
+   "value_A": 14,
+   "value_B": 83,
+   "value_first_digit_differs": true,
+   "var_name": "cubs"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 933,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 51,
+   "plen": 644,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 5,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "boxes_per_donor"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "55",
+   "gold_B": "45",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 200,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 629,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 6,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "afternoon_pails"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "440",
+   "gold_B": "560",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1230,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 679,
+   "span": [
+    649,
+    650
+   ],
+   "value_A": 2,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "veteran_lessons"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "128",
+   "gold_B": "129",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 753,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 16,
+   "plen": 636,
+   "span": [
+    619,
+    620
+   ],
+   "value_A": 6,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "plates_broken"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "2",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 490,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 31,
+   "plen": 631,
+   "span": [
+    599,
+    600
+   ],
+   "value_A": 4,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "current_savings"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "175",
+   "gold_B": "266",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 719,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 21,
+   "plen": 631,
+   "span": [
+    608,
+    610
+   ],
+   "value_A": 25,
+   "value_B": 38,
+   "value_first_digit_differs": true,
+   "var_name": "kilograms_per_sack"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "43",
+   "gold_B": "197",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1271,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 28,
+   "plen": 630,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 54,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "red_candies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "11050",
+   "gold_B": "6500",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 451,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 15,
+   "plen": 642,
+   "span": [
+    624,
+    627
+   ],
+   "value_A": 170,
+   "value_B": 100,
+   "value_first_digit_differs": false,
+   "var_name": "balloons_filled_by_Bentley"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "132",
+   "gold_B": "276",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 874,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 614,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 33,
+   "value_B": 69,
+   "value_first_digit_differs": true,
+   "var_name": "initial_earnings"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "34",
+   "gold_B": "40",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1007,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 633,
+   "span": [
+    600,
+    601
+   ],
+   "value_A": 5,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "blue_more_than_red"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "360",
+   "gold_B": "480",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 665,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 640,
+   "span": [
+    618,
+    619
+   ],
+   "value_A": 6,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "sleep_hours_per_day"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "120",
+   "gold_B": "151",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 127,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 614,
+   "span": [
+    586,
+    588
+   ],
+   "value_A": 20,
+   "value_B": 51,
+   "value_first_digit_differs": true,
+   "var_name": "amy_friends_extra"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "82",
+   "gold_B": "132",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 562,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 72,
+   "plen": 659,
+   "span": [
+    585,
+    587
+   ],
+   "value_A": 32,
+   "value_B": 82,
+   "value_first_digit_differs": true,
+   "var_name": "initial_angle"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "48",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 51,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 43,
+   "plen": 628,
+   "span": [
+    583,
+    585
+   ],
+   "value_A": 10,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "forward_speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "87",
+   "gold_B": "118",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 342,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 17,
+   "plen": 642,
+   "span": [
+    623,
+    625
+   ],
+   "value_A": 15,
+   "value_B": 46,
+   "value_first_digit_differs": true,
+   "var_name": "outfits_from_mom"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 328,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 626,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "time_per_charge"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "623",
+   "gold_B": "748",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 82,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 16,
+   "plen": 609,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "alex_weight_factor"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "17",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 781,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 627,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 30,
+   "value_B": 24,
+   "value_first_digit_differs": true,
+   "var_name": "cost_of_two_pizzas"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "500",
+   "gold_B": "524",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1263,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 74,
+   "plen": 692,
+   "span": [
+    616,
+    618
+   ],
+   "value_A": 20,
+   "value_B": 28,
+   "value_first_digit_differs": false,
+   "var_name": "additional_people_second_day"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "79",
+   "gold_B": "88",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 646,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 42,
+   "plen": 625,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 12,
+   "value_B": 14,
+   "value_first_digit_differs": false,
+   "var_name": "alisa_speed"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "44",
+   "gold_B": "45",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 661,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 670,
+   "span": [
+    658,
+    659
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "donut_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "6",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1214,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 30,
+   "plen": 622,
+   "span": [
+    591,
+    592
+   ],
+   "value_A": 5,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "diapers_per_child"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 720,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 45,
+   "plen": 625,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 3,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "coco_crunch_boxes"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "20",
+   "gold_B": "30",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 271,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 626,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 4,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "additional_windows_per_house"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 671,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 4,
+   "plen": 647,
+   "span": [
+    641,
+    643
+   ],
+   "value_A": 15,
+   "value_B": 21,
+   "value_first_digit_differs": true,
+   "var_name": "amount_paid"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "10800",
+   "gold_B": "11280",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 642,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 649,
+   "span": [
+    635,
+    637
+   ],
+   "value_A": 60,
+   "value_B": 76,
+   "value_first_digit_differs": true,
+   "var_name": "shirt_cost"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "80",
+   "gold_B": "88",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 834,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 28,
+   "plen": 625,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "first_travel_time"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "41",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 608,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 55,
+   "plen": 652,
+   "span": [
+    595,
+    597
+   ],
+   "value_A": 30,
+   "value_B": 85,
+   "value_first_digit_differs": true,
+   "var_name": "discount_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "25",
+   "gold_B": "70",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 113,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 609,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 2,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "flowers_per_day"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "13",
+   "gold_B": "9",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 133,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 34,
+   "plen": 625,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 6,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "multiplier_tuesday"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "45",
+   "gold_B": "72",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1017,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 632,
+   "span": [
+    611,
+    612
+   ],
+   "value_A": 2,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "portrait_albums"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "5",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 334,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 42,
+   "plen": 635,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 8,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "DJ_guns"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "50",
+   "gold_B": "38",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 884,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 623,
+   "span": [
+    605,
+    607
+   ],
+   "value_A": 30,
+   "value_B": 42,
+   "value_first_digit_differs": true,
+   "var_name": "toys_given_nicky"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "48",
+   "gold_B": "112",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 400,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 13,
+   "plen": 615,
+   "span": [
+    601,
+    602
+   ],
+   "value_A": 3,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "calories_per_ounce"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "842",
+   "gold_B": "639",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 941,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 41,
+   "plen": 659,
+   "span": [
+    617,
+    618
+   ],
+   "value_A": 2,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "bottles_per_student"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "160",
+   "gold_B": "190",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 978,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 612,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 40,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "discount_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "375",
+   "gold_B": "250",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 516,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 14,
+   "plen": 612,
+   "span": [
+    597,
+    598
+   ],
+   "value_A": 3,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "minutes_per_round"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4500",
+   "gold_B": "15000",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 816,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 615,
+   "span": [
+    594,
+    595
+   ],
+   "value_A": 2,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "cows_quantity"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "227",
+   "gold_B": "291",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 968,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 8,
+   "plen": 703,
+   "span": [
+    693,
+    695
+   ],
+   "value_A": 18,
+   "value_B": 34,
+   "value_first_digit_differs": true,
+   "var_name": "time_hybrid"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "16",
+   "gold_B": "25",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1101,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 624,
+   "span": [
+    597,
+    598
+   ],
+   "value_A": 8,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "amber_miles"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "75",
+   "gold_B": "65",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 849,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 38,
+   "plen": 621,
+   "span": [
+    580,
+    583
+   ],
+   "value_A": 900,
+   "value_B": 780,
+   "value_first_digit_differs": true,
+   "var_name": "total_eggs"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "175",
+   "gold_B": "195",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 100,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 38,
+   "plen": 679,
+   "span": [
+    639,
+    641
+   ],
+   "value_A": 10,
+   "value_B": 30,
+   "value_first_digit_differs": true,
+   "var_name": "more_rings_third_friend"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "96",
+   "gold_B": "384",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1131,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 39,
+   "plen": 646,
+   "span": [
+    606,
+    607
+   ],
+   "value_A": 4,
+   "value_B": 1,
+   "value_first_digit_differs": true,
+   "var_name": "log_length"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "6",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 151,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 49,
+   "plen": 670,
+   "span": [
+    620,
+    621
+   ],
+   "value_A": 5,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "bicycle_customers"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "2",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 799,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 22,
+   "plen": 614,
+   "span": [
+    591,
+    592
+   ],
+   "value_A": 1,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "bagel_cost"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "6277",
+   "gold_B": "6451",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 197,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 32,
+   "plen": 633,
+   "span": [
+    597,
+    601
+   ],
+   "value_A": 8417,
+   "value_B": 8243,
+   "value_first_digit_differs": false,
+   "var_name": "men_population"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "70",
+   "gold_B": "202",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1276,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 637,
+   "span": [
+    604,
+    606
+   ],
+   "value_A": 20,
+   "value_B": 86,
+   "value_first_digit_differs": true,
+   "var_name": "long_side"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "10",
+   "gold_B": "15",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 235,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 30,
+   "plen": 639,
+   "span": [
+    608,
+    609
+   ],
+   "value_A": 4,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "slices_per_friend"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "276",
+   "gold_B": "152",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 775,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 55,
+   "plen": 642,
+   "span": [
+    585,
+    587
+   ],
+   "value_A": 57,
+   "value_B": 88,
+   "value_first_digit_differs": true,
+   "var_name": "cars"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "31",
+   "gold_B": "26",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 327,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 25,
+   "plen": 657,
+   "span": [
+    631,
+    632
+   ],
+   "value_A": 3,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "eaten_at_night"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "25",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 130,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 23,
+   "plen": 637,
+   "span": [
+    612,
+    614
+   ],
+   "value_A": 10,
+   "value_B": 15,
+   "value_first_digit_differs": false,
+   "var_name": "quit_after_kick"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "50",
+   "gold_B": "46",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 452,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 621,
+   "span": [
+    586,
+    588
+   ],
+   "value_A": 60,
+   "value_B": 54,
+   "value_first_digit_differs": true,
+   "var_name": "speed1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "20",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 408,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 77,
+   "plen": 664,
+   "span": [
+    585,
+    587
+   ],
+   "value_A": 45,
+   "value_B": 69,
+   "value_first_digit_differs": true,
+   "var_name": "pages_in_book"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1000",
+   "gold_B": "400",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1091,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 34,
+   "plen": 621,
+   "span": [
+    585,
+    587
+   ],
+   "value_A": 10,
+   "value_B": 25,
+   "value_first_digit_differs": true,
+   "var_name": "apples_per_bag"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "500",
+   "gold_B": "467",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 869,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 17,
+   "plen": 615,
+   "span": [
+    594,
+    598
+   ],
+   "value_A": 4000,
+   "value_B": 3967,
+   "value_first_digit_differs": true,
+   "var_name": "amount_paid"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "350",
+   "gold_B": "379",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 177,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 55,
+   "plen": 672,
+   "span": [
+    614,
+    617
+   ],
+   "value_A": 200,
+   "value_B": 171,
+   "value_first_digit_differs": true,
+   "var_name": "daughter_expense"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "1",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1313,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 614,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 80,
+   "value_B": 40,
+   "value_first_digit_differs": true,
+   "var_name": "total_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "294",
+   "gold_B": "168",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 50,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 26,
+   "plen": 615,
+   "span": [
+    586,
+    589
+   ],
+   "value_A": 252,
+   "value_B": 144,
+   "value_first_digit_differs": true,
+   "var_name": "eggs_per_day"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "21",
+   "gold_B": "22",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 352,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 623,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 4,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "brother_money"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "74",
+   "gold_B": "80",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 895,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 48,
+   "plen": 641,
+   "span": [
+    591,
+    593
+   ],
+   "value_A": 16,
+   "value_B": 22,
+   "value_first_digit_differs": true,
+   "var_name": "carl_extra_weight"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "32",
+   "gold_B": "48",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 664,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 36,
+   "plen": 632,
+   "span": [
+    595,
+    596
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "hours_per_time"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "270",
+   "gold_B": "470",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 262,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 614,
+   "span": [
+    581,
+    582
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "boxes"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "26",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 774,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 27,
+   "plen": 623,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 75,
+   "value_B": 15,
+   "value_first_digit_differs": true,
+   "var_name": "speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "28",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 294,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 54,
+   "plen": 635,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 15,
+   "value_B": 40,
+   "value_first_digit_differs": true,
+   "var_name": "oranges"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "147",
+   "gold_B": "189",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1266,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 45,
+   "plen": 634,
+   "span": [
+    588,
+    589
+   ],
+   "value_A": 2,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "bulldogs"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "57500",
+   "gold_B": "92000",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 17,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 636,
+   "span": [
+    618,
+    620
+   ],
+   "value_A": 15,
+   "value_B": 38,
+   "value_first_digit_differs": true,
+   "var_name": "coach_hours_per_week"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "250",
+   "gold_B": "259",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 793,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 35,
+   "plen": 648,
+   "span": [
+    610,
+    613
+   ],
+   "value_A": 150,
+   "value_B": 165,
+   "value_first_digit_differs": false,
+   "var_name": "overtime_rate_multiplier"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "6",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 23,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 8,
+   "plen": 617,
+   "span": [
+    608,
+    609
+   ],
+   "value_A": 5,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "end_time"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1306,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 106,
+   "plen": 722,
+   "span": [
+    615,
+    616
+   ],
+   "value_A": 7,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "requested_beakers"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "13",
+   "gold_B": "14",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 429,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 622,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "additional_letters_for_sister"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "360",
+   "gold_B": "1080",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 117,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 609,
+   "span": [
+    588,
+    589
+   ],
+   "value_A": 3,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "children"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4000",
+   "gold_B": "12600",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 145,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 30,
+   "plen": 623,
+   "span": [
+    590,
+    593
+   ],
+   "value_A": 100,
+   "value_B": 315,
+   "value_first_digit_differs": true,
+   "var_name": "pineapples_per_hectare"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "21",
+   "gold_B": "74",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1150,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 32,
+   "plen": 613,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 30,
+   "value_B": 83,
+   "value_first_digit_differs": true,
+   "var_name": "initial_roses"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "17",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 878,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 25,
+   "plen": 625,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 14,
+   "value_B": 22,
+   "value_first_digit_differs": true,
+   "var_name": "julie_glasses"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "40",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 483,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 638,
+   "span": [
+    611,
+    612
+   ],
+   "value_A": 3,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "luri_songs_multiplier"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "21",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 974,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 55,
+   "plen": 642,
+   "span": [
+    585,
+    587
+   ],
+   "value_A": 18,
+   "value_B": 98,
+   "value_first_digit_differs": true,
+   "var_name": "dictionary_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "52",
+   "gold_B": "236",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 824,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 34,
+   "plen": 636,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 11,
+   "value_B": 34,
+   "value_first_digit_differs": true,
+   "var_name": "tins_per_cat_food_package"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "100",
+   "gold_B": "148",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1191,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 40,
+   "plen": 630,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 40,
+   "value_B": 88,
+   "value_first_digit_differs": true,
+   "var_name": "color_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "300",
+   "gold_B": "204",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 513,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 19,
+   "plen": 617,
+   "span": [
+    596,
+    598
+   ],
+   "value_A": 25,
+   "value_B": 49,
+   "value_first_digit_differs": true,
+   "var_name": "cds_percentage"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "10",
+   "gold_B": "15",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 848,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 42,
+   "plen": 631,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 50,
+   "value_B": 55,
+   "value_first_digit_differs": false,
+   "var_name": "total_floral_shirts"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "22",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 803,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 45,
+   "plen": 639,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 30,
+   "value_B": 43,
+   "value_first_digit_differs": true,
+   "var_name": "total_hours_needed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "75",
+   "gold_B": "148",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 323,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 9,
+   "plen": 659,
+   "span": [
+    648,
+    650
+   ],
+   "value_A": 15,
+   "value_B": 88,
+   "value_first_digit_differs": true,
+   "var_name": "added_cream"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "49",
+   "gold_B": "48",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 364,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 635,
+   "span": [
+    610,
+    611
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "absent_boys"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "390",
+   "gold_B": "970",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 290,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 55,
+   "plen": 644,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 22,
+   "value_B": 51,
+   "value_first_digit_differs": true,
+   "var_name": "ali_medals"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "16",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 907,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 612,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 9,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "sarah_books"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "240000",
+   "gold_B": "28000",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 373,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 36,
+   "plen": 638,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 40,
+   "value_B": 93,
+   "value_first_digit_differs": true,
+   "var_name": "faulty_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "12",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1142,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 47,
+   "plen": 647,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 17,
+   "value_B": 16,
+   "value_first_digit_differs": false,
+   "var_name": "green_jellybeans"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "540",
+   "gold_B": "675",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 3,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 614,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 60,
+   "value_B": 75,
+   "value_first_digit_differs": true,
+   "var_name": "meters_per_sprint"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "700",
+   "gold_B": "2128",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1138,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 25,
+   "plen": 644,
+   "span": [
+    617,
+    619
+   ],
+   "value_A": 10,
+   "value_B": 78,
+   "value_first_digit_differs": true,
+   "var_name": "daily_chickens"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "34",
+   "gold_B": "39",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 944,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 640,
+   "span": [
+    615,
+    616
+   ],
+   "value_A": 4,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "carrots_count"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "60",
+   "gold_B": "66",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 928,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 19,
+   "plen": 657,
+   "span": [
+    636,
+    638
+   ],
+   "value_A": 57,
+   "value_B": 87,
+   "value_first_digit_differs": true,
+   "var_name": "friday_junebugs"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "32",
+   "gold_B": "34",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 247,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 60,
+   "plen": 655,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 12,
+   "value_B": 18,
+   "value_first_digit_differs": false,
+   "var_name": "cake_cost"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "215",
+   "gold_B": "226",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 581,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 32,
+   "plen": 628,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 30,
+   "value_B": 41,
+   "value_first_digit_differs": true,
+   "var_name": "first_movie_minutes"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "78",
+   "gold_B": "90",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 300,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 635,
+   "span": [
+    613,
+    615
+   ],
+   "value_A": 16,
+   "value_B": 22,
+   "value_first_digit_differs": true,
+   "var_name": "monday_minutes"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "142",
+   "gold_B": "126",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 786,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 18,
+   "plen": 633,
+   "span": [
+    614,
+    615
+   ],
+   "value_A": 8,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "eggplant_plants"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "72",
+   "gold_B": "90",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1302,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 31,
+   "plen": 644,
+   "span": [
+    612,
+    613
+   ],
+   "value_A": 5,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "first_half_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "700",
+   "gold_B": "400",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 910,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 32,
+   "plen": 617,
+   "span": [
+    582,
+    585
+   ],
+   "value_A": 200,
+   "value_B": 100,
+   "value_first_digit_differs": true,
+   "var_name": "brown_farm_acres"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "76",
+   "gold_B": "71",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 619,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 633,
+   "span": [
+    618,
+    620
+   ],
+   "value_A": 20,
+   "value_B": 25,
+   "value_first_digit_differs": false,
+   "var_name": "non_functioning_lights"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "3",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 633,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 619,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 55,
+   "value_B": 45,
+   "value_first_digit_differs": true,
+   "var_name": "bob_speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "800",
+   "gold_B": "631",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 586,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 34,
+   "plen": 647,
+   "span": [
+    610,
+    613
+   ],
+   "value_A": 500,
+   "value_B": 331,
+   "value_first_digit_differs": true,
+   "var_name": "calories_per_hour_aerobics"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "81",
+   "gold_B": "243",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1233,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 12,
+   "plen": 632,
+   "span": [
+    619,
+    620
+   ],
+   "value_A": 3,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "apple_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "16",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 402,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 49,
+   "plen": 643,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 3,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "normal_flour"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "31",
+   "gold_B": "28",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 203,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 18,
+   "plen": 677,
+   "span": [
+    658,
+    659
+   ],
+   "value_A": 8,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "slices_in_mac_and_cheese"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1920",
+   "gold_B": "1680",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 455,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 38,
+   "plen": 649,
+   "span": [
+    610,
+    611
+   ],
+   "value_A": 8,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "bed_length"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "12",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 399,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 41,
+   "plen": 621,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 7,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "alice_age_increment"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14",
+   "gold_B": "83",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 329,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 626,
+   "span": [
+    591,
+    593
+   ],
+   "value_A": 10,
+   "value_B": 79,
+   "value_first_digit_differs": true,
+   "var_name": "additional_lollipops"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "665",
+   "gold_B": "602",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1278,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 633,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 86,
+   "value_B": 23,
+   "value_first_digit_differs": true,
+   "var_name": "benny_seashells"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "800",
+   "gold_B": "700",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 47,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 34,
+   "plen": 629,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 50,
+   "value_B": 25,
+   "value_first_digit_differs": true,
+   "var_name": "red_ties_cost_increase"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "83",
+   "gold_B": "84",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 293,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 55,
+   "plen": 660,
+   "span": [
+    604,
+    605
+   ],
+   "value_A": 3,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "jim_points_less_than_mike"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "90",
+   "gold_B": "120",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 286,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 27,
+   "plen": 611,
+   "span": [
+    583,
+    584
+   ],
+   "value_A": 2,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "dimes"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1210",
+   "gold_B": "1060",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 171,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 632,
+   "span": [
+    599,
+    601
+   ],
+   "value_A": 90,
+   "value_B": 65,
+   "value_first_digit_differs": true,
+   "var_name": "insects"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1078,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 35,
+   "plen": 678,
+   "span": [
+    641,
+    643
+   ],
+   "value_A": 12,
+   "value_B": 10,
+   "value_first_digit_differs": false,
+   "var_name": "weeks_saved_so_far"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 291,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 631,
+   "span": [
+    606,
+    607
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "bars_per_adult"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "21",
+   "gold_B": "17",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 569,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 44,
+   "plen": 647,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 63,
+   "value_B": 67,
+   "value_first_digit_differs": false,
+   "var_name": "liam_earnings"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "20000",
+   "gold_B": "95304",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 223,
+   "n_digits": 5,
+   "n_span_tokens": 5,
+   "offset_from_end": 39,
+   "plen": 624,
+   "span": [
+    580,
+    585
+   ],
+   "value_A": 15000,
+   "value_B": 71478,
+   "value_first_digit_differs": true,
+   "var_name": "initial_advertising_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "16",
+   "gold_B": "44",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 491,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 622,
+   "span": [
+    589,
+    591
+   ],
+   "value_A": 24,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "eggs_per_tray"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15",
+   "gold_B": "14",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 948,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 663,
+   "span": [
+    633,
+    634
+   ],
+   "value_A": 6,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "nyt_copies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "220",
+   "gold_B": "420",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 216,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 38,
+   "plen": 633,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 10,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "interest_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "80",
+   "gold_B": "140",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 441,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 33,
+   "plen": 647,
+   "span": [
+    613,
+    614
+   ],
+   "value_A": 4,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "margareth_red_packs"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "2",
+   "gold_B": "26",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 183,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 62,
+   "plen": 715,
+   "span": [
+    651,
+    653
+   ],
+   "value_A": 55,
+   "value_B": 49,
+   "value_first_digit_differs": true,
+   "var_name": "well_rounded_time"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "940",
+   "gold_B": "959",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 131,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 613,
+   "span": [
+    595,
+    597
+   ],
+   "value_A": 60,
+   "value_B": 41,
+   "value_first_digit_differs": true,
+   "var_name": "june_expenditure_decrease"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "280",
+   "gold_B": "308",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1192,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 646,
+   "span": [
+    607,
+    609
+   ],
+   "value_A": 10,
+   "value_B": 38,
+   "value_first_digit_differs": true,
+   "var_name": "attendance_bonus"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1013,
+   "n_digits": 5,
+   "n_span_tokens": 5,
+   "offset_from_end": 33,
+   "plen": 659,
+   "span": [
+    621,
+    626
+   ],
+   "value_A": 10000,
+   "value_B": 40000,
+   "value_first_digit_differs": true,
+   "var_name": "car_cost"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1000",
+   "gold_B": "1116",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1304,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 51,
+   "plen": 640,
+   "span": [
+    585,
+    589
+   ],
+   "value_A": 4000,
+   "value_B": 4464,
+   "value_first_digit_differs": false,
+   "var_name": "norman_enrollment"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "694",
+   "gold_B": "592",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 11,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 644,
+   "span": [
+    629,
+    631
+   ],
+   "value_A": 55,
+   "value_B": 38,
+   "value_first_digit_differs": true,
+   "var_name": "cheesecakes_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "48",
+   "gold_B": "52",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1277,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 32,
+   "plen": 616,
+   "span": [
+    582,
+    584
+   ],
+   "value_A": 16,
+   "value_B": 24,
+   "value_first_digit_differs": true,
+   "var_name": "age_difference"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "120",
+   "gold_B": "60",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 512,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 631,
+   "span": [
+    601,
+    602
+   ],
+   "value_A": 8,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "total_laps"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "576",
+   "gold_B": "960",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 679,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 606,
+   "span": [
+    582,
+    584
+   ],
+   "value_A": 36,
+   "value_B": 60,
+   "value_first_digit_differs": true,
+   "var_name": "hash_browns_initial"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "250",
+   "gold_B": "703",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 936,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 100,
+   "plen": 703,
+   "span": [
+    599,
+    603
+   ],
+   "value_A": 1600,
+   "value_B": 2053,
+   "value_first_digit_differs": true,
+   "var_name": "base_24hr_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "20",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 804,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 48,
+   "plen": 646,
+   "span": [
+    596,
+    598
+   ],
+   "value_A": 60,
+   "value_B": 66,
+   "value_first_digit_differs": false,
+   "var_name": "speed_first_car"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "45000",
+   "gold_B": "83934",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1132,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 37,
+   "plen": 621,
+   "span": [
+    580,
+    584
+   ],
+   "value_A": 5000,
+   "value_B": 9326,
+   "value_first_digit_differs": true,
+   "var_name": "valerie_salary"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "880",
+   "gold_B": "1080",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 128,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 663,
+   "span": [
+    637,
+    639
+   ],
+   "value_A": 10,
+   "value_B": 15,
+   "value_first_digit_differs": false,
+   "var_name": "orange_quantity"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "110",
+   "gold_B": "98",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 851,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 22,
+   "plen": 616,
+   "span": [
+    590,
+    594
+   ],
+   "value_A": 2640,
+   "value_B": 2352,
+   "value_first_digit_differs": false,
+   "var_name": "annual_spending"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "14",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 736,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 28,
+   "plen": 617,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 23,
+   "value_B": 34,
+   "value_first_digit_differs": true,
+   "var_name": "beck_apples_difference"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "840",
+   "gold_B": "3248",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 643,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 32,
+   "plen": 636,
+   "span": [
+    602,
+    604
+   ],
+   "value_A": 10,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "business_articles_per_day"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "720",
+   "gold_B": "900",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 134,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 606,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "car_washes_per_month"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "40",
+   "gold_B": "78",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 870,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 8,
+   "plen": 639,
+   "span": [
+    629,
+    631
+   ],
+   "value_A": 60,
+   "value_B": 22,
+   "value_first_digit_differs": true,
+   "var_name": "madeline_percentage"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "67",
+   "gold_B": "87",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 381,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 618,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 9,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "chloe_speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "7",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 150,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 51,
+   "plen": 674,
+   "span": [
+    620,
+    623
+   ],
+   "value_A": 440,
+   "value_B": 480,
+   "value_first_digit_differs": false,
+   "var_name": "steve_speed_ft_per_min"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "216",
+   "gold_B": "72",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 639,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 42,
+   "plen": 626,
+   "span": [
+    583,
+    584
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "length"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "18000",
+   "gold_B": "19920",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 173,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 660,
+   "span": [
+    640,
+    642
+   ],
+   "value_A": 50,
+   "value_B": 66,
+   "value_first_digit_differs": true,
+   "var_name": "extra_payment_percentage"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15",
+   "gold_B": "16",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 817,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 28,
+   "plen": 625,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 8,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "chocolate_cupcakes"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "42",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 545,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 7,
+   "plen": 618,
+   "span": [
+    610,
+    611
+   ],
+   "value_A": 5,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "days_per_week"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "18",
+   "gold_B": "13",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 538,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 49,
+   "plen": 648,
+   "span": [
+    597,
+    599
+   ],
+   "value_A": 18,
+   "value_B": 23,
+   "value_first_digit_differs": true,
+   "var_name": "first_week_vlogs"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1125",
+   "gold_B": "1905",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1160,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 30,
+   "plen": 633,
+   "span": [
+    599,
+    603
+   ],
+   "value_A": 1907,
+   "value_B": 1127,
+   "value_first_digit_differs": false,
+   "var_name": "mon_tue_reports"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "157",
+   "gold_B": "190",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1111,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 635,
+   "span": [
+    610,
+    611
+   ],
+   "value_A": 5,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "blue_ball_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "15",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1051,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 616,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 16,
+   "value_B": 12,
+   "value_first_digit_differs": false,
+   "var_name": "cups_in_gallon"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "14",
+   "gold_B": "12",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 324,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 638,
+   "span": [
+    617,
+    618
+   ],
+   "value_A": 7,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "new_records_total"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "20",
+   "gold_B": "21",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 444,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 27,
+   "plen": 620,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "extra_minutes_movie_b"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "4",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 346,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 47,
+   "plen": 646,
+   "span": [
+    598,
+    599
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "cookies_for_son_per_day"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "25",
+   "gold_B": "22",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 883,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 34,
+   "plen": 654,
+   "span": [
+    618,
+    620
+   ],
+   "value_A": 15,
+   "value_B": 21,
+   "value_first_digit_differs": true,
+   "var_name": "encore_length"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "280",
+   "gold_B": "210",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 940,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 632,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 8,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "children_per_row"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "6",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1033,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 49,
+   "plen": 636,
+   "span": [
+    586,
+    587
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "hours_per_day"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "38",
+   "gold_B": "52",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1274,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 631,
+   "span": [
+    596,
+    598
+   ],
+   "value_A": 12,
+   "value_B": 19,
+   "value_first_digit_differs": false,
+   "var_name": "adult_ticket_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "200",
+   "gold_B": "400",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1028,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 643,
+   "span": [
+    619,
+    621
+   ],
+   "value_A": 10,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "monthly_payment_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "3",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 186,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 97,
+   "plen": 694,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "rat_cages"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "600",
+   "gold_B": "1000",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 83,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 609,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "rose_bushes"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 391,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 16,
+   "plen": 623,
+   "span": [
+    604,
+    607
+   ],
+   "value_A": 165,
+   "value_B": 110,
+   "value_first_digit_differs": false,
+   "var_name": "total_popsicles"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "74",
+   "gold_B": "31",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 523,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 644,
+   "span": [
+    611,
+    613
+   ],
+   "value_A": 39,
+   "value_B": 82,
+   "value_first_digit_differs": true,
+   "var_name": "afternoon_sales"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "19",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1117,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 5,
+   "plen": 611,
+   "span": [
+    603,
+    606
+   ],
+   "value_A": 459,
+   "value_B": 969,
+   "value_first_digit_differs": true,
+   "var_name": "target_blinks"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "18",
+   "gold_B": "22",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 503,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 14,
+   "plen": 622,
+   "span": [
+    607,
+    608
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "chair_width"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "72",
+   "gold_B": "162",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 626,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 46,
+   "plen": 632,
+   "span": [
+    584,
+    586
+   ],
+   "value_A": 20,
+   "value_B": 45,
+   "value_first_digit_differs": true,
+   "var_name": "kb_per_second"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "20",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 730,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 5,
+   "plen": 623,
+   "span": [
+    616,
+    618
+   ],
+   "value_A": 30,
+   "value_B": 75,
+   "value_first_digit_differs": true,
+   "var_name": "days"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "49",
+   "gold_B": "46",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 442,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 655,
+   "span": [
+    631,
+    632
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "cooling_per_10_minutes"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7200",
+   "gold_B": "32400",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1259,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 34,
+   "plen": 620,
+   "span": [
+    584,
+    586
+   ],
+   "value_A": 10,
+   "value_B": 45,
+   "value_first_digit_differs": true,
+   "var_name": "dozens_per_day"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "32",
+   "gold_B": "29",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1135,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 40,
+   "plen": 623,
+   "span": [
+    582,
+    583
+   ],
+   "value_A": 7,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "first_group_birds"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "12",
+   "gold_B": "15",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 917,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 33,
+   "plen": 614,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "apples"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "55",
+   "gold_B": "160",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 297,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 73,
+   "plen": 663,
+   "span": [
+    587,
+    590
+   ],
+   "value_A": 120,
+   "value_B": 225,
+   "value_first_digit_differs": true,
+   "var_name": "target_crates"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "310",
+   "gold_B": "130",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 335,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 15,
+   "plen": 631,
+   "span": [
+    615,
+    616
+   ],
+   "value_A": 8,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "sucker_batches"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "80",
+   "gold_B": "79",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 31,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 642,
+   "span": [
+    611,
+    613
+   ],
+   "value_A": 20,
+   "value_B": 17,
+   "value_first_digit_differs": true,
+   "var_name": "second_guess_increment"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "750",
+   "gold_B": "1075",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1127,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 15,
+   "plen": 665,
+   "span": [
+    647,
+    650
+   ],
+   "value_A": 120,
+   "value_B": 172,
+   "value_first_digit_differs": false,
+   "var_name": "average_car_speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "40",
+   "gold_B": "15",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 958,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 51,
+   "plen": 641,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 48,
+   "value_B": 18,
+   "value_first_digit_differs": true,
+   "var_name": "total_reported"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "39",
+   "gold_B": "51",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 540,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 59,
+   "plen": 650,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "first_addition"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "12",
+   "gold_B": "32",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 604,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 12,
+   "plen": 646,
+   "span": [
+    631,
+    634
+   ],
+   "value_A": 100,
+   "value_B": 120,
+   "value_first_digit_differs": false,
+   "var_name": "initial_money"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14",
+   "gold_B": "2",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 930,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 672,
+   "span": [
+    655,
+    657
+   ],
+   "value_A": 62,
+   "value_B": 50,
+   "value_first_digit_differs": true,
+   "var_name": "total_toys"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "24",
+   "gold_B": "72",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 89,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 628,
+   "span": [
+    616,
+    617
+   ],
+   "value_A": 2,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "gift_bag_cost"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "16",
+   "gold_B": "21",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 289,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 21,
+   "plen": 642,
+   "span": [
+    618,
+    621
+   ],
+   "value_A": 480,
+   "value_B": 630,
+   "value_first_digit_differs": true,
+   "var_name": "distance"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "21",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1114,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 618,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 21,
+   "value_B": 34,
+   "value_first_digit_differs": true,
+   "var_name": "initial_amount"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 938,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 55,
+   "plen": 643,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 6,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "hours_worked"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "106",
+   "gold_B": "121",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 187,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 25,
+   "plen": 619,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 2,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "monthly_interest_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "21",
+   "gold_B": "31",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 240,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 615,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 54,
+   "value_B": 74,
+   "value_first_digit_differs": true,
+   "var_name": "john_candies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "490",
+   "gold_B": "245",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 765,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 12,
+   "plen": 606,
+   "span": [
+    591,
+    594
+   ],
+   "value_A": 200,
+   "value_B": 100,
+   "value_first_digit_differs": true,
+   "var_name": "bananas"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1375",
+   "gold_B": "1175",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 268,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 45,
+   "plen": 629,
+   "span": [
+    583,
+    584
+   ],
+   "value_A": 5,
+   "value_B": 1,
+   "value_first_digit_differs": true,
+   "var_name": "cost_per_newspaper_ad"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "2600",
+   "gold_B": "2700",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 207,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 43,
+   "plen": 635,
+   "span": [
+    590,
+    592
+   ],
+   "value_A": 80,
+   "value_B": 85,
+   "value_first_digit_differs": false,
+   "var_name": "candied_apples"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "50",
+   "gold_B": "47",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 703,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 43,
+   "plen": 643,
+   "span": [
+    599,
+    600
+   ],
+   "value_A": 6,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "females"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "93",
+   "gold_B": "744",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1149,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 611,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 1,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "daily_food_cost_per_fish"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "168",
+   "gold_B": "434",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 708,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 6,
+   "plen": 607,
+   "span": [
+    599,
+    601
+   ],
+   "value_A": 12,
+   "value_B": 31,
+   "value_first_digit_differs": true,
+   "var_name": "daily_rate"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "12",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1262,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 48,
+   "plen": 646,
+   "span": [
+    595,
+    598
+   ],
+   "value_A": 150,
+   "value_B": 180,
+   "value_first_digit_differs": false,
+   "var_name": "normal_speed"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "2",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1157,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 16,
+   "plen": 639,
+   "span": [
+    622,
+    623
+   ],
+   "value_A": 7,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "Isabel_height"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "13",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 947,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 634,
+   "span": [
+    614,
+    615
+   ],
+   "value_A": 5,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "additional_stickers"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "288",
+   "gold_B": "248",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1210,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 639,
+   "span": [
+    622,
+    624
+   ],
+   "value_A": 12,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "balloons_left"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "40",
+   "gold_B": "72",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 418,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 634,
+   "span": [
+    616,
+    617
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "peters_locker_size"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "12",
+   "gold_B": "8",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 995,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 35,
+   "plen": 621,
+   "span": [
+    584,
+    586
+   ],
+   "value_A": 30,
+   "value_B": 26,
+   "value_first_digit_differs": true,
+   "var_name": "trouser_cost"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "13",
+   "gold_B": "16",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 595,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 5,
+   "plen": 602,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "years_ahead"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "120",
+   "gold_B": "200",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1300,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 41,
+   "plen": 626,
+   "span": [
+    584,
+    585
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "cars_per_day"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "102",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 148,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 54,
+   "plen": 648,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 12,
+   "value_B": 84,
+   "value_first_digit_differs": true,
+   "var_name": "adult_ticket_price"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "14",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 437,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 619,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 22,
+   "value_B": 78,
+   "value_first_digit_differs": true,
+   "var_name": "juris_oranges"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "36",
+   "gold_B": "18",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 65,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 5,
+   "plen": 626,
+   "span": [
+    620,
+    621
+   ],
+   "value_A": 4,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "weeks"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "31800",
+   "gold_B": "25800",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 299,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 49,
+   "plen": 666,
+   "span": [
+    616,
+    617
+   ],
+   "value_A": 5,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "days_per_week"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "60",
+   "gold_B": "252",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 71,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 623,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 20,
+   "value_B": 84,
+   "value_first_digit_differs": true,
+   "var_name": "first_recipe_instructions"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "140",
+   "gold_B": "60",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 103,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 43,
+   "plen": 643,
+   "span": [
+    599,
+    600
+   ],
+   "value_A": 3,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "distance_covered_in_time"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "6",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 48,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 13,
+   "plen": 616,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 6,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "piece_length_inches"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "240",
+   "gold_B": "2280",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 484,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 48,
+   "plen": 641,
+   "span": [
+    591,
+    593
+   ],
+   "value_A": 10,
+   "value_B": 95,
+   "value_first_digit_differs": true,
+   "var_name": "bet_amount_per_orange"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "36",
+   "gold_B": "40",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 677,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 60,
+   "plen": 695,
+   "span": [
+    633,
+    635
+   ],
+   "value_A": 20,
+   "value_B": 16,
+   "value_first_digit_differs": true,
+   "var_name": "carol_signatures"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "50",
+   "gold_B": "25",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 188,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 55,
+   "plen": 648,
+   "span": [
+    591,
+    593
+   ],
+   "value_A": 20,
+   "value_B": 12,
+   "value_first_digit_differs": true,
+   "var_name": "buy_rate"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "225",
+   "gold_B": "189",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 961,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 651,
+   "span": [
+    634,
+    636
+   ],
+   "value_A": 70,
+   "value_B": 58,
+   "value_first_digit_differs": true,
+   "var_name": "chips_per_person"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "100",
+   "gold_B": "94",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 791,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 36,
+   "plen": 631,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 47,
+   "value_B": 53,
+   "value_first_digit_differs": true,
+   "var_name": "first_stop_off"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "13",
+   "gold_B": "12",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1155,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 618,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 60,
+   "value_B": 40,
+   "value_first_digit_differs": true,
+   "var_name": "percentage_longer"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "594",
+   "gold_B": "598",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 1311,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 641,
+   "span": [
+    619,
+    620
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "current_line"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "50",
+   "gold_B": "65",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 809,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 20,
+   "plen": 666,
+   "span": [
+    643,
+    646
+   ],
+   "value_A": 100,
+   "value_B": 115,
+   "value_first_digit_differs": false,
+   "var_name": "additional_candies"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "60000",
+   "gold_B": "20000",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 759,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 38,
+   "plen": 626,
+   "span": [
+    585,
+    588
+   ],
+   "value_A": 300,
+   "value_B": 100,
+   "value_first_digit_differs": true,
+   "var_name": "songs_per_playlist"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "200",
+   "gold_B": "125",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 495,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 48,
+   "plen": 630,
+   "span": [
+    581,
+    582
+   ],
+   "value_A": 8,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "work_hours_per_day"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "25",
+   "gold_B": "12",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 740,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 59,
+   "plen": 641,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 50,
+   "value_B": 37,
+   "value_first_digit_differs": true,
+   "var_name": "total_students"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "85",
+   "gold_B": "121",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 762,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 634,
+   "span": [
+    602,
+    604
+   ],
+   "value_A": 90,
+   "value_B": 18,
+   "value_first_digit_differs": true,
+   "var_name": "ava_allowance"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "621",
+   "gold_B": "321",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 478,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 27,
+   "plen": 632,
+   "span": [
+    602,
+    605
+   ],
+   "value_A": 200,
+   "value_B": 100,
+   "value_first_digit_differs": true,
+   "var_name": "employees_per_group"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15400",
+   "gold_B": "18955",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 479,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 44,
+   "plen": 650,
+   "span": [
+    604,
+    606
+   ],
+   "value_A": 20,
+   "value_B": 99,
+   "value_first_digit_differs": true,
+   "var_name": "busy_weekend_increase"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "11",
+   "gold_B": "13",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 480,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 50,
+   "plen": 630,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 4,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "ben_blue_paint"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "7",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1100,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 619,
+   "span": [
+    601,
+    602
+   ],
+   "value_A": 5,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "days"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "31",
+   "gold_B": "115",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1228,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 614,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 12,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "samantha_fewer_paintings"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "12",
+   "gold_B": "6",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1087,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 61,
+   "plen": 654,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 5,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "bales_per_hour_farmer"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "320",
+   "gold_B": "448",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 1063,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 7,
+   "plen": 626,
+   "span": [
+    618,
+    619
+   ],
+   "value_A": 5,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "days_in_work_week"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "98",
+   "gold_B": "86",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 204,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 27,
+   "plen": 638,
+   "span": [
+    610,
+    611
+   ],
+   "value_A": 9,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "blue_pens_per_bag"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "10",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 412,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 63,
+   "plen": 651,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 2,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "cookies_per_night"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "5",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 101,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 49,
+   "plen": 658,
+   "span": [
+    608,
+    609
+   ],
+   "value_A": 8,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "geography_pages"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "22",
+   "gold_B_chain_status": "agree_ambiguous",
+   "idx": 616,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 37,
+   "plen": 632,
+   "span": [
+    594,
+    595
+   ],
+   "value_A": 3,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "initial_height"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "193",
+   "gold_B": "264",
+   "gold_B_chain_status": "agree_unique",
+   "idx": 663,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 32,
+   "plen": 625,
+   "span": [
+    590,
+    593
+   ],
+   "value_A": 198,
+   "value_B": 127,
+   "value_first_digit_differs": false,
+   "var_name": "district_a_newspapers"
+  }
+ ],
+ "screen_A_source": "SETTLE cells cells_ouro_1_4b_base_gsm8k_natural_k4.jsonl at budget 512",
+ "sentinel_layout": {
+  "chunks_without": 11,
+  "n_chunks": 27,
+  "sentinels_per_chunk": [
+   0,
+   2,
+   1,
+   0,
+   1,
+   1,
+   1,
+   0,
+   2,
+   0,
+   0,
+   1,
+   0,
+   2,
+   0,
+   2,
+   1,
+   0,
+   2,
+   1,
+   0,
+   2,
+   0,
+   1,
+   1,
+   1,
+   0
+  ]
+ },
+ "sentinels": [
+  {
+   "idx": 169,
+   "plen": 610
+  },
+  {
+   "idx": 345,
+   "plen": 612
+  },
+  {
+   "idx": 1065,
+   "plen": 614
+  },
+  {
+   "idx": 30,
+   "plen": 618
+  },
+  {
+   "idx": 194,
+   "plen": 620
+  },
+  {
+   "idx": 853,
+   "plen": 622
+  },
+  {
+   "idx": 212,
+   "plen": 625
+  },
+  {
+   "idx": 397,
+   "plen": 625
+  },
+  {
+   "idx": 1081,
+   "plen": 630
+  },
+  {
+   "idx": 694,
+   "plen": 633
+  },
+  {
+   "idx": 1305,
+   "plen": 633
+  },
+  {
+   "idx": 628,
+   "plen": 635
+  },
+  {
+   "idx": 398,
+   "plen": 636
+  },
+  {
+   "idx": 564,
+   "plen": 638
+  },
+  {
+   "idx": 424,
+   "plen": 643
+  },
+  {
+   "idx": 1129,
+   "plen": 643
+  },
+  {
+   "idx": 987,
+   "plen": 645
+  },
+  {
+   "idx": 124,
+   "plen": 651
+  },
+  {
+   "idx": 138,
+   "plen": 652
+  },
+  {
+   "idx": 925,
+   "plen": 663
+  },
+  {
+   "idx": 383,
+   "plen": 668
+  },
+  {
+   "idx": 601,
+   "plen": 683
+  }
+ ],
+ "setting": "a1",
+ "shift": [
+  {
+   "idx": 84,
+   "plen": 603
+  },
+  {
+   "idx": 454,
+   "plen": 604
+  },
+  {
+   "idx": 462,
+   "plen": 604
+  },
+  {
+   "idx": 1,
+   "plen": 605
+  },
+  {
+   "idx": 285,
+   "plen": 605
+  },
+  {
+   "idx": 387,
+   "plen": 605
+  },
+  {
+   "idx": 623,
+   "plen": 606
+  },
+  {
+   "idx": 1178,
+   "plen": 607
+  }
+ ]
+}

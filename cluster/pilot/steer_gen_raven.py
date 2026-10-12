@@ -88,6 +88,11 @@ SPEC = {   # per setting: tokenizer repo, BOS first (G.main's add_special_tokens
             "pool_tok": "mcleish"},
     "hug": {"model": HUGINN, "repo": "tomg-group-umd/huginn-0125", "bos": False, "pool_tok": "huginn"},
 }
+# cluster fill (2026-10-12): Huginn on the SVAMP pairs, setting "hug_svamp" (run with K17_DATASET=svamp): setting hug
+# with the dataset swapped and Huginn's own SETTLE k32 SVAMP cells as the pre-filter
+S.SETTINGS["hug_svamp"] = dict(json.loads(json.dumps(S.SETTINGS["hug"])), dataset="svamp",
+                               settle="cells_huginn_0125_svamp_natural_k32.jsonl")
+SPEC["hug_svamp"] = dict(SPEC["hug"])
 ACTIVE = [SETTING]          # the setting of this process (main --setting); McLeish by default
 
 
@@ -578,7 +583,7 @@ class SteeredHuginnAdapter(SteeredRavenMixin, HuginnAdapter):
         super(SteeredHuginnAdapter, self).__init__(name=name, **kw)
 
 
-ADAPTERS = {"mcl": SteeredMcLeishAdapter, "hug": SteeredHuginnAdapter}
+ADAPTERS = {"mcl": SteeredMcLeishAdapter, "hug": SteeredHuginnAdapter, "hug_svamp": SteeredHuginnAdapter}
 
 
 # ====================================================================== tokenizer and geometry
@@ -867,10 +872,12 @@ ROWS_CSV = {   # row -> (arm, site, loop, strength, random row at the same site)
 }
 
 
-def results_rows(an, model=None, dataset="gsm8k", only=None, r90=None):
-    """model: the analysis' setting's model unless given (cluster/extract/genraven.py passes none)."""
+def results_rows(an, model=None, dataset=None, only=None, r90=None):
+    """model: the analysis' setting's model unless given (cluster/extract/genraven.py passes none); dataset: the
+    setting's dataset unless given (gsm8k when the setting names none; the extractor passes setting.json's)."""
     from cluster.extract import common
     model = model or SPEC.get(an.get("setting"), SPEC[SETTING])["model"]
+    dataset = dataset or S.SETTINGS.get(an.get("setting"), {}).get("dataset") or "gsm8k"
     r90 = r90 or {}
     pc = ((an["rows"].get("r01") or {}).get("gold_B") or [None])[0]
     out = []
@@ -1158,7 +1165,7 @@ def hash_line(cfg, root, settle_dir):
          "config_sha256": hashlib.sha256(cfg_s).hexdigest(),
          "code_sha256": {"steer_gen_raven.py": S.sha256_file(os.path.abspath(__file__)),
                          "steer_gen.py": S.sha256_file(S.__file__.replace(".pyc", ".py"))},
-         "data_sha256": {"pairs_gsm8k.jsonl": S.sha256_file(S.POOL_DEFAULT),
+         "data_sha256": {os.path.basename(S.POOL_DEFAULT): S.sha256_file(S.POOL_DEFAULT),
                          cfg["settle"]: S.sha256_file(os.path.join(settle_dir, cfg["settle"])) if settle_dir else None},
          "time_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
     p = os.path.join(root, "hash_line.json")

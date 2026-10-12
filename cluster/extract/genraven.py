@@ -26,7 +26,9 @@ def extract(job_dir, src_py):
     M = _mod(src_py)
     an = common.load_json(os.path.join(job_dir, "analysis.json"))
     r90, _ = gen.recompute(job_dir, M.S.__file__, True)
-    return M.results_rows(an, r90=r90)
+    sp = os.path.join(job_dir, "setting.json")
+    ds = (common.load_json(sp).get("dataset") if os.path.exists(sp) else None) or "gsm8k"   # SVAMP, ASDiv, MAWPS fill
+    return M.results_rows(an, dataset=ds, r90=r90)
 
 
 def item_sets(job_dir):

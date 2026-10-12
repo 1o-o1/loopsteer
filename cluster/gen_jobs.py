@@ -48,14 +48,14 @@ VB_KEY = {"ouro_1_4b_base": "ouro", "ouro_2_6b_base": "ouro26", "ouro_1_4b_think
           "ouro_2_6b_think": "ouro26_think", "ifm_p1_ouro": "ifm_p1_ouro", "ifm_p1_ouro_inj": "ifm_p1_ouro_inj",
           "ifm_d112": "ifm_d112"}
 PUB_GROUP = {"mcleish_llama32_r32": "mcl_nr", "llama_nr": "mcl_nr", "huginn_0125": "huginn",
-             "ouro_1_4b_think": "ouro_think"}
+             "ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}
 PUB_RUNNER = {"mcleish_llama32_r32": "mcleish", "llama_nr": "llama_nr", "huginn_0125": "huginn",
-              "ouro_1_4b_think": "ouro_think"}
+              "ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}
 PUB_DS = {"mcl_nr": ("D1", "CF", "D2", "D4", "D5", "VB"), "huginn": ("D1", "CF", "D2", "D4", "D5", "VB"),
-          "ouro_think": ("D1", "D2", "D4")}
+          "ouro_think": ("D1", "D2", "D4"), "ouro26_think": ("D1", "D2", "D4")}
 PAR_KEY = {"parcae_370m": "parcae-370m", "parcae_1_3b": "parcae-1.3b"}
-K15F = {"ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_d112"}     # k15_full.py: D1, D2, CF in one process (its summarize
-#                                                            keeps MODEL_ORDER models only, so not ifm_d28: time skip)
+K15F = {"ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_d112", "ifm_d28"}     # k15_full.py: D1, D2, CF in one process
+#                                                            (ifm_d28: B-EXT5 fill, MODEL_ORDER now keeps it)
 K15P = {"ifm_p1_mid", "ifm_p1_mid_inj", "ifm_p2m_r5", "ifm_p2m_diag", "ifm_p2m_ortho"}   # k15_pairs.py: D1
 K16O = {"ouro_1_4b_base": "ouro", "ouro_2_6b_base": "ouro26", "ouro_1_4b_think": "ouro_think"}
 K16I = {"ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_p1_mid", "ifm_p1_mid_inj", "ifm_d112", "ifm_p2m_diag"}
@@ -80,7 +80,7 @@ K15F_GRID = {"ifm_p1_ouro"}
 # Figure 2 code panel: k15_full --datasets D4 (k16_path_ifm's D4 rows) for these edit-site map cells, folder
 # B/k15_full/<model>_grid_D4 (g16_ifmgrid.s1_run.002); their k16_path_ifm job stays and its folder is read under
 # FIRST_RUN_CARD
-K15F_GRID_D4 = set()      # the code panel (D4) waits for the k15_full --datasets change (next round)     # item 1: setting a4, GSM8K and SVAMP (steer_gen), ASDiv and MAWPS
+K15F_GRID_D4 = {("ifm_p1_ouro", "D4")}
 RAVEN_FREEZE = {"mcleish_llama32_r32": "mcleish", "huginn_0125": "huginn"}
 # RA-23 additions (2026-10-09)
 FRZ_OURO = {"ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}   # k17_freeze --model <id>; value =
@@ -102,6 +102,61 @@ GENR_ROWS = ["r00", "r01", "r02", "r20", "r21", "r10", "r03", "r04", "r05", "r06
              "r13", "r19", "r14", "r15", "r16", "r17", "r18"]           # steer_gen_raven SETTINGS["mcl"]["rows"]
 GEN_ROWS = ["r00", "r01", "r02", "r10", "r20", "r21", "r03", "r04", "r05", "r06", "r07", "r08", "r09", "r11", "r12",
             "r13", "r19", "r14", "r15", "r16", "r17", "r18"]          # run_a1.sh order
+# B-EXT5 fill (2026-10-12): jobs/submit_fill.sh submits group g17_fillmap (priority 1: edit-site map cells missing on
+# d28, the 819M designs and Ouro-2.6B-Thinking), g18_fillgen (priority 2: McLeish and Huginn generation on SVAMP,
+# ASDiv, MAWPS) and the g12_ifmv1 tasks without a done marker (priority 3); no other group
+FILL_MAP_GROUP, FILL_GEN_GROUP = "g17_fillmap", "g18_fillgen"
+FILL_PRIORITY = {FILL_MAP_GROUP: 1, FILL_GEN_GROUP: 2, VB_V1_GROUP: 3}
+# B-EXT6 (2026-10-12): the RA-29, RA-30 and RA-31 overflow from the frozen card folders, copied unchanged into
+# cluster/pilot/ra29, ra30, ra31 (each script checks its own plan sha256, read here from plan_raXX.sha256).
+# jobs/submit_ext6.sh submits only these groups. Rates: the plans' card measurements (one GB10) at the single-card
+# rate (A100 factor 1.0, the conservative figure: no A100 speed is measured; the builders assumed 0.6 x for RA-31 and
+# 3 x for RA-29). The 6 h wall limit of every job is checked at this rate (the scripts resume after a SIGTERM).
+E6_GROUPS = ["g19_e6ra30", "g20_e6ra29", "g21_e6ra31a", "g22_e6ra31b"]
+E6_MERGE = "g23_e6merge"
+E6_WALL_H = 10                       # PI rule: 10 h (the submit scripts also pass --time)
+E6_A100_FACTOR = 1.0
+E6_PARTB_SPEED = 0.6                 # ra31_gen.py list prices an A100 at 0.6 x the card: card h = listed h x 0.6
+E6_MEM = " --mem_fraction ${E6_MEM_FRACTION:-0.9}"   # halved in a packed job; ra29.py and ra31.py cap torch at this share of the card (their defaults 0.5 and
+                                     # 0.12 are GB10 shares of 121 GB); one task per card, as GEN_MEM_FRACTION
+E6_TEST = {"g19_e6ra30": "ra30", "g20_e6ra29": "ra29", "g21_e6ra31a": "ra31", "g22_e6ra31b": "ra31"}
+# RA-31 Part B (plan section 13, unchanged since bd16a27f): the 15 shards of `ra31_gen.py list` with the A100
+# card-hours it prints (A100 at 0.6 x the card); one job per shard, a done marker per arm inside the shard
+E6_PARTB = [("mlp_all_lo", 2.32), ("mlp_all_hi", 1.74), ("mlp_top_lo", 2.78), ("mlp_top_hi", 2.08),
+            ("mlp_rand_lo", 2.78), ("mlp_rand_hi", 2.08), ("attn_all_lo", 2.32), ("attn_all_hi", 1.74),
+            ("attn_top_lo", 2.78), ("attn_top_hi", 2.08), ("attn_rand_lo", 2.78), ("attn_rand_hi", 2.08),
+            ("k2_lo", 1.27), ("k2_hi", 1.27), ("ident_allpos", 2.43)]
+# B-EXT6b (2026-10-12): breadth cells from the same folder copies (ra29 plan 9b799c25, ra30 3cf3fc98, ra31 06653e2a),
+# own groups, own submit script (jobs/submit_ext6b.sh), own merges (g28_e6bmerge into the same merged/<test>).
+# Card-hours at the single-card rate, from the builders' reports (RA-31: their A100 hours at 0.6 x the card, times 0.6).
+E6B_GROUPS = ["g24_e6bra29", "g25_e6bra31t", "g26_e6bra30"]
+E6B_MERGE = "g28_e6bmerge"
+E6B_MODEL = {"ouro14": "ouro_1_4b_base", "ouro26": "ouro_2_6b_base", "1.4b-think": "ouro_1_4b_think",
+             "2.6b-think": "ouro_2_6b_think"}
+E6B_RA29 = [("ouro14", "mmlu", 1.2), ("ouro26", "mmlu", 2.75), ("ouro14", "hellaswag", 2.0), ("ouro26", "hellaswag", 4.75)]
+E6B_RA31T = [("1.4b-think", 0.27 * 0.6, 2.27 * 0.6), ("2.6b-think", 0.50 * 0.6, 4.52 * 0.6)]
+E6_TEST.update({"g24_e6bra29": "ra29", "g25_e6bra31t": "ra31", "g26_e6bra30": "ra30"})
+
+
+def e6_sha(test):
+    """The frozen plan sha256 of a folder copy (cluster/pilot/<test>/plan_<test>.sha256), checked against the plan."""
+    import hashlib
+    d = os.path.join(HERE, "pilot", test)
+    s = open(os.path.join(d, "plan_%s.sha256" % test), encoding="utf-8").read().split()[0]
+    got = hashlib.sha256(open(os.path.join(d, "plan_%s.md" % test), "rb").read()).hexdigest()
+    if got != s:
+        raise SystemExit("cluster/pilot/%s: plan sha256 %s, plan_%s.sha256 says %s" % (test, got, test, s))
+    return s
+K15F_D45 = {"ifm_d28"}      # k15_full also runs D4, D5 (--datasets D1,D2,CF,D4,D5 --data_dir): one process, one folder
+Y1_FILL = {("ifm_p2m_r5", "D2"), ("ifm_p2m_r5", "D4"), ("ifm_p2m_r5", "D5"), ("ifm_p2m_ortho", "D2"),
+           ("ifm_p2m_ortho", "D4"), ("ifm_p2m_ortho", "D5"), ("ifm_p2m_diag", "D4"), ("ifm_p2m_diag", "D5")}
+#                             819M designs: k16_path_ifm --arms Y1 (the g14_ifmy1 command) into <model>_<ds>_y1
+GENR_SVAMP = {"huginn_0125": "hug_svamp"}      # steer_gen_raven setting on the SVAMP pairs (K17_DATASET=svamp)
+GENR_SET = {"mcleish_llama32_r32": "mcl", "huginn_0125": "hug"}    # steer_gen_math.py mcleish mode: --setting
+GENR_SCREEN = {"mcleish_llama32_r32": 290, "huginn_0125": 151}     # ASDiv, MAWPS: prep problems screened (the count
+#                                                                    the model's GSM8K run screened)
+GENR_PASS = {"mcleish_llama32_r32": 237 / 290.0, "huginn_0125": 101 / 151.0}   # planning: GSM8K scored / screened
+GENR_SVAMP_PREP = 130       # Huginn SVAMP prep problems (SETTLE k32 pre-filter on the 298-problem pool; CPU prep run)
 
 
 def route(card, model, ds):
@@ -120,6 +175,10 @@ def route(card, model, ds):
     if card == "generation placement":
         if model in GENR and ds == "GSM8K_gen":
             return ("steer_gen_raven.py", "genr")
+        if model in GENR_SVAMP and ds == "SVAMP_gen":          # B-EXT5 fill: Huginn SVAMP (setting hug_svamp)
+            return ("steer_gen_raven.py", "genr")
+        if model in GENR and ds in GENM_DS:                     # B-EXT5 fill: steer_gen_math.py mcleish mode
+            return ("steer_gen_math.py", "genrm")
         if model in GEN and ds in GENM_DS:          # RA-23 item 4: ASDiv and MAWPS through steer_gen_math.py
             return ("steer_gen_math.py", "genm")
         return ("steer_gen.py", "gen") if model in GEN and ds in ("GSM8K_gen", "SVAMP_gen") else None
@@ -129,6 +188,10 @@ def route(card, model, ds):
         return ("k16_path_ifm.py", "k16i0") if (model, ds) in Y1_CELLS | K15F_GRID_D4 else None
     if card == "edit-site map" and (model, ds) in K15F_GRID_D4:
         return ("k15_full.py", "k15g")
+    if card == "edit-site map" and (model, ds) in Y1_FILL:
+        return ("k16_path_ifm.py", "k16y")
+    if card == "edit-site map" and model == "ouro_2_6b_think" and ds == "D5":   # B-EXT5 fill: the pathway job's folder
+        return ("k16_path_ouro.py", "k16t")    # (the command of Ouro-1.4B-Thinking's D5 edit-site job, ouro26_think)
     if card == "edit-site map" and ds == "LRE":       # RA-23 item 5: the k17_public facts path on the LRE pool files
         return ("k17_public.py", "publre") if model in PUB_GROUP else None
     if card == "edit-site map":
@@ -136,7 +199,7 @@ def route(card, model, ds):
             return ("k17_public.py", "pub")
         if model in PAR_KEY and ds in ("D1", "VB"):
             return ("k17_parcae.py", "par")
-        if model in K15F and ds in ("D1", "D2", "CF"):
+        if model in K15F and (ds in ("D1", "D2", "CF") or (model in K15F_D45 and ds in ("D4", "D5"))):
             return ("k15_full.py", "k15f")
         if model in K15P and ds == "D1":
             return ("k15_pairs.py", "k15p")
@@ -200,7 +263,11 @@ def cell_target(card, model, ds):
     if u == "frzi":
         return (u, "C/k17_freeze_ifm/%s_%s" % (model, ds), model, DS_NAME[ds])
     if u == "genr":
-        return (u, genr_dir(model), "row", None)
+        return (u, genr_dir(model) if ds != "SVAMP_gen" else "A/steer_gen_raven/%s_svamp" % GENR[model], "row", None)
+    if u == "genrm":
+        return (u, "A/steer_gen_math/%s_%s" % (GENR[model], GENM_DS[ds]), "row", None)
+    if u == "k16y":
+        return (u, "B/k16_path_ifm/%s_%s_y1" % (model, ds), model, DS_NAME[ds])
     if u == "genm":
         return (u, "A/steer_gen_math/%s_%s" % (GEN[model], GENM_DS[ds]), "row", None)
     if u == "publre":        # the records say D1 (facts); the LRE cell is its own output folder
@@ -267,6 +334,9 @@ RATES = {
     ("pub", "ouro_think", "D1"): (12.3, "assumed", "no k17_public Ouro run: the k17_varbench Ouro per-item rate"),
     ("pub", "ouro_think", "D2"): (12.3, "assumed", "same"),
     ("pub", "ouro_think", "D4"): (12.3, "assumed", "same"),
+    ("pub", "ouro26_think", "D1"): (24.6, "assumed", "no k17_public Ouro-2.6B run: the ouro_think rate x 2 (48 layers)"),
+    ("pub", "ouro26_think", "D2"): (24.6, "assumed", "same"),
+    ("pub", "ouro26_think", "D4"): (24.6, "assumed", "same"),
     # k17_parcae t_item
     ("par", "parcae-370m", "D1"): (4.9, "shared", "k17_parcae full_final"),
     ("par", "parcae-370m", "VB"): (12.2, "shared", "k17_parcae full_final"),
@@ -276,6 +346,8 @@ RATES = {
     ("k15f", "ifm_p1_ouro"): (3.8, "shared", "k15_fullA k15f_ifm_p1_ouro: 1778.2 s for 467 pairs (D1 80, D2 80, CF 307)"),
     ("k15f", "ifm_p1_ouro_inj"): (11.3, "shared", "k15_fullA: CF 11.3 s/pair on ifm_p1_ouro_inj (upper bound for D1, D2)"),
     ("k15f", "ifm_d112"): (8.9, "shared", "k15_fullA: CF 8.9 s/pair on ifm_d112 (upper bound for D1, D2)"),
+    ("k15f", "ifm_d28"): (0.5, "shared", "B-EXT5 smoke of the whole ifm_d28 line on the shared GB10: 487 s for 1029 pairs "
+                                         "(D1 136, D2 569, CF 283, D4 318, D5 3)"),
     ("k15p", "*"): (0.9, "shared", "k15_fullB: 5.98 GPU-minutes for five models of about 80 pairs"),
     # k16 path scripts, seconds per item
     ("k16o", "ouro"): (8.55, "fast", "k16_path_ouro D5 on ouro, fast host (another job ran at the same time)"),
@@ -613,12 +685,17 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
     g = "g3_map"
     for m in sorted([m for (u, m) in want if u == "k15f"], key=mkey):
         rate, role, src = RATES[("k15f", m)]
-        n_plan = sum(planned_quota("k15f", m, d, kept) for d in want[("k15f", m)])
+        n_plan = sum(planned_quota("k15f" if d in ("D1", "D2", "CF") else "k16i", m, d, kept) for d in want[("k15f", m)])
         out = "$OUT_ROOT/B/k15_full/%s" % m
-        J.add(grp(g, m), "s1_run", "k15_full.py", m, sorted(want[("k15f", m)]), "", out, deps(m), n_plan * rate + 900,
+        dsx = ""              # B-EXT5 fill: D4, D5 (k16_path_ifm's rows) in the same process, in the KNOWN order
+        if m in K15F_D45:
+            dsx = " --datasets %s --data_dir %s/k16_path_ifm" % (
+                ",".join(d for d in ("D1", "D2", "CF", "D4", "D5") if d in want[("k15f", m)]), DATA)
+        J.add(FILL_MAP_GROUP if m in K15F_D45 else grp(g, m), "s1_run", "k15_full.py", m, sorted(want[("k15f", m)]), "",
+              out, deps(m), n_plan * rate + 900,
               "%s (%s): %.1f s/pair, planned %d pairs" % (src, role, rate, n_plan),
-              "%s %s/k15_full.py --models %s --out %s --cf %s/k15_full/cf_records.json --cf_pool %s/cf_pool/cf_pool.json --tag %s --pair_budget_min 0 --full_pool && %s %s/k15_full.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k15_full.py --src %s/k15_full.py --job %s" % (
-                  PY, LF, m, out, DATA, DATA, m, PY, LF, out, PY, LF, out))
+              "%s %s/k15_full.py --models %s --out %s --cf %s/k15_full/cf_records.json --cf_pool %s/cf_pool/cf_pool.json --tag %s --pair_budget_min 0 --full_pool%s && %s %s/k15_full.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k15_full.py --src %s/k15_full.py --job %s" % (
+                  PY, LF, m, out, DATA, DATA, m, dsx, PY, LF, out, PY, LF, out))
     for m in sorted([m for (u, m) in want if u == "k15p"], key=mkey):
         rate, role, src = RATES[("k15p", "*")]
         n_plan = planned_quota("k15p", m, "D1", kept)
@@ -649,6 +726,8 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
         public(g, "mcl_nr", [d for d in ("D1", "CF", "D2", "D4", "D5") if d in mapped])
     if pub_want.get("ouro_think"):
         public(g, "ouro_think", [d for d in ("D1", "D2", "D4") if d in pub_want["ouro_think"]])
+    if pub_want.get("ouro26_think"):        # B-EXT5 fill: the ouro_think run on Ouro-2.6B-Thinking
+        public(FILL_MAP_GROUP, "ouro26_think", [d for d in ("D1", "D2", "D4") if d in pub_want["ouro26_think"]])
     for m in sorted([m for (u, m) in want if u == "par"], key=mkey):
         k = PAR_KEY[m]
         dss = [d for d in ("D1", "VB") if d in want[("par", m)]]
@@ -767,6 +846,57 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
               "%s %s/k16_path_ifm.py --models %s --datasets %s --out %s --tag %s_%s_y1 --data_dir %s/k16_path_ifm --guard 100000000 --full_pool --arms Y1 && %s %s/k16_path_ifm.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k16_path_ifm.py --src %s/k16_path_ifm.py --job %s" % (
                   PY, LF, m, ds, out, m, ds, DATA, PY, LF, out, PY, LF, out))
 
+    # ---- B-EXT5 fill, priority 1: the Y1 arm (edit-site rows) on the 819M designs, the g14_ifmy1 command
+    for m, ds in sorted(Y1_FILL, key=lambda x: (order.index(x[0]), x[1])):
+        if ds not in want.get(("k16y", m), set()):
+            continue
+        rate, role, src = RATES[("k16i", "*")]
+        n_plan = planned_quota("k16i", m, ds, kept)
+        out = "$OUT_ROOT/B/k16_path_ifm/%s_%s_y1" % (m, ds)
+        J.add(FILL_MAP_GROUP, "s1_run", "k16_path_ifm.py", m, [ds], "", out, deps(m), n_plan * rate + 300,
+              "%s (%s): %.1f s/item (all arms; Y1 alone is less), planned %d items" % (src, role, rate, n_plan),
+              "%s %s/k16_path_ifm.py --models %s --datasets %s --out %s --tag %s_%s_y1 --data_dir %s/k16_path_ifm --guard 100000000 --full_pool --arms Y1 && %s %s/k16_path_ifm.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k16_path_ifm.py --src %s/k16_path_ifm.py --job %s" % (
+                  PY, LF, m, ds, out, m, ds, DATA, PY, LF, out, PY, LF, out))
+
+    # ---- B-EXT5 fill, priority 2: McLeish and Huginn generation on SVAMP, ASDiv and MAWPS, group g18_fillgen. Each
+    # setting folder is the model's GSM8K setting with the dataset swapped: prep (CPU), screen A and B, select, the 22
+    # rows r00-r21, analyze. ASDiv and MAWPS: steer_gen_math.py mcleish mode (no SETTLE pre-filter, as on Ouro), the
+    # first GENR_SCREEN prep problems screened. Huginn SVAMP: steer_gen_raven.py setting hug_svamp (Huginn's SETTLE k32
+    # SVAMP cells, cluster/data, as the pre-filter), every prep problem screened. McLeish SVAMP is not built: no McLeish
+    # SETTLE k32 SVAMP cells exist.
+    def gen_fill(m, dsname, script, o, base, setting, n_screen, n_prep):
+        rate, role, src = RATES[("genr", GENR[m])]
+        n_scr = n_screen or n_prep
+        n_sc = int(round(n_scr * GENR_PASS[m]))
+        mf = " --mem-fraction $GEN_MEM_FRACTION"
+        gf = FILL_GEN_GROUP
+        prep = J.add(gf, "s1_prep", script, m, [dsname], "", o, [], 300, "prep (CPU: pool, pre-filter, tokenizer geometry)",
+                     "%s prep --setting %s --out %s%s" % (base, setting, o, " --settle-dir $SETTLE" if dsname == "SVAMP_gen" else ""))
+        scr = [J.add(gf, "s2_screen", script, m, [dsname], side, o, [prep], n_scr * rate + 120,
+                     "%s (%s): %.1f s/problem, %d prep problems screened" % (src, role, rate, n_scr),
+                     "%s screen --setting %s --out %s --side %s%s%s" % (base, setting, o, side, " --hi %d" % n_screen if n_screen else "", mf))
+               for side in ("A", "B")]
+        sel = J.add(gf, "s3_select", script, m, [dsname], "", o, scr, 120, "select (CPU)",
+                    "%s select --setting %s --root %s --out %s%s" % (base, setting, o, o, " --n-screened %d" % n_screen if n_screen else ""))
+        rows = [J.add(gf, "s4_row", script, m, [dsname], r, o, [sel], (n_sc + 22) * rate + 120,
+                      "%s (%s): %.1f s/problem per row; %d scored planned (GSM8K pass rate %.2f) + 22 sentinels" % (
+                          src, role, rate, n_sc, GENR_PASS[m]),
+                      "%s run --setting %s --out %s --row %s%s" % (base, setting, o, r, mf)) for r in GENR_ROWS]
+        J.add(gf, "s6_analyze", script, m, [dsname], "", o, rows, 120, "analyze (CPU)",
+              "%s analyze --setting %s --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script steer_gen_raven.py --src %s/steer_gen_raven.py --job %s" % (
+                  base, setting, o, PY, LF, o))
+    for m in sorted([m for (u, m), d in want.items() if u == "genr" and "SVAMP_gen" in d], key=mkey):
+        o = "$OUT_ROOT/A/steer_gen_raven/%s_svamp" % GENR[m]
+        base = "cd %s && K17_DATASET=svamp PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs %s %s/steer_gen_raven.py" % (TREE, o, o, PY, LF)
+        gen_fill(m, "SVAMP_gen", "steer_gen_raven.py", o, base, GENR_SVAMP[m], None, GENR_SVAMP_PREP)
+    for dsname in ("ASDIV_gen", "MAWPS_gen"):
+        for m in sorted([m for (u, m), d in want.items() if u == "genrm" and dsname in d], key=mkey):
+            dsk = GENM_DS[dsname]
+            o = "$OUT_ROOT/A/steer_gen_math/%s_%s" % (GENR[m], dsk)
+            base = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs %s %s/steer_gen_math.py --dataset %s --rows-dir %s mcleish" % (
+                TREE, o, o, PY, LF, dsk, o)
+            gen_fill(m, dsname, "steer_gen_math.py", o, base, GENR_SET[m], GENR_SCREEN[m], GENM_POOL[dsk])
+
     # ---- cluster extension B-EXT2 item 4: Huginn GSM8K generation (steer_gen_raven.py --setting hug), own group;
     # the prep ships (cluster/pilot/data/huginn_setting/prep.json), then screen A and B, select, 22 rows, analyze
     for m in sorted([m for (u, m) in want if u == "genr" and m == "huginn_0125"], key=mkey):
@@ -812,6 +942,121 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
               "%s %s/k15_full.py --models %s --out %s --cf %s/k15_full/cf_records.json --cf_pool %s/cf_pool/cf_pool.json --tag %s_grid_%s --pair_budget_min 0 --full_pool --datasets %s --data_dir %s/k16_path_ifm && %s %s/k15_full.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k15_full.py --src %s/k15_full.py --job %s" % (
                   PY, LF, m, out, DATA, DATA, m, ds, ds, DATA, PY, LF, out, PY, LF, out))
 
+    # ---- B-EXT6: RA-30 GSM8K, RA-29 AQuA and CSQA, RA-31 Part A, all on Ouro-2.6B base (weights.json ouro_2_6b_base,
+    # revision 1ed04250), from the frozen folder copies. Each pipeline: stage s1 = the folder's CPU tests (run.sh
+    # test) plus its pilot, stage s2 = the full run (afterok s1; the script reads the s1 pilot gate). Then one merge
+    # per test (group g23_e6merge, afterany on that test's jobs): merge_ext6.py copies $OUT_ROOT/E6/<test> into
+    # $OUT_ROOT/merged/<test>.
+    e6_ids = collections.defaultdict(list)
+
+    def e6(group, script, out, stage, est, src, cmd):
+        jid = J.add(group, stage, script, "ouro_2_6b_base", [E6_TEST[group]], "", out,
+                    [e6_ids[(group, out)][-1]] if e6_ids[(group, out)] else [], est * E6_A100_FACTOR,
+                    "%s; single-card rate, A100 factor %.1f" % (src, E6_A100_FACTOR), cmd)
+        e6_ids[(group, out)].append(jid)
+        return jid
+    # RA-30 plan 6b: tokens2 + pilot2 (20 scored items) as one job, then full2 (425 problems)
+    d, o = LF + "/ra30", "$OUT_ROOT/E6/ra30"
+    w = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (d, o, o)
+    s, m26 = e6_sha("ra30"), "--model ouro_2_6b_base"
+    e6("g19_e6ra30", "ra30.py", o, "s1_pilot", 2100,
+       "plan_ra30 6b: pilot2 about 0.55 card-h (52 scanned x 12 s + 20 x 32 s + 20 gate items x 33 s) plus tests and tokens2",
+       "%sPROD_DEV=cpu %s -m unittest discover -s tests && %sCUDA_VISIBLE_DEVICES= PROD_DEV=cpu %s ra30.py --tokens %s --ds gsm8k --out %s"
+       " && %s%s ra30.py --run %s --stage pilot --ds gsm8k --out %s --plan_sha256 %s"
+       " && %s%s ra30.py --summarize %s --out %s/ouro_2_6b_base/pilot/gsm8k" % (w, PY, w, PY, m26, o, w, PY, m26, o, s, w, PY, m26, o))
+    e6("g19_e6ra30", "ra30.py", o, "s2_full", 10800,
+       "plan_ra30 6b: full2 about 3.0 card-h (425 x 12 s + about 165 x 32 s + gates; worst about 4.5)",
+       "%s%s ra30.py --run %s --stage full --ds gsm8k --out %s --plan_sha256 %s"
+       " && %s%s ra30.py --summarize %s --out %s/ouro_2_6b_base/full/gsm8k" % (w, PY, m26, o, s, w, PY, m26, o))
+    # RA-29 plan sections 4 and 8: 2.6B AQuA (250 built) and CSQA (1,215 built); a pilot (30 kept or 120 tried) under
+    # this plan, then the full run with that pilot's debug_gate.json. Keep rates: 2.6B AQuA pilot 30 of 59, 1.4B CSQA
+    # 30 of 60; 2.6B 0.470 s per arm and item (21 forwards, 9.9 s per kept item), 1.5 s per screened-out item.
+    s = e6_sha("ra29")
+    for ds, n_built, keep in (("aqua", 250, 30 / 59.0), ("csqa", 1215, 0.5)):
+        d, o = LF + "/ra29", "$OUT_ROOT/E6/ra29/ouro26/%s" % ds
+        w = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (d, o, o)
+        e6("g20_e6ra29", "ra29.py", o, "s1_pilot", 600,
+           "plan_ra29 8: 2.6B pilot, 30 kept x 9.9 s + about 30 screened out x 1.5 s, tests, load",
+           "%s%s -m unittest discover -s tests && %s%s ra29.py --run --model ouro26 --dataset %s --out %s/pilot --plan_sha256 %s"
+           " --pilot%s && %s%s ra29.py --summarize --out %s/pilot" % (w, PY, w, PY, ds, o, s, E6_MEM, w, PY, o))
+        nk = n_built * keep
+        e6("g20_e6ra29", "ra29.py", o, "s2_full", nk * 9.9 + (n_built - nk) * 1.5 + 120,
+           "plan_ra29 8: %d built, about %d kept x 9.9 s + %d screened out x 1.5 s, identity gate and load" % (
+               n_built, nk, n_built - nk),
+           "%s%s ra29.py --run --model ouro26 --dataset %s --out %s/full --plan_sha256 %s --debug_gate %s/pilot/debug_gate.json%s"
+           " && %s%s ra29.py --summarize --out %s/full" % (w, PY, ds, o, s, o, E6_MEM, w, PY, o))
+    # RA-31 Part A on 2.6B: the full run needs a 2.6B pilot gate (check_pilot_gate refuses another model's), so a
+    # 2.6B pilot (the first 25 items per dataset) first, then full (G5 budget 3.5 card-h on 2.6B)
+    d, o = LF + "/ra31", "$OUT_ROOT/E6/ra31/a_2.6b"
+    w = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (d, o, o)
+    s = e6_sha("ra31")
+    e6("g21_e6ra31a", "ra31.py", o, "s1_pilot", 1300,
+       "plan_ra31 11: 1.4B 0.104 s per forward x 2 on 2.6B, 85 forward-equivalents, 50 items + 6 gate items, scan, tests",
+       "%s%s -m unittest discover -s tests && %s%s ra31.py --run --model 2.6b --out %s/pilot_2.6b --plan_sha256 %s --pilot 25%s"
+       " && %s%s ra31.py --summarize --out %s/pilot_2.6b" % (w, PY, w, PY, o, s, E6_MEM, w, PY, o))
+    e6("g21_e6ra31a", "ra31.py", o, "s2_full", 10440,
+       "plan_ra31 11: full 2.6B 1.8 to 2.7 card-h (upper taken) plus the clean-filter scan (about 0.2)",
+       "%s%s ra31.py --run --model 2.6b --out %s/full_2.6b --plan_sha256 %s --pilot_gate %s/pilot_2.6b/pilot_gate.json%s"
+       " && %s%s ra31.py --summarize --out %s/full_2.6b" % (w, PY, o, s, o, E6_MEM, w, PY, o))
+    # RA-31 Part B on Ouro-1.4B base (plan section 13): one job per shard (stage s1_shard, the folder's CPU tests
+    # first), then ra31_gen.py summarize (s2_summarize, afterok every shard). Shards resume per arm on a rerun.
+    o = "$OUT_ROOT/E6/ra31/partb_1.4b"
+    w = "cd %s/ra31 && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (LF, o, o)
+    shard_ids = []
+    for name, h in E6_PARTB:
+        shard_ids.append(J.add("g22_e6ra31b", "s1_shard", "ra31_gen.py", "ouro_1_4b_base", ["ra31"], name, o, [],
+                               h * E6_PARTB_SPEED * 3600 + 120, "ra31_gen.py list: %.2f A100 card-h at A100 speed %.1f "
+                               "= %.2f h at the single-card rate, plus the CPU tests" % (h, E6_PARTB_SPEED, h * E6_PARTB_SPEED),
+                               "%s%s -m unittest discover -s tests && %s%s ra31_gen.py partb --shard %s --out %s"
+                               " --mem_fraction $GEN_MEM_FRACTION" % (w, PY, w, PY, name, o)))
+    shard_ids.append(J.add("g22_e6ra31b", "s2_summarize", "ra31_gen.py", "ouro_1_4b_base", ["ra31"], "", o,
+                           list(shard_ids), 300, "CPU", "%s%s ra31_gen.py summarize --out %s" % (w, PY, o)))
+    e6_ids[("g22_e6ra31b", o)] = shard_ids
+    for test in ("ra29", "ra30", "ra31"):
+        dep = [i for (g, _o), ids in sorted(e6_ids.items()) if E6_TEST[g] == test for i in ids]
+        J.add(E6_MERGE, "s1_merge", "merge_ext6.py", "all", [test], test, "$OUT_ROOT/merged/%s" % test, dep, 300, "CPU",
+              "%s $REPO/loopedcot/cluster/merge_ext6.py --test %s --out_root $OUT_ROOT" % (PY, test))
+
+    # ---- B-EXT6b breadth cells (jobs/submit_ext6b.sh), same code and arms, in priority order; card-hours at the
+    # single-card rate (A100 factor 1.0). 1: RA-29 MMLU and HellaSwag on 1.4B and 2.6B, one job per cell
+    # (pilot, the 80 rule, full: cluster/pilot/e6b_ra29_cell.sh). 2: RA-31 Part A on Ouro-1.4B-Thinking and
+    # Ouro-2.6B-Thinking, pilot then full (afterok). 3: RA-30 ASDiv on 2.6B, tokens2 + pilot2 then full2 (afterok).
+    # RA-31 Part B on 2.6B is not built: ra31_gen.py runs Ouro-1.4B base only.
+    s = e6_sha("ra29")
+    for m, ds, h in E6B_RA29:
+        o = "$OUT_ROOT/E6/ra29/%s/%s" % (m, ds)
+        J.add("g24_e6bra29", "s1_cell", "ra29.py", E6B_MODEL[m], [ds], "", o, [], h * 3600,
+              "RA-29 builder: about %.2f h at the single-card rate (pilot, 80 rule, full)" % h,
+              "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs bash e6b_ra29_cell.sh %s %s %s %s" % (LF, o, o, m, ds, o, s))
+    s = e6_sha("ra31")
+    for m, hp, hf in E6B_RA31T:
+        d, o = LF + "/ra31", "$OUT_ROOT/E6/ra31/a_%s" % m
+        w = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (d, o, o)
+        p = J.add("g25_e6bra31t", "s1_pilot", "ra31.py", E6B_MODEL[m], ["ra31"], "", o, [], hp * 3600,
+                  "RA-31 builder: %.2f h at the single-card rate (pilot, 25 items per dataset), plus the CPU tests" % hp,
+                  "%s%s -m unittest discover -s tests && %s%s ra31.py --run --model %s --out %s/pilot_%s --plan_sha256 %s --pilot 25%s"
+                  " && %s%s ra31.py --summarize --out %s/pilot_%s" % (w, PY, w, PY, m, o, m, s, E6_MEM, w, PY, o, m))
+        J.add("g25_e6bra31t", "s2_full", "ra31.py", E6B_MODEL[m], ["ra31"], "", o, [p], hf * 3600,
+              "RA-31 builder: %.2f h at the single-card rate (full)" % hf,
+              "%s%s ra31.py --run --model %s --out %s/full_%s --plan_sha256 %s --pilot_gate %s/pilot_%s/pilot_gate.json%s"
+              " && %s%s ra31.py --summarize --out %s/full_%s" % (w, PY, m, o, m, s, o, m, E6_MEM, w, PY, o, m))
+    d, o = LF + "/ra30", "$OUT_ROOT/E6/ra30"
+    w = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (d, o, o)
+    s, m26 = e6_sha("ra30"), "--model ouro_2_6b_base"
+    p = J.add("g26_e6bra30", "s1_pilot", "ra30.py", "ouro_2_6b_base", ["asdiv"], "", o, [], 0.9 * 3600,
+              "plan_ra30 6b: ASDiv pilot2 about 0.9 card-h (230 scanned x 8 s + 20 x 32 s + 20 gate items x 33 s)",
+              "%sPROD_DEV=cpu %s -m unittest discover -s tests && %sCUDA_VISIBLE_DEVICES= PROD_DEV=cpu %s ra30.py --tokens %s --ds asdiv --out %s"
+              " && %s%s ra30.py --run %s --stage pilot --ds asdiv --out %s --plan_sha256 %s"
+              " && %s%s ra30.py --summarize %s --out %s/ouro_2_6b_base/pilot/asdiv" % (w, PY, w, PY, m26, o, w, PY, m26, o, s, w, PY, m26, o))
+    J.add("g26_e6bra30", "s2_full", "ra30.py", "ouro_2_6b_base", ["asdiv"], "", o, [p], 3.2 * 3600,
+          "plan_ra30 6b: ASDiv full2 about 3.2 card-h (1,059 x 8 s + about 92 x 32 s + gates); exit 3 under the 80 gate",
+          "%s%s ra30.py --run %s --stage full --ds asdiv --out %s --plan_sha256 %s"
+          " && %s%s ra30.py --summarize %s --out %s/ouro_2_6b_base/full/asdiv" % (w, PY, m26, o, s, w, PY, m26, o))
+    for test in ("ra29", "ra30", "ra31"):
+        dep = [r["id"] for r in J.rows if r["group"] in E6B_GROUPS and E6_TEST[r["group"]] == test]
+        J.add(E6B_MERGE, "s1_merge", "merge_ext6.py", "all", [test], test, "$OUT_ROOT/merged/%s" % test, dep, 300, "CPU",
+              "%s $REPO/loopedcot/cluster/merge_ext6.py --test %s --out_root $OUT_ROOT" % (PY, test))
+
     # ---- every task line activates its own venv (the raven scripts need Python >= 3.10)
     for r in J.rows:
         v = venv_of(r["script"], r["model"])
@@ -829,8 +1074,7 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
 # submission order of submit_10_rest.sh (coordinator 2026-10-09): groups one to four, the IFM wave, the RA-23
 # additions, Huginn last, then the merge
 GROUP_ORDER = ["g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g6_ifm", "g12_ifmv1", "g14_ifmy1", "g7_ra23", "g11_gen26t", "g13_paththink", "g15_hgen", "g16_ifmgrid",
-               "g5_huginn",
-               "g9_merge"]
+               "g17_fillmap", "g18_fillgen"] + E6_GROUPS + [E6_MERGE] + E6B_GROUPS + [E6B_MERGE, "g5_huginn", "g9_merge"]
 GROUP_LABEL = {"g0_xllm": "preflight, xllm build and import check", "g1_copy": "GSM8K copy and derived",
                "g2_gen": "generation, GSM8K then SVAMP, McLeish GSM8K rows", "g3_map": "edit-site map at full pools",
                "g4_cd": "C and D scripts (raven branch-freeze)", "g6_ifm": "IFM wave incl. the RA-23 IFM branch-freeze",
@@ -841,7 +1085,17 @@ GROUP_LABEL = {"g0_xllm": "preflight, xllm build and import check", "g1_copy": "
                "g14_ifmy1": "extension: the Y1 arm (edit-site rows) on seven IFM cells",
                "g12_ifmv1": "extension item 5: IFM k17_varbench rerun with the VBD V1 cells (--vbd_v1)",
                "g11_gen26t": "extension item 1: generation on Ouro-2.6B-Thinking (setting a4; GSM8K, SVAMP, ASDiv, MAWPS)",
+               "g17_fillmap": "B-EXT5 fill priority 1: edit-site map on d28, the 819M designs, Ouro-2.6B-Thinking",
+               "g18_fillgen": "B-EXT5 fill priority 2: McLeish and Huginn generation on SVAMP, ASDiv, MAWPS",
                "g5_huginn": "Huginn incl. the RA-23 LRE cell",
+               "g19_e6ra30": "B-EXT6: RA-30 chain-value edit on Ouro-2.6B base, GSM8K (pilot2, then full2)",
+               "g20_e6ra29": "B-EXT6: RA-29 MCQ late edit on Ouro-2.6B base, AQuA and CSQA (pilot, then full)",
+               "g21_e6ra31a": "B-EXT6: RA-31 Part A scaled writes on Ouro-2.6B base (pilot, then full)",
+               "g23_e6merge": "B-EXT6: copy each test's outputs into merged/ra29, ra30, ra31",
+               "g24_e6bra29": "B-EXT6b priority 1: RA-29 MMLU and HellaSwag on Ouro-1.4B and 2.6B base (one job per cell)",
+               "g25_e6bra31t": "B-EXT6b priority 2: RA-31 Part A on Ouro-1.4B and 2.6B Thinking (pilot, then full)",
+               "g26_e6bra30": "B-EXT6b priority 3: RA-30 ASDiv on Ouro-2.6B base (pilot2, then full2)",
+               "g28_e6bmerge": "B-EXT6b: copy each test's outputs into merged/ra29, ra30, ra31",
                "g9_merge": "merge and grid tables"}
 
 
@@ -852,6 +1106,8 @@ def venv_of(script, model):
         return None
     if script in ("k17_public.py", "k17_freeze_raven.py", "steer_gen_raven.py"):
         return "RAVEN"
+    if script == "steer_gen_math.py" and model in GENR:      # B-EXT5 fill: the raven path (Python >= 3.10)
+        return "RAVEN"
     if script == "k17_parcae.py":
         return "PARCAE"
     if script in ("k15_full.py", "k15_pairs.py", "k16_path_ifm.py") or model.startswith("ifm_"):
@@ -859,9 +1115,9 @@ def venv_of(script, model):
     return "OURO"
 
 
-PUB_RUNNER_OF = {"mcl_nr": "mcleish", "huginn": "huginn", "ouro_think": "ouro_think"}
+PUB_RUNNER_OF = {"mcl_nr": "mcleish", "huginn": "huginn", "ouro_think": "ouro_think", "ouro26_think": "ouro26_think"}
 LRE_PASS = 0.5      # planning only: clean-pass rate assumed for the LRE pool (no scan of it yet)
-PUB_FAM = {"mcl_nr": "llama", "huginn": "huginn", "ouro_think": "ouro"}
+PUB_FAM = {"mcl_nr": "llama", "huginn": "huginn", "ouro_think": "ouro", "ouro26_think": "ouro"}
 GEN_CFGS = {}     # steer_gen config files written to jobs/gen_cfg/ (name -> dict)
 # Parcae tokenizer (k17_parcae --tok is read by its build step only; the run takes the flag and ignores it)
 PARCAE_TOK = ("$HF_HOME/hub/models--SandyResearch--parcae-tokenizer/snapshots/6247b5d0592876b73660f34c2dd16c9db9e9045c/"
@@ -1094,6 +1350,78 @@ rm -f "$OUT_ROOT/_diag/$ID.txt"
 """
 
 
+PACK_SBATCH = """#!/bin/bash
+# Two task lines in one one-GPU job (PI rule 2026-10-12; jobs/pack_lib.sh submits it). Generated by cluster/gen_jobs.py;
+# do not edit by hand. Usage (the submit scripts pass --partition, --account, --time, --job-name, --output, the node
+# restriction and --array on the command line, which override this header):
+#   sbatch ... --array=1-<pairs> jobs/task_pack.sbatch <group>.<stage>.tsv <pair file> <group>
+# Line SLURM_ARRAY_TASK_ID of the pair file names one or two line indices of the stage list. Each line runs through
+# the group's own template (task_<group>.sbatch, from the submit folder) as its own process in the background, with
+# its own done marker, task log and diagnosis (a line with a done marker is skipped, so a requeued job reruns only
+# the line that was not done). With two lines every share-of-the-card memory setting is halved: E6_MEM_FRACTION
+# (ra29.py, ra31.py; default 0.9), GEN_MEM_FRACTION (steer_gen and ra31_gen.py), PROD_MEM_FRACTION (prod adapters;
+# default 0.85). The job exits 75 and requeues itself once (the node excluded) when either line exits 75 (its GPU did
+# not start); otherwise it exits with the first nonzero exit code of the two lines, or 0. $OUT_ROOT/_diag/pack_<job>_
+# <task>.txt records both lines and their exit codes when either fails.
+#SBATCH --job-name=ra20_pack
+#SBATCH --partition=<PARTITION>
+#SBATCH --account=<ACCOUNT>
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=96G
+#SBATCH --time=10:00:00
+#SBATCH --output=logs/ra20_pack_%A_%a.out
+#SBATCH --requeue
+set -uo pipefail
+LIST="$1"; PAIRS="$2"; GROUP="$3"
+: "${OUT_ROOT:?set OUT_ROOT (source the cluster.env that setup_cluster.sh wrote)}"
+TPL="${SLURM_SUBMIT_DIR:-$PWD}/task_$GROUP.sbatch"
+[ -f "$TPL" ] || { echo "no template $TPL"; exit 2; }
+read -r -a LN <<< "$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$PAIRS")"
+[ "${#LN[@]}" -ge 1 ] || { echo "no line $SLURM_ARRAY_TASK_ID in $PAIRS"; exit 2; }
+half() { awk -v f="$1" 'BEGIN { printf "%.4g", f / 2 }'; }
+if [ "${#LN[@]}" -eq 2 ]; then
+  export E6_MEM_FRACTION="$(half "${E6_MEM_FRACTION:-0.9}")" GEN_MEM_FRACTION="$(half "${GEN_MEM_FRACTION:-0.9}")" \\
+         PROD_MEM_FRACTION="$(half "${PROD_MEM_FRACTION:-0.85}")"
+fi
+JOB="${SLURM_ARRAY_JOB_ID:-${SLURM_JOB_ID:-none}}"
+NODE="${SLURMD_NODENAME:-$(hostname -s 2> /dev/null || hostname)}"
+PIDS=(); IDS=()
+for n in "${LN[@]}"; do
+  IDS+=("$(sed -n "${n}p" "$LIST" | cut -f1)")
+  # the line's own template; without the job ids it does not requeue itself (this job does, below)
+  ( unset SLURM_ARRAY_JOB_ID SLURM_JOB_ID; export SLURM_ARRAY_TASK_ID="$n"; exec bash "$TPL" "$LIST" ) &
+  PIDS+=($!)
+done
+trap 'kill -TERM "${PIDS[@]}" 2> /dev/null; wait; exit 143' TERM
+RC=()
+for p in "${PIDS[@]}"; do wait "$p"; RC+=($?); done
+echo "packed job $JOB task ${SLURM_ARRAY_TASK_ID}: lines ${LN[*]} (${IDS[*]}) exit codes ${RC[*]}"
+mkdir -p "$OUT_ROOT/_diag"
+D="$OUT_ROOT/_diag/pack_${JOB}_${SLURM_ARRAY_TASK_ID}.txt"
+first=0; any75=0
+for i in "${!RC[@]}"; do
+  [ "${RC[$i]}" -eq 75 ] && any75=1
+  [ "${RC[$i]}" -ne 0 ] && [ "$first" -eq 0 ] && first="${RC[$i]}"
+done
+if [ "$first" -eq 0 ]; then rm -f "$D"; exit 0; fi
+{ echo "packed job $JOB task ${SLURM_ARRAY_TASK_ID} on node $NODE, list $(basename "$LIST")"
+  for i in "${!RC[@]}"; do echo "line ${LN[$i]} ${IDS[$i]}: exit ${RC[$i]} (diagnosis: _diag/${IDS[$i]}.txt)"; done; } > "$D"
+if [ "$any75" -eq 1 ]; then
+  jid="${SLURM_ARRAY_JOB_ID:+${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}}"; jid="${jid:-${SLURM_JOB_ID:-}}"
+  exc=$( { echo "${SLURM_RESTRICT:-}" | tr ' ' '\\n' | sed -n 's/^--exclude=//p' | tr ',' '\\n'; cat "$OUT_ROOT/bad_nodes.txt" 2> /dev/null; } | grep . | sort -u | paste -sd, -)
+  if [ -n "$jid" ] && [ "${SLURM_RESTART_COUNT:-0}" -eq 0 ] && command -v scontrol > /dev/null 2>&1; then
+    echo "requeued once with --exclude=$exc (the line that is done is skipped on the rerun)" >> "$D"
+    scontrol update JobId="$jid" ExcNodeList="$exc" && scontrol requeue "$jid"
+  else
+    echo "not requeued (it was requeued once already, or this is not a Slurm job)" >> "$D"
+  fi
+  exit 75
+fi
+exit "$first"
+"""
+
+
 DONE_SKIP = 'if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "done already: $ID"; exit 0; fi\n'
 MERGE_RERUN = ('# the merge reruns every round (merge.py is idempotent): its done marker does not skip it\n'
                'if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "merge ran before: $ID; running it again"; fi\n')
@@ -1162,11 +1490,14 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
     for g in groups:
         mx = max(r["est_card_seconds"] for r in J.rows if r["group"] == g)
         hours = min(48, max(2, int(math.ceil(mx * 2 / 3600.0))))
+        if g in E6_GROUPS + E6B_GROUPS:   # B-EXT6 and B-EXT6b: no job over 6 h wall (the scripts resume after a SIGTERM)
+            hours = E6_WALL_H
         txt = SBATCH.format(group=g, time="%d:00:00" % hours)
-        if g == "g9_merge":          # B-EXT2 item 0: the merge reruns every round (idempotent), done marker or not
+        if g in ("g9_merge", E6_MERGE, E6B_MERGE):   # B-EXT2 item 0: the merge reruns every round (idempotent), done marker or not
             assert txt.count(DONE_SKIP) == 1
             txt = txt.replace(DONE_SKIP, MERGE_RERUN)
         open(os.path.join(out_dir, "task_%s.sbatch" % g), "w", encoding="utf-8", newline="\n").write(txt)
+    open(os.path.join(out_dir, "task_pack.sbatch"), "w", encoding="utf-8", newline="\n").write(PACK_SBATCH)
     build = [r for r in J.rows if r["group"] == "g0_xllm"]
     gsum = {g: (sum(1 for r in J.rows if r["group"] == g), sum(r["est_card_seconds"] for r in J.rows if r["group"] == g) / 3600.0)
             for g in groups}
@@ -1257,7 +1588,10 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
                     dep = "--dependency=afterok:%s " % ":".join("$" + v for v in ext)
             if g == "g9_merge":
                 dep = "--dependency=afterany${ALL} "
-            fam = "none" if g == "g9_merge" else family_of(rs[0]["cmd"])
+            if g in (E6_MERGE, E6B_MERGE):    # B-EXT6, B-EXT6b: one test's merge waits for every job of that test, failed or not
+                ext = sorted(set(var_of[d] for r in rs for d in r["depends_on"].split(",") if d in var_of))
+                dep = "--dependency=afterany:%s " % ":".join("$" + v for v in ext) if ext else ""
+            fam = "none" if g in ("g9_merge", E6_MERGE, E6B_MERGE) else family_of(rs[0]["cmd"])
             lines.append("%s=$(sbatch --parsable $SB $(H %s) --output=$LOG_ROOT/ra20_%s_%%A_%%a.out %s--array=%s%%$CARDS task_%s.sbatch %s.%s.tsv)   # %s %s %s" % (
                 var, fam, g, dep, idx, g, g, s_, scr, mod, s_))
             lines.append("K %s $%s" % (fam, var))
@@ -1400,7 +1734,8 @@ def handover_files():
               "cluster/env/requirements_cluster_raven.txt", "cluster/env/requirements_cluster_parcae.txt",
               "cluster/env/requirements_cluster_ifm.txt", "cluster/jobs/submit_chain.sh", "cluster/jobs/status.sh",
               "cluster/jobs/stage_done.sh", "cluster/jobs/release_family.sh",
-              "cluster/jobs/resubmit_pipeline.sh"):
+              "cluster/jobs/resubmit_pipeline.sh", "cluster/jobs/submit_fill.sh", "cluster/merge_ext6.py",
+              "cluster/jobs/submit_ext6.sh", "cluster/jobs/pack_lib.sh", "cluster/jobs/submit_ext6b.sh"):
         out.append("loopedcot/" + f)
     return sorted(set(out))
 
@@ -1430,7 +1765,7 @@ def family_of(cmd):
     """The hold unit of a task line: mcleish (steer_gen_raven), gen (the Ouro generation scripts, steer_gen and
     steer_gen_math), else the venv it activates (ouro, raven, parcae, ifm); none: no venv, never held. A unit whose
     preflight (its venv) or smoke failed is held; the others run."""
-    if "steer_gen_raven" in cmd:
+    if "steer_gen_raven" in cmd or ("steer_gen_math" in cmd and " mcleish " in cmd):
         return "mcleish"
     if "VENV_OURO" in cmd and "steer_gen" in cmd:
         return "gen"
@@ -1533,6 +1868,20 @@ def planned_table(cells, words, kept, out_dir):
             last_k = "none (smoke only)"
             plan = int(round(pool * GENM_PASS))
             note = "pool x pass rate %.1f assumed" % GENM_PASS
+        elif unit == "genr" and ds == "SVAMP_gen":
+            pool, cap, last_k = 298, "none (every prep problem screened; every one that passes both screens)", "none"
+            plan = int(round(GENR_SVAMP_PREP * GENR_PASS[m]))
+            note = "prep %d (SETTLE k32 pre-filter, CPU prep) x the GSM8K pass rate %.2f" % (GENR_SVAMP_PREP, GENR_PASS[m])
+        elif unit == "genrm":
+            pool = GENM_POOL[GENM_DS[ds]]
+            cap = "the first %d prep problems screened (the GSM8K run's count); every one that passes both" % GENR_SCREEN[m]
+            last_k = "none"
+            plan = int(round(GENR_SCREEN[m] * GENR_PASS[m]))
+            note = "screened x the GSM8K pass rate %.2f" % GENR_PASS[m]
+        elif unit == "k16y":
+            cap, last_k = "none (--full_pool; 1 per D4/D5 template)", "none"
+            plan = planned_quota("k16i", m, ds, kept)
+            note = "another model's pilot kept rate on the dataset (rough)"
         elif unit == "genr" and m == "huginn_0125":
             pool, cap, last_k, plan = 522, "none (every prep problem that passes both screens)", "none", GENR_HUG_N
             note = "prep %d (SETTLE k32 pre-filter, shipped prep.json); planned scored assumed" % GENR_HUG_PREP

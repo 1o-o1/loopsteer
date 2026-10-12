@@ -1,0 +1,168 @@
+{
+ "G2b": [
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "div": 12,
+   "identical": false,
+   "margin": 0.125,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "div": 16,
+   "identical": false,
+   "margin": 0.0,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "div": 36,
+   "identical": false,
+   "margin": 0.0,
+   "pass": true
+  },
+  {
+   "div": 33,
+   "identical": false,
+   "margin": 0.125,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  }
+ ],
+ "drops": {
+  "ambiguous_operand": 1,
+  "ambiguous_value": 1,
+  "chain_arithmetic_error": 1,
+  "clean_wrong": 1,
+  "eligible": 35,
+  "inconsistent": 3,
+  "no_changed_step": 17,
+  "no_equation": 8,
+  "no_intermediate": 2,
+  "one_step": 3,
+  "token_count": 18
+ },
+ "eligible_rate": 0.3889,
+ "gate_80": true,
+ "horizon_cap_rule": {
+  "rows_marker_after_cap": 0,
+  "rows_with_answer": 819,
+  "rule": "cap = min(512 - prefix, 2 x clean continuation after the prefix + 64) if under 1% of parsed rows pass it",
+  "share": 0.0,
+  "use_cap_in_full": true
+ },
+ "n_lead_same_hist": {
+  "0": 24,
+  "1": 11
+ },
+ "n_pool": 395,
+ "norm_ratio_prerounding": [
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  }
+ ],
+ "projected_eligible": 154,
+ "projected_full_card_hours": 2.12,
+ "r1_rule_kept_info": 29,
+ "sec_clean_mean": 8.99,
+ "sec_per_arm_item": 1.11,
+ "sec_per_item_mean": 26.65,
+ "split_n": 10
+}

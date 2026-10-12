@@ -26,9 +26,9 @@ A,generation placement,ifm_d28,SVAMP_gen,scan,skip,time: steer_gen loads Ouro ch
 A,generation placement,ifm_d112,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,ifm_d112,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only (SteeredOuroAdapter over prod OuroAdapter); no IFM adapter
 A,generation placement,mcleish_llama32_r32,GSM8K_gen,run,run,job: steer_gen_raven.py
-A,generation placement,mcleish_llama32_r32,SVAMP_gen,run,skip,time: cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only; no SVAMP setting is built
+A,generation placement,mcleish_llama32_r32,SVAMP_gen,run,skip,"time: no McLeish SETTLE k32 SVAMP cells exist: the McLeish setting is the GSM8K setting with SETTLE's k32 cells as the pre-filter, so the SVAMP setting cannot be built from shipped data (B-EXT5)"
 A,generation placement,huginn_0125,GSM8K_gen,run,run,job: steer_gen_raven.py
-A,generation placement,huginn_0125,SVAMP_gen,run,skip,time: no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host
+A,generation placement,huginn_0125,SVAMP_gen,run,run,job: steer_gen_raven.py
 A,generation placement,parcae_370m,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
 A,generation placement,parcae_370m,SVAMP_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
 A,generation placement,parcae_1_3b,GSM8K_gen,scan,skip,time: steer_gen loads Ouro checkpoints only; no Parcae adapter
@@ -86,15 +86,15 @@ B,edit-site map,ouro_1_4b_think,CF,run,skip,"time: no listed edit-site script ac
 B,edit-site map,ouro_1_4b_think,D2,run,run,job: k17_public.py
 B,edit-site map,ouro_1_4b_think,D4,run,run,job: k17_public.py
 B,edit-site map,ouro_1_4b_think,D5,run,run,job: k16_path_ouro.py
-B,edit-site map,ouro_2_6b_think,D1,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
+B,edit-site map,ouro_2_6b_think,D1,run,run,job: k17_public.py
 B,edit-site map,ouro_2_6b_think,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
-B,edit-site map,ouro_2_6b_think,D2,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
-B,edit-site map,ouro_2_6b_think,D4,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
-B,edit-site map,ouro_2_6b_think,D5,run,skip,"time: REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
+B,edit-site map,ouro_2_6b_think,D2,run,run,job: k17_public.py
+B,edit-site map,ouro_2_6b_think,D4,run,run,job: k17_public.py
+B,edit-site map,ouro_2_6b_think,D5,run,run,job: k16_path_ouro.py
 B,edit-site map,ifm_p1_ouro,D1,run,run,job: k15_full.py
 B,edit-site map,ifm_p1_ouro,CF,run,run,job: k15_full.py
 B,edit-site map,ifm_p1_ouro,D2,run,run,job: k15_full.py
-B,edit-site map,ifm_p1_ouro,D4,run,run,job: k16_path_ifm.py
+B,edit-site map,ifm_p1_ouro,D4,run,run,job: k15_full.py
 B,edit-site map,ifm_p1_ouro,D5,run,run,job: k16_path_ifm.py
 B,edit-site map,ifm_p1_ouro_inj,D1,run,run,job: k15_full.py
 B,edit-site map,ifm_p1_ouro_inj,CF,run,run,job: k15_full.py
@@ -113,24 +113,24 @@ B,edit-site map,ifm_p1_mid_inj,D4,run,run,job: k16_path_ifm.py
 B,edit-site map,ifm_p1_mid_inj,D5,run,run,job: k16_path_ifm.py
 B,edit-site map,ifm_p2m_r5,D1,run,run,job: k15_pairs.py
 B,edit-site map,ifm_p2m_r5,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
-B,edit-site map,ifm_p2m_r5,D2,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-B,edit-site map,ifm_p2m_r5,D4,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-B,edit-site map,ifm_p2m_r5,D5,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_p2m_r5,D2,run,run,job: k16_path_ifm.py
+B,edit-site map,ifm_p2m_r5,D4,run,run,job: k16_path_ifm.py
+B,edit-site map,ifm_p2m_r5,D5,run,run,job: k16_path_ifm.py
 B,edit-site map,ifm_p2m_diag,D1,run,run,job: k15_pairs.py
 B,edit-site map,ifm_p2m_diag,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
 B,edit-site map,ifm_p2m_diag,D2,run,run,job: k16_path_ifm.py
-B,edit-site map,ifm_p2m_diag,D4,run,skip,"time: no edit-site route: k15_pairs.py runs D1 (and D2) only; k16_path_ifm.py runs arm Y2 only on ifm_p2m_diag and the pilot ran it on D1 and D2, never on D4 or D5 (no d45 record); gen_jobs.py routes it on D2 only"
-B,edit-site map,ifm_p2m_diag,D5,run,skip,time: same as D4: no pilot route for two-step math on ifm_p2m_diag
+B,edit-site map,ifm_p2m_diag,D4,run,run,job: k16_path_ifm.py
+B,edit-site map,ifm_p2m_diag,D5,run,run,job: k16_path_ifm.py
 B,edit-site map,ifm_p2m_ortho,D1,run,run,job: k15_pairs.py
 B,edit-site map,ifm_p2m_ortho,CF,run,skip,"time: no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
-B,edit-site map,ifm_p2m_ortho,D2,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-B,edit-site map,ifm_p2m_ortho,D4,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-B,edit-site map,ifm_p2m_ortho,D5,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-B,edit-site map,ifm_d28,D1,run,skip,"time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
-B,edit-site map,ifm_d28,CF,run,skip,"time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
-B,edit-site map,ifm_d28,D2,run,skip,"time: k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
-B,edit-site map,ifm_d28,D4,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-B,edit-site map,ifm_d28,D5,run,skip,"time: ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
+B,edit-site map,ifm_p2m_ortho,D2,run,run,job: k16_path_ifm.py
+B,edit-site map,ifm_p2m_ortho,D4,run,run,job: k16_path_ifm.py
+B,edit-site map,ifm_p2m_ortho,D5,run,run,job: k16_path_ifm.py
+B,edit-site map,ifm_d28,D1,run,run,job: k15_full.py
+B,edit-site map,ifm_d28,CF,run,run,job: k15_full.py
+B,edit-site map,ifm_d28,D2,run,run,job: k15_full.py
+B,edit-site map,ifm_d28,D4,run,run,job: k15_full.py
+B,edit-site map,ifm_d28,D5,run,run,job: k15_full.py
 B,edit-site map,ifm_d112,D1,run,run,job: k15_full.py
 B,edit-site map,ifm_d112,CF,run,run,job: k15_full.py
 B,edit-site map,ifm_d112,D2,run,run,job: k15_full.py
@@ -324,9 +324,11 @@ B,IFM pathway rows (first run),ifm_p1_mid_inj,D2,run,run,job: k16_path_ifm.py
 B,IFM pathway rows (first run),ifm_p1_mid_inj,D4,run,run,job: k16_path_ifm.py
 B,IFM pathway rows (first run),ifm_p1_mid_inj,D5,run,run,job: k16_path_ifm.py
 B,IFM pathway rows (first run),ifm_p2m_diag,D2,run,run,job: k16_path_ifm.py
-B,IFM pathway rows (first run),ifm_p1_ouro,D4,run,pending,no pilot script route and no cells_skipped.json entry
-A,generation placement,mcleish_llama32_r32,ASDIV_gen,skip,skip,"time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row is about 4 card-hours (ASDiv) to 7 (MAWPS) and a model-dataset cell about 100 to 170 card-hours, ten times the RA-23 estimate"
-A,generation placement,mcleish_llama32_r32,MAWPS_gen,skip,skip,time: same
+B,IFM pathway rows (first run),ifm_p1_ouro,D4,run,run,job: k16_path_ifm.py
+A,generation placement,mcleish_llama32_r32,ASDIV_gen,run,run,job: steer_gen_math.py
+A,generation placement,mcleish_llama32_r32,MAWPS_gen,run,run,job: steer_gen_math.py
+A,generation placement,huginn_0125,ASDIV_gen,run,run,job: steer_gen_math.py
+A,generation placement,huginn_0125,MAWPS_gen,run,run,job: steer_gen_math.py
 B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D1,skip,skip,time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)
 B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,CF,skip,skip,time: same
 B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D2,skip,skip,time: same

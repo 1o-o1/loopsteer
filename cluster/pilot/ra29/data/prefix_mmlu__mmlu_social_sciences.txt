@@ -1,0 +1,30 @@
+Answer multiple-choice questions about economics, politics, psychology, geography and culture.
+
+Q: If the price of a good rises and the seller's total revenue falls, demand over that range is
+Options:
+(A) perfectly inelastic
+(B) unit elastic
+(C) elastic
+(D) inelastic
+A: Let's think step by step.
+Total revenue is price times quantity. If raising the price lowers revenue, the quantity sold must have fallen by a larger percentage than the price rose, which is the definition of elastic demand. So the answer is (C).
+
+Q: In Pavlov's experiments, the sound of the bell after conditioning is best described as
+Options:
+(A) an unconditioned stimulus
+(B) a conditioned stimulus
+(C) an unconditioned response
+(D) a conditioned response
+A: Let's think step by step.
+The food is the unconditioned stimulus and salivating at food is the unconditioned response. The bell started out neutral and, after repeated pairing with food, came to trigger salivation on its own, which makes it a conditioned stimulus. So the answer is (B).
+
+Q: Which body must consent before a treaty of the United States takes effect?
+Options:
+(A) The House of Representatives
+(B) The Supreme Court
+(C) The Senate
+(D) The Cabinet
+A: Let's think step by step.
+The President negotiates treaties, but Article II of the Constitution requires the advice and consent of the Senate by a two-thirds vote before a treaty is ratified. So the answer is (C).
+
+Q: 

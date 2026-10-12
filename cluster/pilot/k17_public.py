@@ -8,6 +8,8 @@ Models (bf16 weights, float32 readout, batch 1):
   llama_nr   smcleish/Llama-3.2-non-recurrent-posttrained @ 004e96ac, 16 layers, BOS 128000 (same-data
              non-recurrent reference, never a depth control; joint clean filter with mcleish)
   ouro_think ByteDance/Ouro-1.4B-Thinking @ 3aaa2224, K = 4, no BOS (E1 anchor only)
+  ouro26_think ByteDance/Ouro-2.6B-Thinking @ f1edd81e, K = 4, C = 48, no BOS (cluster fill: the ouro_think run on
+             the 2.6B checkpoint; same tokenizer file, candidates and targets)
 Sites: ("p", j) adapter output at loop j (post_inj), ("c", j, l) core block l output at loop j, ("k", c) coda block c
 output. NR is K = 1 with C = 16 layers; Ouro K = 4 with C = 24 (l = 23 is the model.norm output = carried state).
 Arms: E1 placement, E5 input protocols (+ SC state ceiling, SRCIN decomposition), E8 carry gain (predict, verify),
@@ -16,7 +18,7 @@ presence and answer classes. Controls: PC-final, SZ, PC-site [harness], RND, SC 
     python k17_public.py --selftest                        (pure helpers, CPU)
     python k17_public.py --selftest_model                  (tiny random raven + Llama models, CPU)
     python k17_public.py --build_items --out DATA_DIR      (laptop CPU, three tokenizers)
-    python k17_public.py --run --model mcl_nr|huginn|ouro_think --data DATA --out OUT [--debug N] [--datasets ..]
+    python k17_public.py --run --model mcl_nr|huginn|ouro_think|ouro26_think --data DATA --out OUT [--debug N] [--datasets ..]
     python k17_public.py --fdcheck --model mcl_nr|huginn --data DATA --out OUT [--fd_items 10]   (fp32 FD check)
     python k17_public.py --summarize --out OUT [--plan PLAN.md]
 """
@@ -309,12 +311,14 @@ CKPT = {
     "mcleish": ("smcleish/Recurrent-Llama-3.2-train-recurrence-32", "a5f6f126e9d9302445346844f1d7d29d111a06eb"),
     "llama_nr": ("smcleish/Llama-3.2-non-recurrent-posttrained", "004e96ace360c1a37c08f4555227136e845087b3"),
     "ouro_think": ("ByteDance/Ouro-1.4B-Thinking", "3aaa2224253a92ca45cf2e3d427c360e1ef9c93d"),
+    "ouro26_think": ("ByteDance/Ouro-2.6B-Thinking", "f1edd81e7ac41355db670500ceaf204e0f73af68"),
 }
 TOK_SHA16 = {"huginn": "9cc201a5061b70ab", "llama": "6b9e4e7fb171f92f", "ouro": "fcb808fe5e7642f5"}
 MODELING_SHA16 = {"huginn": "a1d447da93c605a6", "mcleish": "4f7a86e9b4ce9e73"}
-TOKFAM = {"huginn": "huginn", "huginn16": "huginn", "huginn8": "huginn", "mcleish": "llama", "llama_nr": "llama", "ouro_think": "ouro"}
+TOKFAM = {"huginn": "huginn", "huginn16": "huginn", "huginn8": "huginn", "mcleish": "llama", "llama_nr": "llama", "ouro_think": "ouro",
+          "ouro26_think": "ouro"}
 BOS = {"huginn": None, "llama": 128000, "ouro": None}
-KDEF = {"huginn": 32, "huginn16": 16, "huginn8": 8, "mcleish": 32, "llama_nr": 1, "ouro_think": 4}
+KDEF = {"huginn": 32, "huginn16": 16, "huginn8": 8, "mcleish": 32, "llama_nr": 1, "ouro_think": 4, "ouro26_think": 4}
 JSET = {32: (1, 2, 8, 16, 31, 32), 16: (1, 2, 4, 8, 15, 16), 8: (1, 4, 6, 7, 8), 4: (1, 2, 3, 4)}
 IN1_J = {32: (1, 2, 4, 8, 16, 24, 28, 30, 31, 32), 16: (1, 4, 8, 15, 16)}
 INP_J = {32: (1, 2, 3, 4, 8, 9, 16, 17, 24, 28, 30, 31), 16: (1, 2, 4, 8, 15)}
@@ -324,7 +328,8 @@ E8_DATASETS = ("D1", "D2", "D4")
 PB8_ONLY = ("huginn8",)
 TARGET = {"mcl_nr": {"D1": 80, "CF": 60, "D2": 80, "D4": 60, "D5": 60, "VB": 60},
           "huginn": {"D1": 60, "CF": 40, "D2": 60, "D4": 40, "D5": 40, "VB": 40},
-          "ouro_think": {"D1": 80, "D2": 80, "D4": 60}}
+          "ouro_think": {"D1": 80, "D2": 80, "D4": 60},
+          "ouro26_think": {"D1": 80, "D2": 80, "D4": 60}}
 HUGINN16_DS = ("D2", "D4")
 # plan v3 (critic 2 F1, F9): every site of S+ is verified at a = 1 on "search items" = dev and cross items (the
 # selector and the latest-site rule are not fitted, so these items are fair for A2-1; test items are kept for the
@@ -350,7 +355,7 @@ SUBJ_CAP = 2
 D2_CLUSTER_CAP = 2
 MIN_KEPT = 40
 MIN_E8 = 20
-N_SUB = {"huginn": 10, "mcleish": 20, "llama_nr": 20, "ouro_think": 20, "huginn16": 10}
+N_SUB = {"huginn": 10, "mcleish": 20, "llama_nr": 20, "ouro_think": 20, "huginn16": 10, "ouro26_think": 20}
 # review 3 F2, F12: command-line overrides (--full_search_cap, --pc_site_n, --descriptive); filled in main()
 FS_CAP_OVR, PCS_OVR, DESCRIPTIVE = {}, {}, {"targets": {}}
 # RA-1 scope cut (2026-10-08): --no_reduced skips the Huginn K = 16 / K = 8 runners and the K = 32 PB8 rows
@@ -1348,8 +1353,8 @@ class OuroR(Base):
     """Ouro-Thinking: layer forward hooks (l < L-1) and the model.norm hook (l = L-1, carried state); readout =
     float32 head on the norm output of each loop (trained exits)."""
 
-    def __init__(self, model, dev):
-        self.m, self.dev, self.family, self.name, self.key = model, dev, "ouro", "ouro_think", "ouro_think"
+    def __init__(self, model, dev, name="ouro_think"):
+        self.m, self.dev, self.family, self.name, self.key = model, dev, "ouro", name, name
         self.inner = model.model
         self.C = int(model.config.num_hidden_layers)
         self.K = int(self.inner.total_ut_steps)
@@ -2417,15 +2422,16 @@ def make_runners(group, dev):
         R8 = RavenR("huginn", m1, dev, 8)         # critic 2 F10: PB8 rows only
         R8.bos, R8.fam = BOS["huginn"], "huginn"
         return [R1], [R16, R8], {"huginn": a1}
-    if group == "ouro_think":
-        m, a = load_hf("ouro_think", dev, trust_remote_code=True, attn_implementation="eager")
-        R = OuroR(m, dev)
+    if group in OURO_GROUPS:
+        m, a = load_hf(group, dev, trust_remote_code=True, attn_implementation="eager")
+        R = OuroR(m, dev, group)
         R.bos, R.fam = BOS["ouro"], "ouro"
-        return [R], [], {"ouro_think": a}
+        return [R], [], {group: a}
     raise KeyError(group)
 
 
-GROUP_FAM = {"mcl_nr": "llama", "huginn": "huginn", "ouro_think": "ouro"}
+OURO_GROUPS = ("ouro_think", "ouro26_think")
+GROUP_FAM = {"mcl_nr": "llama", "huginn": "huginn", "ouro_think": "ouro", "ouro26_think": "ouro"}
 
 
 def pre_run_hashes(group, data_dir, plan, cfg):
@@ -2500,13 +2506,13 @@ def run_group(group, data_dir, out_dir, dev, debug, datasets, budget_min, seeds=
     meta["datasets"] = {}
     tg = TARGET[group]
     prior = {}
-    if group == "ouro_think":             # McLeish's kept items first; needs the same --out as mcl_nr (review 3 F2)
+    if group in OURO_GROUPS:              # McLeish's kept items first; needs the same --out as mcl_nr (review 3 F2)
         for ds in datasets:
             p = res_path(out_dir, "mcleish", ds)
             if os.path.exists(p):
                 prior[ds] = kept_of(json.load(open(p)))
             else:
-                logf("WARNING: no %s in --out; ouro_think %s items are not aligned to McLeish's" % (p, ds))
+                logf("WARNING: no %s in --out; %s %s items are not aligned to McLeish's" % (p, group, ds))
     for ds in datasets:
         if ds not in tg:
             continue
@@ -2522,7 +2528,7 @@ def run_group(group, data_dir, out_dir, dev, debug, datasets, budget_min, seeds=
         meta["datasets"][ds] = {n: {"kept": len(kept_of(r)), "items": len(r["items"]),
                                     "stopped_budget": r["meta"].get("stopped_budget", False),
                                     "rows_missing": r["meta"].get("rows_missing")} for n, r in ress.items()}
-        if seeds and ds == "D1" and group != "ouro_think" and not debug and stage in ("all", "merge"):
+        if seeds and ds == "D1" and group not in OURO_GROUPS and not debug and stage in ("all", "merge"):
             for R in Rs:
                 if R.family == "raven":
                     seed_sensitivity(R, cands, ress[R.name], deadline, logf)
@@ -2948,9 +2954,10 @@ def load_results(out_dir):
 def arch_of(mo):
     """-> (family, K, C). Review 3 F3: huginn8 (the K = 8 runner of PB8) added; tiny_huginn8 for the selftest."""
     fam = {"huginn": "raven", "huginn16": "raven", "huginn8": "raven", "mcleish": "raven", "llama_nr": "nr",
-           "ouro_think": "ouro", "tiny_raven": "raven", "tiny_huginn": "raven", "tiny_llama": "nr"}[mo]
-    C = {"huginn": 4, "huginn16": 4, "huginn8": 4, "mcleish": 6, "llama_nr": 16, "ouro_think": 24, "tiny_raven": 6,
-         "tiny_huginn": 4, "tiny_llama": 16}[mo]
+           "ouro_think": "ouro", "ouro26_think": "ouro", "tiny_raven": "raven", "tiny_huginn": "raven",
+           "tiny_llama": "nr"}[mo]
+    C = {"huginn": 4, "huginn16": 4, "huginn8": 4, "mcleish": 6, "llama_nr": 16, "ouro_think": 24, "ouro26_think": 48,
+         "tiny_raven": 6, "tiny_huginn": 4, "tiny_llama": 16}[mo]
     K = {"tiny_raven": 32, "tiny_huginn": 32, "tiny_llama": 1}.get(mo) or KDEF[mo]
     return fam, K, C
 

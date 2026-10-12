@@ -1,0 +1,5956 @@
+{
+"meta": {
+"n_items": 267,
+"n_clusters": 71,
+"n_subjects": 75,
+"source_files_md5": {
+"k17ko_ouro.json": "4936845aea05c846c2725882696aa49a",
+"k16p_ouro.json": "8160ad90f7595626eeb8f76b8eaa6df7"
+},
+"rule": "k17_ko240 pooled_all = pilot80_stored + every passing new item, in that order"
+},
+"items": [
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "France",
+"b": "Japan",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7042,
+"tB": 19081,
+"cluster": "capital:France",
+"stored_clean_final": [
+15.6875,
+6.40625
+],
+"stored_cleanB_final": [
+8.125,
+15.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "France",
+"b": "Spain",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7042,
+"tB": 28030,
+"cluster": "capital:France",
+"stored_clean_final": [
+15.6875,
+7.625
+],
+"stored_cleanB_final": [
+10.25,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Italy",
+"b": "Japan",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7268,
+"tB": 19081,
+"cluster": "capital:Italy",
+"stored_clean_final": [
+15.1875,
+6.125
+],
+"stored_cleanB_final": [
+6.34375,
+15.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Italy",
+"b": "Spain",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7268,
+"tB": 28030,
+"cluster": "capital:Italy",
+"stored_clean_final": [
+15.1875,
+9.25
+],
+"stored_cleanB_final": [
+10.3125,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Germany",
+"b": "Egypt",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11452,
+"tB": 29017,
+"cluster": "capital:Germany",
+"stored_clean_final": [
+16.125,
+3.53125
+],
+"stored_cleanB_final": [
+5.875,
+15.625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Germany",
+"b": "China",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11452,
+"tB": 18921,
+"cluster": "capital:Germany",
+"stored_clean_final": [
+16.125,
+6.03125
+],
+"stored_cleanB_final": [
+7.0625,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Russia",
+"b": "Egypt",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 15651,
+"tB": 29017,
+"cluster": "capital:Russia",
+"stored_clean_final": [
+14.8125,
+4.75
+],
+"stored_cleanB_final": [
+5.75,
+15.625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Russia",
+"b": "China",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 15651,
+"tB": 18921,
+"cluster": "capital:Russia",
+"stored_clean_final": [
+14.8125,
+6.5
+],
+"stored_cleanB_final": [
+4.9375,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "England",
+"b": "Austria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 4528,
+"tB": 18252,
+"cluster": "capital:England",
+"stored_clean_final": [
+15.8125,
+7.375
+],
+"stored_cleanB_final": [
+6.40625,
+16.0
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "England",
+"b": "Ireland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 4528,
+"tB": 22231,
+"cluster": "capital:England",
+"stored_clean_final": [
+15.8125,
+6.875
+],
+"stored_cleanB_final": [
+8.5625,
+15.9375
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Greece",
+"b": "Austria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18793,
+"tB": 18252,
+"cluster": "capital:Greece",
+"stored_clean_final": [
+15.1875,
+7.15625
+],
+"stored_cleanB_final": [
+4.5625,
+16.0
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Greece",
+"b": "Ireland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18793,
+"tB": 22231,
+"cluster": "capital:Greece",
+"stored_clean_final": [
+15.1875,
+3.9375
+],
+"stored_cleanB_final": [
+6.375,
+15.9375
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Norway",
+"b": "Poland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 41730,
+"tB": 28918,
+"cluster": "capital:Norway",
+"stored_clean_final": [
+16.125,
+4.8125
+],
+"stored_cleanB_final": [
+5.3125,
+15.75
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Norway",
+"b": "Kenya",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 41730,
+"tB": 44710,
+"cluster": "capital:Norway",
+"stored_clean_final": [
+16.125,
+3.78125
+],
+"stored_cleanB_final": [
+1.64062,
+17.0
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Portugal",
+"b": "Poland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42944,
+"tB": 28918,
+"cluster": "capital:Portugal",
+"stored_clean_final": [
+14.75,
+5.46875
+],
+"stored_cleanB_final": [
+3.48438,
+15.75
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Portugal",
+"b": "Kenya",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42944,
+"tB": 44710,
+"cluster": "capital:Portugal",
+"stored_clean_final": [
+14.75,
+1.90625
+],
+"stored_cleanB_final": [
+0.59375,
+17.0
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Sweden",
+"b": "Cuba",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31473,
+"tB": 47001,
+"cluster": "capital:Sweden",
+"stored_clean_final": [
+16.25,
+2.48438
+],
+"stored_cleanB_final": [
+3.48438,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Sweden",
+"b": "Hungary",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31473,
+"tB": 47539,
+"cluster": "capital:Sweden",
+"stored_clean_final": [
+16.25,
+6.84375
+],
+"stored_cleanB_final": [
+5.09375,
+15.875
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Peru",
+"b": "Cuba",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40781,
+"tB": 47001,
+"cluster": "capital:Peru",
+"stored_clean_final": [
+16.0,
+7.25
+],
+"stored_cleanB_final": [
+6.78125,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Peru",
+"b": "Hungary",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40781,
+"tB": 47539,
+"cluster": "capital:Peru",
+"stored_clean_final": [
+16.0,
+1.73438
+],
+"stored_cleanB_final": [
+-0.06738,
+15.875
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Tokyo",
+"b": "Berlin",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3085,
+"tB": 4521,
+"cluster": "city:Tokyo",
+"stored_clean_final": [
+16.75,
+7.71875
+],
+"stored_cleanB_final": [
+8.5625,
+15.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Tokyo",
+"b": "Moscow",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3085,
+"tB": 6054,
+"cluster": "city:Tokyo",
+"stored_clean_final": [
+16.75,
+6.90625
+],
+"stored_cleanB_final": [
+7.8125,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Berlin",
+"b": "Madrid",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4521,
+"tB": 7476,
+"cluster": "city:Berlin",
+"stored_clean_final": [
+15.8125,
+6.25
+],
+"stored_cleanB_final": [
+8.375,
+14.875
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Madrid",
+"b": "Moscow",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 7476,
+"tB": 6054,
+"cluster": "city:Madrid",
+"stored_clean_final": [
+14.875,
+8.1875
+],
+"stored_cleanB_final": [
+7.46875,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Cairo",
+"b": "Beijing",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4754,
+"tB": 3275,
+"cluster": "city:Cairo",
+"stored_clean_final": [
+14.0625,
+10.4375
+],
+"stored_cleanB_final": [
+4.09375,
+15.25
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Cairo",
+"b": "Vienna",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4754,
+"tB": 14171,
+"cluster": "city:Cairo",
+"stored_clean_final": [
+14.0625,
+8.9375
+],
+"stored_cleanB_final": [
+6.125,
+16.75
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Beijing",
+"b": "Athens",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3275,
+"tB": 10040,
+"cluster": "city:Beijing",
+"stored_clean_final": [
+15.25,
+2.625
+],
+"stored_cleanB_final": [
+7.15625,
+15.125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Vienna",
+"b": "Stockholm",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 14171,
+"tB": 12598,
+"cluster": "city:Vienna",
+"stored_clean_final": [
+16.75,
+9.5
+],
+"stored_cleanB_final": [
+7.0,
+16.875
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Dublin",
+"b": "Warsaw",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 7597,
+"tB": 12452,
+"cluster": "city:Dublin",
+"stored_clean_final": [
+15.5,
+6.9375
+],
+"stored_cleanB_final": [
+6.5,
+15.6875
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Lisbon",
+"b": "Havana",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 17580,
+"tB": 15553,
+"cluster": "city:Lisbon",
+"stored_clean_final": [
+17.375,
+6.375
+],
+"stored_cleanB_final": [
+6.3125,
+16.5
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Warsaw",
+"b": "Bangkok",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 12452,
+"tB": 16704,
+"cluster": "city:Warsaw",
+"stored_clean_final": [
+15.6875,
+4.40625
+],
+"stored_cleanB_final": [
+4.34375,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Stockholm",
+"b": "Lima",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 12598,
+"tB": 17093,
+"cluster": "city:Stockholm",
+"stored_clean_final": [
+16.875,
+4.03125
+],
+"stored_cleanB_final": [
+6.34375,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Nairobi",
+"b": "Lima",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 14792,
+"tB": 17093,
+"cluster": "city:Nairobi",
+"stored_clean_final": [
+17.125,
+4.1875
+],
+"stored_cleanB_final": [
+8.3125,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Havana",
+"b": "Bangkok",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 15553,
+"tB": 16704,
+"cluster": "city:Havana",
+"stored_clean_final": [
+16.5,
+5.78125
+],
+"stored_cleanB_final": [
+4.6875,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Toronto",
+"b": "Mumbai",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4004,
+"tB": 3089,
+"cluster": "city:Toronto",
+"stored_clean_final": [
+16.625,
+7.53125
+],
+"stored_cleanB_final": [
+7.03125,
+15.0
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Sydney",
+"b": "Barcelona",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 4617,
+"tB": 7476,
+"cluster": "city:Sydney",
+"stored_clean_final": [
+16.25,
+6.15625
+],
+"stored_cleanB_final": [
+6.34375,
+16.375
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Mumbai",
+"b": "Osaka",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3089,
+"tB": 3085,
+"cluster": "city:Mumbai",
+"stored_clean_final": [
+15.0,
+7.3125
+],
+"stored_cleanB_final": [
+7.8125,
+13.9375
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Munich",
+"b": "Shanghai",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 4521,
+"tB": 3275,
+"cluster": "city:Munich",
+"stored_clean_final": [
+13.8125,
+8.6875
+],
+"stored_cleanB_final": [
+7.40625,
+14.75
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Venice",
+"b": "Osaka",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 7158,
+"tB": 3085,
+"cluster": "city:Venice",
+"stored_clean_final": [
+15.75,
+8.75
+],
+"stored_cleanB_final": [
+7.8125,
+13.9375
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Venice",
+"b": "Istanbul",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 7158,
+"tB": 11011,
+"cluster": "city:Venice",
+"stored_clean_final": [
+15.75,
+8.5625
+],
+"stored_cleanB_final": [
+8.3125,
+17.375
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "France",
+"b": "Italy",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7042,
+"tB": 7268,
+"cluster": "capital:France",
+"stored_clean_final": [
+15.6875,
+8.75
+],
+"stored_cleanB_final": [
+9.875,
+15.1875
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "France",
+"b": "Germany",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7042,
+"tB": 11452,
+"cluster": "capital:France",
+"stored_clean_final": [
+15.6875,
+9.8125
+],
+"stored_cleanB_final": [
+9.9375,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Italy",
+"b": "Germany",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7268,
+"tB": 11452,
+"cluster": "capital:Italy",
+"stored_clean_final": [
+15.1875,
+8.875
+],
+"stored_cleanB_final": [
+7.5,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Japan",
+"b": "Russia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 19081,
+"tB": 15651,
+"cluster": "capital:Japan",
+"stored_clean_final": [
+15.8125,
+4.5
+],
+"stored_cleanB_final": [
+5.90625,
+14.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Japan",
+"b": "England",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 19081,
+"tB": 4528,
+"cluster": "capital:Japan",
+"stored_clean_final": [
+15.8125,
+7.0625
+],
+"stored_cleanB_final": [
+7.1875,
+15.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Spain",
+"b": "Russia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28030,
+"tB": 15651,
+"cluster": "capital:Spain",
+"stored_clean_final": [
+15.5625,
+5.21875
+],
+"stored_cleanB_final": [
+6.59375,
+14.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Spain",
+"b": "England",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28030,
+"tB": 4528,
+"cluster": "capital:Spain",
+"stored_clean_final": [
+15.5625,
+9.5625
+],
+"stored_cleanB_final": [
+8.375,
+15.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Egypt",
+"b": "Greece",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 29017,
+"tB": 18793,
+"cluster": "capital:Egypt",
+"stored_clean_final": [
+15.625,
+6.53125
+],
+"stored_cleanB_final": [
+5.90625,
+15.1875
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Egypt",
+"b": "Norway",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 29017,
+"tB": 41730,
+"cluster": "capital:Egypt",
+"stored_clean_final": [
+15.625,
+2.04688
+],
+"stored_cleanB_final": [
+2.89062,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "China",
+"b": "Greece",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18921,
+"tB": 18793,
+"cluster": "capital:China",
+"stored_clean_final": [
+15.5625,
+4.21875
+],
+"stored_cleanB_final": [
+4.59375,
+15.1875
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "China",
+"b": "Norway",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18921,
+"tB": 41730,
+"cluster": "capital:China",
+"stored_clean_final": [
+15.5625,
+1.24219
+],
+"stored_cleanB_final": [
+3.59375,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Austria",
+"b": "Portugal",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18252,
+"tB": 42944,
+"cluster": "capital:Austria",
+"stored_clean_final": [
+16.0,
+4.71875
+],
+"stored_cleanB_final": [
+7.65625,
+14.75
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Austria",
+"b": "Sweden",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18252,
+"tB": 31473,
+"cluster": "capital:Austria",
+"stored_clean_final": [
+16.0,
+6.5
+],
+"stored_cleanB_final": [
+8.0625,
+16.25
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Ireland",
+"b": "Portugal",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22231,
+"tB": 42944,
+"cluster": "capital:Ireland",
+"stored_clean_final": [
+15.9375,
+8.625
+],
+"stored_cleanB_final": [
+5.75,
+14.75
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Ireland",
+"b": "Sweden",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22231,
+"tB": 31473,
+"cluster": "capital:Ireland",
+"stored_clean_final": [
+15.9375,
+3.6875
+],
+"stored_cleanB_final": [
+4.125,
+16.25
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Poland",
+"b": "Peru",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28918,
+"tB": 40781,
+"cluster": "capital:Poland",
+"stored_clean_final": [
+15.75,
+2.875
+],
+"stored_cleanB_final": [
+4.84375,
+16.0
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Poland",
+"b": "Thailand",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28918,
+"tB": 10447,
+"cluster": "capital:Poland",
+"stored_clean_final": [
+15.75,
+2.45312
+],
+"stored_cleanB_final": [
+4.6875,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Kenya",
+"b": "Peru",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 44710,
+"tB": 40781,
+"cluster": "capital:Kenya",
+"stored_clean_final": [
+17.0,
+1.0625
+],
+"stored_cleanB_final": [
+5.625,
+16.0
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Kenya",
+"b": "Thailand",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 44710,
+"tB": 10447,
+"cluster": "capital:Kenya",
+"stored_clean_final": [
+17.0,
+3.75
+],
+"stored_cleanB_final": [
+5.78125,
+16.125
+]
+},
+{
+"src": "pilot80",
+"rel": "capital",
+"a": "Cuba",
+"b": "Denmark",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47001,
+"tB": 27101,
+"cluster": "capital:Cuba",
+"stored_clean_final": [
+15.5625,
+5.40625
+],
+"stored_cleanB_final": [
+3.0,
+16.25
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Paris",
+"b": "Rome",
+"half": "dev",
+"pos": [
+0
+],
+"T": 8,
+"tA": 4649,
+"tB": 7158,
+"cluster": "city:Paris",
+"stored_clean_final": [
+17.0,
+10.4375
+],
+"stored_cleanB_final": [
+12.6875,
+15.4375
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Tokyo",
+"b": "Madrid",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3085,
+"tB": 7476,
+"cluster": "city:Tokyo",
+"stored_clean_final": [
+16.75,
+6.21875
+],
+"stored_cleanB_final": [
+7.1875,
+14.875
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Tokyo",
+"b": "Cairo",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3085,
+"tB": 4754,
+"cluster": "city:Tokyo",
+"stored_clean_final": [
+16.75,
+4.15625
+],
+"stored_cleanB_final": [
+9.1875,
+14.0625
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Berlin",
+"b": "Moscow",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4521,
+"tB": 6054,
+"cluster": "city:Berlin",
+"stored_clean_final": [
+15.8125,
+11.1875
+],
+"stored_cleanB_final": [
+8.3125,
+15.5625
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Berlin",
+"b": "Beijing",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4521,
+"tB": 3275,
+"cluster": "city:Berlin",
+"stored_clean_final": [
+15.8125,
+11.4375
+],
+"stored_cleanB_final": [
+7.125,
+15.25
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Madrid",
+"b": "Cairo",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 7476,
+"tB": 4754,
+"cluster": "city:Madrid",
+"stored_clean_final": [
+14.875,
+6.90625
+],
+"stored_cleanB_final": [
+9.3125,
+14.0625
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Moscow",
+"b": "Beijing",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 6054,
+"tB": 3275,
+"cluster": "city:Moscow",
+"stored_clean_final": [
+15.5625,
+7.75
+],
+"stored_cleanB_final": [
+7.96875,
+15.25
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Athens",
+"b": "Vienna",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 10040,
+"tB": 14171,
+"cluster": "city:Athens",
+"stored_clean_final": [
+15.125,
+7.1875
+],
+"stored_cleanB_final": [
+6.71875,
+16.75
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Dublin",
+"b": "Lisbon",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 7597,
+"tB": 17580,
+"cluster": "city:Dublin",
+"stored_clean_final": [
+15.5,
+8.125
+],
+"stored_cleanB_final": [
+9.0,
+17.375
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Lisbon",
+"b": "Warsaw",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 17580,
+"tB": 12452,
+"cluster": "city:Lisbon",
+"stored_clean_final": [
+17.375,
+6.375
+],
+"stored_cleanB_final": [
+7.875,
+15.6875
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Warsaw",
+"b": "Havana",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 12452,
+"tB": 15553,
+"cluster": "city:Warsaw",
+"stored_clean_final": [
+15.6875,
+5.6875
+],
+"stored_cleanB_final": [
+6.21875,
+16.5
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Stockholm",
+"b": "Nairobi",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 12598,
+"tB": 14792,
+"cluster": "city:Stockholm",
+"stored_clean_final": [
+16.875,
+3.75
+],
+"stored_cleanB_final": [
+4.59375,
+17.125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Stockholm",
+"b": "Toronto",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 12598,
+"tB": 4004,
+"cluster": "city:Stockholm",
+"stored_clean_final": [
+16.875,
+8.75
+],
+"stored_cleanB_final": [
+5.5,
+16.625
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Nairobi",
+"b": "Toronto",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 14792,
+"tB": 4004,
+"cluster": "city:Nairobi",
+"stored_clean_final": [
+17.125,
+5.09375
+],
+"stored_cleanB_final": [
+5.0,
+16.625
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Lima",
+"b": "Mumbai",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 17093,
+"tB": 3089,
+"cluster": "city:Lima",
+"stored_clean_final": [
+16.125,
+9.375
+],
+"stored_cleanB_final": [
+3.34375,
+15.0
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Havana",
+"b": "Sydney",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 15553,
+"tB": 4617,
+"cluster": "city:Havana",
+"stored_clean_final": [
+16.5,
+5.5625
+],
+"stored_cleanB_final": [
+2.71875,
+16.25
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Bangkok",
+"b": "Munich",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 16704,
+"tB": 4521,
+"cluster": "city:Bangkok",
+"stored_clean_final": [
+16.125,
+5.4375
+],
+"stored_cleanB_final": [
+6.59375,
+13.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Sydney",
+"b": "Munich",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 4617,
+"tB": 4521,
+"cluster": "city:Sydney",
+"stored_clean_final": [
+16.25,
+7.25
+],
+"stored_cleanB_final": [
+8.0625,
+13.8125
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Mumbai",
+"b": "Venice",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3089,
+"tB": 7158,
+"cluster": "city:Mumbai",
+"stored_clean_final": [
+15.0,
+5.3125
+],
+"stored_cleanB_final": [
+8.875,
+15.75
+]
+},
+{
+"src": "pilot80",
+"rel": "city",
+"a": "Barcelona",
+"b": "Shanghai",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 7476,
+"tB": 3275,
+"cluster": "city:Barcelona",
+"stored_clean_final": [
+16.375,
+6.875
+],
+"stored_cleanB_final": [
+6.75,
+14.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Italy",
+"b": "Egypt",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7268,
+"tB": 29017,
+"cluster": "capital:Italy",
+"stored_clean_final": [
+15.1875,
+6.25
+],
+"stored_cleanB_final": [
+7.6875,
+15.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Japan",
+"b": "Spain",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 19081,
+"tB": 28030,
+"cluster": "capital:Japan",
+"stored_clean_final": [
+15.8125,
+6.15625
+],
+"stored_cleanB_final": [
+5.65625,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Japan",
+"b": "Egypt",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 19081,
+"tB": 29017,
+"cluster": "capital:Japan",
+"stored_clean_final": [
+15.8125,
+5.3125
+],
+"stored_cleanB_final": [
+5.46875,
+15.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Germany",
+"b": "Spain",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11452,
+"tB": 28030,
+"cluster": "capital:Germany",
+"stored_clean_final": [
+16.125,
+7.3125
+],
+"stored_cleanB_final": [
+9.5625,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Spain",
+"b": "Egypt",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28030,
+"tB": 29017,
+"cluster": "capital:Spain",
+"stored_clean_final": [
+15.5625,
+5.1875
+],
+"stored_cleanB_final": [
+5.53125,
+15.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Spain",
+"b": "China",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28030,
+"tB": 18921,
+"cluster": "capital:Spain",
+"stored_clean_final": [
+15.5625,
+6.4375
+],
+"stored_cleanB_final": [
+6.09375,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Russia",
+"b": "Austria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 15651,
+"tB": 18252,
+"cluster": "capital:Russia",
+"stored_clean_final": [
+14.8125,
+6.125
+],
+"stored_cleanB_final": [
+3.85938,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Egypt",
+"b": "China",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 29017,
+"tB": 18921,
+"cluster": "capital:Egypt",
+"stored_clean_final": [
+15.625,
+3.46875
+],
+"stored_cleanB_final": [
+5.9375,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Egypt",
+"b": "Austria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 29017,
+"tB": 18252,
+"cluster": "capital:Egypt",
+"stored_clean_final": [
+15.625,
+4.9375
+],
+"stored_cleanB_final": [
+0.8125,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "England",
+"b": "China",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 4528,
+"tB": 18921,
+"cluster": "capital:England",
+"stored_clean_final": [
+15.8125,
+5.65625
+],
+"stored_cleanB_final": [
+7.71875,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "China",
+"b": "Austria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18921,
+"tB": 18252,
+"cluster": "capital:China",
+"stored_clean_final": [
+15.5625,
+4.78125
+],
+"stored_cleanB_final": [
+5.1875,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "China",
+"b": "Ireland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18921,
+"tB": 22231,
+"cluster": "capital:China",
+"stored_clean_final": [
+15.5625,
+1.70312
+],
+"stored_cleanB_final": [
+3.39062,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Greece",
+"b": "Poland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18793,
+"tB": 28918,
+"cluster": "capital:Greece",
+"stored_clean_final": [
+15.1875,
+6.21875
+],
+"stored_cleanB_final": [
+3.71875,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Austria",
+"b": "Ireland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18252,
+"tB": 22231,
+"cluster": "capital:Austria",
+"stored_clean_final": [
+16.0,
+3.48438
+],
+"stored_cleanB_final": [
+4.9375,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Austria",
+"b": "Poland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18252,
+"tB": 28918,
+"cluster": "capital:Austria",
+"stored_clean_final": [
+16.0,
+4.53125
+],
+"stored_cleanB_final": [
+8.625,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Norway",
+"b": "Ireland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 41730,
+"tB": 22231,
+"cluster": "capital:Norway",
+"stored_clean_final": [
+16.125,
+3.14062
+],
+"stored_cleanB_final": [
+4.4375,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ireland",
+"b": "Poland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22231,
+"tB": 28918,
+"cluster": "capital:Ireland",
+"stored_clean_final": [
+15.9375,
+4.34375
+],
+"stored_cleanB_final": [
+2.92188,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ireland",
+"b": "Kenya",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22231,
+"tB": 44710,
+"cluster": "capital:Ireland",
+"stored_clean_final": [
+15.9375,
+2.875
+],
+"stored_cleanB_final": [
+2.32812,
+17.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Portugal",
+"b": "Cuba",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42944,
+"tB": 47001,
+"cluster": "capital:Portugal",
+"stored_clean_final": [
+14.75,
+4.375
+],
+"stored_cleanB_final": [
+5.9375,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Poland",
+"b": "Kenya",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28918,
+"tB": 44710,
+"cluster": "capital:Poland",
+"stored_clean_final": [
+15.75,
+2.125
+],
+"stored_cleanB_final": [
+3.25,
+17.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Poland",
+"b": "Cuba",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28918,
+"tB": 47001,
+"cluster": "capital:Poland",
+"stored_clean_final": [
+15.75,
+0.57422
+],
+"stored_cleanB_final": [
+6.4375,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Sweden",
+"b": "Kenya",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31473,
+"tB": 44710,
+"cluster": "capital:Sweden",
+"stored_clean_final": [
+16.25,
+5.09375
+],
+"stored_cleanB_final": [
+4.71875,
+17.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Kenya",
+"b": "Cuba",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 44710,
+"tB": 47001,
+"cluster": "capital:Kenya",
+"stored_clean_final": [
+17.0,
+-0.11865
+],
+"stored_cleanB_final": [
+3.98438,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Kenya",
+"b": "Hungary",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 44710,
+"tB": 47539,
+"cluster": "capital:Kenya",
+"stored_clean_final": [
+17.0,
+4.0625
+],
+"stored_cleanB_final": [
+1.70312,
+15.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Peru",
+"b": "Finland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40781,
+"tB": 42398,
+"cluster": "capital:Peru",
+"stored_clean_final": [
+16.0,
+3.4375
+],
+"stored_cleanB_final": [
+2.95312,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Cuba",
+"b": "Hungary",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47001,
+"tB": 47539,
+"cluster": "capital:Cuba",
+"stored_clean_final": [
+15.5625,
+4.96875
+],
+"stored_cleanB_final": [
+3.0,
+15.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Cuba",
+"b": "Finland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47001,
+"tB": 42398,
+"cluster": "capital:Cuba",
+"stored_clean_final": [
+15.5625,
+4.0625
+],
+"stored_cleanB_final": [
+4.25,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Thailand",
+"b": "Hungary",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 10447,
+"tB": 47539,
+"cluster": "capital:Thailand",
+"stored_clean_final": [
+16.125,
+4.90625
+],
+"stored_cleanB_final": [
+4.28125,
+15.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Thailand",
+"b": "Finland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 10447,
+"tB": 42398,
+"cluster": "capital:Thailand",
+"stored_clean_final": [
+16.125,
+4.625
+],
+"stored_cleanB_final": [
+5.875,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Thailand",
+"b": "Iran",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 10447,
+"tB": 40308,
+"cluster": "capital:Thailand",
+"stored_clean_final": [
+16.125,
+4.125
+],
+"stored_cleanB_final": [
+2.3125,
+15.1875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Hungary",
+"b": "Finland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47539,
+"tB": 42398,
+"cluster": "capital:Hungary",
+"stored_clean_final": [
+15.875,
+5.8125
+],
+"stored_cleanB_final": [
+7.0625,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Hungary",
+"b": "Iran",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47539,
+"tB": 40308,
+"cluster": "capital:Hungary",
+"stored_clean_final": [
+15.875,
+0.55078
+],
+"stored_cleanB_final": [
+2.67188,
+15.1875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Denmark",
+"b": "Finland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 27101,
+"tB": 42398,
+"cluster": "capital:Denmark",
+"stored_clean_final": [
+16.25,
+9.4375
+],
+"stored_cleanB_final": [
+8.6875,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Denmark",
+"b": "Iran",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 27101,
+"tB": 40308,
+"cluster": "capital:Denmark",
+"stored_clean_final": [
+16.25,
+0.052
+],
+"stored_cleanB_final": [
+2.51562,
+15.1875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Denmark",
+"b": "Syria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 27101,
+"tB": 35686,
+"cluster": "capital:Denmark",
+"stored_clean_final": [
+16.25,
+1.29688
+],
+"stored_cleanB_final": [
+0.66797,
+15.3125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Finland",
+"b": "Iran",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42398,
+"tB": 40308,
+"cluster": "capital:Finland",
+"stored_clean_final": [
+16.125,
+2.60938
+],
+"stored_cleanB_final": [
+2.45312,
+15.1875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Finland",
+"b": "Syria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42398,
+"tB": 35686,
+"cluster": "capital:Finland",
+"stored_clean_final": [
+16.125,
+1.96094
+],
+"stored_cleanB_final": [
+1.25781,
+15.3125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iran",
+"b": "Syria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40308,
+"tB": 35686,
+"cluster": "capital:Iran",
+"stored_clean_final": [
+15.1875,
+7.46875
+],
+"stored_cleanB_final": [
+6.40625,
+15.3125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iran",
+"b": "Chile",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40308,
+"tB": 32689,
+"cluster": "capital:Iran",
+"stored_clean_final": [
+15.1875,
+1.64062
+],
+"stored_cleanB_final": [
+0.50391,
+15.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iraq",
+"b": "Syria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 34637,
+"tB": 35686,
+"cluster": "capital:Iraq",
+"stored_clean_final": [
+15.5,
+9.6875
+],
+"stored_cleanB_final": [
+9.1875,
+15.3125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iraq",
+"b": "Chile",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 34637,
+"tB": 32689,
+"cluster": "capital:Iraq",
+"stored_clean_final": [
+15.5,
+-0.64453
+],
+"stored_cleanB_final": [
+1.51562,
+15.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iraq",
+"b": "Colombia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 34637,
+"tB": 28184,
+"cluster": "capital:Iraq",
+"stored_clean_final": [
+15.5,
+4.5625
+],
+"stored_cleanB_final": [
+6.0,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Syria",
+"b": "Chile",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35686,
+"tB": 32689,
+"cluster": "capital:Syria",
+"stored_clean_final": [
+15.3125,
+2.84375
+],
+"stored_cleanB_final": [
+4.40625,
+15.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Syria",
+"b": "Colombia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35686,
+"tB": 28184,
+"cluster": "capital:Syria",
+"stored_clean_final": [
+15.3125,
+2.82812
+],
+"stored_cleanB_final": [
+4.15625,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Lebanon",
+"b": "Chile",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1934,
+"tB": 32689,
+"cluster": "capital:Lebanon",
+"stored_clean_final": [
+14.8125,
+2.42188
+],
+"stored_cleanB_final": [
+4.28125,
+15.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Lebanon",
+"b": "Colombia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1934,
+"tB": 28184,
+"cluster": "capital:Lebanon",
+"stored_clean_final": [
+14.8125,
+0.33984
+],
+"stored_cleanB_final": [
+6.625,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Lebanon",
+"b": "Canada",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1934,
+"tB": 25771,
+"cluster": "capital:Lebanon",
+"stored_clean_final": [
+14.8125,
+5.09375
+],
+"stored_cleanB_final": [
+3.125,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Chile",
+"b": "Colombia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 32689,
+"tB": 28184,
+"cluster": "capital:Chile",
+"stored_clean_final": [
+15.0,
+7.125
+],
+"stored_cleanB_final": [
+8.875,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Chile",
+"b": "Canada",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 32689,
+"tB": 25771,
+"cluster": "capital:Chile",
+"stored_clean_final": [
+15.0,
+1.44531
+],
+"stored_cleanB_final": [
+2.3125,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Argentina",
+"b": "Colombia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 38081,
+"tB": 28184,
+"cluster": "capital:Argentina",
+"stored_clean_final": [
+16.0,
+9.25
+],
+"stored_cleanB_final": [
+10.0625,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Argentina",
+"b": "Canada",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 38081,
+"tB": 25771,
+"cluster": "capital:Argentina",
+"stored_clean_final": [
+16.0,
+4.03125
+],
+"stored_cleanB_final": [
+3.32812,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Argentina",
+"b": "India",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 38081,
+"tB": 1315,
+"cluster": "capital:Argentina",
+"stored_clean_final": [
+16.0,
+5.4375
+],
+"stored_cleanB_final": [
+2.875,
+14.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Colombia",
+"b": "Canada",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28184,
+"tB": 25771,
+"cluster": "capital:Colombia",
+"stored_clean_final": [
+16.125,
+1.83594
+],
+"stored_cleanB_final": [
+2.8125,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Colombia",
+"b": "India",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28184,
+"tB": 1315,
+"cluster": "capital:Colombia",
+"stored_clean_final": [
+16.125,
+7.09375
+],
+"stored_cleanB_final": [
+3.45312,
+14.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Mexico",
+"b": "Canada",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5647,
+"tB": 25771,
+"cluster": "capital:Mexico",
+"stored_clean_final": [
+15.75,
+4.5625
+],
+"stored_cleanB_final": [
+5.0,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Mexico",
+"b": "India",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5647,
+"tB": 1315,
+"cluster": "capital:Mexico",
+"stored_clean_final": [
+15.75,
+8.4375
+],
+"stored_cleanB_final": [
+5.0,
+14.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Mexico",
+"b": "Bangladesh",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5647,
+"tB": 18386,
+"cluster": "capital:Mexico",
+"stored_clean_final": [
+15.75,
+-0.95312
+],
+"stored_cleanB_final": [
+0.76172,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Canada",
+"b": "India",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 25771,
+"tB": 1315,
+"cluster": "capital:Canada",
+"stored_clean_final": [
+15.5,
+7.125
+],
+"stored_cleanB_final": [
+5.125,
+14.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Canada",
+"b": "Bangladesh",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 25771,
+"tB": 18386,
+"cluster": "capital:Canada",
+"stored_clean_final": [
+15.5,
+-0.22168
+],
+"stored_cleanB_final": [
+1.82031,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Australia",
+"b": "India",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40136,
+"tB": 1315,
+"cluster": "capital:Australia",
+"stored_clean_final": [
+16.25,
+7.40625
+],
+"stored_cleanB_final": [
+7.125,
+14.875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Australia",
+"b": "Bangladesh",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40136,
+"tB": 18386,
+"cluster": "capital:Australia",
+"stored_clean_final": [
+16.25,
+1.97656
+],
+"stored_cleanB_final": [
+4.84375,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Australia",
+"b": "Indonesia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40136,
+"tB": 31618,
+"cluster": "capital:Australia",
+"stored_clean_final": [
+16.25,
+4.71875
+],
+"stored_cleanB_final": [
+7.65625,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "India",
+"b": "Bangladesh",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1315,
+"tB": 18386,
+"cluster": "capital:India",
+"stored_clean_final": [
+14.875,
+5.90625
+],
+"stored_cleanB_final": [
+7.53125,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "India",
+"b": "Indonesia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1315,
+"tB": 31618,
+"cluster": "capital:India",
+"stored_clean_final": [
+14.875,
+5.1875
+],
+"stored_cleanB_final": [
+7.9375,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Pakistan",
+"b": "Bangladesh",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5048,
+"tB": 18386,
+"cluster": "capital:Pakistan",
+"stored_clean_final": [
+16.0,
+6.6875
+],
+"stored_cleanB_final": [
+8.1875,
+15.9375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Pakistan",
+"b": "Indonesia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5048,
+"tB": 31618,
+"cluster": "capital:Pakistan",
+"stored_clean_final": [
+16.0,
+3.6875
+],
+"stored_cleanB_final": [
+6.125,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Pakistan",
+"b": "Nigeria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5048,
+"tB": 22330,
+"cluster": "capital:Pakistan",
+"stored_clean_final": [
+16.0,
+7.9375
+],
+"stored_cleanB_final": [
+8.25,
+17.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Bangladesh",
+"b": "Indonesia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18386,
+"tB": 31618,
+"cluster": "capital:Bangladesh",
+"stored_clean_final": [
+15.9375,
+5.25
+],
+"stored_cleanB_final": [
+4.40625,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Bangladesh",
+"b": "Nigeria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18386,
+"tB": 22330,
+"cluster": "capital:Bangladesh",
+"stored_clean_final": [
+15.9375,
+3.85938
+],
+"stored_cleanB_final": [
+1.17969,
+17.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Vietnam",
+"b": "Indonesia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 407,
+"tB": 31618,
+"cluster": "capital:Vietnam",
+"stored_clean_final": [
+14.5625,
+6.25
+],
+"stored_cleanB_final": [
+5.09375,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Vietnam",
+"b": "Nigeria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 407,
+"tB": 22330,
+"cluster": "capital:Vietnam",
+"stored_clean_final": [
+14.5625,
+4.4375
+],
+"stored_cleanB_final": [
+1.89844,
+17.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Vietnam",
+"b": "Ethiopia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 407,
+"tB": 1318,
+"cluster": "capital:Vietnam",
+"stored_clean_final": [
+14.5625,
+4.46875
+],
+"stored_cleanB_final": [
+4.1875,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Indonesia",
+"b": "Nigeria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31618,
+"tB": 22330,
+"cluster": "capital:Indonesia",
+"stored_clean_final": [
+16.25,
+4.4375
+],
+"stored_cleanB_final": [
+5.40625,
+17.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Indonesia",
+"b": "Ethiopia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31618,
+"tB": 1318,
+"cluster": "capital:Indonesia",
+"stored_clean_final": [
+16.25,
+5.4375
+],
+"stored_cleanB_final": [
+2.01562,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Philippines",
+"b": "Nigeria",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35288,
+"tB": 22330,
+"cluster": "capital:Philippines",
+"stored_clean_final": [
+13.375,
+5.15625
+],
+"stored_cleanB_final": [
+2.76562,
+17.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Philippines",
+"b": "Ethiopia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35288,
+"tB": 1318,
+"cluster": "capital:Philippines",
+"stored_clean_final": [
+13.375,
+4.5625
+],
+"stored_cleanB_final": [
+-2.14062,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Philippines",
+"b": "Belgium",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35288,
+"tB": 27713,
+"cluster": "capital:Philippines",
+"stored_clean_final": [
+13.375,
+3.5
+],
+"stored_cleanB_final": [
+-0.53516,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Nigeria",
+"b": "Ethiopia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22330,
+"tB": 1318,
+"cluster": "capital:Nigeria",
+"stored_clean_final": [
+17.5,
+6.59375
+],
+"stored_cleanB_final": [
+4.90625,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Nigeria",
+"b": "Belgium",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22330,
+"tB": 27713,
+"cluster": "capital:Nigeria",
+"stored_clean_final": [
+17.5,
+5.5625
+],
+"stored_cleanB_final": [
+1.0,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ghana",
+"b": "Ethiopia",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 6698,
+"tB": 1318,
+"cluster": "capital:Ghana",
+"stored_clean_final": [
+16.5,
+9.5625
+],
+"stored_cleanB_final": [
+5.78125,
+15.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ghana",
+"b": "Belgium",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 6698,
+"tB": 27713,
+"cluster": "capital:Ghana",
+"stored_clean_final": [
+16.5,
+2.98438
+],
+"stored_cleanB_final": [
+0.93359,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ghana",
+"b": "Switzerland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 6698,
+"tB": 11676,
+"cluster": "capital:Ghana",
+"stored_clean_final": [
+16.5,
+2.64062
+],
+"stored_cleanB_final": [
+1.99219,
+15.6875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ethiopia",
+"b": "Belgium",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1318,
+"tB": 27713,
+"cluster": "capital:Ethiopia",
+"stored_clean_final": [
+15.5625,
+2.95312
+],
+"stored_cleanB_final": [
+4.125,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ethiopia",
+"b": "Switzerland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1318,
+"tB": 11676,
+"cluster": "capital:Ethiopia",
+"stored_clean_final": [
+15.5625,
+4.0625
+],
+"stored_cleanB_final": [
+5.40625,
+15.6875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Morocco",
+"b": "Belgium",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11375,
+"tB": 27713,
+"cluster": "capital:Morocco",
+"stored_clean_final": [
+16.625,
+4.53125
+],
+"stored_cleanB_final": [
+3.34375,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Morocco",
+"b": "Switzerland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11375,
+"tB": 11676,
+"cluster": "capital:Morocco",
+"stored_clean_final": [
+16.625,
+3.625
+],
+"stored_cleanB_final": [
+4.15625,
+15.6875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Morocco",
+"b": "Romania",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11375,
+"tB": 28246,
+"cluster": "capital:Morocco",
+"stored_clean_final": [
+16.625,
+2.875
+],
+"stored_cleanB_final": [
+6.53125,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Belgium",
+"b": "Switzerland",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 27713,
+"tB": 11676,
+"cluster": "capital:Belgium",
+"stored_clean_final": [
+16.0,
+7.4375
+],
+"stored_cleanB_final": [
+8.125,
+15.6875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Belgium",
+"b": "Romania",
+"half": "heldout",
+"pos": [
+3
+],
+"T": 5,
+"tA": 27713,
+"tB": 28246,
+"cluster": "capital:Belgium",
+"stored_clean_final": [
+16.0,
+5.75
+],
+"stored_cleanB_final": [
+7.28125,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Berlin",
+"b": "Cairo",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4521,
+"tB": 4754,
+"cluster": "city:Berlin",
+"stored_clean_final": [
+15.8125,
+5.96875
+],
+"stored_cleanB_final": [
+8.6875,
+14.0625
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Madrid",
+"b": "Beijing",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 7476,
+"tB": 3275,
+"cluster": "city:Madrid",
+"stored_clean_final": [
+14.875,
+8.1875
+],
+"stored_cleanB_final": [
+5.21875,
+15.25
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Moscow",
+"b": "Cairo",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 6054,
+"tB": 4754,
+"cluster": "city:Moscow",
+"stored_clean_final": [
+15.5625,
+5.8125
+],
+"stored_cleanB_final": [
+9.5625,
+14.0625
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Moscow",
+"b": "Athens",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 6054,
+"tB": 10040,
+"cluster": "city:Moscow",
+"stored_clean_final": [
+15.5625,
+5.3125
+],
+"stored_cleanB_final": [
+5.28125,
+15.125
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Lima",
+"b": "Toronto",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 17093,
+"tB": 4004,
+"cluster": "city:Lima",
+"stored_clean_final": [
+16.125,
+7.3125
+],
+"stored_cleanB_final": [
+4.34375,
+16.625
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Bangkok",
+"b": "Sydney",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 16704,
+"tB": 4617,
+"cluster": "city:Bangkok",
+"stored_clean_final": [
+16.125,
+7.1875
+],
+"stored_cleanB_final": [
+3.0,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Osaka",
+"b": "Istanbul",
+"half": "heldout",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3085,
+"tB": 11011,
+"cluster": "city:Osaka",
+"stored_clean_final": [
+13.9375,
+6.84375
+],
+"stored_cleanB_final": [
+8.0625,
+17.375
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Shanghai",
+"b": "Manchester",
+"half": "heldout",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 3275,
+"tB": 3996,
+"cluster": "city:Shanghai",
+"stored_clean_final": [
+14.75,
+7.96875
+],
+"stored_cleanB_final": [
+6.78125,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "France",
+"b": "Russia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7042,
+"tB": 15651,
+"cluster": "capital:France",
+"stored_clean_final": [
+15.6875,
+5.0
+],
+"stored_cleanB_final": [
+7.71875,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Italy",
+"b": "Russia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 7268,
+"tB": 15651,
+"cluster": "capital:Italy",
+"stored_clean_final": [
+15.1875,
+4.3125
+],
+"stored_cleanB_final": [
+5.03125,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Japan",
+"b": "Germany",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 19081,
+"tB": 11452,
+"cluster": "capital:Japan",
+"stored_clean_final": [
+15.8125,
+7.28125
+],
+"stored_cleanB_final": [
+6.0625,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Germany",
+"b": "Russia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11452,
+"tB": 15651,
+"cluster": "capital:Germany",
+"stored_clean_final": [
+16.125,
+5.5
+],
+"stored_cleanB_final": [
+7.65625,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Germany",
+"b": "England",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11452,
+"tB": 4528,
+"cluster": "capital:Germany",
+"stored_clean_final": [
+16.125,
+7.5625
+],
+"stored_cleanB_final": [
+8.875,
+15.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Spain",
+"b": "Greece",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28030,
+"tB": 18793,
+"cluster": "capital:Spain",
+"stored_clean_final": [
+15.5625,
+6.21875
+],
+"stored_cleanB_final": [
+7.0625,
+15.1875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Russia",
+"b": "England",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 15651,
+"tB": 4528,
+"cluster": "capital:Russia",
+"stored_clean_final": [
+14.8125,
+8.3125
+],
+"stored_cleanB_final": [
+5.03125,
+15.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Russia",
+"b": "Greece",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 15651,
+"tB": 18793,
+"cluster": "capital:Russia",
+"stored_clean_final": [
+14.8125,
+3.76562
+],
+"stored_cleanB_final": [
+4.53125,
+15.1875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Egypt",
+"b": "England",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 29017,
+"tB": 4528,
+"cluster": "capital:Egypt",
+"stored_clean_final": [
+15.625,
+7.1875
+],
+"stored_cleanB_final": [
+5.5,
+15.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "England",
+"b": "Greece",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 4528,
+"tB": 18793,
+"cluster": "capital:England",
+"stored_clean_final": [
+15.8125,
+7.09375
+],
+"stored_cleanB_final": [
+7.90625,
+15.1875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "England",
+"b": "Norway",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 4528,
+"tB": 41730,
+"cluster": "capital:England",
+"stored_clean_final": [
+15.8125,
+5.46875
+],
+"stored_cleanB_final": [
+8.0,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "China",
+"b": "Portugal",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18921,
+"tB": 42944,
+"cluster": "capital:China",
+"stored_clean_final": [
+15.5625,
+2.51562
+],
+"stored_cleanB_final": [
+6.6875,
+14.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Greece",
+"b": "Norway",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18793,
+"tB": 41730,
+"cluster": "capital:Greece",
+"stored_clean_final": [
+15.1875,
+4.6875
+],
+"stored_cleanB_final": [
+5.34375,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Greece",
+"b": "Portugal",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18793,
+"tB": 42944,
+"cluster": "capital:Greece",
+"stored_clean_final": [
+15.1875,
+7.0
+],
+"stored_cleanB_final": [
+5.59375,
+14.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Austria",
+"b": "Norway",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18252,
+"tB": 41730,
+"cluster": "capital:Austria",
+"stored_clean_final": [
+16.0,
+4.5
+],
+"stored_cleanB_final": [
+7.71875,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Norway",
+"b": "Portugal",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 41730,
+"tB": 42944,
+"cluster": "capital:Norway",
+"stored_clean_final": [
+16.125,
+6.46875
+],
+"stored_cleanB_final": [
+6.9375,
+14.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Norway",
+"b": "Sweden",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 41730,
+"tB": 31473,
+"cluster": "capital:Norway",
+"stored_clean_final": [
+16.125,
+12.625
+],
+"stored_cleanB_final": [
+9.6875,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ireland",
+"b": "Peru",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22231,
+"tB": 40781,
+"cluster": "capital:Ireland",
+"stored_clean_final": [
+15.9375,
+2.5
+],
+"stored_cleanB_final": [
+1.94531,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Portugal",
+"b": "Sweden",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42944,
+"tB": 31473,
+"cluster": "capital:Portugal",
+"stored_clean_final": [
+14.75,
+4.90625
+],
+"stored_cleanB_final": [
+5.625,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Portugal",
+"b": "Peru",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42944,
+"tB": 40781,
+"cluster": "capital:Portugal",
+"stored_clean_final": [
+14.75,
+6.21875
+],
+"stored_cleanB_final": [
+7.59375,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Poland",
+"b": "Sweden",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28918,
+"tB": 31473,
+"cluster": "capital:Poland",
+"stored_clean_final": [
+15.75,
+6.25
+],
+"stored_cleanB_final": [
+5.625,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Sweden",
+"b": "Peru",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31473,
+"tB": 40781,
+"cluster": "capital:Sweden",
+"stored_clean_final": [
+16.25,
+2.59375
+],
+"stored_cleanB_final": [
+4.3125,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Sweden",
+"b": "Thailand",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31473,
+"tB": 10447,
+"cluster": "capital:Sweden",
+"stored_clean_final": [
+16.25,
+5.5
+],
+"stored_cleanB_final": [
+7.34375,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Kenya",
+"b": "Denmark",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 44710,
+"tB": 27101,
+"cluster": "capital:Kenya",
+"stored_clean_final": [
+17.0,
+3.28125
+],
+"stored_cleanB_final": [
+4.84375,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Peru",
+"b": "Thailand",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40781,
+"tB": 10447,
+"cluster": "capital:Peru",
+"stored_clean_final": [
+16.0,
+4.875
+],
+"stored_cleanB_final": [
+3.59375,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Peru",
+"b": "Denmark",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40781,
+"tB": 27101,
+"cluster": "capital:Peru",
+"stored_clean_final": [
+16.0,
+3.07812
+],
+"stored_cleanB_final": [
+1.36719,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Cuba",
+"b": "Thailand",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47001,
+"tB": 10447,
+"cluster": "capital:Cuba",
+"stored_clean_final": [
+15.5625,
+4.125
+],
+"stored_cleanB_final": [
+2.9375,
+16.125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Thailand",
+"b": "Denmark",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 10447,
+"tB": 27101,
+"cluster": "capital:Thailand",
+"stored_clean_final": [
+16.125,
+4.59375
+],
+"stored_cleanB_final": [
+6.4375,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Hungary",
+"b": "Denmark",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47539,
+"tB": 27101,
+"cluster": "capital:Hungary",
+"stored_clean_final": [
+15.875,
+5.15625
+],
+"stored_cleanB_final": [
+6.6875,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Hungary",
+"b": "Iraq",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 47539,
+"tB": 34637,
+"cluster": "capital:Hungary",
+"stored_clean_final": [
+15.875,
+1.82031
+],
+"stored_cleanB_final": [
+2.125,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Denmark",
+"b": "Iraq",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 27101,
+"tB": 34637,
+"cluster": "capital:Denmark",
+"stored_clean_final": [
+16.25,
+-0.60938
+],
+"stored_cleanB_final": [
+1.8125,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Finland",
+"b": "Iraq",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42398,
+"tB": 34637,
+"cluster": "capital:Finland",
+"stored_clean_final": [
+16.125,
+-0.49414
+],
+"stored_cleanB_final": [
+-0.0376,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Finland",
+"b": "Lebanon",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 42398,
+"tB": 1934,
+"cluster": "capital:Finland",
+"stored_clean_final": [
+16.125,
+2.35938
+],
+"stored_cleanB_final": [
+1.29688,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iran",
+"b": "Iraq",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40308,
+"tB": 34637,
+"cluster": "capital:Iran",
+"stored_clean_final": [
+15.1875,
+9.0625
+],
+"stored_cleanB_final": [
+6.46875,
+15.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iran",
+"b": "Lebanon",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40308,
+"tB": 1934,
+"cluster": "capital:Iran",
+"stored_clean_final": [
+15.1875,
+7.125
+],
+"stored_cleanB_final": [
+6.375,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iran",
+"b": "Argentina",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40308,
+"tB": 38081,
+"cluster": "capital:Iran",
+"stored_clean_final": [
+15.1875,
+2.84375
+],
+"stored_cleanB_final": [
+1.71094,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iraq",
+"b": "Lebanon",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 34637,
+"tB": 1934,
+"cluster": "capital:Iraq",
+"stored_clean_final": [
+15.5,
+7.46875
+],
+"stored_cleanB_final": [
+7.0625,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Iraq",
+"b": "Argentina",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 34637,
+"tB": 38081,
+"cluster": "capital:Iraq",
+"stored_clean_final": [
+15.5,
+1.35156
+],
+"stored_cleanB_final": [
+2.67188,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Syria",
+"b": "Lebanon",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35686,
+"tB": 1934,
+"cluster": "capital:Syria",
+"stored_clean_final": [
+15.3125,
+8.9375
+],
+"stored_cleanB_final": [
+9.9375,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Syria",
+"b": "Argentina",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35686,
+"tB": 38081,
+"cluster": "capital:Syria",
+"stored_clean_final": [
+15.3125,
+0.96484
+],
+"stored_cleanB_final": [
+3.75,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Syria",
+"b": "Mexico",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35686,
+"tB": 5647,
+"cluster": "capital:Syria",
+"stored_clean_final": [
+15.3125,
+0.63281
+],
+"stored_cleanB_final": [
+1.125,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Lebanon",
+"b": "Argentina",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1934,
+"tB": 38081,
+"cluster": "capital:Lebanon",
+"stored_clean_final": [
+14.8125,
+0.85547
+],
+"stored_cleanB_final": [
+6.25,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Lebanon",
+"b": "Mexico",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1934,
+"tB": 5647,
+"cluster": "capital:Lebanon",
+"stored_clean_final": [
+14.8125,
+0.52344
+],
+"stored_cleanB_final": [
+3.60938,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Chile",
+"b": "Argentina",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 32689,
+"tB": 38081,
+"cluster": "capital:Chile",
+"stored_clean_final": [
+15.0,
+9.5625
+],
+"stored_cleanB_final": [
+9.9375,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Chile",
+"b": "Mexico",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 32689,
+"tB": 5647,
+"cluster": "capital:Chile",
+"stored_clean_final": [
+15.0,
+6.40625
+],
+"stored_cleanB_final": [
+7.03125,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Chile",
+"b": "Australia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 32689,
+"tB": 40136,
+"cluster": "capital:Chile",
+"stored_clean_final": [
+15.0,
+6.1875
+],
+"stored_cleanB_final": [
+4.34375,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Argentina",
+"b": "Mexico",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 38081,
+"tB": 5647,
+"cluster": "capital:Argentina",
+"stored_clean_final": [
+16.0,
+7.0625
+],
+"stored_cleanB_final": [
+8.5,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Argentina",
+"b": "Australia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 38081,
+"tB": 40136,
+"cluster": "capital:Argentina",
+"stored_clean_final": [
+16.0,
+7.46875
+],
+"stored_cleanB_final": [
+5.09375,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Colombia",
+"b": "Mexico",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28184,
+"tB": 5647,
+"cluster": "capital:Colombia",
+"stored_clean_final": [
+16.125,
+6.78125
+],
+"stored_cleanB_final": [
+7.0625,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Colombia",
+"b": "Australia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28184,
+"tB": 40136,
+"cluster": "capital:Colombia",
+"stored_clean_final": [
+16.125,
+2.375
+],
+"stored_cleanB_final": [
+4.71875,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Colombia",
+"b": "Pakistan",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 28184,
+"tB": 5048,
+"cluster": "capital:Colombia",
+"stored_clean_final": [
+16.125,
+3.04688
+],
+"stored_cleanB_final": [
+2.0625,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Mexico",
+"b": "Australia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5647,
+"tB": 40136,
+"cluster": "capital:Mexico",
+"stored_clean_final": [
+15.75,
+3.90625
+],
+"stored_cleanB_final": [
+2.15625,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Mexico",
+"b": "Pakistan",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5647,
+"tB": 5048,
+"cluster": "capital:Mexico",
+"stored_clean_final": [
+15.75,
+1.64844
+],
+"stored_cleanB_final": [
+1.89062,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Canada",
+"b": "Australia",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 25771,
+"tB": 40136,
+"cluster": "capital:Canada",
+"stored_clean_final": [
+15.5,
+8.6875
+],
+"stored_cleanB_final": [
+7.5,
+16.25
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Canada",
+"b": "Pakistan",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 25771,
+"tB": 5048,
+"cluster": "capital:Canada",
+"stored_clean_final": [
+15.5,
+1.97656
+],
+"stored_cleanB_final": [
+5.71875,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Canada",
+"b": "Vietnam",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 25771,
+"tB": 407,
+"cluster": "capital:Canada",
+"stored_clean_final": [
+15.5,
+4.8125
+],
+"stored_cleanB_final": [
+2.90625,
+14.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Australia",
+"b": "Pakistan",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40136,
+"tB": 5048,
+"cluster": "capital:Australia",
+"stored_clean_final": [
+16.25,
+3.54688
+],
+"stored_cleanB_final": [
+7.375,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Australia",
+"b": "Vietnam",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 40136,
+"tB": 407,
+"cluster": "capital:Australia",
+"stored_clean_final": [
+16.25,
+4.46875
+],
+"stored_cleanB_final": [
+5.4375,
+14.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "India",
+"b": "Pakistan",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1315,
+"tB": 5048,
+"cluster": "capital:India",
+"stored_clean_final": [
+14.875,
+5.34375
+],
+"stored_cleanB_final": [
+8.875,
+16.0
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "India",
+"b": "Vietnam",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1315,
+"tB": 407,
+"cluster": "capital:India",
+"stored_clean_final": [
+14.875,
+5.90625
+],
+"stored_cleanB_final": [
+5.15625,
+14.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "India",
+"b": "Philippines",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1315,
+"tB": 35288,
+"cluster": "capital:India",
+"stored_clean_final": [
+14.875,
+3.78125
+],
+"stored_cleanB_final": [
+6.59375,
+13.375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Pakistan",
+"b": "Vietnam",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5048,
+"tB": 407,
+"cluster": "capital:Pakistan",
+"stored_clean_final": [
+16.0,
+5.5625
+],
+"stored_cleanB_final": [
+3.03125,
+14.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Pakistan",
+"b": "Philippines",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 5048,
+"tB": 35288,
+"cluster": "capital:Pakistan",
+"stored_clean_final": [
+16.0,
+5.96875
+],
+"stored_cleanB_final": [
+4.84375,
+13.375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Bangladesh",
+"b": "Vietnam",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18386,
+"tB": 407,
+"cluster": "capital:Bangladesh",
+"stored_clean_final": [
+15.9375,
+5.0
+],
+"stored_cleanB_final": [
+5.09375,
+14.5625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Bangladesh",
+"b": "Philippines",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18386,
+"tB": 35288,
+"cluster": "capital:Bangladesh",
+"stored_clean_final": [
+15.9375,
+3.01562
+],
+"stored_cleanB_final": [
+4.25,
+13.375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Bangladesh",
+"b": "Ghana",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 18386,
+"tB": 6698,
+"cluster": "capital:Bangladesh",
+"stored_clean_final": [
+15.9375,
+5.96875
+],
+"stored_cleanB_final": [
+0.27734,
+16.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Vietnam",
+"b": "Philippines",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 407,
+"tB": 35288,
+"cluster": "capital:Vietnam",
+"stored_clean_final": [
+14.5625,
+5.28125
+],
+"stored_cleanB_final": [
+5.40625,
+13.375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Vietnam",
+"b": "Ghana",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 407,
+"tB": 6698,
+"cluster": "capital:Vietnam",
+"stored_clean_final": [
+14.5625,
+5.375
+],
+"stored_cleanB_final": [
+5.71875,
+16.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Indonesia",
+"b": "Philippines",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31618,
+"tB": 35288,
+"cluster": "capital:Indonesia",
+"stored_clean_final": [
+16.25,
+6.65625
+],
+"stored_cleanB_final": [
+6.78125,
+13.375
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Indonesia",
+"b": "Ghana",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31618,
+"tB": 6698,
+"cluster": "capital:Indonesia",
+"stored_clean_final": [
+16.25,
+4.625
+],
+"stored_cleanB_final": [
+3.84375,
+16.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Indonesia",
+"b": "Morocco",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 31618,
+"tB": 11375,
+"cluster": "capital:Indonesia",
+"stored_clean_final": [
+16.25,
+5.5
+],
+"stored_cleanB_final": [
+1.83594,
+16.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Philippines",
+"b": "Ghana",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35288,
+"tB": 6698,
+"cluster": "capital:Philippines",
+"stored_clean_final": [
+13.375,
+4.46875
+],
+"stored_cleanB_final": [
+0.75781,
+16.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Philippines",
+"b": "Morocco",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 35288,
+"tB": 11375,
+"cluster": "capital:Philippines",
+"stored_clean_final": [
+13.375,
+4.65625
+],
+"stored_cleanB_final": [
+1.82031,
+16.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Nigeria",
+"b": "Ghana",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22330,
+"tB": 6698,
+"cluster": "capital:Nigeria",
+"stored_clean_final": [
+17.5,
+8.4375
+],
+"stored_cleanB_final": [
+7.625,
+16.5
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Nigeria",
+"b": "Morocco",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22330,
+"tB": 11375,
+"cluster": "capital:Nigeria",
+"stored_clean_final": [
+17.5,
+4.5625
+],
+"stored_cleanB_final": [
+5.25,
+16.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Nigeria",
+"b": "Netherlands",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 22330,
+"tB": 23289,
+"cluster": "capital:Nigeria",
+"stored_clean_final": [
+17.5,
+3.54688
+],
+"stored_cleanB_final": [
+2.98438,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ghana",
+"b": "Morocco",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 6698,
+"tB": 11375,
+"cluster": "capital:Ghana",
+"stored_clean_final": [
+16.5,
+3.03125
+],
+"stored_cleanB_final": [
+3.5,
+16.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ghana",
+"b": "Netherlands",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 6698,
+"tB": 23289,
+"cluster": "capital:Ghana",
+"stored_clean_final": [
+16.5,
+3.90625
+],
+"stored_cleanB_final": [
+2.51562,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ethiopia",
+"b": "Morocco",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1318,
+"tB": 11375,
+"cluster": "capital:Ethiopia",
+"stored_clean_final": [
+15.5625,
+7.59375
+],
+"stored_cleanB_final": [
+6.03125,
+16.625
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Ethiopia",
+"b": "Netherlands",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 1318,
+"tB": 23289,
+"cluster": "capital:Ethiopia",
+"stored_clean_final": [
+15.5625,
+2.34375
+],
+"stored_cleanB_final": [
+3.8125,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Morocco",
+"b": "Netherlands",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11375,
+"tB": 23289,
+"cluster": "capital:Morocco",
+"stored_clean_final": [
+16.625,
+3.73438
+],
+"stored_cleanB_final": [
+4.375,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Belgium",
+"b": "Netherlands",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 27713,
+"tB": 23289,
+"cluster": "capital:Belgium",
+"stored_clean_final": [
+16.0,
+11.8125
+],
+"stored_cleanB_final": [
+9.625,
+15.75
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Netherlands",
+"b": "Switzerland",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 23289,
+"tB": 11676,
+"cluster": "capital:Netherlands",
+"stored_clean_final": [
+15.75,
+5.59375
+],
+"stored_cleanB_final": [
+4.25,
+15.6875
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Netherlands",
+"b": "Romania",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 23289,
+"tB": 28246,
+"cluster": "capital:Netherlands",
+"stored_clean_final": [
+15.75,
+3.28125
+],
+"stored_cleanB_final": [
+3.5,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "capital",
+"a": "Switzerland",
+"b": "Romania",
+"half": "dev",
+"pos": [
+3
+],
+"T": 5,
+"tA": 11676,
+"tB": 28246,
+"cluster": "capital:Switzerland",
+"stored_clean_final": [
+15.6875,
+6.21875
+],
+"stored_cleanB_final": [
+5.46875,
+14.8125
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Madrid",
+"b": "Athens",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 7476,
+"tB": 10040,
+"cluster": "city:Madrid",
+"stored_clean_final": [
+14.875,
+7.5625
+],
+"stored_cleanB_final": [
+7.28125,
+15.125
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Moscow",
+"b": "Vienna",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 6054,
+"tB": 14171,
+"cluster": "city:Moscow",
+"stored_clean_final": [
+15.5625,
+5.875
+],
+"stored_cleanB_final": [
+9.0625,
+16.75
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Cairo",
+"b": "Athens",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 4754,
+"tB": 10040,
+"cluster": "city:Cairo",
+"stored_clean_final": [
+14.0625,
+9.5
+],
+"stored_cleanB_final": [
+8.6875,
+15.125
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Beijing",
+"b": "Vienna",
+"half": "dev",
+"pos": [
+0,
+1
+],
+"T": 9,
+"tA": 3275,
+"tB": 14171,
+"cluster": "city:Beijing",
+"stored_clean_final": [
+15.25,
+6.4375
+],
+"stored_cleanB_final": [
+7.71875,
+16.75
+]
+},
+{
+"src": "new",
+"rel": "city",
+"a": "Munich",
+"b": "Barcelona",
+"half": "dev",
+"pos": [
+0,
+1,
+2
+],
+"T": 10,
+"tA": 4521,
+"tB": 7476,
+"cluster": "city:Munich",
+"stored_clean_final": [
+13.8125,
+7.40625
+],
+"stored_cleanB_final": [
+8.5625,
+16.375
+]
+}
+]
+}

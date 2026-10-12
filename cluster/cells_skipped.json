@@ -7,9 +7,9 @@
  },
  "scope": "C and D cards are enumerated over the RA-20 item 2 model list (18 checkpoints), except the loop trace and the sentiment rows, where the manifest names the models. Manifest cells marked done are not listed.",
  "counts": {
-  "total": 139,
+  "total": 121,
   "by_reason": {
-   "time": 132,
+   "time": 114,
    "design": 1,
    "ability": 6
   }
@@ -263,19 +263,8 @@
    "dataset": "SVAMP_gen",
    "dataset_label": "SVAMP generation pairs",
    "reason": "time",
-   "script": "loopedcot/prod/steer_gen.py (or the RA-19 raven generation path)",
-   "why": "cluster/pilot/steer_gen_raven.py runs the McLeish path on the GSM8K pairs only; no SVAMP setting is built"
-  },
-  {
-   "grid": "A",
-   "card": "generation placement",
-   "model": "huginn_0125",
-   "model_label": "Huginn K32",
-   "dataset": "SVAMP_gen",
-   "dataset_label": "SVAMP generation pairs",
-   "reason": "time",
-   "script": "loopedcot/prod/steer_gen.py (or the RA-19 raven generation path)",
-   "why": "no generation script loads McLeish or Huginn today; the RA-19 path is not in the repo or on either host"
+   "script": "cluster/pilot/steer_gen_raven.py",
+   "why": "no McLeish SETTLE k32 SVAMP cells exist: the McLeish setting is the GSM8K setting with SETTLE's k32 cells as the pre-filter, so the SVAMP setting cannot be built from shipped data (B-EXT5)"
   },
   {
    "grid": "A",
@@ -328,50 +317,6 @@
    "card": "edit-site map",
    "model": "ouro_2_6b_think",
    "model_label": "Ouro 2.6B Thinking",
-   "dataset": "D1",
-   "dataset_label": "facts (capital, city)",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ouro.py",
-   "why": "REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ouro_2_6b_think",
-   "model_label": "Ouro 2.6B Thinking",
-   "dataset": "D2",
-   "dataset_label": "addition",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ouro.py",
-   "why": "REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ouro_2_6b_think",
-   "model_label": "Ouro 2.6B Thinking",
-   "dataset": "D4",
-   "dataset_label": "code (read, sum)",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ouro.py",
-   "why": "REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ouro_2_6b_think",
-   "model_label": "Ouro 2.6B Thinking",
-   "dataset": "D5",
-   "dataset_label": "two-step math",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ouro.py",
-   "why": "REPOS has ouro, ouro26, ouro_think only; ouro26_think raises KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ouro_2_6b_think",
-   "model_label": "Ouro 2.6B Thinking",
    "dataset": "CF",
    "dataset_label": "CounterFact",
    "reason": "time",
@@ -548,39 +493,6 @@
    "card": "edit-site map",
    "model": "ifm_p2m_r5",
    "model_label": "819M design fixed-r5",
-   "dataset": "D2",
-   "dataset_label": "addition",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_r5",
-   "model_label": "819M design fixed-r5",
-   "dataset": "D4",
-   "dataset_label": "code (read, sum)",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_r5",
-   "model_label": "819M design fixed-r5",
-   "dataset": "D5",
-   "dataset_label": "two-step math",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_r5",
-   "model_label": "819M design fixed-r5",
    "dataset": "CF",
    "dataset_label": "CounterFact",
    "reason": "time",
@@ -592,99 +504,11 @@
    "card": "edit-site map",
    "model": "ifm_p2m_ortho",
    "model_label": "819M design orthoinj",
-   "dataset": "D2",
-   "dataset_label": "addition",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_ortho",
-   "model_label": "819M design orthoinj",
-   "dataset": "D4",
-   "dataset_label": "code (read, sum)",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_ortho",
-   "model_label": "819M design orthoinj",
-   "dataset": "D5",
-   "dataset_label": "two-step math",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_ortho",
-   "model_label": "819M design orthoinj",
    "dataset": "CF",
    "dataset_label": "CounterFact",
    "reason": "time",
    "script": "loop-flow/src/k16_path_ifm.py",
    "why": "no listed edit-site script accepts CF for this model (k16_path_ouro / k16_path_ifm: D1, D2, D4, D5 only)"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_d28",
-   "model_label": "d28",
-   "dataset": "D1",
-   "dataset_label": "facts (capital, city)",
-   "reason": "time",
-   "script": "loop-flow/src/k15_full.py",
-   "why": "k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_d28",
-   "model_label": "d28",
-   "dataset": "D2",
-   "dataset_label": "addition",
-   "reason": "time",
-   "script": "loop-flow/src/k15_full.py",
-   "why": "k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_d28",
-   "model_label": "d28",
-   "dataset": "D4",
-   "dataset_label": "code (read, sum)",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_d28",
-   "model_label": "d28",
-   "dataset": "D5",
-   "dataset_label": "two-step math",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "ARMS has ifm_p1_ouro, ifm_p1_ouro_inj, ifm_p1_mid, ifm_p1_mid_inj, ifm_p2m_diag, ifm_d112 only; other names raise KeyError"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_d28",
-   "model_label": "d28",
-   "dataset": "CF",
-   "dataset_label": "CounterFact",
-   "reason": "time",
-   "script": "loop-flow/src/k15_full.py",
-   "why": "k15_full.py runs ifm_d28 (k15_smoke.IfmM loads it), but its summarize keeps the models of MODEL_ORDER only (ouro, ouro26, ifm_p1_ouro, ifm_p1_ouro_inj, ifm_d112), so d28 records get no checks.json entry and no results rows; adding ifm_d28 to MODEL_ORDER is a code change outside the cluster-copy patch rules"
   },
   {
    "grid": "B",
@@ -1539,30 +1363,6 @@
   },
   {
    "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_diag",
-   "model_label": "819M design fixed-pln5",
-   "dataset": "D4",
-   "dataset_label": "code (read, sum)",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "no edit-site route: k15_pairs.py runs D1 (and D2) only; k16_path_ifm.py runs arm Y2 only on ifm_p2m_diag and the pilot ran it on D1 and D2, never on D4 or D5 (no d45 record); gen_jobs.py routes it on D2 only",
-   "note": "manifest status: run; was 'pending, no route' in jobs/cells.csv"
-  },
-  {
-   "grid": "B",
-   "card": "edit-site map",
-   "model": "ifm_p2m_diag",
-   "model_label": "819M design fixed-pln5",
-   "dataset": "D5",
-   "dataset_label": "two-step math",
-   "reason": "time",
-   "script": "loop-flow/src/k16_path_ifm.py",
-   "why": "same as D4: no pilot route for two-step math on ifm_p2m_diag",
-   "note": "manifest status: run; was 'pending, no route' in jobs/cells.csv"
-  },
-  {
-   "grid": "B",
    "card": "loops against depth",
    "model": "mcleish_llama32_r32",
    "model_label": "McLeish r32",
@@ -1794,6 +1594,158 @@
    "dataset": "GSM8K_gen",
    "change": "removed (now routed)",
    "why": "cluster extension item 4: steer_gen_raven.py --setting hug (prep shipped in cluster/pilot/data/huginn_setting)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_d28",
+   "dataset": "D1",
+   "change": "removed from the skip list",
+   "why": "now routed to k15_full.py (B-EXT5 fill, group g17_fillmap): MODEL_ORDER keeps ifm_d28; D4 and D5 run in the same process through --datasets and --data_dir (k16_path_ifm's rows)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_d28",
+   "dataset": "CF",
+   "change": "removed from the skip list",
+   "why": "now routed to k15_full.py (B-EXT5 fill, group g17_fillmap): MODEL_ORDER keeps ifm_d28; D4 and D5 run in the same process through --datasets and --data_dir (k16_path_ifm's rows)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_d28",
+   "dataset": "D2",
+   "change": "removed from the skip list",
+   "why": "now routed to k15_full.py (B-EXT5 fill, group g17_fillmap): MODEL_ORDER keeps ifm_d28; D4 and D5 run in the same process through --datasets and --data_dir (k16_path_ifm's rows)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_d28",
+   "dataset": "D4",
+   "change": "removed from the skip list",
+   "why": "now routed to k15_full.py (B-EXT5 fill, group g17_fillmap): MODEL_ORDER keeps ifm_d28; D4 and D5 run in the same process through --datasets and --data_dir (k16_path_ifm's rows)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_d28",
+   "dataset": "D5",
+   "change": "removed from the skip list",
+   "why": "now routed to k15_full.py (B-EXT5 fill, group g17_fillmap): MODEL_ORDER keeps ifm_d28; D4 and D5 run in the same process through --datasets and --data_dir (k16_path_ifm's rows)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ouro_2_6b_think",
+   "dataset": "D1",
+   "change": "removed from the skip list",
+   "why": "now routed to k17_public.py (B-EXT5 fill, group g17_fillmap: the ouro_think run on the 2.6B checkpoint, model key ouro26_think)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ouro_2_6b_think",
+   "dataset": "D2",
+   "change": "removed from the skip list",
+   "why": "now routed to k17_public.py (B-EXT5 fill, group g17_fillmap: the ouro_think run on the 2.6B checkpoint, model key ouro26_think)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ouro_2_6b_think",
+   "dataset": "D4",
+   "change": "removed from the skip list",
+   "why": "now routed to k17_public.py (B-EXT5 fill, group g17_fillmap: the ouro_think run on the 2.6B checkpoint, model key ouro26_think)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ouro_2_6b_think",
+   "dataset": "D5",
+   "change": "removed from the skip list",
+   "why": "now routed to the k16_path_ouro folder C/k16_path_ouro/ouro26_think_D5 (B-EXT5 fill, no new job): its command is the one of Ouro-1.4B-Thinking's D5 edit-site job, with ouro26_think"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_r5",
+   "dataset": "D2",
+   "change": "removed from the skip list",
+   "why": "now routed to k16_path_ifm.py --arms Y1 (B-EXT5 fill, group g17_fillmap; ARMS and HUGINN list the model), folder <model>_<ds>_y1"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_r5",
+   "dataset": "D4",
+   "change": "removed from the skip list",
+   "why": "now routed to k16_path_ifm.py --arms Y1 (B-EXT5 fill, group g17_fillmap; ARMS and HUGINN list the model), folder <model>_<ds>_y1"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_r5",
+   "dataset": "D5",
+   "change": "removed from the skip list",
+   "why": "now routed to k16_path_ifm.py --arms Y1 (B-EXT5 fill, group g17_fillmap; ARMS and HUGINN list the model), folder <model>_<ds>_y1"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_ortho",
+   "dataset": "D2",
+   "change": "removed from the skip list",
+   "why": "same as ifm_p2m_r5"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_ortho",
+   "dataset": "D4",
+   "change": "removed from the skip list",
+   "why": "same as ifm_p2m_r5"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_ortho",
+   "dataset": "D5",
+   "change": "removed from the skip list",
+   "why": "same as ifm_p2m_r5"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_diag",
+   "dataset": "D4",
+   "change": "removed from the skip list",
+   "why": "now routed to k16_path_ifm.py --arms Y1 (B-EXT5 fill, group g17_fillmap), folder <model>_<ds>_y1"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "edit-site map",
+   "model": "ifm_p2m_diag",
+   "dataset": "D5",
+   "change": "removed from the skip list",
+   "why": "now routed to k16_path_ifm.py --arms Y1 (B-EXT5 fill, group g17_fillmap), folder <model>_<ds>_y1"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "generation placement",
+   "model": "huginn_0125",
+   "dataset": "SVAMP_gen",
+   "change": "removed from the skip list",
+   "why": "now routed to steer_gen_raven.py setting hug_svamp (B-EXT5 fill, group g18_fillgen; Huginn's SETTLE k32 SVAMP cells shipped in cluster/data)"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "generation placement",
+   "model": "mcleish_llama32_r32",
+   "dataset": "SVAMP_gen",
+   "change": "reason text updated",
+   "why": "the skip stays: no McLeish SETTLE k32 SVAMP cells exist (B-EXT5)"
   }
  ]
 }

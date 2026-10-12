@@ -42,6 +42,11 @@ LOCAL_RUNS = {"B/k17_varbench/ouro": "g1_copy", "B/k17_varbench/ouro26": "g1_cop
               "C/k17_freeze/ouro26_think_D1": "ra20_tail2", "C/k17_freeze/ouro26_think_D2": "ra20_tail2"}
 
 
+# the folder the merge reads when it differs from the local run's folder: ifm_p1_ouro's k15_full cells read the
+# Figure 2 grid rerun (gen_jobs.K15F_GRID), the same command into <model>_grid
+MERGE_DIR = {"B/k15_full/ifm_p1_ouro": "B/k15_full/ifm_p1_ouro_grid"}
+
+
 def _merge(out, *extra):
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
     env.pop("ALLOW_HOME", None)
@@ -119,6 +124,38 @@ def test_merge_keeps_by_product_lre_and_unclaimed_rows(tmp_path):
     assert cnt[("ouro_think", "facts", "D1")] == 1 and cnt[("ouro_think", "lre", "LRE")] == 1
 
 
+def test_ifm_varbench_reads_round1_folder_without_v1(tmp_path):
+    """B-EXT5 item 3: the IFM GSM8K copy and derived cells route to <key>_v1. With no _v1 folder (or no results.csv
+    in it) the round-1 folder is read: its copy rows and V6 derived rows reach results_all_B and the cells are done
+    with the round-1 note; a model whose _v1 folder holds results reads _v1 only."""
+    out = tmp_path / "out"
+    vb = "k17_varbench.py"
+    r1 = [(vb, "edit_site_map", "gsm8k_copy", a) for a in ("O1", "O2")] + [(vb, "edit_site_map", "gsm8k_derived", "O1")]
+    _fake_job(out, "B/k17_varbench/ifm_p1_ouro", "ifm_p1_ouro", {"gsm8k_copy": 3, "gsm8k_derived": 3}, r1)
+    _fake_job(out, "B/k17_varbench/ifm_p1_ouro_inj", "ifm_p1_ouro_inj", {"gsm8k_copy": 3, "gsm8k_derived": 3}, r1)
+    os.makedirs(str(out / "B/k17_varbench/ifm_p1_ouro_inj_v1"))          # a rerun that wrote nothing yet
+    _fake_job(out, "B/k17_varbench/ifm_d112", "ifm_d112", {"gsm8k_copy": 3, "gsm8k_derived": 3}, r1)
+    _fake_job(out, "B/k17_varbench/ifm_d112_v1", "ifm_d112", {"gsm8k_copy": 3, "gsm8k_derived": 3},
+              r1 + [(vb, "edit_site_map", "gsm8k_derived", "O2")])
+    rc, lines = _merge(out, "--min_kept", "1")
+    assert rc == 0, lines
+    comp = _completeness(out)
+    for m in ("ifm_p1_ouro", "ifm_p1_ouro_inj"):
+        for ds in ("VB", "VBD"):
+            c = comp[("GSM8K copy and derived", m, ds)]
+            assert c["state"] == "done" and c["detail"].startswith("round-1 folder B/k17_varbench/%s " % m), c
+    for ds in ("VB", "VBD"):
+        c = comp[("GSM8K copy and derived", "ifm_d112", ds)]
+        assert c["state"] == "done" and "round-1" not in c["detail"], c
+    rr = _results_all(out)["B"]
+    _no_shared_key({"B": rr})
+    cnt = collections.Counter((r["model"], r["dataset"], r["cell_dataset"]) for r in rr if r["item_set"] == "own")
+    for m in ("ifm_p1_ouro", "ifm_p1_ouro_inj"):
+        assert cnt[(m, "gsm8k_copy", "VB")] == 2 and cnt[(m, "gsm8k_derived", "VBD")] == 1
+    assert cnt[("ifm_d112", "gsm8k_copy", "VB")] == 2 and cnt[("ifm_d112", "gsm8k_derived", "VBD")] == 2
+    assert MG.round1_fallback(str(out), ("vb", "B/k17_varbench/ouro", "ouro", "gsm8k_copy"))[1] == ""
+
+
 # ------------------------------------------------------------------ the local cluster runs
 @needs_artifacts
 def test_merge_keeps_every_row_of_the_local_cluster_runs(tmp_path):
@@ -126,7 +163,7 @@ def test_merge_keeps_every_row_of_the_local_cluster_runs(tmp_path):
     n_in = collections.Counter()
     for rel, run in LOCAL_RUNS.items():
         src = os.path.join(ART, "cluster_local", run, rel)
-        d = out / rel
+        d = out / MERGE_DIR.get(rel, rel)
         d.mkdir(parents=True)
         for fn in ("results.csv", "items_done.json"):
             shutil.copy(os.path.join(src, fn), str(d))
@@ -187,8 +224,11 @@ def test_merge_template_reruns_every_round():
         t = open(os.path.join(d, "task_g9_merge.sbatch"), encoding="utf-8").read()
         assert 'echo "done already: $ID"; exit 0' not in t and "running it again" in t
         assert 'touch "$OUT_ROOT/_done/$ID"' in t
+        for m6 in ("g23_e6merge", "g28_e6bmerge"):                                       # B-EXT6, B-EXT6b merges
+            t6 = open(os.path.join(d, "task_%s.sbatch" % m6), encoding="utf-8").read()
+            assert 'echo "done already: $ID"; exit 0' not in t6 and "running it again" in t6
         for g in glob.glob(os.path.join(d, "task_g*.sbatch")):
-            if not g.endswith("task_g9_merge.sbatch"):
+            if not g.endswith(("task_g9_merge.sbatch", "task_g23_e6merge.sbatch", "task_g28_e6bmerge.sbatch")):
                 assert 'echo "done already: $ID"; exit 0' in open(g, encoding="utf-8").read(), g
 
 

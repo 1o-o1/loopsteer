@@ -49,6 +49,14 @@
    "wall_hours_at_48_cards": 30.6,
    "longest_chain_hours": 30.6
   },
+  "g17_fillmap": {
+   "jobs": 31,
+   "card_hours": 32.9,
+   "card_hours_from_shared_gpu_rates": 12.7,
+   "card_hours_from_assumed_rates": 18.4,
+   "wall_hours_at_48_cards": 2.6,
+   "longest_chain_hours": 2.6
+  },
   "g3_map": {
    "jobs": 85,
    "card_hours": 106.6,
@@ -97,6 +105,14 @@
    "wall_hours_at_48_cards": 2.5,
    "longest_chain_hours": 2.5
   },
+  "g18_fillgen": {
+   "jobs": 135,
+   "card_hours": 133.0,
+   "card_hours_from_shared_gpu_rates": 132.2,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 3.2,
+   "longest_chain_hours": 3.2
+  },
   "g15_hgen": {
    "jobs": 26,
    "card_hours": 25.3,
@@ -106,12 +122,84 @@
    "longest_chain_hours": 2.2
   },
   "g16_ifmgrid": {
-   "jobs": 1,
-   "card_hours": 1.6,
-   "card_hours_from_shared_gpu_rates": 1.6,
+   "jobs": 2,
+   "card_hours": 2.7,
+   "card_hours_from_shared_gpu_rates": 2.7,
    "card_hours_from_assumed_rates": 0.0,
    "wall_hours_at_48_cards": 1.6,
    "longest_chain_hours": 1.6
+  },
+  "g19_e6ra30": {
+   "jobs": 2,
+   "card_hours": 3.6,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 3.6,
+   "longest_chain_hours": 3.6
+  },
+  "g20_e6ra29": {
+   "jobs": 4,
+   "card_hours": 2.7,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 2.1,
+   "longest_chain_hours": 2.1
+  },
+  "g21_e6ra31a": {
+   "jobs": 2,
+   "card_hours": 3.3,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 3.3,
+   "longest_chain_hours": 3.3
+  },
+  "g22_e6ra31b": {
+   "jobs": 16,
+   "card_hours": 20.1,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 1.8,
+   "longest_chain_hours": 1.8
+  },
+  "g23_e6merge": {
+   "jobs": 3,
+   "card_hours": 0.2,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 0.1,
+   "longest_chain_hours": 0.1
+  },
+  "g24_e6bra29": {
+   "jobs": 4,
+   "card_hours": 10.7,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 4.8,
+   "longest_chain_hours": 4.8
+  },
+  "g25_e6bra31t": {
+   "jobs": 4,
+   "card_hours": 4.5,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 3.0,
+   "longest_chain_hours": 3.0
+  },
+  "g26_e6bra30": {
+   "jobs": 2,
+   "card_hours": 4.1,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 4.1,
+   "longest_chain_hours": 4.1
+  },
+  "g28_e6bmerge": {
+   "jobs": 3,
+   "card_hours": 0.2,
+   "card_hours_from_shared_gpu_rates": 0.0,
+   "card_hours_from_assumed_rates": 0.0,
+   "wall_hours_at_48_cards": 0.1,
+   "longest_chain_hours": 0.1
   },
   "g9_merge": {
    "jobs": 1,
@@ -122,5 +210,5 @@
    "longest_chain_hours": 0.2
   }
  },
- "card_hours_total": 846.7
+ "card_hours_total": 1063.1
 }

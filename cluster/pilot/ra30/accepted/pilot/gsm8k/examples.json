@@ -1,0 +1,57 @@
+[
+ {
+  "chains": {
+   "clean": " The total cost of the donuts is 3 * 68 = $<<3*68=204>>204.\nThe total cost of the mini cupcakes is 2 * 80 = $<<2*80=160>>160.\nThe total cost of the mini cheesecakes is 6 * 55 = $<<6*55=330>>330.\nThe total cost of all the pastries is 204 + 160 + 330 = $<<204+160+330=694>>694.\n#### 694",
+   "cv1": " The total cost of the donuts is 3 * 68 = $<<3*68=204>>204.\nThe total cost of the mini cupcakes is 2 * 80 = $<<2*80=160>>160.\nThe total cost of the mini cheesecakes is 6 * 55 = $<<6*55=330>>228.\nThe total cost of all the pastries is 204 + 160 + 228 = $<<204+160+228=592>>592.\n#### 592",
+   "kv1": " The total cost of the donuts is 3 * 68 = $<<3*68=204>>204.\nThe total cost of the mini cupcakes is 2 * 80 = $<<2*80=160>>160.\nThe total cost of the mini cheesecakes is 6 * 55 = $<<6*55=330>>228.\nThe total cost of all the pastries is 204 + 160 + 228 = $<<204+160+228=592>>592.\n#### 592",
+   "text": " The total cost of the donuts is 3 * 68 = $<<3*68=204>>204.\nThe total cost of the mini cupcakes is 2 * 80 = $<<2*80=160>>160.\nThe total cost of the mini cheesecakes is 6 * 55 = $<<6*55=228>>228.\nThe total cost of all the pastries is 204 + 160 + 228 = $<<204+160+228=592>>592.\n#### 592"
+  },
+  "derived_A": "330",
+  "derived_B": "228",
+  "idx": 11
+ },
+ {
+  "chains": {
+   "clean": " Alex weighs 4 * 125 - 2 = <<4*125-2=498>>498 pounds.\nTheir combined weights are 125 + 498 = <<125+498=623>>623 pounds.\n#### 623",
+   "cv1": " Alex weighs 4 * 125 - 2 = <<4*125-2=498>>623 pounds.\nTheir combined weights are 125 + 623 = <<125+623=748>>748 pounds.\n#### 748",
+   "kv1": " Alex weighs 4 * 125 - 2 = <<4*125-2=498>>623 pounds.\nTheir combined weights are 125 + 623 = <<125+623=748>>748 pounds.\n#### 748",
+   "text": " Alex weighs 4 * 125 - 2 = <<4*125-2=623>>623 pounds.\nTheir combined weights are 125 + 623 = <<125+623=748>>748 pounds.\n#### 748"
+  },
+  "derived_A": "498",
+  "derived_B": "623",
+  "idx": 82
+ },
+ {
+  "chains": {
+   "clean": " Tom pays 4 * 15 = $<<4*15=60>>60 per month.\nIn a year, he pays 60 * 12 = $<<60*12=720>>720.\n#### 720",
+   "cv1": " Tom pays 4 * 15 = $<<4*15=60>>75 per month.\nIn a year, he pays 75 * 12 = $<<75*12=900>>900.\n#### 900",
+   "kv1": " Tom pays 4 * 15 = $<<4*15=60>>75 per month.\nIn a year, he pays 75 * 12 = $<<75*12=900>>900.\n#### 900",
+   "text": " Tom pays 4 * 15 = $<<4*15=75>>75 per month.\nIn a year, he pays 75 * 12 = $<<75*12=900>>900.\n#### 900"
+  },
+  "derived_A": "60",
+  "derived_B": "75",
+  "idx": 134
+ },
+ {
+  "chains": {
+   "clean": " Lloyd earns 10 x 5 = $<<10*5=50>>50 for the first week.\nHe earns 10 x 8 = $<<10*8=80>>80 for the second week.\nSo, he earned 50 + 80 = $<<50+80=130>>130 for the first two weeks.\n#### 130",
+   "cv1": " Lloyd earns 10 x 5 = $<<10*5=50>>80 for the first week.\nHe earns 10 x 8 = $<<10*8=80>>80 for the second week.\nSo, he earned 80 + 80 = $<<80+80=160>>160 for the first two weeks.\n#### 160",
+   "kv1": " Lloyd earns 10 x 5 = $<<10*5=50>>80 for the first week.\nHe earns 10 x 8 = $<<10*8=80>>80 for the second week.\nSo, he earned 80 + 80 = $<<80+80=160>>160 for the first two weeks.\n#### 160",
+   "text": " Lloyd earns 10 x 5 = $<<10*5=80>>80 for the first week.\nHe earns 10 x 8 = $<<10*8=80>>80 for the second week.\nSo, he earned 80 + 80 = $<<80+80=160>>160 for the first two weeks.\n#### 160"
+  },
+  "derived_A": "50",
+  "derived_B": "80",
+  "idx": 179
+ },
+ {
+  "chains": {
+   "clean": " The first team will run the 400 meter relay in 4 * 55 = <<4*55=220>>220 seconds.\nThe second team will run the 400 meter relay in 60 + 57 + 54 + 51 = <<60+57+54+51=222>>222 seconds.\nThe faster team will win by 222 - 220 = <<222-220=2>>2 seconds.\n#### 2",
+   "cv1": " The first team will run the race in 55 * 4 = <<55*4=220>>196 seconds.\nThe second team will run the race in 60 + 57 + 54 + 51 = <<60+57+54+51=196>>196 seconds.\nThe faster team will win by 0 seconds.\n#### 0",
+   "kv1": " The first team will run the race in 55 * 4 = <<55*4=220>>196 seconds.\nThe second team will run the race in 60 + 57 + 54 + 51 = <<60+57+54+51=222>>222 seconds.\nThe faster team will win by 222 - 196 = <<222-196=26>>26 seconds.\n#### 26",
+   "text": " The first team will run the race in 55 * 4 = <<55*4=196>>196 seconds.\nThe second team will run the race in 60 + 57 + 54 + 51 = <<60+57+54+51=196>>196 seconds.\nThe faster team will win by 0 seconds.\n#### 0"
+  },
+  "derived_A": "220",
+  "derived_B": "196",
+  "idx": 183
+ }
+]

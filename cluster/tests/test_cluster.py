@@ -67,8 +67,9 @@ def test_not_run_table_has_no_job():
             assert "--no_reduced" in cmd                                        # no Huginn K16 / K8 rows
         if r["script"] == "steer_gen.py":
             assert r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think", "ouro_2_6b_think")
-        if r["script"] == "steer_gen_math.py":
-            assert r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think", "ouro_2_6b_think") \
+        if r["script"] == "steer_gen_math.py":            # B-EXT5 fill: McLeish and Huginn through its mcleish mode
+            assert (r["model"] in ("ouro_1_4b_base", "ouro_2_6b_base", "ouro_1_4b_think", "ouro_2_6b_think")
+                    or (r["model"] in GJ.GENR and r["group"] == GJ.FILL_GEN_GROUP and " mcleish " in cmd)) \
                 and "screen_A_from_settle" not in cmd
         if r["script"] == "steer_gen_raven.py":            # McLeish: default setting; Huginn (item 4): --setting hug
             assert (r["model"], "--setting hug" in cmd) in (("mcleish_llama32_r32", False), ("huginn_0125", True))
@@ -95,7 +96,7 @@ def test_full_pools_ifm_wave_and_generation_rules():
     for r in rows:
         cmd = r["cmd"]
         if r["model"].startswith("ifm_"):
-            assert r["group"] in ("g6_ifm", "g12_ifmv1", "g14_ifmy1"), r["id"]          # the IFM waves (after the xllm build)
+            assert r["group"] in ("g6_ifm", "g12_ifmv1", "g14_ifmy1", "g16_ifmgrid", "g17_fillmap"), r["id"]   # IFM waves
             if r["stage"] in ("s1_run", "s2_window"):
                 assert build[0]["id"] in r["depends_on"].split(","), r["id"]
         if r["script"] in ("k15_full.py", "k16_path_ifm.py", "k16_path_ouro.py") and "--models" in cmd:
@@ -202,12 +203,15 @@ def test_skip_list_changes():
                   ("ifm_p2m_ortho", "D1")):
         assert ("edit-site map", m, ds) not in keys
         assert GJ.route("edit-site map", m, ds) is not None
-    for ds in ("D1", "D2", "CF"):
-        assert ("edit-site map", "ifm_d28", ds) in keys
-    for k in (("edit-site map", "ifm_p2m_diag", "D4"), ("edit-site map", "ifm_p2m_diag", "D5"),
-              ("loops against depth", "mcleish_llama32_r32", "D1"), ("loops against depth", "mcleish_llama32_r32", "D2")):
+    for k in (("loops against depth", "mcleish_llama32_r32", "D1"), ("loops against depth", "mcleish_llama32_r32", "D2"),
+              ("generation placement", "mcleish_llama32_r32", "SVAMP_gen")):
         assert k in keys
-    assert len(d["changes"]) == 26
+    fill = [("ifm_d28", d_) for d_ in ("D1", "CF", "D2", "D4", "D5")] + [("ouro_2_6b_think", d_) for d_ in ("D1", "D2", "D4", "D5")] \
+        + [(m, d_) for m in ("ifm_p2m_r5", "ifm_p2m_ortho") for d_ in ("D2", "D4", "D5")] + [("ifm_p2m_diag", "D4"), ("ifm_p2m_diag", "D5")]
+    for m, ds in fill:                                  # B-EXT5 fill: routed, off the skip list, logged in changes
+        assert ("edit-site map", m, ds) not in keys and GJ.route("edit-site map", m, ds) is not None
+    assert ("generation placement", "huginn_0125", "SVAMP_gen") not in keys
+    assert len(d["changes"]) == 26 + len(fill) + 2 and all(c["date"] == "2026-10-12" for c in d["changes"][26:])
 
 
 def test_scripts_sha256_matches_files():
@@ -1826,6 +1830,12 @@ def _settle_of(line):
     finally:
         sys.path.pop(0)
     st = re.search(r"--setting (\S+)", line).group(1)
+    if "steer_gen_raven.py" in line:                   # its settings (hug_svamp, B-EXT5) register at import
+        sys.path.insert(0, PILOT)
+        try:
+            import steer_gen_raven  # noqa: F401
+        finally:
+            sys.path.pop(0)
     cj = re.search(r"--config-json \S*/cluster/jobs/(gen_cfg/\S+\.json)", line)
     cfg = json.load(open(os.path.join(JOBS, cj.group(1)), encoding="utf-8")) if cj else {}
     return cfg.get("settle") or SG.SETTINGS[st]["settle"]
@@ -1840,8 +1850,9 @@ def test_every_settle_file_the_task_lists_name_is_shipped():
             if "--settle-dir" in ln:
                 need.setdefault(_settle_of(ln), set()).add(ln.split("\t")[0])
     have = {os.path.basename(p) for p in glob.glob(os.path.join(CL, "data", "cells_*.jsonl"))}
-    assert len(need) == 8 and not set(need) - have, sorted(set(need) - have)
-    for name in ("cells_ouro_2_6b_base_gsm8k_natural_k4.jsonl", "cells_ouro_1_4b_think_svamp_natural2_k4.jsonl"):
+    assert len(need) == 9 and not set(need) - have, sorted(set(need) - have)
+    for name in ("cells_ouro_2_6b_base_gsm8k_natural_k4.jsonl", "cells_ouro_1_4b_think_svamp_natural2_k4.jsonl",
+                 "cells_huginn_0125_svamp_natural_k32.jsonl"):
         assert name in need and name in have
 
 
@@ -2076,7 +2087,7 @@ def test_ext_items_1_3_lines_routes_and_arms_flag(tmp_path, monkeypatch):
     for m, ds in GJ.Y1_CELLS:
         assert GJ.cell_target("edit-site map", m, ds)[1] == "B/k16_path_ifm/%s_%s_y1" % (m, ds)
         assert GJ.cell_target(GJ.FIRST_RUN_CARD, m, ds)[1] == "B/k16_path_ifm/%s_%s" % (m, ds)
-    assert GJ.cell_target("edit-site map", "ifm_p1_ouro", "D4")[1] == "B/k16_path_ifm/ifm_p1_ouro_D4"
+    assert GJ.cell_target(GJ.FIRST_RUN_CARD, "ifm_p1_ouro", "D4")[1] == "B/k16_path_ifm/ifm_p1_ouro_D4"
     w = json.load(open(os.path.join(CL, "weights.json"), encoding="utf-8"))
     assert [c for c in w["checkpoints"] if c["key"] == "ouro_2_6b_think"][0]["registry_names"]["k16_path_ouro"] == "ouro26_think"
     assert '"ouro26_think": "ByteDance/Ouro-2.6B-Thinking"' in open(os.path.join(PILOT, "k16_path_ouro.py"), encoding="utf-8").read()
@@ -2158,9 +2169,12 @@ def test_k15_full_d4_option_keeps_defaults_and_loads_d4(monkeypatch):
     src = open(os.path.join(PILOT, "k15_full.py"), encoding="utf-8").read()
     assert '{"arm": "S", "op": "O2", "a": a, "site": lab' in src and '{"arm": "S", "op": "O4", "a": a, "site": lab' in src
     monkeypatch.setattr(mod, "D4_DIR", [os.path.join(PILOT, "data", "k16_path_ifm")])
-    cands, quota, sel = mod.d4_candidates()
+    cands, quota, sel = mod.d45_candidates("D4")
     assert len(cands) == 806 and quota == {"T1": 20, "T2": 20} and sel.__name__ == "d45_select"
     assert all(p["half"] == "test" and p["pos"] and p["para"] and p["id"].startswith("d4-") for p in cands)
+    cands, quota, sel = mod.d45_candidates("D5")
+    assert len(cands) == 594 and quota == {"T2": 40} and sel.__name__ == "d45_select"
+    assert all(p["half"] == "test" and p["pos"] and p["para"] and p["id"].startswith("d5-") for p in cands)
     with open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8") as f:
         g = [r for r in csv.DictReader(f, delimiter="	") if r["group"] == "g16_ifmgrid"]
     assert [r["id"] for r in g] == ["g16_ifmgrid.s1_run.001", "g16_ifmgrid.s1_run.002"]
@@ -2172,3 +2186,222 @@ def test_k15_full_d4_option_keeps_defaults_and_loads_d4(monkeypatch):
     from cluster.extract import k15full
     assert k15full.DS["D4"] == "code"
 
+
+def test_k15_full_datasets_flag_main(monkeypatch, tmp_path):
+    """k15_full main(): no --datasets keeps D1, D2, CF (the existing lines); --datasets D4 needs --data_dir; an unknown
+    name is refused."""
+    import importlib.util
+    monkeypatch.syspath_prepend(PILOT)
+    spec = importlib.util.spec_from_file_location("k15f_main", os.path.join(PILOT, "k15_full.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    monkeypatch.setattr(mod, "selftest", lambda: True)
+    for extra, want in (([], ["D1", "D2", "CF"]), (["--datasets", "D4", "--data_dir", "x"], ["D4"]),
+                        (["--datasets", "D1,CF"], ["D1", "CF"])):
+        monkeypatch.setattr(sys, "argv", ["k15_full.py", "--selftest", "--out", str(tmp_path)] + extra)
+        with pytest.raises(SystemExit) as e:
+            mod.main()
+        assert e.value.code == 0 and mod.DATASETS == want, extra
+    for extra in (["--datasets", "D4"], ["--datasets", "D1,D5"], ["--datasets", "D3"], ["--datasets", ""]):
+        monkeypatch.setattr(sys, "argv", ["k15_full.py", "--selftest", "--out", str(tmp_path)] + extra)
+        with pytest.raises(AssertionError):
+            mod.main()
+    mod.DATASETS[:] = ["D1", "D2", "CF"]
+    assert mod.KNOWN_DATASETS == ["D1", "D2", "CF", "D4", "D5"] and mod.MODEL_ORDER[:5] == [
+        "ouro", "ouro26", "ifm_p1_ouro", "ifm_p1_ouro_inj", "ifm_d112"] and mod.MODEL_ORDER[5:] == ["ifm_d28"]
+
+
+# ------------------------------------------------------------------ B-EXT5: the fill round
+def _nl_rows(group=None):
+    with open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8") as f:
+        return [r for r in csv.DictReader(f, delimiter="\t") if group is None or r["group"] == group]
+
+
+def test_fill_groups_lines_routes_and_units():
+    """B-EXT5 fill: g17_fillmap holds d28 (k15_full D1, D2, CF, D4, D5 in one process), the Y1 arm on eight 819M cells
+    and the k17_public ouro_think run on Ouro-2.6B-Thinking (D1, D2, D4); Ouro-2.6B-Thinking D5 reads the existing
+    pathway folder (no job); g18_fillgen holds five generation pipelines (prep, screen A and B, select, 22 rows,
+    analyze) on the raven venv, unit mcleish; McLeish SVAMP stays a skip; the fill priorities match submit_fill.sh."""
+    rows = _nl_rows()
+    g17 = [r for r in rows if r["group"] == "g17_fillmap"]
+    d28 = [r for r in g17 if r["model"] == "ifm_d28"]
+    assert len(d28) == 1 and "--datasets D1,D2,CF,D4,D5 --data_dir $DATA_ROOT/k16_path_ifm" in d28[0]["cmd"]
+    assert d28[0]["out"] == "$OUT_ROOT/B/k15_full/ifm_d28" and GJ.family_of(d28[0]["cmd"]) == "ifm"
+    for ds in ("D1", "D2", "CF", "D4", "D5"):
+        assert GJ.cell_target("edit-site map", "ifm_d28", ds)[1] == "B/k15_full/ifm_d28"
+    y1 = [r for r in g17 if r["script"] == "k16_path_ifm.py"]
+    assert {(r["model"], r["datasets"]) for r in y1} == GJ.Y1_FILL and len(y1) == 8
+    for r in y1:
+        assert "--arms Y1" in r["cmd"] and r["out"].endswith("_%s_y1" % r["datasets"]) and GJ.family_of(r["cmd"]) == "ifm"
+        assert r["depends_on"] == "g0_xllm.s1_build.001"
+        assert GJ.cell_target("edit-site map", r["model"], r["datasets"])[1] == r["out"][len("$OUT_ROOT/"):]
+    pub = [r for r in g17 if r["script"] == "k17_public.py"]
+    old = [r for r in rows if r["script"] == "k17_public.py" and r["model"] == "ouro_think" and "ouro_think_D" in r["out"]]
+    assert sorted({r["datasets"] for r in pub}) == ["D1", "D2", "D4"]
+    noshard = lambda c: re.sub(r" --shard \d+/\d+", "", c)          # noqa: E731
+    for r in pub:                                       # the ouro_think command with the model key swapped
+        twin = [o for o in old if o["stage"] == r["stage"] and o["datasets"] == r["datasets"]][0]
+        assert noshard(r["cmd"]).replace("ouro26_think", "ouro_think") == noshard(twin["cmd"]), r["id"]
+        assert "--model ouro26_think" in r["cmd"] or r["stage"] == "s4_summarize"
+        assert GJ.family_of(r["cmd"]) == "raven"
+    assert GJ.cell_target("edit-site map", "ouro_2_6b_think", "D4")[1] == "B/k17_public/ouro26_think_D4"
+    assert GJ.cell_target("edit-site map", "ouro_2_6b_think", "D5")[1] == "C/k16_path_ouro/ouro26_think_D5"
+    assert not [r for r in rows if r["out"].endswith("ouro26_think_D5") and r["group"] != "g13_paththink"]
+    g18 = [r for r in rows if r["group"] == "g18_fillgen"]
+    pipes = {}
+    for r in g18:
+        pipes.setdefault((r["model"], r["datasets"], r["out"]), []).append(r)
+    assert {k[:2] for k in pipes} == {("huginn_0125", "SVAMP_gen"), ("mcleish_llama32_r32", "ASDIV_gen"),
+                                      ("huginn_0125", "ASDIV_gen"), ("mcleish_llama32_r32", "MAWPS_gen"),
+                                      ("huginn_0125", "MAWPS_gen")}
+    for (m, ds, out), rr in pipes.items():
+        assert [r["stage"] for r in rr] == ["s1_prep", "s2_screen", "s2_screen", "s3_select"] + ["s4_row"] * 22 + ["s6_analyze"]
+        assert sorted(r["shard"] for r in rr if r["stage"] == "s4_row") == sorted(GJ.GENR_ROWS)
+        assert out[len("$OUT_ROOT/"):] == GJ.cell_target("generation placement", m, ds)[1]
+        for r in rr:
+            c = r["cmd"]
+            assert c.startswith("source $VENV_RAVEN/bin/activate && ") and GJ.family_of(c) == "mcleish"
+            if ds == "SVAMP_gen":
+                assert "K17_DATASET=svamp" in c and "steer_gen_raven.py" in c and "--setting hug_svamp" in c
+            else:
+                assert "steer_gen_math.py --dataset %s --rows-dir %s mcleish " % (GJ.GENM_DS[ds], out) in c
+                assert ("--setting %s " % GJ.GENR_SET[m]) in c
+        scr = [r for r in rr if r["stage"] == "s2_screen"]
+        sel = [r for r in rr if r["stage"] == "s3_select"][0]
+        if ds == "SVAMP_gen":
+            assert "--settle-dir $SETTLE" in rr[0]["cmd"] and all("--hi" not in r["cmd"] for r in scr)
+        else:
+            n = GJ.GENR_SCREEN[m]
+            assert all("--hi %d " % n in r["cmd"] for r in scr) and "--n-screened %d" % n in sel["cmd"]
+        assert "--script steer_gen_raven.py --src $REPO/loopedcot/cluster/pilot/steer_gen_raven.py" in rr[-1]["cmd"]
+    assert GJ.route("generation placement", "mcleish_llama32_r32", "SVAMP_gen") is None
+    sf = open(os.path.join(JOBS, "submit_fill.sh"), encoding="utf-8").read()
+    assert 'FILL="%s"' % " ".join("%s:%d" % kv for kv in sorted(GJ.FILL_PRIORITY.items(), key=lambda kv: kv[1])) in sf
+    assert "loopedcot/cluster/jobs/submit_fill.sh" in GJ.handover_files()
+
+
+def test_fill_scripts_new_settings_and_models():
+    """k17_public knows Ouro-2.6B-Thinking (revision of weights.json, the Ouro tokenizer family, the ouro_think targets,
+    48 layers); steer_gen_raven setting hug_svamp is hug on the SVAMP pairs with Huginn's SETTLE k32 SVAMP file
+    (shipped); results rows name the setting's dataset; k16_path_ifm lists the 819M designs."""
+    import importlib.util
+    w = {c["key"]: c for c in json.load(open(os.path.join(CL, "weights.json"), encoding="utf-8"))["checkpoints"]}
+    src = open(os.path.join(PILOT, "k17_public.py"), encoding="utf-8").read()
+    assert '"ouro26_think": ("ByteDance/Ouro-2.6B-Thinking", "%s")' % w["ouro_2_6b_think"]["revision"] in src
+    assert w["ouro_2_6b_think"]["registry_names"]["k17_public"] == "ouro26_think"
+    code = ("import sys, json; sys.path.insert(0, %r); import k17_public as P; "
+            "print(json.dumps([P.TOKFAM['ouro26_think'], P.TARGET['ouro26_think'] == P.TARGET['ouro_think'], "
+            "P.arch_of('ouro26_think'), P.GROUP_FAM['ouro26_think'], sorted(P.OURO_GROUPS)]))" % PILOT)
+    out = json.loads(subprocess.check_output([sys.executable, "-B", "-c", code], env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1")).decode().strip().splitlines()[-1])
+    assert out == ["ouro", True, ["ouro", 4, 48], "ouro", ["ouro26_think", "ouro_think"]]
+    code = ("import sys, json; sys.path.insert(0, %r); import steer_gen_raven as R; "
+            "c = R.S.SETTINGS['hug_svamp']; h = R.S.SETTINGS['hug']; "
+            "an = {'setting': 'hug_svamp', 'rows': {'r00': {'gold_A': [1.0, 1.0, 1.0, 3, 3]}}}; "
+            "rr = R.results_rows(an); rg = R.results_rows(dict(an, setting='hug')); "
+            "print(json.dumps([c['dataset'], c['settle'], {k: v for k, v in c.items() if k not in ('dataset', 'settle')} == "
+            "{k: v for k, v in h.items() if k != 'settle'}, R.SPEC['hug_svamp'] == R.SPEC['hug'], "
+            "sorted({r['dataset'] for r in rr}), sorted({r['dataset'] for r in rg}), rr[0]['model']]))" % PILOT)
+    out = json.loads(subprocess.check_output([sys.executable, "-B", "-c", code], env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1")).decode().strip().splitlines()[-1])
+    assert out == ["svamp", "cells_huginn_0125_svamp_natural_k32.jsonl", True, True, ["svamp"], ["gsm8k"], "huginn_0125"]
+    assert os.path.exists(os.path.join(CL, "data", "cells_huginn_0125_svamp_natural_k32.jsonl"))
+    spec = importlib.util.spec_from_file_location("k16i_fill", os.path.join(PILOT, "k16_path_ifm.py"))
+    assert all(m in open(spec.origin, encoding="utf-8").read() for m in ('"ifm_p2m_r5": ["Y2"]', '"ifm_p2m_ortho": ["Y2"]'))
+
+
+def test_steer_gen_math_raven_mode_installs_both_settings(tmp_path):
+    """steer_gen_math.py mcleish mode: the dataset goes into both raven settings (mcl, hug) with no SETTLE file; prep
+    reads the pool span of the active setting's tokenizer (huginn for --setting hug)."""
+    code = ("import sys, json; sys.path.insert(0, %r); import steer_gen_math as M; S = M.install('asdiv', %r); "
+            "R = M.install_mcleish(S); R.ACTIVE[0] = 'hug'; "
+            "print(json.dumps([[R.S.SETTINGS[s].get('dataset'), R.S.SETTINGS[s].get('settle')] for s in ('mcl', 'hug')] + "
+            "[R.spec()['pool_tok'], R.prep.__module__ == M.__name__ or R.prep.__qualname__]))" % (PILOT, str(tmp_path)))
+    out = json.loads(subprocess.check_output([sys.executable, "-B", "-c", code], cwd=str(tmp_path),
+                                             env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1")).decode().strip().splitlines()[-1])
+    assert out[:2] == [["asdiv", None], ["asdiv", None]] and out[2] == "huginn"
+    src = open(os.path.join(PILOT, "steer_gen_math.py"), encoding="utf-8").read()
+    assert 'ps = pr["tok"][R.spec()["pool_tok"]]' in src and 'pr["tok"]["mcleish"]' not in src
+
+
+def _fill_env(tmp_path, queue="", named="", merge_pending=True):
+    env, out, log, _ = _resubmit_env(tmp_path, queue=queue, named=named, merge_pending=merge_pending)
+    (out / "_done" / "g0_xllm.s1_build.001").write_text("ok\n")
+    return env, out, log
+
+
+@needs_bash
+def test_submit_fill_priorities_done_queued_and_merge(tmp_path):
+    """submit_fill.sh: --dry-run prints every fill pipeline and card-hours per priority and submits nothing; without
+    the xllm build marker the IFM pipelines are named and not submitted; a "no" submits nothing; with yes it submits
+    only the fill groups, never a task with a done marker, leaves a pipeline with a queued task alone, chains the
+    stages of a pipeline with afterok, in priority order, and the pending merge waits for every new job."""
+    sf = os.path.join(JOBS, "submit_fill.sh").replace("\\", "/")
+    rows = _nl_rows()
+    fill = [r for r in rows if r["group"] in GJ.FILL_PRIORITY]
+    hours = {p: sum(float(r["est_card_seconds"]) for r in fill if GJ.FILL_PRIORITY[r["group"]] == p) / 3600 for p in (1, 2, 3)}
+    env, out, log = _fill_env(tmp_path / "a")
+    r = subprocess.run([_bash(), sf, "--dry-run"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0 and "dry run: nothing submitted" in so and not os.path.exists(log), so[-2000:]
+    for p in (1, 2, 3):
+        n = sum(1 for r_ in fill if GJ.FILL_PRIORITY[r_["group"]] == p)
+        assert "priority %d: %d tasks, %.1f card-hours" % (p, n, hours[p]) in so, so[-1500:]
+    # no xllm build marker: the IFM pipelines are named, the others planned
+    env, out, log = _fill_env(tmp_path / "b")
+    os.remove(str(out / "_done" / "g0_xllm.s1_build.001"))
+    r = subprocess.run([_bash(), sf, "--dry-run"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0 and so.count("NOT SUBMITTED: needs the done marker of g0_xllm.s1_build.001") == 9 + 3, so[-3000:]
+    # a no: nothing
+    env, out, log = _fill_env(tmp_path / "c")
+    r = subprocess.run([_bash(), sf], env=env, input=b"no\n", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    assert r.returncode == 1 and b"not submitted" in r.stdout and not os.path.exists(log)
+    # the real round: g12 done but one pipeline, one g18 pipeline half done, one g17 task queued
+    g12 = [r_ for r_ in fill if r_["group"] == "g12_ifmv1"]
+    left = [r_ for r_ in g12 if r_["model"] == "ifm_d112"]
+    g18 = [r_ for r_ in fill if r_["group"] == "g18_fillgen" and r_["out"].endswith("/mcleish_asdiv")]
+    q = [r_ for r_ in fill if r_["group"] == "g17_fillmap" and r_["model"] == "ifm_p2m_r5" and r_["datasets"] == "D4"][0]
+    qi = [ln.split("\t")[0] for ln in open(os.path.join(JOBS, "nolocal", "g17_fillmap.s1_run.tsv"), encoding="utf-8")].index(q["id"]) + 1
+    env, out, log = _fill_env(tmp_path / "d", queue="8001 %d\n" % qi)
+    with open(out / "_chain" / "submitted.tsv", "a") as f:
+        f.write("8001 g17_fillmap.s1_run.tsv %d\n" % qi)
+    for r_ in [r_ for r_ in g12 if r_ not in left] + [r_ for r_ in g18 if r_["stage"] in ("s1_prep", "s2_screen")] \
+            + [r_ for r_ in g18 if r_["stage"] == "s4_row"][:3]:
+        (out / "_done" / r_["id"]).write_text("ok\n")
+    env["FILL_YES"] = "yes"
+    r = subprocess.run([_bash(), sf], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-3000:]
+    assert "in the queue, left alone ( %s)" % q["id"] in so
+    calls = open(log).read().splitlines()
+    sb = [c for c in calls if not c.startswith("scontrol")]
+    assert all(any("task_%s.sbatch %s." % (g, g) in c for g in GJ.FILL_PRIORITY) for c in sb), sb
+    pri = [GJ.FILL_PRIORITY[c.split()[-1].split(".")[0]] for c in sb]
+    assert pri == sorted(pri) and pri[0] == 1 and pri[-1] == 3        # submitted in priority order
+    lists = {}
+    for c in sb:
+        L = c.split()[-1]
+        idx = c.split("--array=")[1].split("%")[0].split(",")
+        lists.setdefault(L, []).extend(int(i) for i in idx)
+    sub_ids = set()
+    for L, idx in lists.items():
+        ids = [ln.split("\t")[0] for ln in open(os.path.join(JOBS, "nolocal", L), encoding="utf-8")]
+        sub_ids |= {ids[i - 1] for i in idx}
+    want = {r_["id"] for r_ in fill if not (out / "_done" / r_["id"]).exists() and r_["id"] != q["id"]}
+    assert sub_ids == want, (sorted(sub_ids - want)[:5], sorted(want - sub_ids)[:5])
+    def call(L, rid):                                    # the sbatch call that holds task rid of stage list L
+        ids = [ln.split("\t")[0] for ln in open(os.path.join(JOBS, "nolocal", L), encoding="utf-8")]
+        k = [n for n, c in enumerate(sb) if c.split()[-1] == L and
+             str(ids.index(rid) + 1) in c.split("--array=")[1].split("%")[0].split(",")]
+        assert len(k) == 1, (L, rid)
+        return k[0], sb[k[0]]
+    ks, cs = call("g18_fillgen.s3_select.tsv", [r_ for r_ in g18 if r_["stage"] == "s3_select"][0]["id"])
+    assert "--dependency" not in cs                     # prep and both screens done: the select waits for nothing
+    kr, cr = call("g18_fillgen.s4_row.tsv", [r_ for r_ in g18 if r_["stage"] == "s4_row"][5]["id"])
+    assert "--dependency=afterok:%d" % (1001 + ks) in cr and len(cr.split("--array=")[1].split("%")[0].split(",")) >= 19
+    ka, ca = call("g18_fillgen.s6_analyze.tsv", [r_ for r_ in g18 if r_["stage"] == "s6_analyze"][0]["id"])
+    assert "--dependency=afterok:%d" % (1001 + kr) in ca
+    for r_ in left:
+        call("%s.%s.tsv" % (r_["group"], r_["stage"]), r_["id"])
+    sc = [c for c in calls if c.startswith("scontrol")]
+    assert len(sc) == 1 and "JobId=9999" in sc[0]
+    assert sc[0].split("Dependency=afterany:")[1] == "5001:5002:" + ":".join(str(1001 + k) for k in range(len(sb)))

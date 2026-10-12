@@ -1,0 +1,30 @@
+Answer multiple-choice questions about business, health and general knowledge.
+
+Q: Which of the following appears on a balance sheet as a liability?
+Options:
+(A) Accounts receivable
+(B) Inventory
+(C) Accounts payable
+(D) Retained earnings
+A: Let's think step by step.
+A liability is an amount the business owes to someone else. Accounts receivable and inventory are assets, and retained earnings sits in equity. Accounts payable is money owed to suppliers, so it is the liability. So the answer is (C).
+
+Q: Which vitamin is produced in human skin on exposure to sunlight?
+Options:
+(A) Vitamin A
+(B) Vitamin B12
+(C) Vitamin C
+(D) Vitamin D
+A: Let's think step by step.
+Ultraviolet B light converts a cholesterol derivative in the skin into cholecalciferol, which the body then converts into the active form of vitamin D. The other vitamins listed have to come from the diet. So the answer is (D).
+
+Q: A company sells a product for 50 dollars that costs 30 dollars to make. What is the gross margin as a percentage of the selling price?
+Options:
+(A) 20%
+(B) 40%
+(C) 60%
+(D) 67%
+A: Let's think step by step.
+Gross profit is 50 - 30 = 20 dollars. As a share of the 50 dollar selling price that is 20 / 50 = 0.4, which is 40%. So the answer is (B).
+
+Q: 

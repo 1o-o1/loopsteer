@@ -1,0 +1,1 @@
+g22_e6ra31b.s2_summarize.001	source $VENV_OURO/bin/activate && cd $REPO/loopedcot/cluster/pilot/ra31 && PROD_ART=$OUT_ROOT/E6/ra31/partb_1.4b/prod_art PROD_LOGS=$OUT_ROOT/E6/ra31/partb_1.4b/prod_logs python -u ra31_gen.py summarize --out $OUT_ROOT/E6/ra31/partb_1.4b

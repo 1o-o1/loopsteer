@@ -12,6 +12,10 @@ bundle must pass before it is handed over (PLAN.md, SLURM CONTEXT: "Gate before 
 4. bash -n on every *.sh and *.sbatch, py_compile (into a temporary folder) on every *.py under cluster/.
 5. Every pin of jobs/scripts_sha256.txt matches; every file a task runs (and the bundle modules it imports) is pinned.
 6. Every *.sh, *.sbatch and *.tsv under cluster/ has LF line endings.
+7. B-EXT6: jobs/submit_ext6.sh with fake Slurm submits only its groups (done markers skipped, afterok inside each
+   pipeline, one merge per test afterany on its jobs, card-hours per job and in total, nothing without a yes); the
+   templates hold a wall limit of at most 6 h; every task line names the frozen plan sha256 of its folder copy;
+   merge_ext6.py copies and scrubs into merged/<test> and leaves the run tree alone.
 Every failure names the file, the line or the job id. The tests read the tree; they write only to temporary folders.
 """
 import ast
@@ -46,7 +50,15 @@ BAD_NODES = {"n07"}
 SLURM_ENV = {"PARTITION": PARTITION, "ACCOUNT": ACCOUNT, "SLURM_RESTRICT": "--exclude=n08", "NODELIST": ",".join(NODES),
              "NODES_EXPECTED": "6"}
 LIST_RE = re.compile(r"^(g\d+_\w+\.s\d+_\w+|smoke_\w+)\.tsv$")
-NOT_CHECKPOINT = {("build_xllm.sh", "xllm"), ("merge.py", "all")}        # the xllm build and the merge load no model
+NOT_CHECKPOINT = {("build_xllm.sh", "xllm"), ("merge.py", "all"), ("merge_ext6.py", "all")}   # no model loaded
+STDLIB_MODULES = {"unittest"}        # python -m <stdlib module> in a task line (the B-EXT6 folder tests)
+E6_GROUPS = ("g19_e6ra30", "g20_e6ra29", "g21_e6ra31a", "g22_e6ra31b")
+E6_MERGE = "g23_e6merge"             # one merge per test, afterany on that test's jobs
+E6B_GROUPS = ("g24_e6bra29", "g25_e6bra31t", "g26_e6bra30")       # B-EXT6b, jobs/submit_ext6b.sh
+E6B_MERGE = "g28_e6bmerge"
+# (script, run groups, merge group, yes variable, run tasks expected, task given a done marker, Part B shards)
+EXT6_UNITS = [("submit_ext6.sh", E6_GROUPS, E6_MERGE, "EXT6_YES", 8 + 16, "g20_e6ra29.s1_pilot.002", 15),
+              ("submit_ext6b.sh", E6B_GROUPS, E6B_MERGE, "EXT6B_YES", 4 + 4 + 2, "g24_e6bra29.s1_cell.002", 0)]
 
 
 def _bash():
@@ -162,6 +174,8 @@ def _parse_line(cmd):
 def _resolve(kind, target, cwd):
     """The bundle file a run names, or (None, why)."""
     if kind == "module":
+        if target in STDLIB_MODULES:
+            return None, None
         if not cwd or not os.path.isabs(cwd):
             return None, "python -m %s without a known cd folder" % target
         base = os.path.join(cwd, *target.split("."))
@@ -530,7 +544,9 @@ def test_chain_dry_run_submits_every_task_well_formed(chain):
     merge = [c for c in ss["calls"] if c["pos"] and os.path.basename(c["pos"][0]) == "task_g9_merge.sbatch"]
     for c in ss["calls"]:
         deps = c["opts"].get("--dependency", [""])[-1]
-        ok_ids = {int(x) for cl in deps.split(",") if cl.startswith("afterok:") for x in cl.split(":")[1:]}
+        kind = "afterany:" if c["pos"] and os.path.basename(c["pos"][0]) in ("task_%s.sbatch" % E6_MERGE,
+                                                                             "task_%s.sbatch" % E6B_MERGE) else "afterok:"
+        ok_ids = {int(x) for cl in deps.split(",") if cl.startswith(kind) for x in cl.split(":")[1:]}
         covered = {t for j in ok_ids for t in job_tasks.get(j, [])}
         for t in job_tasks[c["id"]]:
             need = {d for d in rows.get(t, {}).get("depends_on", "").split(",") if d and d not in g0}
@@ -586,7 +602,7 @@ def test_task_lines_paths_scripts_configs_and_venvs(cluster_env):
                 p, why = _resolve(kind, target, cwd)
                 if why:
                     probs.append("%s: %s" % (where, why))
-                elif p.endswith(".py") and _rel(p) not in pins:
+                elif p and p.endswith(".py") and _rel(p) not in pins:
                     probs.append("%s: runs %s, not in jobs/scripts_sha256.txt" % (where, _rel(p)))
             for v in venvs:
                 if v not in exported:
@@ -704,3 +720,308 @@ def test_shell_templates_and_lists_are_lf():
             n = data[:data.index(b"\r")].count(b"\n") + 1
             probs.append("%s:%d: CR line ending (%d CR in the file)" % (_rel(p), n, data.count(b"\r")))
     _report(probs, "files that are not LF")
+
+
+# ------------------------------------------------------------------ 7. the B-EXT6 unit: jobs/submit_ext6.sh
+def _ext6(tmp, extra_env=None, args=(), script="submit_ext6.sh"):
+    """submit_ext6.sh (or submit_ext6b.sh) with fake Slurm over jobs/nolocal: -> (run dict as the chain fixture builds it, sbatch calls)."""
+    fake, log = _fakes(tmp)
+    out = tmp / "out"
+    (out / "_done").mkdir(parents=True, exist_ok=True)
+    (out / "bad_nodes.txt").write_text("n07\n")
+    env = dict(os.environ, REPO=TOP.replace("\\", "/"), OUT_ROOT=out.as_posix(), LOG_ROOT=(out / "logs").as_posix(),
+               VENV_OURO="/proj/venvs/ouro", CARDS="48", PATH=fake.as_posix() + os.pathsep + os.environ.get("PATH", ""),
+               **SLURM_ENV)
+    for k in ("MODULES", "ALLOW_HOME", "SLURM_JOB_ID", "SLURM_ARRAY_TASK_ID", "EXT6_YES", "FILL_YES", "MAX_NODES",
+              "FILL_PRIORITIES", "EXT6B_YES"):
+        env.pop(k, None)
+    env.update(extra_env or {})
+    for k in [k for k, v in env.items() if v is None]:
+        env.pop(k)
+    r = subprocess.run([_bash(), os.path.join(JOBS, script).replace("\\", "/")] + list(args), env=env,
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    calls = []
+    for k, ln in enumerate(open(log, "rb").read().decode("utf-8").split("\n")[:-1], 1):
+        f = ln.split("\x1f")
+        opts, pos = _parse_sbatch(f[1:-1] if f and f[-1] == "" else f[1:])
+        calls.append({"id": 1000 + k, "cwd": f[0], "args": f[1:-1], "opts": opts, "pos": pos})
+    run = {"name": script, "rc": r.returncode, "out": r.stdout.decode("utf-8", "replace"), "calls": calls,
+           "first": 1001}
+    return run, env
+
+
+def _call_lines(c):
+    """(stage list, line) of every task line an sbatch call runs: a packed call (task_pack.sbatch <list> <pair file>
+    <group>) runs the lines its pair file names for its array indices; any other call runs its array indices."""
+    if c["pos"] and c["pos"][0] == "task_pack.sbatch":
+        rows = [ln.split() for ln in open(c["pos"][2]).read().splitlines()]
+        lst = os.path.join(c["cwd"], c["pos"][1])
+        return [(lst, int(x)) for _l, i in c.get("tasks", []) for x in rows[i - 1]]
+    return c.get("tasks", [])
+
+
+@needs_bash
+@pytest.mark.parametrize("unit", EXT6_UNITS, ids=[u[0] for u in EXT6_UNITS])
+def test_submit_ext6_submits_only_its_groups_with_chains_and_merges(tmp_path, unit):
+    script, groups, merge_group, yes, n_run, done, n_shards = unit
+    rows = {r["id"]: r for r in _joblist(NOLOCAL)}
+    e6 = {k: r for k, r in rows.items() if r["group"] in groups}
+    merges = {k: r for k, r in rows.items() if r["group"] == merge_group}
+    probs = []
+    if len(e6) != n_run or len(merges) != 3:
+        probs.append("nolocal/joblist.tsv: %d %s run tasks (expected %d) and %d merges (expected 3)"
+                     % (len(e6), script, n_run, len(merges)))
+    (tmp_path / "out" / "_done").mkdir(parents=True)
+    (tmp_path / "out" / "_done" / done).write_text("")
+    run, env = _ext6(tmp_path, {yes: "yes"}, script=script)
+    if run["rc"] != 0:
+        probs.append(script + " exited %d:\n%s" % (run["rc"], run["out"][-2500:]))
+    issued, job_tasks, seen = set(), {}, {}
+    for c in run["calls"]:
+        probs += _check_call(c, run, env, issued)
+        if script == "submit_ext6.sh" and ((c["pos"] and c["pos"][0] == "task_pack.sbatch")
+                                           or c["opts"].get("--time", [""])[-1] != "10:00:00"):
+            probs.append("submit_ext6.sh: call %d is packed or lacks --time=10:00:00: %s" % (c["id"], c["args"][:12]))
+        issued.add(c["id"])
+        ids = [_lines(lst)[i - 1][1] for lst, i in _call_lines(c)]
+        job_tasks[c["id"]] = ids
+        for t in ids:
+            seen.setdefault(t, []).append(c["id"])
+    for k in sorted(set(e6) - {done}):
+        if len(seen.get(k, [])) != 1:
+            probs.append(script + ": task %s submitted %d times" % (k, len(seen.get(k, []))))
+    if done in seen:
+        probs.append(script + ": %s has a done marker but was submitted" % done)
+    for t in sorted(set(seen) - set(e6) - set(merges)):
+        probs.append(script + ": submitted %s, not a B-EXT6 task" % t)
+    job_of = {t: j[0] for t, j in seen.items()}
+    for c in run["calls"]:
+        deps = c["opts"].get("--dependency", [""])[-1]
+        ok_ids = {int(x) for cl in deps.split(",") if cl.startswith("afterok:") for x in cl.split(":")[1:]}
+        any_ids = {int(x) for cl in deps.split(",") if cl.startswith("afterany:") for x in cl.split(":")[1:]}
+        for t in job_tasks[c["id"]]:
+            need = {job_of[d] for d in rows[t]["depends_on"].split(",") if d and d in job_of}
+            if t in merges:
+                if need - any_ids:
+                    probs.append(script + ": merge %s does not wait afterany for jobs %s" % (t, sorted(need - any_ids)))
+                if "--hold" in c["opts"]:
+                    probs.append(script + ": merge %s submitted --hold" % t)
+            elif need - ok_ids:
+                probs.append(script + ": %s does not wait afterok for jobs %s" % (t, sorted(need - ok_ids)))
+    for t in merges:
+        if len(seen.get(t, [])) != 1:
+            probs.append(script + ": merge %s submitted %d times" % (t, len(seen.get(t, []))))
+    per_job = [ln for ln in run["out"].splitlines() if re.search(r"^  g\d+_e6\S+ .*: \d+ task\(s\), [\d.]+ card-hours$", ln)]
+    shards = [ln for ln in run["out"].splitlines() if re.search(r"^      shard \w+: [\d.]+ card-hours$", ln)]
+    stages = {(r["group"], r["out"], r["stage"]) for k, r in e6.items() if k != done}
+    if len(per_job) != len(stages) or len(shards) != n_shards or not re.search(r"^total: \d+ task\(s\), [\d.]+ card-hours", run["out"], re.M):
+        probs.append(script + ": card-hours not printed per job (%d lines) and in total:\n%s" % (len(per_job), run["out"][-2000:]))
+    # --dry-run and a missing yes submit nothing
+    for name, extra, args, rc in (("dry", {}, ["--dry-run"], 0), ("no", {yes: "no"}, [], 1)):
+        sub = tmp_path / name
+        sub.mkdir()
+        r2, _ = _ext6(sub, extra, args, script=script)
+        if r2["calls"] or r2["rc"] != rc:
+            probs.append(script + " %s: exit %d (expected %d), %d sbatch calls (expected 0)" % (name, r2["rc"], rc, len(r2["calls"])))
+    _report(probs, script + " problems")
+
+
+def test_ext6_wall_limits_and_frozen_plan_shas():
+    probs = []
+    for d in (JOBS, NOLOCAL):
+        for g in E6_GROUPS + (E6_MERGE,) + E6B_GROUPS + (E6B_MERGE,):
+            p = os.path.join(d, "task_%s.sbatch" % g)
+            if not os.path.isfile(p):
+                probs.append("%s missing" % _rel(p))
+                continue
+            m = re.search(r"^#SBATCH --time=(\d+):(\d\d):(\d\d)$", open(p, encoding="utf-8").read(), re.M)
+            if not m or int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3)) > 10 * 3600:
+                probs.append("%s: wall limit %s, over 10 h" % (_rel(p), m.group(0) if m else "missing"))
+    shas = {}
+    for t in ("ra29", "ra30", "ra31"):
+        pd = os.path.join(CL, "pilot", t)
+        s = open(os.path.join(pd, "plan_%s.sha256" % t), encoding="utf-8").read().split()[0]
+        if hashlib.sha256(open(os.path.join(pd, "plan_%s.md" % t), "rb").read()).hexdigest() != s:
+            probs.append("cluster/pilot/%s: plan_%s.md does not match plan_%s.sha256" % (t, t, t))
+        shas[t] = s
+    for path in glob.glob(os.path.join(NOLOCAL, "g*_e6*.tsv")):
+        for n, jid, cmd in _lines(path):
+            for t, s in shas.items():
+                if "/pilot/%s " % t in cmd + " " and "--plan_sha256" in cmd and "--plan_sha256 %s" % s not in cmd:
+                    probs.append("%s:%d (%s): --plan_sha256 is not the frozen %s plan %s" % (_rel(path), n, jid, t, s[:8]))
+            if "e6b_ra29_cell.sh" in cmd and not cmd.endswith(" " + shas["ra29"]):
+                probs.append("%s:%d (%s): the RA-29 cell is not given the frozen ra29 plan %s" % (_rel(path), n, jid, shas["ra29"][:8]))
+    _report(probs, "B-EXT6 template and plan problems")
+
+
+def test_merge_ext6_copies_scrubs_and_keeps_the_run_tree(tmp_path):
+    out = tmp_path / "out"
+    cfg = out / "E6" / "ra30" / "ouro_2_6b_base" / "pilot" / "gsm8k" / "config.json"
+    cfg.parent.mkdir(parents=True)
+    cfg.write_text('{"out": "/proj/run/out/E6/ra30"}\n')
+    (out / "E6" / "ra30" / "prod_logs").mkdir()
+    (out / "E6" / "ra30" / "prod_logs" / "l.txt").write_text("x\n")
+    (out / "_done").mkdir()
+    (out / "_done" / "g19_e6ra30.s1_pilot.001").write_text("")
+    env = dict(os.environ, ALLOW_HOME="1", PROJECT_ROOT="/proj/run")
+    r = subprocess.run([sys.executable, "-B", os.path.join(CL, "merge_ext6.py"), "--test", "ra30", "--out_root", str(out),
+                        "--joblist", os.path.join(NOLOCAL, "joblist.tsv")], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    probs = []
+    if r.returncode != 0:
+        probs.append("merge_ext6.py exited %d: %s" % (r.returncode, r.stdout.decode("utf-8", "replace")[-1500:]))
+    m = out / "merged" / "ra30"
+    got = (m / "ouro_2_6b_base" / "pilot" / "gsm8k" / "config.json")
+    if not got.exists() or "<PROJECT_ROOT>/out/E6/ra30" not in got.read_text():
+        probs.append("merged/ra30 config.json missing or not scrubbed")
+    if "/proj/run/" not in cfg.read_text():
+        probs.append("the run tree was changed by the merge")
+    if (m / "prod_logs").exists():
+        probs.append("prod_logs/ copied into merged/ra30")
+    rep = json.load(open(str(m / "MERGE.json"), encoding="utf-8")) if (m / "MERGE.json").exists() else {}
+    states = {t["id"]: t["state"] for t in rep.get("tasks", [])}
+    if states != {"g19_e6ra30.s1_pilot.001": "done", "g19_e6ra30.s2_full.001": "not run",
+                  "g26_e6bra30.s1_pilot.001": "not run", "g26_e6bra30.s2_full.001": "not run"}:
+        probs.append("MERGE.json task states %s" % states)
+    left = [x for x in os.listdir(str(out / "merged")) if x != "ra30"]
+    if left:
+        probs.append("merged/ keeps the work folders %s" % left)
+    _report(probs, "merge_ext6 problems")
+
+
+def test_ext6_partb_shards_are_the_folder_shards():
+    lines = _lines(os.path.join(NOLOCAL, "g22_e6ra31b.s1_shard.tsv"))
+    names = [re.search(r"--shard (\w+)", c).group(1) for _, _, c in lines]
+    r = subprocess.run([sys.executable, "-B", os.path.join(CL, "pilot", "ra31", "ra31_gen.py"), "list"],
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    if r.returncode != 0:
+        pytest.skip("ra31_gen.py list does not run here (torch): %s" % r.stdout.decode("utf-8", "replace")[-300:])
+    listed = re.findall(r"^(\w+)\s+\d+ arms", r.stdout.decode("utf-8", "replace"), re.M)
+    listed = [x for x in listed if x != "total"]
+    assert sorted(names) == sorted(listed) and len(names) == 15, (names, listed)
+
+
+# ------------------------------------------------------------------ 8. nodes, packing, time (PI rules 2026-10-12)
+CAP_SCRIPTS = ["submit_fill.sh"]        # stage 2 (submit_ext6.sh runs one line per GPU, no node logic)
+CAP_SCRIPTS = CAP_SCRIPTS + (["submit_ext6b.sh"] if os.path.exists(os.path.join(JOBS, "submit_ext6b.sh")) else [])
+CAP_YES = {"submit_ext6.sh": "EXT6_YES", "submit_fill.sh": "FILL_YES", "submit_ext6b.sh": "EXT6B_YES"}
+SIX = ["n01", "n02", "n03", "n04", "n05", "n06"]
+
+
+def _cap_run(tmp, script, extra):
+    (tmp / "out" / "_done").mkdir(parents=True, exist_ok=True)
+    (tmp / "out" / "_done" / "g0_xllm.s1_build.001").write_text("")      # the fill's IFM lines wait for the xllm build
+    env = {CAP_YES[script]: "yes", "CARDS": None}
+    env.update(extra)
+    return _ext6(tmp, env, script=script)
+
+
+@needs_bash
+@pytest.mark.parametrize("script", CAP_SCRIPTS)
+def test_submit_scripts_reserve_the_last_node_pack_and_time(tmp_path, script):
+    """A six-node NODELIST: every sbatch call excludes exactly the last node among the six (n06) and never a used one;
+    the arrays are throttled to used nodes x 8 = 40 GPU jobs; every call passes --time=10:00:00; every packed job
+    carries two lines except at most one single line per packed call (an odd count); every task line is submitted
+    once; the summary names the used and reserved nodes and the concurrent task lines (CARDS x 2)."""
+    run, _ = _cap_run(tmp_path, script, {"NODELIST": ",".join(SIX)})
+    probs = [] if run["rc"] == 0 else ["%s exited %d:\n%s" % (script, run["rc"], run["out"][-2000:])]
+    if not run["calls"]:
+        probs.append("%s: no sbatch call" % script)
+    if "used n01,n02,n03,n04,n05" not in run["out"] or "reserved and empty: n06" not in run["out"] \
+            or "up to 80 task lines at once" not in run["out"]:
+        probs.append("%s: the summary does not name the used and reserved nodes and 80 task lines:\n%s" % (script, run["out"][-1500:]))
+    n_pack = 0
+    for c in run["calls"]:
+        exc = set(",".join(c["opts"].get("--exclude", [])).split(",")) - {""}
+        if exc & set(SIX) != {"n06"}:
+            probs.append("%s: sbatch call %d excludes %s of the six (want n06 only)" % (script, c["id"], sorted(exc & set(SIX))))
+        if c["opts"].get("--time", [""])[-1] != "10:00:00":
+            probs.append("%s: sbatch call %d --time=%s, not 10:00:00" % (script, c["id"], c["opts"].get("--time")))
+        arr = c["opts"].get("--array", [""])[-1]
+        if not (c["pos"] and "merge" in c["pos"][0]) and not arr.endswith("%40"):
+            probs.append("%s: sbatch call %d --array=%s, not throttled to %%40" % (script, c["id"], arr))
+        if c["pos"] and c["pos"][0] == "task_pack.sbatch":
+            n_pack += 1
+            rows = [ln.split() for ln in open(c["pos"][2]).read().splitlines()]
+            if any(len(r) != 2 for r in rows[:-1]) or len(rows[-1]) not in (1, 2):
+                probs.append("%s: packed call %d pair rows %s (two lines each, one single at most, last)" % (script, c["id"], rows[:5]))
+    if not n_pack:
+        probs.append("%s: no packed job" % script)
+    _report(probs, "node, packing and time problems")
+
+
+@needs_bash
+@pytest.mark.parametrize("script", CAP_SCRIPTS)
+def test_submit_scripts_refuse_without_a_node_list(tmp_path, script):
+    run, _ = _cap_run(tmp_path, script, {"NODELIST": ""})
+    assert run["rc"] == 2 and not run["calls"] and "no node list" in run["out"], (run["rc"], run["out"][-1500:])
+
+
+@needs_bash
+def test_submit_fill_priorities_select_groups(tmp_path):
+    """FILL_PRIORITIES=1: only the priority-1 group (g17_fillmap) is submitted and only priority 1 is priced."""
+    run, _ = _cap_run(tmp_path, "submit_fill.sh", {"FILL_PRIORITIES": "1", "NODELIST": ",".join(SIX)})
+    groups = {os.path.basename(c["pos"][1]).split(".")[0] for c in run["calls"] if len(c["pos"]) > 1}
+    assert run["rc"] == 0 and groups == {"g17_fillmap"}, (run["rc"], groups, run["out"][-2000:])
+    assert re.search(r"^priority 1: \d+ tasks", run["out"], re.M) and "priority 2:" not in run["out"] \
+        and "priority 3:" not in run["out"] and re.search(r"^total: \d+ tasks", run["out"], re.M), run["out"][-2000:]
+
+
+def _pack_env(tmp, cmd1, restart=0):
+    """task_pack.sbatch of group g20_e6ra29 on a two-line list (ids of that group), fake nvidia-smi and scontrol."""
+    out = tmp / "out"
+    fake = tmp / "bin"
+    fake.mkdir(exist_ok=True)
+    slog = (tmp / "scontrol.log").as_posix()
+    (fake / "nvidia-smi").write_bytes(b'#!/bin/bash\necho "GPU 0: card"\n')
+    (fake / "scontrol").write_bytes(('#!/bin/bash\necho "$*" >> "%s"\n' % slog).encode())
+    for f in ("nvidia-smi", "scontrol"):
+        os.chmod(str(fake / f), 0o755)
+    o = out.as_posix()
+    lst = tmp / "list.tsv"
+    lst.write_bytes(("g20_e6ra29.s1_pilot.001\t%s\n"
+                     "g20_e6ra29.s1_pilot.002\techo $E6_MEM_FRACTION $GEN_MEM_FRACTION $PROD_MEM_FRACTION > %s/f2; echo x >> %s/c2\n"
+                     % (cmd1, o, o)).encode())
+    pairs = tmp / "pairs.tsv"
+    pairs.write_bytes(b"1 2\n")
+    (tmp / "home").mkdir(exist_ok=True)
+    env = dict(os.environ, REPO=TOP.replace("\\", "/"), OUT_ROOT=o, HOME=(tmp / "home").as_posix(), SLURM_SUBMIT_DIR=NOLOCAL.replace("\\", "/"),
+               SLURM_ARRAY_TASK_ID="1", SLURM_ARRAY_JOB_ID="500", SLURM_JOB_ID="501", SLURMD_NODENAME="n03",
+               SLURM_RESTRICT="--exclude=n06", SLURM_RESTART_COUNT=str(restart),
+               PATH=fake.as_posix() + os.pathsep + os.environ.get("PATH", ""))
+    for v in ("HF_HOME", "SETTLE", "WEIGHTS_ROOT", "IFM_CKPT_ROOT", "XLLM_ROOT", "DATA_ROOT", "MODULES", "E6_MEM_FRACTION",
+              "GEN_MEM_FRACTION", "PROD_MEM_FRACTION", "ALLOW_HOME"):
+        env.pop(v, None)
+    r = subprocess.run([_bash(), os.path.join(NOLOCAL, "task_pack.sbatch").replace("\\", "/"), lst.as_posix(), pairs.as_posix(),
+                        "g20_e6ra29"], env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    calls = open(slog).read().splitlines() if os.path.exists(slog) else []
+    return r, out, calls
+
+
+@needs_bash
+def test_task_pack_halves_fractions_and_requeue_skips_the_done_line(tmp_path):
+    """Two lines in one packed job: both run with every share-of-the-card setting halved and leave their done markers.
+    A line whose GPU does not start (exit 75) requeues the job once with the node excluded and writes the packed
+    diagnosis naming both lines; the other line's done marker stands, and the rerun runs only the line not done."""
+    ok = "echo $E6_MEM_FRACTION $GEN_MEM_FRACTION $PROD_MEM_FRACTION > %s/f1; echo x >> %s/c1"
+    a = tmp_path / "a"
+    a.mkdir()
+    r, out, calls = _pack_env(a, ok % ((a / "out").as_posix(), (a / "out").as_posix()))
+    so = r.stdout.decode()
+    assert r.returncode == 0, so[-2000:]
+    for k in ("1", "2"):
+        assert (out / ("f" + k)).read_text().split() == ["0.45", "0.45", "0.425"], so[-1500:]
+        assert (out / "_done" / ("g20_e6ra29.s1_pilot.00" + k)).exists()
+    b = tmp_path / "b"
+    b.mkdir()
+    r, out, calls = _pack_env(b, 'echo "RuntimeError: CUDA unknown error"; exit 1')
+    so = r.stdout.decode()
+    assert r.returncode == 75, so[-2000:]
+    assert calls == ["update JobId=500_1 ExcNodeList=n03,n06", "requeue 500_1"], calls
+    dg = (out / "_diag" / "pack_500_1.txt").read_text()
+    assert "g20_e6ra29.s1_pilot.001: exit 75" in dg and "g20_e6ra29.s1_pilot.002: exit 0" in dg, dg
+    assert (out / "_done" / "g20_e6ra29.s1_pilot.002").exists() and not (out / "_done" / "g20_e6ra29.s1_pilot.001").exists()
+    o = out.as_posix()
+    r, out, calls2 = _pack_env(b, ok % (o, o), restart=1)                # the requeued run, the GPU now starts
+    so = r.stdout.decode()
+    assert r.returncode == 0 and (out / "c2").read_text().split() == ["x"] and (out / "c1").read_text().split() == ["x"], so[-2000:]
+    assert "done already: g20_e6ra29.s1_pilot.002" in so and (out / "_done" / "g20_e6ra29.s1_pilot.001").exists()
