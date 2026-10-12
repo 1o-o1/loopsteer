@@ -73,7 +73,14 @@ K16T = {"ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}
 # B-EXT2 item 3: edit-site map cells whose k16_path_ifm run had no Y1 arm; Y1 reruns into <model>_<ds>_y1
 Y1_CELLS = {("ifm_p1_ouro_inj", "D4"), ("ifm_p1_mid", "D2"), ("ifm_p1_mid", "D4"), ("ifm_p1_mid_inj", "D2"),
             ("ifm_p1_mid_inj", "D4"), ("ifm_p1_mid_inj", "D5"), ("ifm_p2m_diag", "D2")}
-FIRST_RUN_CARD = "IFM pathway rows (first run)"     # item 1: setting a4, GSM8K and SVAMP (steer_gen), ASDiv and MAWPS
+FIRST_RUN_CARD = "IFM pathway rows (first run)"
+# Figure 2 twelve-site grid: k15_full.py rerun of ifm_p1_ouro (D1, D2, CF; the g6_ifm.s1_run.001 command) in group
+# g16_ifmgrid, folder B/k15_full/ifm_p1_ouro_grid; the merge reads that folder for the model's k15_full cells
+K15F_GRID = {"ifm_p1_ouro"}
+# Figure 2 code panel: k15_full --datasets D4 (k16_path_ifm's D4 rows) for these edit-site map cells, folder
+# B/k15_full/<model>_grid_D4 (g16_ifmgrid.s1_run.002); their k16_path_ifm job stays and its folder is read under
+# FIRST_RUN_CARD
+K15F_GRID_D4 = set()      # the code panel (D4) waits for the k15_full --datasets change (next round)     # item 1: setting a4, GSM8K and SVAMP (steer_gen), ASDiv and MAWPS
 RAVEN_FREEZE = {"mcleish_llama32_r32": "mcleish", "huginn_0125": "huginn"}
 # RA-23 additions (2026-10-09)
 FRZ_OURO = {"ouro_1_4b_think": "ouro_think", "ouro_2_6b_think": "ouro26_think"}   # k17_freeze --model <id>; value =
@@ -119,7 +126,9 @@ def route(card, model, ds):
     if card == PATH_CARD:
         return ("k16_path_ouro.py", "k16t") if model in K16T and ds in ("D1", "D2", "D4", "D5") else None
     if card == FIRST_RUN_CARD:          # the first k16_path_ifm folders of the Y1 cells: read by the merge, no job
-        return ("k16_path_ifm.py", "k16i0") if (model, ds) in Y1_CELLS else None
+        return ("k16_path_ifm.py", "k16i0") if (model, ds) in Y1_CELLS | K15F_GRID_D4 else None
+    if card == "edit-site map" and (model, ds) in K15F_GRID_D4:
+        return ("k15_full.py", "k15g")
     if card == "edit-site map" and ds == "LRE":       # RA-23 item 5: the k17_public facts path on the LRE pool files
         return ("k17_public.py", "publre") if model in PUB_GROUP else None
     if card == "edit-site map":
@@ -170,14 +179,16 @@ def cell_target(card, model, ds):
         return (u, "B/k17_parcae/%s" % PAR_KEY[model], PAR_KEY[model], DS_NAME[ds])
     if u == "gen":
         return (u, "A/steer_gen/%s_%s" % (GEN[model], "gsm8k" if ds == "GSM8K_gen" else "svamp"), "row", None)
-    if u == "k15f":
-        return (u, "B/k15_full/%s" % model, model, DS_NAME[ds])
+    if u == "k15f":         # B-EXT2 Figure 2 grid: ifm_p1_ouro reads its rerun folder (D1, D2, CF of one run)
+        return (u, "B/k15_full/%s" % (model + "_grid" if model in K15F_GRID else model), model, DS_NAME[ds])
     if u == "k15p":
         return (u, "B/k15_pairs/%s" % model, model, DS_NAME[ds])
     if u == "k16o":
         return (u, "B/k16_path_ouro/%s_D5" % K16O[model], K16O[model], DS_NAME[ds])
     if u == "k16i":
         return (u, "B/k16_path_ifm/%s_%s%s" % (model, ds, "_y1" if (model, ds) in Y1_CELLS else ""), model, DS_NAME[ds])
+    if u == "k15g":
+        return (u, "B/k15_full/%s_grid_%s" % (model, ds), model, DS_NAME[ds])
     if u == "k16i0":
         return (u, "B/k16_path_ifm/%s_%s" % (model, ds), model, DS_NAME[ds])
     if u == "k16t":
@@ -420,6 +431,8 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
         if sk:
             conflicts.append((key, r[0], sk["reason"], sk["why"]))
         want[(r[1], c["model"])].add(c["dataset"])
+        if r[1] == "k15g":                  # the cell's first k16_path_ifm job keeps its place in g6_ifm
+            want[("k16i", c["model"])].add(c["dataset"])
         words[key] = (c["status"], "job: %s" % r[0])
 
     def mkey(m):
@@ -777,6 +790,28 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
               "%s analyze --setting hug --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script steer_gen_raven.py --src %s/steer_gen_raven.py --job %s" % (
                   base, o, PY, LF, o))
 
+    # ---- B-EXT2 Figure 2 grid: the g6_ifm k15_full command of ifm_p1_ouro into its own folder and tag (group g16_ifmgrid)
+    for m in sorted([m for (u, m) in want if u == "k15f" and m in K15F_GRID], key=mkey):
+        rate, role, src = RATES[("k15f", m)]
+        n_plan = sum(planned_quota("k15f", m, d, kept) for d in want[("k15f", m)])
+        out = "$OUT_ROOT/B/k15_full/%s_grid" % m
+        J.add("g16_ifmgrid", "s1_run", "k15_full.py", m, sorted(want[("k15f", m)]), "", out, deps(m), n_plan * rate + 900,
+              "%s (%s): %.1f s/pair, planned %d pairs" % (src, role, rate, n_plan),
+              "%s %s/k15_full.py --models %s --out %s --cf %s/k15_full/cf_records.json --cf_pool %s/cf_pool/cf_pool.json --tag %s_grid --pair_budget_min 0 --full_pool && %s %s/k15_full.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k15_full.py --src %s/k15_full.py --job %s" % (
+                  PY, LF, m, out, DATA, DATA, m, PY, LF, out, PY, LF, out))
+
+    # ---- Figure 2 code panel: k15_full --datasets D4 into its own folder (g16_ifmgrid.s1_run.002)
+    for m, ds in sorted(K15F_GRID_D4):
+        if ds not in want.get(("k15g", m), set()):
+            continue
+        rate, role, src = RATES[("k15f", m)]
+        n_plan = planned_quota("k16i", m, ds, kept)
+        out = "$OUT_ROOT/B/k15_full/%s_grid_%s" % (m, ds)
+        J.add("g16_ifmgrid", "s1_run", "k15_full.py", m, [ds], "", out, deps(m), n_plan * rate + 900,
+              "%s (%s): %.1f s/pair, planned %d pairs (the k16_path_ifm D4 pass rate)" % (src, role, rate, n_plan),
+              "%s %s/k15_full.py --models %s --out %s --cf %s/k15_full/cf_records.json --cf_pool %s/cf_pool/cf_pool.json --tag %s_grid_%s --pair_budget_min 0 --full_pool --datasets %s --data_dir %s/k16_path_ifm && %s %s/k15_full.py --summarize --out %s && %s $REPO/loopedcot/cluster/extract/run.py --script k15_full.py --src %s/k15_full.py --job %s" % (
+                  PY, LF, m, out, DATA, DATA, m, ds, ds, DATA, PY, LF, out, PY, LF, out))
+
     # ---- every task line activates its own venv (the raven scripts need Python >= 3.10)
     for r in J.rows:
         v = venv_of(r["script"], r["model"])
@@ -793,13 +828,14 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
 
 # submission order of submit_10_rest.sh (coordinator 2026-10-09): groups one to four, the IFM wave, the RA-23
 # additions, Huginn last, then the merge
-GROUP_ORDER = ["g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g6_ifm", "g12_ifmv1", "g14_ifmy1", "g7_ra23", "g11_gen26t", "g13_paththink", "g15_hgen",
+GROUP_ORDER = ["g0_xllm", "g1_copy", "g2_gen", "g3_map", "g4_cd", "g6_ifm", "g12_ifmv1", "g14_ifmy1", "g7_ra23", "g11_gen26t", "g13_paththink", "g15_hgen", "g16_ifmgrid",
                "g5_huginn",
                "g9_merge"]
 GROUP_LABEL = {"g0_xllm": "preflight, xllm build and import check", "g1_copy": "GSM8K copy and derived",
                "g2_gen": "generation, GSM8K then SVAMP, McLeish GSM8K rows", "g3_map": "edit-site map at full pools",
                "g4_cd": "C and D scripts (raven branch-freeze)", "g6_ifm": "IFM wave incl. the RA-23 IFM branch-freeze",
                "g7_ra23": "RA-23: Ouro Thinking branch-freeze, LRE facts",
+               "g16_ifmgrid": "Figure 2 grid: k15_full rerun of ifm_p1_ouro (D1, D2, CF)",
                "g15_hgen": "extension item 4: Huginn GSM8K generation",
                "g13_paththink": "extension: restore, read window and attention block on the Ouro Thinking models",
                "g14_ifmy1": "extension: the Y1 arm (edit-site rows) on seven IFM cells",

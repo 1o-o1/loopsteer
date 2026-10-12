@@ -19,5 +19,6 @@ assumed rates have no measurement behind them (see rate_source in joblist.tsv). 
 | g13_paththink | 7 | 50.2 | 0.0 | 50.2 | 17.0 | 17.0 |
 | g14_ifmy1 | 7 | 12.8 | 12.8 | 0.0 | 2.5 | 2.5 |
 | g15_hgen | 26 | 25.3 | 25.2 | 0.0 | 2.2 | 2.2 |
+| g16_ifmgrid | 1 | 1.6 | 1.6 | 0.0 | 1.6 | 1.6 |
 | g9_merge | 1 | 0.2 | 0.0 | 0.0 | 0.2 | 0.2 |
-| total | 742 | 845.1 | | | | |
+| total | 743 | 846.7 | | | | |

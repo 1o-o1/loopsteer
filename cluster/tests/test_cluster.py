@@ -2142,3 +2142,33 @@ def test_ext_item4_huginn_generation_pipeline():
     assert GJ.cell_target("generation placement", "huginn_0125", "GSM8K_gen")[1] == "A/steer_gen_raven/huginn"
     assert GJ.cell_target("generation placement", "mcleish_llama32_r32", "GSM8K_gen")[1] == GJ.GENR_DIR
 
+
+def test_k15_full_d4_option_keeps_defaults_and_loads_d4(monkeypatch):
+    """Figure 2 code panel: k15_full --datasets keeps D1, D2, CF as the default (the existing lines), the arm
+    strengths and seeds of D1, D2, CF are unchanged, D4 rows load from the k16_path_ifm data, and
+    g16_ifmgrid.s1_run.002 runs D4 into its own folder that the edit-site map code cell of ifm_p1_ouro reads."""
+    import importlib.util
+    monkeypatch.syspath_prepend(PILOT)
+    spec = importlib.util.spec_from_file_location("k15f_d4", os.path.join(PILOT, "k15_full.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.DATASETS == ["D1", "D2", "CF"] and mod.KNOWN_DATASETS[:3] == mod.DATASETS
+    assert (mod.A_S, mod.A_A) == ([0.5, 1.0, 2.0], [1.0, 2.0, 4.0])
+    assert [1000 * (mod.KNOWN_DATASETS.index(d) + 1) for d in mod.DATASETS] == [1000, 2000, 3000]
+    src = open(os.path.join(PILOT, "k15_full.py"), encoding="utf-8").read()
+    assert '{"arm": "S", "op": "O2", "a": a, "site": lab' in src and '{"arm": "S", "op": "O4", "a": a, "site": lab' in src
+    monkeypatch.setattr(mod, "D4_DIR", [os.path.join(PILOT, "data", "k16_path_ifm")])
+    cands, quota, sel = mod.d4_candidates()
+    assert len(cands) == 806 and quota == {"T1": 20, "T2": 20} and sel.__name__ == "d45_select"
+    assert all(p["half"] == "test" and p["pos"] and p["para"] and p["id"].startswith("d4-") for p in cands)
+    with open(os.path.join(JOBS, "nolocal", "joblist.tsv"), encoding="utf-8") as f:
+        g = [r for r in csv.DictReader(f, delimiter="	") if r["group"] == "g16_ifmgrid"]
+    assert [r["id"] for r in g] == ["g16_ifmgrid.s1_run.001", "g16_ifmgrid.s1_run.002"]
+    assert "--datasets" not in g[0]["cmd"] and g[0]["out"].endswith("/ifm_p1_ouro_grid")
+    assert "--datasets D4 --data_dir $DATA_ROOT/k16_path_ifm" in g[1]["cmd"] and g[1]["out"].endswith("_grid_D4")
+    assert all(GJ.family_of(r["cmd"]) == "ifm" and r["depends_on"] == "g0_xllm.s1_build.001" for r in g)
+    assert GJ.cell_target("edit-site map", "ifm_p1_ouro", "D4")[1] == "B/k15_full/ifm_p1_ouro_grid_D4"
+    assert GJ.cell_target(GJ.FIRST_RUN_CARD, "ifm_p1_ouro", "D4")[1] == "B/k16_path_ifm/ifm_p1_ouro_D4"
+    from cluster.extract import k15full
+    assert k15full.DS["D4"] == "code"
+

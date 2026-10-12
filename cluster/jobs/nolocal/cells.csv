@@ -324,6 +324,7 @@ B,IFM pathway rows (first run),ifm_p1_mid_inj,D2,run,run,job: k16_path_ifm.py
 B,IFM pathway rows (first run),ifm_p1_mid_inj,D4,run,run,job: k16_path_ifm.py
 B,IFM pathway rows (first run),ifm_p1_mid_inj,D5,run,run,job: k16_path_ifm.py
 B,IFM pathway rows (first run),ifm_p2m_diag,D2,run,run,job: k16_path_ifm.py
+B,IFM pathway rows (first run),ifm_p1_ouro,D4,run,pending,no pilot script route and no cells_skipped.json entry
 A,generation placement,mcleish_llama32_r32,ASDIV_gen,skip,skip,"time: steer_gen_math.py runs on McLeish (smoke), but at 19.5 s per problem a full-pool row is about 4 card-hours (ASDiv) to 7 (MAWPS) and a model-dataset cell about 100 to 170 card-hours, ten times the RA-23 estimate"
 A,generation placement,mcleish_llama32_r32,MAWPS_gen,skip,skip,time: same
 B,"strength ablation (edit-site map at a 0.25 and 1, three random seeds)",ouro_1_4b_base,D1,skip,skip,time: RA-23 item 3 is not a config: no pilot script runs the Ouro base edit-site map with three random seeds (k17_public has a 0.25 and 1 with one random direction and loads Ouro-1.4B-Thinking only)

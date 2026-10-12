@@ -24,7 +24,7 @@ import re
 from . import common, resum
 
 SCRIPT = "k15_full.py"
-DS = {"D1": "facts", "D2": "addition", "CF": "counterfact"}
+DS = {"D1": "facts", "D2": "addition", "CF": "counterfact", "D4": "code"}
 SITE_RE = re.compile(r"^(L0|Lmid|Llast)@(\d+)$")
 ARM = {"S": None, "A": "A", "C": "C", "O5": "O5"}
 
