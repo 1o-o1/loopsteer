@@ -1,0 +1,53 @@
+{
+ "rule": "recorded beside our values with |diff| <= 0.15; not a gate",
+ "values": {
+  "d112|D1|patch": {
+   "estimate": 0.0001,
+   "n_items": 80,
+   "source": "loop-signal/paper/tables/T_answer_classes.csv",
+   "source_row": "ifm_d112 D1 all Llast@1 a=1 e_final"
+  },
+  "d112|D2|patch": {
+   "estimate": 0.1047,
+   "n_items": 80,
+   "source": "loop-signal/paper/tables/T_answer_classes.csv",
+   "source_row": "ifm_d112 D2 all Llast@1 a=1 e_final"
+  },
+  "ouro|D1|patch": {
+   "estimate": 0.0007,
+   "n_items": 267,
+   "source": "loop-flow/artifacts_spark/k17_freeze/full/results.json",
+   "source_row": "cells.facts.e0.mean"
+  },
+  "ouro|D1|patch_hold_attn": {
+   "estimate": 0.0024,
+   "n_items": 267,
+   "source": "loop-flow/artifacts_spark/k17_freeze/full/results.json",
+   "source_row": "cells.facts.e_mlp.mean"
+  },
+  "ouro|D1|patch_hold_mlp": {
+   "estimate": 1.2767,
+   "n_items": 267,
+   "source": "loop-flow/artifacts_spark/k17_freeze/full/results.json",
+   "source_row": "cells.facts.e_attn.mean"
+  },
+  "ouro|D2|patch": {
+   "estimate": 0.7971,
+   "n_items": 263,
+   "source": "loop-flow/artifacts_spark/k17_freeze/full/results.json",
+   "source_row": "cells.addition.e0.mean"
+  },
+  "ouro|D2|patch_hold_attn": {
+   "estimate": 0.8073,
+   "n_items": 263,
+   "source": "loop-flow/artifacts_spark/k17_freeze/full/results.json",
+   "source_row": "cells.addition.e_mlp.mean"
+  },
+  "ouro|D2|patch_hold_mlp": {
+   "estimate": 1.415,
+   "n_items": 263,
+   "source": "loop-flow/artifacts_spark/k17_freeze/full/results.json",
+   "source_row": "cells.addition.e_attn.mean"
+  }
+ }
+}

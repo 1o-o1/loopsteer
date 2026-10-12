@@ -1,0 +1,188 @@
+# The ONE configuration file.
+#
+# Every loop count, cap, horizon, dataset, batch width (and its per-job overrides),
+# forced-N and the calibration seed lives here. `prod/config.py` is the loader: it reads this file,
+# merges any `--config-json`, then the explicit command-line flags (`config.add_args` /
+# `config.from_args`), and exposes the module-level names and functions every other
+# file in the package imports. Nothing here is read by torch, transformers or any model.
+#
+#   python -m prod.config --print
+#   python -m prod.config --print --caps=0,64,512 --horizon=1024
+
+version: PP3
+
+# ------------------------------------------------------------------ protocol
+# caps of record. The extra caps {48, 96, 192, 384} are not run.
+caps: [0, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+caps_extra: []
+# natural-stop horizon: generation stops naturally, or at 4096 tokens.
+horizon: 4096
+# the forced-continuation protocol's own horizon ("Wait" injection, S13)
+forced_horizon: 4096
+# budgets scored on a forced-continuation trace
+forced_budgets: [0, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+
+# Is the closing think tag a natural stop? On a chat-template Thinking checkpoint `</think>` joins
+# the eos set, so the natural-stop cut lands ON the tag: the chain is cut at the end of the reasoning
+# block and the answer written after it is discarded (ouro_2_6b_think GSM8K natural k=4: 21.7 against
+# 56.8 forced, 98% of rows cut at the tag). `true` is that behaviour and the default, so every grid
+# already generated stays reproducible. `false` makes the tag an ordinary token: the chain runs on to
+# the task's stop strings or the eos token and the own-answer parser reads through the tag. Switching
+# it off requires REGENERATING every chat-template Thinking natural-stop grid.
+think_tag_is_stop: true
+
+# the forced-continuation block: a SEPARATE protocol block ("Wait" injection to the horizon, S13),
+# GSM8K and MATH500 on the four Ouro checkpoints at full N. OFF by default: it is its own queue,
+# priced separately. Set `enabled: true` and re-plan with a fresh --root to run it.
+forced_block:
+  enabled: false
+  models: [ouro_1_4b_base, ouro_1_4b_think, ouro_2_6b_base, ouro_2_6b_think]
+  tasks: [gsm8k, math500]
+  ks: null            # null = the model's full depth set
+  n: null             # null = full N
+
+# ------------------------------------------------------------------ batch width
+# production batch width, PINNED; stored per row.
+batch_width: 16
+# hard cap on the decode batch when the width is adaptive (`--batch-width=0`)
+batch_cap: 32
+
+# ------------------------------------------------------------------ splits
+split_seed: 20260908
+n_cal: 100
+
+# ------------------------------------------------------------------ datasets
+# the ten evaluation sets of record, with the N of record each.
+datasets:
+  gsm8k: 1319
+  math500: 500
+  svamp: 300
+  aqua: 254
+  csqa: 1221
+  arc: 1172
+  strategyqa: 2290
+  # ten BBH tasks POOLED into one task slot. 2,437, not 2,500: causal_judgement has only 187
+  # examples in the official BBH release (same count in lukaemon/bbh and the repo's own
+  # bbh/causal_judgement.json), and no row was invented or repeated to reach 250.
+  bbh: 2437
+  mmlu: 2000          # stratified over the 57 subjects by split_seed
+  hellaswag: 2000      # validation split by split_seed
+
+# the ten BBH subtasks pooled into the `bbh` slot, in file order.
+bbh_subtasks:
+  - date_understanding
+  - logical_deduction_five_objects
+  - tracking_shuffled_objects_three_objects
+  - sports_understanding
+  - boolean_expressions
+  - multistep_arithmetic_two
+  - word_sorting
+  - navigate
+  - causal_judgement
+  - temporal_sequences
+
+# ------------------------------------------------------------------ models
+# Shapes are static, so the launcher can size a job with no CUDA and no model load: `params` are the
+# Hub's own safetensors parameter counts, the rest is each checkpoint's own config.json.
+# `install_models.py` re-derives all of it at install time into tasks/data/model_revisions.json,
+# which `shapes_for()` prefers over this table when present. `depths` is the depth set of record per
+# model; `depths_extra` adds extra depths on a named task only (McLeish on GSM8K: the loop axis
+# saturates at k=4). `batch_width_overrides` holds per (model, k) widths that replace
+# `batch_width` above, because at width 16 and horizon 4096 three (model, depth) pairs
+# do not fit a 141 GB cluster GPU (Ouro-2.6B k=3/4, Huginn k=16/32). Everything not named here uses `batch_width`.
+model_order: [ouro_1_4b_base, ouro_1_4b_think, ouro_2_6b_base, ouro_2_6b_think, huginn_0125,
+              mcleish_llama32_r32]
+
+models:
+  ouro_1_4b_base:
+    repo: ByteDance/Ouro-1.4B
+    params: 1434652673
+    kv_heads: 16
+    head_dim: 128
+    layers: 24
+    entries: ouro
+    dtype_bytes: 2
+    depths: [1, 2, 3, 4]
+
+  ouro_1_4b_think:
+    repo: ByteDance/Ouro-1.4B-Thinking
+    params: 1434652673
+    kv_heads: 16
+    head_dim: 128
+    layers: 24
+    entries: ouro
+    dtype_bytes: 2
+    depths: [1, 2, 3, 4]
+
+  ouro_2_6b_base:
+    repo: ByteDance/Ouro-2.6B
+    params: 2667974657
+    kv_heads: 16
+    head_dim: 128
+    layers: 48
+    entries: ouro
+    dtype_bytes: 2
+    depths: [1, 2, 3, 4]
+    # 125.0 GB at width 16 / horizon 4096 exceeds 0.85 x 141 GB; width 8 fits (114 GB worst job).
+    batch_width_overrides: {"3": 8, "4": 8}
+
+  ouro_2_6b_think:
+    repo: ByteDance/Ouro-2.6B-Thinking
+    params: 2667974657
+    kv_heads: 16
+    head_dim: 128
+    layers: 48
+    entries: ouro
+    dtype_bytes: 2
+    depths: [1, 2, 3, 4]
+    batch_width_overrides: {"3": 8, "4": 8}
+
+  huginn_0125:
+    repo: tomg-group-umd/huginn-0125
+    params: 3911400096
+    kv_heads: 55
+    head_dim: 96
+    prelude: 2
+    core: 4
+    coda: 2
+    entries: raven
+    dtype_bytes: 2
+    depths: [1, 2, 4, 8, 16, 32]
+    # k=32 is 220.0 GB at width 16 (never fits alone); k=16 is 112 GB (fits, 8 GB to spare) but
+    # is dropped to width 8 anyway so the two depths share one rule instead of a one-off at k=32.
+    batch_width_overrides: {"16": 8, "32": 4}
+
+  mcleish_llama32_r32:
+    repo: smcleish/Recurrent-Llama-3.2-train-recurrence-32
+    params: 1385228288
+    kv_heads: 8
+    head_dim: 64
+    prelude: 4
+    core: 6
+    coda: 4
+    entries: raven
+    dtype_bytes: 2
+    depths: [1, 2, 4, 8]
+    depths_extra:
+      gsm8k: [16, 32]
+
+# ------------------------------------------------------------------ launcher / memory
+# fraction of a device's memory a GPU slot's running sum may occupy (the Spark rule)
+mem_util: 0.85
+# prompt tokens the KV estimate allows on top of the horizon (mean prompt + suffix + answer)
+prompt_allowance: 1536
+# tokens per row the PLACEMENT estimate assumes (null = the full horizon, the worst case: every row of
+# a batch at 4096). On GPUs under about 80 GB the worst case refuses most jobs while the measured peak
+# of a 16-row Ouro-1.4B k=4 job is 13 GB; set e.g. 1024 to place on typical trace lengths and let the
+# decoder's OOM ladder (halve the batch, retry, exit 3 if a row still fails) guard the long tail.
+placement_horizon: null
+# workers per GPU. 1 runs exactly one job per GPU.
+workers_per_gpu: 1
+# assumed cluster/GB10 throughput factor until the first timed job on the cluster
+cluster_factor: 4.0
+
+# ------------------------------------------------------------------ live-check budgets
+# fractions of the DEFAULT cost (the natural-stop cost at the model's max depth and the full
+# horizon, at the median evaluation prompt) that `prod.live_check --budget-fraction=F` accepts
+# directly, instead of an index into the 16 log-spaced grid points spanning the cost matrix.
+budget_fractions: [0.25, 0.5, 1.0]

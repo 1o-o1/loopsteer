@@ -1,0 +1,15 @@
+{
+ "outputs": {
+  "items.json": "b6d47f2858a71ee870a9483384cce74737298ddd18cecf8245cfc393bb08943e",
+  "r00_cells.jsonl": "8ef887aa4ad833c665f926d1c27dc0012e456f661e4d1fb412e15f08efb514d2",
+  "r00_chains.jsonl": "02153d3422401e8d453cd91e73a277e78bb63ec791a25d33259a4f716629f881",
+  "r00_meta.json": "f6d2844db14937bdce232799724a31138c539f5b8f0a15f145df51c64376d8b0"
+ },
+ "r00_seconds": 1303.0,
+ "sources": {
+  "steer_gen/a2_gsm8k/items.json": "b6d47f2858a71ee870a9483384cce74737298ddd18cecf8245cfc393bb08943e",
+  "steer_gen/a2_gsm8k/r00/cells_ouro_2_6b_base_gsm8k_natural_k4_sub447.jsonl": "8ef887aa4ad833c665f926d1c27dc0012e456f661e4d1fb412e15f08efb514d2",
+  "steer_gen/a2_gsm8k/r00/chains_ouro_2_6b_base_gsm8k_k4.jsonl": "02153d3422401e8d453cd91e73a277e78bb63ec791a25d33259a4f716629f881",
+  "steer_gen/a2_gsm8k/r00/meta_ouro_2_6b_base_gsm8k_natural_k4_sub447.json": "cf2b1446cde133ad0a09cc4c5e9b551f1f407432ad75f22a45397bc9b1a236dd"
+ }
+}

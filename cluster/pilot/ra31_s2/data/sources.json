@@ -1,0 +1,19 @@
+{
+ "n_items": {
+  "D1": 267,
+  "D2": 263
+ },
+ "outputs": {
+  "items_d1.json": "637cf5574d3425d45af6d4fb5051a30b0f69247a931f913117e9c3d2df1998ad",
+  "ouro_D2.json": "d3122bf67040549696d4dd06927002dcd37126075be64b7b57941783757c4d66",
+  "ref_values.json": "9b1c8a5b1239cbf3e71c6547297f2ff365a3a41b2078ad9c13727ac8d9a35caa",
+  "run1c_ref.json": "64fadd8004ed9ecaf8838be37fbfcbca811073152074fcd169973a2443be1ec2"
+ },
+ "sources": {
+  "run1c/data/items_d1.json": "637cf5574d3425d45af6d4fb5051a30b0f69247a931f913117e9c3d2df1998ad",
+  "run1c/data/ouro_D2.json": "d3122bf67040549696d4dd06927002dcd37126075be64b7b57941783757c4d66",
+  "run1c/data/ref_values.json": "9b1c8a5b1239cbf3e71c6547297f2ff365a3a41b2078ad9c13727ac8d9a35caa",
+  "run1c/out/full/ouro/items_D1.jsonl": "20edeaa7a87f9c22fe052b92bc4d18269c4f3742ae3552573b568740f0f8de0d",
+  "run1c/out/full/ouro/items_D2.jsonl": "eee978eacae657a6fe22340303bdeace9c62160441cc7ff822d3df63ff8a8b20"
+ }
+}

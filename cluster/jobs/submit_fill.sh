@@ -35,10 +35,13 @@ LISTS=$(sed -n 's/^lists //p' "$OUT_ROOT/_chain/jobs.txt" 2> /dev/null)
 LISTS="${LISTS:-$HERE/nolocal}"
 JL="$LISTS/joblist.tsv"
 [ -f "$JL" ] || { echo "no job list $JL"; exit 2; }
+PLAN_IDS="${PLAN_IDS:-}"        # one task id per line: only those ids are planned and priced (the planner)
+[ -z "$PLAN_IDS" ] || [ -f "$PLAN_IDS" ] || { echo "PLAN_IDS=$PLAN_IDS: no such file"; exit 2; }
 . "$HERE/pack_lib.sh"      # nodes (RESERVE_NODES), CARDS, packing, TIME_LIMIT
 nodes_setup
 SUB="$OUT_ROOT/_chain/submitted.tsv"
 mkdir -p "$OUT_ROOT/_chain"
+touch "$SUB.packed"
 TAB=$(printf '\t')
 unit_of() {          # the hold unit (gen_jobs.family_of)
   case "$1" in *steer_gen_raven*) echo mcleish; return;; *steer_gen_math*" mcleish "*) echo mcleish; return;; esac
@@ -58,7 +61,7 @@ if command -v squeue > /dev/null 2>&1; then
     QUEUED=$(printf '%s\n%s\n' "$QUEUED" "$(queued_packed "$Q")" | grep . | sort -u)
     for g in $(echo "$FILL" | tr ' ' '\n' | cut -d: -f1); do       # a queued fill job the log does not know: refuse
       for A in $(squeue -h -u "$U" -n "ra20_$g" -o %F 2> /dev/null | sort -u); do
-        awk -v a="$A" '$1 == a {f = 1} END {exit !f}' "$SUB" 2> /dev/null && continue
+        awk -v a="$A" '$1 == a {f = 1} END {exit !f}' "$SUB" "$SUB.packed" 2> /dev/null && continue
         echo "REFUSED: queued job $A of ra20_$g is not in $SUB (scancel it or wait)"; exit 4
       done
     done
@@ -72,13 +75,15 @@ trap 'rm -f "$LINES"' EXIT
    for L in "$g".s*.tsv; do [ -f "$L" ] && awk -F'\t' -v l="$L" '{print $1 "\t" l "\t" FNR}' "$L"; done
  done) > "$LINES"
 # the plan: one line per (priority, group, pipeline, stage): the task line indices to submit ("-" for none)
-PLAN=$(awk -F'\t' -v fill="$FILL" -v done_dir="$OUT_ROOT/_done" -v queued="$QUEUED" '
+PLAN=$(awk -F'\t' -v fill="$FILL" -v done_dir="$OUT_ROOT/_done" -v queued="$QUEUED" -v pids="$PLAN_IDS" '
   BEGIN { n = split(fill, f, " "); for (i = 1; i <= n; i++) { split(f[i], p, ":"); pri[p[1]] = p[2] }
+          if (pids != "") { usep = 1; while ((getline x < pids) > 0) if (x != "") pid[x] = 1 }
           m = split(queued, ql, "\n"); for (i = 1; i <= m; i++) if (ql[i] != "") inq[ql[i]] = 1 }
   FILENAME == ARGV[1] { lst[$1] = $2; line[$1] = $3; next }
   FNR == 1 { for (i = 1; i <= NF; i++) c[$i] = i; next }
   { g = $c["group"] }
   !(g in pri) { next }
+  usep && !($c["id"] in pid) { next }
   { id = $c["id"]; pl = g SUBSEP $c["script"] SUBSEP $c["model"] SUBSEP $c["out"]
     if (!(id in line)) { print "no stage-list line for " id > "/dev/stderr"; bad = 1; next }
     if (!(pl in seen)) { seen[pl] = 1; order[++np] = pl }

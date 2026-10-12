@@ -1,0 +1,15 @@
+{
+ "outputs": {
+  "items.json": "0cc072fbab137eceb17e2cf450fa262e10eac1acb784d31aea7e2d0d85885c8f",
+  "r00_cells.jsonl": "afec8d3b17a02661e167cff127236d96f8e2c65e84f7224de792c07bf7628ded",
+  "r00_chains.jsonl": "ef3ea7524ec6e74c5be13202edc8ba38276dd54434c17ddc087b7733bf00e079",
+  "r00_meta.json": "35651839d32fab05efa888f2428ec431e565d6c750cbfe40f74091fba133d6fa"
+ },
+ "r00_seconds": 668.5,
+ "sources": {
+  "steer_gen_math/a1_asdiv/items.json": "0cc072fbab137eceb17e2cf450fa262e10eac1acb784d31aea7e2d0d85885c8f",
+  "steer_gen_math/a1_asdiv/r00/cells_ouro_1_4b_base_asdiv_natural_k4_sub1058.jsonl": "afec8d3b17a02661e167cff127236d96f8e2c65e84f7224de792c07bf7628ded",
+  "steer_gen_math/a1_asdiv/r00/chains_ouro_1_4b_base_asdiv_k4.jsonl": "ef3ea7524ec6e74c5be13202edc8ba38276dd54434c17ddc087b7733bf00e079",
+  "steer_gen_math/a1_asdiv/r00/meta_ouro_1_4b_base_asdiv_natural_k4_sub1058.json": "1afed5ff3a558d937c35b10dc582ce186e413f186308f8b39a3b6b7acea78450"
+ }
+}

@@ -1,0 +1,4745 @@
+{
+ "filter_fails": {
+  "A_wrong": 0,
+  "B_wrong": 8,
+  "not_screened": 0
+ },
+ "n_scored": 244,
+ "n_screened_A": 252,
+ "n_screened_B": 252,
+ "r20_layout_change": {
+  "group_changed": 220,
+  "n": 252,
+  "padded_len_changed": 160
+ },
+ "scored": [
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 283,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 621,
+   "span": [
+    588,
+    589
+   ],
+   "value_A": 7,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "314",
+   "gold_B": "285",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 79,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 633,
+   "span": [
+    613,
+    615
+   ],
+   "value_A": 23,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "20",
+   "gold_B": "22",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 261,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 618,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 56,
+   "value_B": 54,
+   "value_first_digit_differs": false,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "76",
+   "gold_B": "138",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 102,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 24,
+   "plen": 611,
+   "span": [
+    583,
+    587
+   ],
+   "value_A": 1216,
+   "value_B": 2208,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "78",
+   "gold_B": "96",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 63,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 49,
+   "plen": 631,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 59,
+   "value_B": 77,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "22",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 163,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 41,
+   "plen": 623,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 88,
+   "value_B": 12,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "15",
+   "gold_B": "743",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 233,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 24,
+   "plen": 606,
+   "span": [
+    579,
+    582
+   ],
+   "value_A": 155,
+   "value_B": 883,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "61",
+   "gold_B": "195",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 11,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 38,
+   "plen": 634,
+   "span": [
+    593,
+    596
+   ],
+   "value_A": 269,
+   "value_B": 135,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 135,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 627,
+   "span": [
+    609,
+    610
+   ],
+   "value_A": 7,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num3"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "13",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 3,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 28,
+   "plen": 634,
+   "span": [
+    604,
+    606
+   ],
+   "value_A": 19,
+   "value_B": 14,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "6",
+   "gold_B": "64",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 56,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 23,
+   "plen": 607,
+   "span": [
+    582,
+    584
+   ],
+   "value_A": 11,
+   "value_B": 69,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "6",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 53,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 37,
+   "plen": 630,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 7,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "347",
+   "gold_B": "179",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 138,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 19,
+   "plen": 610,
+   "span": [
+    588,
+    591
+   ],
+   "value_A": 521,
+   "value_B": 353,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "75",
+   "gold_B": "69",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 18,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 611,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 2,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "20",
+   "gold_B": "10",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 231,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 14,
+   "plen": 604,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 4,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14",
+   "gold_B": "20",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 244,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 614,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 9,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "38608",
+   "gold_B": "64085",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 69,
+   "n_digits": 6,
+   "n_span_tokens": 6,
+   "offset_from_end": 24,
+   "plen": 622,
+   "span": [
+    592,
+    598
+   ],
+   "value_A": 274865,
+   "value_B": 249388,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "18",
+   "gold_B": "82",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 52,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 605,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 20,
+   "value_B": 84,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "66",
+   "gold_B": "186",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 169,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 618,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 35,
+   "value_B": 95,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "11",
+   "gold_B": "10",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 267,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 27,
+   "plen": 610,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 12,
+   "value_B": 11,
+   "value_first_digit_differs": false,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "33",
+   "gold_B": "109",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 61,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 621,
+   "span": [
+    589,
+    591
+   ],
+   "value_A": 18,
+   "value_B": 94,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "1",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 37,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 41,
+   "plen": 621,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 8,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "10",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 192,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 615,
+   "span": [
+    594,
+    595
+   ],
+   "value_A": 5,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 136,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 37,
+   "plen": 615,
+   "span": [
+    577,
+    578
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "265",
+   "gold_B": "645",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 99,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 14,
+   "plen": 627,
+   "span": [
+    610,
+    613
+   ],
+   "value_A": 535,
+   "value_B": 155,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "6",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 150,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 51,
+   "plen": 629,
+   "span": [
+    577,
+    578
+   ],
+   "value_A": 2,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "79",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 130,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 614,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 22,
+   "value_B": 92,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1363293",
+   "gold_B": "1200035",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 178,
+   "n_digits": 6,
+   "n_span_tokens": 6,
+   "offset_from_end": 17,
+   "plen": 619,
+   "span": [
+    596,
+    602
+   ],
+   "value_A": 455682,
+   "value_B": 292424,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "150780",
+   "gold_B": "31437",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 98,
+   "n_digits": 6,
+   "n_span_tokens": 6,
+   "offset_from_end": 25,
+   "plen": 628,
+   "span": [
+    597,
+    603
+   ],
+   "value_A": 668278,
+   "value_B": 787621,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "17",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 86,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 44,
+   "plen": 623,
+   "span": [
+    577,
+    579
+   ],
+   "value_A": 15,
+   "value_B": 28,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "2",
+   "gold_B": "22",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 151,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 44,
+   "plen": 634,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 66,
+   "value_B": 46,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 32,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 34,
+   "plen": 629,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 16,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "11",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 72,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 12,
+   "plen": 606,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 2,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "28",
+   "gold_B": "105",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 229,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 604,
+   "span": [
+    590,
+    592
+   ],
+   "value_A": 17,
+   "value_B": 94,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "7",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 263,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 23,
+   "plen": 618,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 10,
+   "value_B": 35,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "84",
+   "gold_B": "210",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 215,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 618,
+   "span": [
+    604,
+    606
+   ],
+   "value_A": 14,
+   "value_B": 35,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "109",
+   "gold_B": "650",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 259,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 12,
+   "plen": 611,
+   "span": [
+    596,
+    599
+   ],
+   "value_A": 136,
+   "value_B": 677,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1891",
+   "gold_B": "4209",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 22,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 23,
+   "plen": 605,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 31,
+   "value_B": 69,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 260,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 611,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 2,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "22",
+   "gold_B": "18",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 187,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 45,
+   "plen": 624,
+   "span": [
+    577,
+    579
+   ],
+   "value_A": 43,
+   "value_B": 39,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "183",
+   "gold_B": "177",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 38,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 21,
+   "plen": 628,
+   "span": [
+    605,
+    607
+   ],
+   "value_A": 70,
+   "value_B": 76,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 206,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 39,
+   "plen": 631,
+   "span": [
+    591,
+    592
+   ],
+   "value_A": 7,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "6",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 213,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 25,
+   "plen": 609,
+   "span": [
+    582,
+    584
+   ],
+   "value_A": 21,
+   "value_B": 42,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "90",
+   "gold_B": "792",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 112,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 57,
+   "plen": 644,
+   "span": [
+    584,
+    587
+   ],
+   "value_A": 115,
+   "value_B": 817,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "574664",
+   "gold_B": "97864",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 211,
+   "n_digits": 6,
+   "n_span_tokens": 6,
+   "offset_from_end": 22,
+   "plen": 625,
+   "span": [
+    597,
+    603
+   ],
+   "value_A": 777622,
+   "value_B": 300822,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "16",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 299,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 607,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 12,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "5",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 145,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 8,
+   "plen": 618,
+   "span": [
+    608,
+    610
+   ],
+   "value_A": 24,
+   "value_B": 40,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "35",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 199,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 17,
+   "plen": 607,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 63,
+   "value_B": 92,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "17",
+   "gold_B": "22",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 212,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 28,
+   "plen": 609,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 51,
+   "value_B": 66,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2673",
+   "gold_B": "4050",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 117,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 9,
+   "plen": 603,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 33,
+   "value_B": 50,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "57",
+   "gold_B": "101",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 248,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 38,
+   "plen": 652,
+   "span": [
+    611,
+    614
+   ],
+   "value_A": 191,
+   "value_B": 147,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "4",
+   "gold_B": "46",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 189,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 622,
+   "span": [
+    604,
+    606
+   ],
+   "value_A": 60,
+   "value_B": 18,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "28",
+   "gold_B": "72",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 15,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 14,
+   "plen": 643,
+   "span": [
+    626,
+    629
+   ],
+   "value_A": 260,
+   "value_B": 216,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "53",
+   "gold_B": "17",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 51,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 618,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 49,
+   "value_B": 85,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 146,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 619,
+   "span": [
+    597,
+    598
+   ],
+   "value_A": 9,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "27",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 20,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 607,
+   "span": [
+    577,
+    578
+   ],
+   "value_A": 7,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2226",
+   "gold_B": "1610",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 277,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 25,
+   "plen": 609,
+   "span": [
+    581,
+    584
+   ],
+   "value_A": 919,
+   "value_B": 303,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "28",
+   "gold_B": "76",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 262,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 638,
+   "span": [
+    603,
+    605
+   ],
+   "value_A": 33,
+   "value_B": 81,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "19",
+   "gold_B": "67",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 274,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 612,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 11,
+   "value_B": 59,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "18",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 258,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 622,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 9,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "34",
+   "gold_B": "41",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 161,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 611,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 35,
+   "value_B": 28,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15",
+   "gold_B": "16",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 46,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 635,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 7,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "146",
+   "gold_B": "835",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 139,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 25,
+   "plen": 621,
+   "span": [
+    593,
+    596
+   ],
+   "value_A": 166,
+   "value_B": 855,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 200,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 27,
+   "plen": 608,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 4,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "136",
+   "gold_B": "526",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 17,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 30,
+   "plen": 613,
+   "span": [
+    580,
+    583
+   ],
+   "value_A": 177,
+   "value_B": 567,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "83",
+   "gold_B": "284",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 291,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 25,
+   "plen": 615,
+   "span": [
+    587,
+    590
+   ],
+   "value_A": 249,
+   "value_B": 852,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "33",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 13,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 38,
+   "plen": 621,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 14,
+   "value_B": 41,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "11",
+   "gold_B": "10",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 257,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 12,
+   "plen": 611,
+   "span": [
+    598,
+    599
+   ],
+   "value_A": 8,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num3"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "298",
+   "gold_B": "455",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 27,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 20,
+   "plen": 617,
+   "span": [
+    594,
+    597
+   ],
+   "value_A": 403,
+   "value_B": 560,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "41",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 35,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 609,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 10,
+   "value_B": 21,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "217",
+   "gold_B": "796",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 159,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 22,
+   "plen": 609,
+   "span": [
+    584,
+    587
+   ],
+   "value_A": 145,
+   "value_B": 724,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "26",
+   "gold_B": "22",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 234,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 628,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 14,
+   "value_B": 10,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 182,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 610,
+   "span": [
+    585,
+    586
+   ],
+   "value_A": 2,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "95",
+   "gold_B": "123",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 195,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 625,
+   "span": [
+    603,
+    604
+   ],
+   "value_A": 6,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "57",
+   "gold_B": "36",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 108,
+   "n_digits": 4,
+   "n_span_tokens": 4,
+   "offset_from_end": 47,
+   "plen": 630,
+   "span": [
+    579,
+    583
+   ],
+   "value_A": 4502,
+   "value_B": 1268,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 217,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 611,
+   "span": [
+    586,
+    587
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "31",
+   "gold_B": "34",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 8,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 628,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 26,
+   "value_B": 23,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "14",
+   "gold_B": "15",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 256,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 627,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 7,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "75",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 183,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 606,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 18,
+   "value_B": 92,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "21",
+   "gold_B": "50",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 185,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 38,
+   "plen": 619,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 10,
+   "value_B": 39,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "10",
+   "gold_B": "13",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 193,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 36,
+   "plen": 628,
+   "span": [
+    591,
+    592
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "826",
+   "gold_B": "1575",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 40,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 18,
+   "plen": 634,
+   "span": [
+    613,
+    616
+   ],
+   "value_A": 128,
+   "value_B": 877,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "7",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 287,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 15,
+   "plen": 602,
+   "span": [
+    586,
+    587
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "5",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 266,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 617,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 5,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "365",
+   "gold_B": "495",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 9,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 7,
+   "plen": 633,
+   "span": [
+    624,
+    626
+   ],
+   "value_A": 73,
+   "value_B": 99,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "125",
+   "gold_B": "126",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 232,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 34,
+   "plen": 624,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 66,
+   "value_B": 67,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 254,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 18,
+   "plen": 633,
+   "span": [
+    614,
+    615
+   ],
+   "value_A": 8,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "143550",
+   "gold_B": "145200",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 77,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 7,
+   "plen": 627,
+   "span": [
+    618,
+    620
+   ],
+   "value_A": 87,
+   "value_B": 88,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "45",
+   "gold_B": "80",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 157,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 630,
+   "span": [
+    613,
+    615
+   ],
+   "value_A": 62,
+   "value_B": 97,
+   "value_first_digit_differs": true,
+   "var_name": "num3"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "22",
+   "gold_B": "25",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 14,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 33,
+   "plen": 611,
+   "span": [
+    577,
+    578
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "105",
+   "gold_B": "102",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 158,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 6,
+   "plen": 616,
+   "span": [
+    609,
+    610
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "24",
+   "gold_B": "16",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 28,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 625,
+   "span": [
+    611,
+    613
+   ],
+   "value_A": 16,
+   "value_B": 24,
+   "value_first_digit_differs": true,
+   "var_name": "num3"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "27",
+   "gold_B": "34",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 241,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 640,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 26,
+   "value_B": 33,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "84",
+   "gold_B": "96",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 142,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 38,
+   "plen": 629,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 7,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 226,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 608,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "1",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 49,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 614,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 2,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 132,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 42,
+   "plen": 627,
+   "span": [
+    584,
+    585
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "32",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 87,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 17,
+   "plen": 617,
+   "span": [
+    598,
+    600
+   ],
+   "value_A": 36,
+   "value_B": 64,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 116,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 616,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 30,
+   "value_B": 29,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "268627",
+   "gold_B": "12194",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 295,
+   "n_digits": 6,
+   "n_span_tokens": 6,
+   "offset_from_end": 31,
+   "plen": 617,
+   "span": [
+    580,
+    586
+   ],
+   "value_A": 898051,
+   "value_B": 641618,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "12",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 196,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 608,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 14,
+   "value_B": 84,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "9",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 225,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 25,
+   "plen": 605,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 6,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 250,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 612,
+   "span": [
+    585,
+    586
+   ],
+   "value_A": 4,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "33",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 64,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 43,
+   "plen": 632,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 11,
+   "value_B": 43,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "27",
+   "gold_B": "13",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 265,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 645,
+   "span": [
+    614,
+    616
+   ],
+   "value_A": 62,
+   "value_B": 48,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "33",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 162,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 611,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 13,
+   "value_B": 45,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "16",
+   "gold_B": "14",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 220,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 624,
+   "span": [
+    591,
+    592
+   ],
+   "value_A": 4,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "9",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 81,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 614,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 12,
+   "value_B": 10,
+   "value_first_digit_differs": false,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "72",
+   "gold_B": "76",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 76,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 33,
+   "plen": 614,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 8,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 114,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 40,
+   "plen": 633,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 8,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3834",
+   "gold_B": "15132",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 0,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 31,
+   "plen": 621,
+   "span": [
+    587,
+    590
+   ],
+   "value_A": 216,
+   "value_B": 754,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "33",
+   "gold_B": "41",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 170,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 40,
+   "plen": 620,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 3,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 255,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 605,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1",
+   "gold_B": "14",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 186,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 32,
+   "plen": 623,
+   "span": [
+    589,
+    591
+   ],
+   "value_A": 22,
+   "value_B": 87,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "69",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 293,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 39,
+   "plen": 620,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 24,
+   "value_B": 90,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "36",
+   "gold_B": "37",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 118,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 626,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 56,
+   "value_B": 55,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 60,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 33,
+   "plen": 614,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 4,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "111",
+   "gold_B": "128",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 289,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 607,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 78,
+   "value_B": 95,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "111",
+   "gold_B": "89",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 181,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 612,
+   "span": [
+    596,
+    598
+   ],
+   "value_A": 76,
+   "value_B": 54,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "12",
+   "gold_B": "9",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 280,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 21,
+   "plen": 612,
+   "span": [
+    589,
+    591
+   ],
+   "value_A": 17,
+   "value_B": 20,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "54",
+   "gold_B": "79",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 168,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 604,
+   "span": [
+    586,
+    588
+   ],
+   "value_A": 35,
+   "value_B": 60,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8265",
+   "gold_B": "6612",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 88,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 647,
+   "span": [
+    612,
+    614
+   ],
+   "value_A": 95,
+   "value_B": 76,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "337",
+   "gold_B": "258",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 124,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 25,
+   "plen": 610,
+   "span": [
+    582,
+    585
+   ],
+   "value_A": 402,
+   "value_B": 481,
+   "value_first_digit_differs": false,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "22",
+   "gold_B": "66",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 127,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 608,
+   "span": [
+    596,
+    597
+   ],
+   "value_A": 2,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "117",
+   "gold_B": "39",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 119,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 16,
+   "plen": 619,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 9,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 96,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 615,
+   "span": [
+    585,
+    586
+   ],
+   "value_A": 6,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "103",
+   "gold_B": "594",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 41,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 26,
+   "plen": 611,
+   "span": [
+    582,
+    585
+   ],
+   "value_A": 659,
+   "value_B": 168,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 93,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 15,
+   "plen": 616,
+   "span": [
+    600,
+    601
+   ],
+   "value_A": 2,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "58",
+   "gold_B": "56",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 73,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 612,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 67,
+   "value_B": 65,
+   "value_first_digit_differs": false,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "128",
+   "gold_B": "267",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 144,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 15,
+   "plen": 613,
+   "span": [
+    595,
+    598
+   ],
+   "value_A": 101,
+   "value_B": 240,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30057",
+   "gold_B": "6914",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 67,
+   "n_digits": 5,
+   "n_span_tokens": 5,
+   "offset_from_end": 15,
+   "plen": 628,
+   "span": [
+    608,
+    613
+   ],
+   "value_A": 91676,
+   "value_B": 68533,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "22800",
+   "gold_B": "49500",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 166,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 20,
+   "plen": 603,
+   "span": [
+    580,
+    583
+   ],
+   "value_A": 304,
+   "value_B": 660,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 153,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 40,
+   "plen": 628,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 6,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "69",
+   "gold_B": "72",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 7,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 38,
+   "plen": 632,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 5,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "63",
+   "gold_B": "77",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 55,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 31,
+   "plen": 624,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 4,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "45",
+   "gold_B": "30",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 268,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 36,
+   "plen": 616,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 9,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "61",
+   "gold_B": "49",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 5,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 40,
+   "plen": 649,
+   "span": [
+    606,
+    609
+   ],
+   "value_A": 661,
+   "value_B": 649,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "13",
+   "gold_B": "15",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 62,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 37,
+   "plen": 615,
+   "span": [
+    577,
+    578
+   ],
+   "value_A": 3,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "19",
+   "gold_B": "60",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 224,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 38,
+   "plen": 633,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 44,
+   "value_B": 85,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "7",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 143,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 38,
+   "plen": 618,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 2,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "7",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 197,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 606,
+   "span": [
+    594,
+    595
+   ],
+   "value_A": 5,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "125",
+   "gold_B": "562",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 115,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 35,
+   "plen": 621,
+   "span": [
+    583,
+    586
+   ],
+   "value_A": 310,
+   "value_B": 747,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "17",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 45,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 35,
+   "plen": 621,
+   "span": [
+    584,
+    586
+   ],
+   "value_A": 10,
+   "value_B": 23,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 285,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 36,
+   "plen": 616,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 4,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "367",
+   "gold_B": "533",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 100,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 48,
+   "plen": 633,
+   "span": [
+    582,
+    585
+   ],
+   "value_A": 521,
+   "value_B": 687,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "13",
+   "gold_B": "34",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 188,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 610,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 19,
+   "value_B": 40,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "98",
+   "gold_B": "106",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 54,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 614,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 36,
+   "value_B": 28,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "80",
+   "gold_B": "19",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 44,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 614,
+   "span": [
+    586,
+    588
+   ],
+   "value_A": 77,
+   "value_B": 16,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "51",
+   "gold_B": "104",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 89,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 36,
+   "plen": 617,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 33,
+   "value_B": 86,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "460",
+   "gold_B": "830",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 238,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 23,
+   "plen": 619,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 46,
+   "value_B": 83,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "11",
+   "gold_B": "14",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 107,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 34,
+   "plen": 614,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 3,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "23",
+   "gold_B": "30",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 25,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 604,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 36,
+   "value_B": 29,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 141,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 609,
+   "span": [
+    595,
+    597
+   ],
+   "value_A": 16,
+   "value_B": 11,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "17",
+   "gold_B": "18",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 227,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 619,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 51,
+   "value_B": 54,
+   "value_first_digit_differs": false,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "6",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 240,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 22,
+   "plen": 609,
+   "span": [
+    586,
+    587
+   ],
+   "value_A": 6,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "64",
+   "gold_B": "109",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 1,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 612,
+   "span": [
+    577,
+    579
+   ],
+   "value_A": 26,
+   "value_B": 71,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "39",
+   "gold_B": "38",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 208,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 27,
+   "plen": 630,
+   "span": [
+    602,
+    603
+   ],
+   "value_A": 3,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "13",
+   "gold_B": "14",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 165,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 614,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 8,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "91",
+   "gold_B": "85",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 103,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 619,
+   "span": [
+    597,
+    599
+   ],
+   "value_A": 25,
+   "value_B": 19,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "32",
+   "gold_B": "14",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 140,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 39,
+   "plen": 621,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 21,
+   "value_B": 39,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "10",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 110,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 609,
+   "span": [
+    589,
+    590
+   ],
+   "value_A": 7,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "229",
+   "gold_B": "402",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 177,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 25,
+   "plen": 624,
+   "span": [
+    596,
+    599
+   ],
+   "value_A": 213,
+   "value_B": 386,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "3168",
+   "gold_B": "3456",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 245,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 615,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 22,
+   "value_B": 24,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "33",
+   "gold_B": "112",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 137,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 13,
+   "plen": 618,
+   "span": [
+    602,
+    605
+   ],
+   "value_A": 165,
+   "value_B": 560,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 252,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 612,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 2,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 286,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 31,
+   "plen": 634,
+   "span": [
+    600,
+    603
+   ],
+   "value_A": 114,
+   "value_B": 456,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "68",
+   "gold_B": "64",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 152,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 39,
+   "plen": 629,
+   "span": [
+    588,
+    590
+   ],
+   "value_A": 91,
+   "value_B": 87,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "5",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 2,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 14,
+   "plen": 610,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 39,
+   "value_B": 65,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "7",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 24,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 29,
+   "plen": 611,
+   "span": [
+    581,
+    582
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "35",
+   "gold_B": "37",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 172,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 614,
+   "span": [
+    592,
+    593
+   ],
+   "value_A": 9,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "174",
+   "gold_B": "734",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 149,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 33,
+   "plen": 624,
+   "span": [
+    589,
+    591
+   ],
+   "value_A": 12,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "68",
+   "gold_B": "71",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 129,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 18,
+   "plen": 621,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 16,
+   "value_B": 13,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "83",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 279,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 36,
+   "plen": 618,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 22,
+   "value_B": 98,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "153",
+   "gold_B": "663",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 216,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 32,
+   "plen": 627,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 74,
+   "value_B": 84,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "17",
+   "gold_B": "94",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 78,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 614,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 16,
+   "value_B": 93,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "39",
+   "gold_B": "84",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 29,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 625,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 41,
+   "value_B": 86,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "13",
+   "gold_B": "15",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 128,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 615,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 7,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "728",
+   "gold_B": "1452",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 34,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 15,
+   "plen": 629,
+   "span": [
+    611,
+    614
+   ],
+   "value_A": 177,
+   "value_B": 901,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "5",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 167,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 25,
+   "plen": 613,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 5,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 43,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 620,
+   "span": [
+    602,
+    604
+   ],
+   "value_A": 15,
+   "value_B": 19,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "81",
+   "gold_B": "27",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 111,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 31,
+   "plen": 625,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 9,
+   "value_B": 3,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "31",
+   "gold_B": "33",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 109,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 25,
+   "plen": 630,
+   "span": [
+    603,
+    605
+   ],
+   "value_A": 60,
+   "value_B": 61,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "80",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 176,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 46,
+   "plen": 635,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 11,
+   "value_B": 89,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "39",
+   "gold_B": "51",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 247,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 613,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 22,
+   "value_B": 10,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "43",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 207,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 617,
+   "span": [
+    595,
+    597
+   ],
+   "value_A": 18,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "17",
+   "gold_B": "16",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 65,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 11,
+   "plen": 612,
+   "span": [
+    600,
+    601
+   ],
+   "value_A": 5,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 249,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 613,
+   "span": [
+    593,
+    594
+   ],
+   "value_A": 4,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "6",
+   "gold_B": "7",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 71,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 22,
+   "plen": 602,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 3,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "14",
+   "gold_B": "55",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 278,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 630,
+   "span": [
+    608,
+    610
+   ],
+   "value_A": 41,
+   "value_B": 82,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 276,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 19,
+   "plen": 631,
+   "span": [
+    610,
+    612
+   ],
+   "value_A": 11,
+   "value_B": 10,
+   "value_first_digit_differs": false,
+   "var_name": "num3"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1088",
+   "gold_B": "4692",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 205,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 27,
+   "plen": 625,
+   "span": [
+    596,
+    598
+   ],
+   "value_A": 16,
+   "value_B": 69,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "192",
+   "gold_B": "203",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 204,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 13,
+   "plen": 624,
+   "span": [
+    609,
+    611
+   ],
+   "value_A": 34,
+   "value_B": 45,
+   "value_first_digit_differs": true,
+   "var_name": "num3"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 36,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 624,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 56,
+   "value_B": 28,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "121",
+   "gold_B": "132",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 281,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 617,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 41,
+   "value_B": 52,
+   "value_first_digit_differs": true,
+   "var_name": "num3"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "12",
+   "gold_B": "72",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 106,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 612,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 36,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "14",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 251,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 36,
+   "plen": 616,
+   "span": [
+    579,
+    580
+   ],
+   "value_A": 3,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "10",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 236,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 618,
+   "span": [
+    594,
+    595
+   ],
+   "value_A": 5,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "33",
+   "gold_B": "6",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 125,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 36,
+   "plen": 635,
+   "span": [
+    597,
+    599
+   ],
+   "value_A": 63,
+   "value_B": 36,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "1",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 148,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 622,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 25,
+   "value_B": 31,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "1",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 292,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 32,
+   "plen": 613,
+   "span": [
+    580,
+    581
+   ],
+   "value_A": 7,
+   "value_B": 4,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "7",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 90,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 619,
+   "span": [
+    597,
+    598
+   ],
+   "value_A": 3,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1145",
+   "gold_B": "790",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 31,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 16,
+   "plen": 615,
+   "span": [
+    596,
+    599
+   ],
+   "value_A": 510,
+   "value_B": 155,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "34",
+   "gold_B": "28",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 297,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 26,
+   "plen": 614,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 2,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "1",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 223,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 36,
+   "plen": 624,
+   "span": [
+    587,
+    588
+   ],
+   "value_A": 7,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "65",
+   "gold_B": "71",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 6,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 29,
+   "plen": 611,
+   "span": [
+    580,
+    582
+   ],
+   "value_A": 12,
+   "value_B": 18,
+   "value_first_digit_differs": false,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "737",
+   "gold_B": "2211",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 184,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 18,
+   "plen": 628,
+   "span": [
+    609,
+    610
+   ],
+   "value_A": 6,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "333",
+   "gold_B": "127",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 59,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 22,
+   "plen": 607,
+   "span": [
+    582,
+    585
+   ],
+   "value_A": 569,
+   "value_B": 363,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "23",
+   "gold_B": "30",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 68,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 629,
+   "span": [
+    601,
+    603
+   ],
+   "value_A": 18,
+   "value_B": 11,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 12,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 23,
+   "plen": 606,
+   "span": [
+    582,
+    583
+   ],
+   "value_A": 3,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 230,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 618,
+   "span": [
+    590,
+    592
+   ],
+   "value_A": 28,
+   "value_B": 14,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 222,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 16,
+   "plen": 624,
+   "span": [
+    607,
+    608
+   ],
+   "value_A": 9,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "8",
+   "gold_B": "13",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 33,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 21,
+   "plen": 613,
+   "span": [
+    591,
+    592
+   ],
+   "value_A": 2,
+   "value_B": 7,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3021",
+   "gold_B": "2279",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 113,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 620,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 57,
+   "value_B": 43,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "1",
+   "gold_B": "12",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 164,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 46,
+   "plen": 635,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 10,
+   "value_B": 21,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "22",
+   "gold_B": "33",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 74,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 15,
+   "plen": 617,
+   "span": [
+    601,
+    602
+   ],
+   "value_A": 3,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "67",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 94,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 52,
+   "plen": 635,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 19,
+   "value_B": 85,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "22",
+   "gold_B": "584",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 104,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 40,
+   "plen": 638,
+   "span": [
+    595,
+    598
+   ],
+   "value_A": 317,
+   "value_B": 879,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "51",
+   "gold_B": "58",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 296,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 616,
+   "span": [
+    584,
+    586
+   ],
+   "value_A": 76,
+   "value_B": 83,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "4",
+   "gold_B": "14",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 66,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 22,
+   "plen": 603,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 44,
+   "value_B": 34,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "6",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 282,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 613,
+   "span": [
+    581,
+    583
+   ],
+   "value_A": 13,
+   "value_B": 45,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "11",
+   "gold_B": "5",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 174,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 17,
+   "plen": 619,
+   "span": [
+    601,
+    602
+   ],
+   "value_A": 2,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "1",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 243,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 633,
+   "span": [
+    613,
+    614
+   ],
+   "value_A": 5,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "7",
+   "gold_B": "3",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 288,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 616,
+   "span": [
+    594,
+    596
+   ],
+   "value_A": 11,
+   "value_B": 15,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "3",
+   "gold_B": "5",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 21,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 16,
+   "plen": 618,
+   "span": [
+    600,
+    602
+   ],
+   "value_A": 24,
+   "value_B": 26,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "5",
+   "gold_B": "6",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 58,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 32,
+   "plen": 623,
+   "span": [
+    589,
+    591
+   ],
+   "value_A": 45,
+   "value_B": 54,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "154",
+   "gold_B": "594",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 179,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 20,
+   "plen": 606,
+   "span": [
+    584,
+    586
+   ],
+   "value_A": 14,
+   "value_B": 54,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 23,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 615,
+   "span": [
+    595,
+    596
+   ],
+   "value_A": 3,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "2",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 120,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 619,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 13,
+   "value_B": 12,
+   "value_first_digit_differs": false,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "41",
+   "gold_B": "92",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 39,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 11,
+   "plen": 605,
+   "span": [
+    592,
+    594
+   ],
+   "value_A": 43,
+   "value_B": 94,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "308",
+   "gold_B": "1166",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 16,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 612,
+   "span": [
+    595,
+    597
+   ],
+   "value_A": 18,
+   "value_B": 96,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 198,
+   "n_digits": 3,
+   "n_span_tokens": 3,
+   "offset_from_end": 15,
+   "plen": 616,
+   "span": [
+    598,
+    601
+   ],
+   "value_A": 392,
+   "value_B": 784,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "30",
+   "gold_B": "101",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 275,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 30,
+   "plen": 611,
+   "span": [
+    579,
+    581
+   ],
+   "value_A": 22,
+   "value_B": 93,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "4",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 75,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 24,
+   "plen": 616,
+   "span": [
+    591,
+    592
+   ],
+   "value_A": 6,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "15",
+   "gold_B": "11",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 264,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 14,
+   "plen": 614,
+   "span": [
+    599,
+    600
+   ],
+   "value_A": 5,
+   "value_B": 9,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "9",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 203,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 26,
+   "plen": 634,
+   "span": [
+    606,
+    608
+   ],
+   "value_A": 21,
+   "value_B": 13,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 290,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 12,
+   "plen": 601,
+   "span": [
+    587,
+    589
+   ],
+   "value_A": 16,
+   "value_B": 10,
+   "value_first_digit_differs": false,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "73",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 218,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 15,
+   "plen": 602,
+   "span": [
+    585,
+    587
+   ],
+   "value_A": 10,
+   "value_B": 82,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "12",
+   "gold_B": "16",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 242,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 35,
+   "plen": 617,
+   "span": [
+    581,
+    582
+   ],
+   "value_A": 6,
+   "value_B": 8,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": false,
+   "gold_A": "118",
+   "gold_B": "146",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 214,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 31,
+   "plen": 636,
+   "span": [
+    603,
+    605
+   ],
+   "value_A": 38,
+   "value_B": 66,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "2",
+   "gold_B": "8",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 42,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 20,
+   "plen": 611,
+   "span": [
+    590,
+    591
+   ],
+   "value_A": 8,
+   "value_B": 2,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "1",
+   "gold_B": "56",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 85,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 37,
+   "plen": 632,
+   "span": [
+    593,
+    595
+   ],
+   "value_A": 13,
+   "value_B": 68,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "9",
+   "gold_B": "11",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 19,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 19,
+   "plen": 624,
+   "span": [
+    604,
+    605
+   ],
+   "value_A": 8,
+   "value_B": 6,
+   "value_first_digit_differs": true,
+   "var_name": "num2"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "81",
+   "gold_B": "45",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 123,
+   "n_digits": 1,
+   "n_span_tokens": 1,
+   "offset_from_end": 15,
+   "plen": 621,
+   "span": [
+    605,
+    606
+   ],
+   "value_A": 9,
+   "value_B": 5,
+   "value_first_digit_differs": true,
+   "var_name": "num1"
+  },
+  {
+   "first_digit_differs": true,
+   "gold_A": "143",
+   "gold_B": "299",
+   "gold_B_chain_status": "equation_eval",
+   "idx": 133,
+   "n_digits": 2,
+   "n_span_tokens": 2,
+   "offset_from_end": 24,
+   "plen": 616,
+   "span": [
+    590,
+    592
+   ],
+   "value_A": 11,
+   "value_B": 23,
+   "value_first_digit_differs": true,
+   "var_name": "num0"
+  }
+ ],
+ "screen_A_source": "SETTLE cells cells_ouro_1_4b_base_svamp_natural_k4.jsonl at budget 512",
+ "sentinel_layout": {
+  "chunks_without": 12,
+  "n_chunks": 16,
+  "sentinels_per_chunk": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   0,
+   2,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   2
+  ]
+ },
+ "sentinels": [
+  {
+   "idx": 4,
+   "plen": 614
+  },
+  {
+   "idx": 180,
+   "plen": 614
+  },
+  {
+   "idx": 97,
+   "plen": 618
+  },
+  {
+   "idx": 134,
+   "plen": 618
+  },
+  {
+   "idx": 47,
+   "plen": 634
+  },
+  {
+   "idx": 154,
+   "plen": 635
+  },
+  {
+   "idx": 246,
+   "plen": 639
+  },
+  {
+   "idx": 155,
+   "plen": 642
+  }
+ ],
+ "setting": "a1",
+ "shift": [
+  {
+   "idx": 156,
+   "plen": 609
+  },
+  {
+   "idx": 83,
+   "plen": 611
+  },
+  {
+   "idx": 270,
+   "plen": 612
+  },
+  {
+   "idx": 101,
+   "plen": 613
+  },
+  {
+   "idx": 126,
+   "plen": 613
+  },
+  {
+   "idx": 30,
+   "plen": 617
+  },
+  {
+   "idx": 82,
+   "plen": 617
+  },
+  {
+   "idx": 121,
+   "plen": 617
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "files": {
+  "gold_gsm8k.json": "76abd81992b020619e931734b3c488669967f6dfad74f7a2377e5b444c2a60ec"
+ },
+ "pairs": {
+  "asdiv": {
+   "path": "tree/data_steer/asdiv/pairs_asdiv.jsonl",
+   "sha256": "54e07676b8d4923450baf49f2f356191c6e2ab9950b851b8fea61cef128e6cdf"
+  },
+  "gsm8k": {
+   "path": "tree/data_steer/varbench/pairs_gsm8k.jsonl",
+   "sha256": "cf53734e2eb4c148737419efce869896e0b82e9e89ef69d79d3615c01d707387"
+  }
+ }
+}

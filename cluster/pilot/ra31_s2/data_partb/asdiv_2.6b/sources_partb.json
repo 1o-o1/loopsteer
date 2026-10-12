@@ -1,0 +1,19 @@
+{
+ "outputs": {
+  "items.json": "1ea46746b835f633ce74830371da32d5d6b0589e2eb9811164f658022d708e2f",
+  "r00_cells.jsonl": "0f1589e68cfb284b5afd945b4a608685f3784177301d80c2e8c3449f4be1716e",
+  "r00_chains.jsonl": "e725a2c04c83a49fde87183adf1317d476bcb9a3152b99491cf9b8d5da33fd5c",
+  "r00_meta.json": "290843ab0190f446f14bf7916de21a88ed927e958cebd75ea33ec667caf1ddd2"
+ },
+ "r00_seconds": 832.1,
+ "ra30_pool_sha256": {
+  "ra30/data/pool_asdiv_ouro_2_6b_base.json": "8de3b754c90cc80dc0ad98907039df532e874e3baf4616a9f510807c3ea66634",
+  "rule": "scored idx list equal, same order"
+ },
+ "sources": {
+  "steer_gen_math/a2_asdiv/items.json": "1ea46746b835f633ce74830371da32d5d6b0589e2eb9811164f658022d708e2f",
+  "steer_gen_math/a2_asdiv/r00/cells_ouro_2_6b_base_asdiv_natural_k4_sub1081.jsonl": "0f1589e68cfb284b5afd945b4a608685f3784177301d80c2e8c3449f4be1716e",
+  "steer_gen_math/a2_asdiv/r00/chains_ouro_2_6b_base_asdiv_k4.jsonl": "e725a2c04c83a49fde87183adf1317d476bcb9a3152b99491cf9b8d5da33fd5c",
+  "steer_gen_math/a2_asdiv/r00/meta_ouro_2_6b_base_asdiv_natural_k4_sub1081.json": "37b6410e0a9c8caa9aaf9237e617629028036e1df4da73f868996101773cb3aa"
+ }
+}

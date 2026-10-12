@@ -1,0 +1,24 @@
+{
+ "batch_width_pinned": 16,
+ "config_sha256": "78bcdbe7ea781ca36e9db57ff96b173caf45960dc8fee503d866ba6277ad3358",
+ "env": {
+  "device": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+  "torch": "2.8.0+cu128",
+  "transformers": "4.56.2"
+ },
+ "horizon": 512,
+ "k": 4,
+ "model": "ouro_2_6b_base",
+ "model_meta": {
+  "dtype": "torch.bfloat16",
+  "file_md5": {
+   "modeling_ouro.py": "5a0c375566aef57873de94ee32bfa265"
+  },
+  "name": "ouro_2_6b_base",
+  "steer_gen": "k17gen-1"
+ },
+ "n_problems": 447,
+ "protocol": "natural",
+ "source_sha256": "cf2b1446cde133ad0a09cc4c5e9b551f1f407432ad75f22a45397bc9b1a236dd",
+ "task": "gsm8k"
+}

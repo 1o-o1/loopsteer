@@ -1,0 +1,90 @@
+{
+ "built_by": "loop-flow/src/k17_build_asdiv_mawps.py",
+ "script_sha256": "7963b3d3ab4fe3b59a5cfddd0adaeb9b710d54aced632e19c6e1bd8a6f2aa73f",
+ "based_on": "loop-flow/src/k17_build_svamp.py (same filters; input source and field mapping differ)",
+ "uses": {
+  "loopedcot/data_steer/build_math.py": "5e3fd16f21c72c90a61058ef85ad2102f29a17acd9ee67616a2d640064bbe8fd"
+ },
+ "date": "2026-10-09",
+ "seed": "k17_mawps:20261009",
+ "source": {
+  "repo": "MU-NLPC/Calc-mawps",
+  "revision": "38c10053efeafd20ab6ff4e08c3ec17de26c19b7",
+  "license": "mit",
+  "files": {
+   "data/test-00000-of-00001-5a59f3fc4b0d9c98.parquet": {
+    "sha256": "2ef6313cb811d5c5ebef422a909015f7db4750020f835fd95c2ac2ccbf343d82",
+    "bytes": 65507
+   },
+   "data/train-00000-of-00001-4bb1451333aad61c.parquet": {
+    "sha256": "7a8dd8f7680b5e5ddb908cdfa33867c298d9225d1d7595a17d4771c09e482140",
+    "bytes": 135163
+   },
+   "data/validation-00000-of-00001-2ce28573971ca59f.parquet": {
+    "sha256": "9d2ca9e33d8efdbc2527a84f1685d6dd5ec7defb201a290a836660c071f5b607",
+    "bytes": 128730
+   },
+   "README.md": {
+    "sha256": "dc66dcea61b7cc9fa7380b31277ffef4d719f764a78f0a31b7b80dc825353c13",
+    "bytes": 5885
+   }
+  },
+  "role": "MAWPS, default config of the hub copy (train 1089, validation 1040, test 520)"
+ },
+ "prompt": {
+  "task": "svamp format (prod/tasks TASKS['svamp'], reused: no ASDiv or MAWPS task exists)",
+  "assembly": "prompt_svamp.txt + 'Question: ' + question + '\\nAnswer:' (sep '')",
+  "prefix_file_sha256": "931391a38fe2cfccb48a624ece3d9949e8034d5d3e75aacc2a361b06b67b8001",
+  "question": "question.strip()",
+  "equation": "`expression`",
+  "answer": "`result_float`"
+ },
+ "tokenizers": {
+  "ouro": {
+   "repo": "ByteDance/Ouro-1.4B",
+   "revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+   "from": "local HF cache (pinned revision)",
+   "rule": "add_special_tokens=False",
+   "sha256_tokenizer.json": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d",
+   "md5_tokenizer.json": "5473993dd92e266357a2c67fd01b8faf",
+   "md5_same_as": {
+    "ByteDance/Ouro-1.4B-Thinking@3aaa222": "5473993dd92e266357a2c67fd01b8faf",
+    "ByteDance/Ouro-2.6B@1ed0425": "5473993dd92e266357a2c67fd01b8faf",
+    "ByteDance/Ouro-2.6B-Thinking@f1edd81": "5473993dd92e266357a2c67fd01b8faf"
+   }
+  },
+  "huginn": {
+   "repo": "tomg-group-umd/huginn-0125",
+   "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+   "from": "local HF cache (pinned revision)",
+   "rule": "add_special_tokens=False",
+   "sha256_tokenizer.json": "9cc201a5061b70aba0d227ef9766fcfe21e0989e0c0ba442b4d7732c4de12308",
+   "md5_tokenizer.json": "b817ba61e92f6501e188acf309f94c4d"
+  },
+  "mcleish": {
+   "repo": "smcleish/Recurrent-Llama-3.2-train-recurrence-32",
+   "revision": "a5f6f126e9d9302445346844f1d7d29d111a06eb",
+   "from": "local HF cache (pinned revision)",
+   "rule": "add_special_tokens=True (prepends <|begin_of_text|>)",
+   "sha256_tokenizer.json": "6b9e4e7fb171f92fd137b777cc2714bf87d11576700a1dcd7a399e7bbe39537b",
+   "md5_tokenizer.json": "f97dc2d5d300c4703d55dede68005737"
+  },
+  "ifm": {
+   "source": "shared GPU host: LoopedLM-P1-dense-ouro-336b/tokenizer",
+   "rule": "[bos_id] + add_special_tokens=False (k10_ifm.py line 311)",
+   "md5_tokenizer.json": "0457edc776d0e5debd101af7ca6c635b",
+   "md5_tokenizer_config.json": "b93bf2db7b5799613616dd07e3edd356",
+   "sha256_tokenizer.json": "e0046eb3a1adc60249aa5310d1adfdb7ae5159f4a22126ac44b260fb424ac944"
+  }
+ },
+ "outputs": {
+  "mawps/pairs_mawps.jsonl": {
+   "sha256": "13ee4cfc96ce9cbde0ff3baf3b8812d42e6b696ce5d5ce39e179d33aa9c594e2",
+   "bytes": 3734348,
+   "rows": 2082
+  },
+  "mawps/checks.json": {
+   "sha256": "64e5d339bd8d5684958b8efeb06cb4403e9ec676a9b7b1ceadccbaa5def9fd9d"
+  }
+ }
+}

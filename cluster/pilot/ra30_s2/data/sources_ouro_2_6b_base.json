@@ -1,0 +1,33 @@
+{
+ "files": {
+  "pool_asdiv_ouro_2_6b_base.json": "8de3b754c90cc80dc0ad98907039df532e874e3baf4616a9f510807c3ea66634",
+  "pool_gsm8k_ouro_2_6b_base.json": "f472d5b0a13d332cebef36a74fd8f107c03250a76a68453706bacb78cae112b1",
+  "split_asdiv_ouro_2_6b_base.json": "18ae1c192a1ebc4c3796b7090e916595576b39e11814f6e7e036e6db8bc4d6f0",
+  "split_gsm8k_ouro_2_6b_base.json": "fbe4d7a4b1cdf3d81e41c55daed3527cd473cb8595f5d2f59143aff2e1ecf534"
+ },
+ "model": "ouro_2_6b_base",
+ "pool_n": {
+  "asdiv": 1059,
+  "gsm8k": 425
+ },
+ "pool_sources": {
+  "asdiv": {
+   "kind": "Table 2 single-card scored list (setting a2, ouro_2_6b_base)",
+   "pairs": {
+    "path": "tree/data_steer/asdiv/pairs_asdiv.jsonl",
+    "sha256": "54e07676b8d4923450baf49f2f356191c6e2ab9950b851b8fea61cef128e6cdf"
+   },
+   "path": "artifacts_spark/cluster_local/ra20_tail2/A/steer_gen_math/a2_asdiv/items.json",
+   "sha256": "1ea46746b835f633ce74830371da32d5d6b0589e2eb9811164f658022d708e2f"
+  },
+  "gsm8k": {
+   "kind": "Table 2 single-card scored list (setting a2, ouro_2_6b_base)",
+   "pairs": {
+    "path": "tree/data_steer/varbench/pairs_gsm8k.jsonl",
+    "sha256": "cf53734e2eb4c148737419efce869896e0b82e9e89ef69d79d3615c01d707387"
+   },
+   "path": "artifacts_spark/cluster_local/ra20_g2/A/steer_gen/a2_gsm8k/items.json",
+   "sha256": "b6d47f2858a71ee870a9483384cce74737298ddd18cecf8245cfc393bb08943e"
+  }
+ }
+}

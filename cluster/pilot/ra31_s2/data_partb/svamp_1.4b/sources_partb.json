@@ -1,0 +1,15 @@
+{
+ "outputs": {
+  "items.json": "909cf2c5e91efa81b4f61fc7c8e2dc8a9bf33fbf5a0d5de58a8f60d8359393f6",
+  "r00_cells.jsonl": "82b069b503e9b6345e51994f9e9ac23f0ac2a90441da5fcabac40d2d7d43e376",
+  "r00_chains.jsonl": "4246f3b7c5168d2cfaca973a4bed79ee27f4349c251207be5f100c669cb0eb93",
+  "r00_meta.json": "d69d3e5db76398e86d796b66368e5fbb8e57ddddefe273e1455b09fe9d6872e9"
+ },
+ "r00_seconds": 309.2,
+ "sources": {
+  "steer_gen/a1_svamp/items.json": "909cf2c5e91efa81b4f61fc7c8e2dc8a9bf33fbf5a0d5de58a8f60d8359393f6",
+  "steer_gen/a1_svamp/r00/cells_ouro_1_4b_base_svamp_natural_k4_sub252.jsonl": "82b069b503e9b6345e51994f9e9ac23f0ac2a90441da5fcabac40d2d7d43e376",
+  "steer_gen/a1_svamp/r00/chains_ouro_1_4b_base_svamp_k4.jsonl": "4246f3b7c5168d2cfaca973a4bed79ee27f4349c251207be5f100c669cb0eb93",
+  "steer_gen/a1_svamp/r00/meta_ouro_1_4b_base_svamp_natural_k4_sub252.json": "c9c91e627f66f7bf28ea3e1b201f1ceba3a4dc610696431bf51b1fb2d257b50a"
+ }
+}

@@ -1077,7 +1077,10 @@ def test_setup_cluster_dry_run_headers_env_and_home_refusal(tmp_path):
         names |= set(re.findall(r"\$\{?([A-Z][A-Z0-9_]+)", open(f, encoding="utf-8").read()))
     internal = {"SLURM_ARRAY_TASK_ID", "SLURM_ARRAY_JOB_ID", "SLURM_JOB_ID", "SLURMD_NODENAME", "HOME", "LIST", "CMD",
                 "ID", "J", "ALL", "CARDS", "OUT_ROOT", "SN", "TL", "CHECK", "SB", "BAD", "GPUS", "NODE", "RESTRICT",
-                "SLURM_RESTART_COUNT", "HOME_RUN"}
+                "SLURM_RESTART_COUNT", "HOME_RUN",
+                # task_pack.sbatch (two lines per GPU job) and the defaulted share-of-the-card settings it halves
+                "GROUP", "IDS", "JOB", "LN", "PAIRS", "PIDS", "RC", "TPL", "PWD", "SLURM_SUBMIT_DIR", "E6_MEM_FRACTION",
+                "PROD_MEM_FRACTION"}
     names -= internal | {n for n in names if re.match(r"^J\d+$", n)}
     exported = set(re.findall(r"\b([A-Z][A-Z0-9_]+)=", e))
     assert not names - exported, sorted(names - exported)
@@ -2324,6 +2327,7 @@ def test_steer_gen_math_raven_mode_installs_both_settings(tmp_path):
 
 def _fill_env(tmp_path, queue="", named="", merge_pending=True):
     env, out, log, _ = _resubmit_env(tmp_path, queue=queue, named=named, merge_pending=merge_pending)
+    env["PACK"] = "0"            # one line per GPU job here; the packed path: tests/test_slurm_dryrun.py section 8
     (out / "_done" / "g0_xllm.s1_build.001").write_text("ok\n")
     return env, out, log
 

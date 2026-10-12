@@ -1,0 +1,21 @@
+{
+ "files": {
+  "pool_gsm8k_mcleish_llama32_r32.json": "3b010add551fbd1e50a7ad68fbba3a825e0a607baab6b437bea5f4cd51fffd0a",
+  "split_gsm8k_mcleish_llama32_r32.json": "189ab4e4b7ad25532eb1aa6ef76593c03fffd9ad8175beb4e5f2f7b0f9152734"
+ },
+ "model": "mcleish_llama32_r32",
+ "pool_n": {
+  "gsm8k": 237
+ },
+ "pool_sources": {
+  "gsm8k": {
+   "kind": "steer_gen_raven single-card scored list (mcleish_llama32_r32)",
+   "pairs": {
+    "path": "tree/data_steer/varbench/pairs_gsm8k.jsonl",
+    "sha256": "cf53734e2eb4c148737419efce869896e0b82e9e89ef69d79d3615c01d707387"
+   },
+   "path": "artifacts_spark/cluster_local/g2_gen/mcleish/items.json",
+   "sha256": "0b6a8ee2d01f465e280055c6fc25c2681b077bb6aae8538e2a64b61aff57c382"
+  }
+ }
+}
