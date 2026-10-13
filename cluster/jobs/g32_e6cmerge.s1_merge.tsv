@@ -1,2 +1,5 @@
 g32_e6cmerge.s1_merge.001	source $VENV_OURO/bin/activate && python -u $REPO/loopedcot/cluster/merge_ext6.py --test ra30 --out_root $OUT_ROOT
 g32_e6cmerge.s1_merge.002	source $VENV_OURO/bin/activate && python -u $REPO/loopedcot/cluster/merge_ext6.py --test ra31 --out_root $OUT_ROOT
+g32_e6cmerge.s1_merge.003	source $VENV_OURO/bin/activate && python -u $REPO/loopedcot/cluster/merge_ext6.py --test ra29 --out_root $OUT_ROOT
+g32_e6cmerge.s1_merge.004	source $VENV_OURO/bin/activate && python -u $REPO/loopedcot/cluster/merge_ext6.py --test ra30 --out_root $OUT_ROOT
+g32_e6cmerge.s1_merge.005	source $VENV_OURO/bin/activate && python -u $REPO/loopedcot/cluster/merge_ext6.py --test ra31 --out_root $OUT_ROOT

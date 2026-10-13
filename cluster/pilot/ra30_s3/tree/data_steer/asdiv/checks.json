@@ -1,0 +1,106 @@
+{
+ "pairs_built": 1114,
+ "equal_length_all_tokenizers": true,
+ "span_only_difference_all": true,
+ "same_span_token_count_all": true,
+ "gold_recomputed_by_eval_all": true,
+ "new_gold_absent_from_text_all": true,
+ "gold_differs_all": true,
+ "gold_type_kept_all": true,
+ "value_once_in_text_all": true,
+ "pair_ids_unique": true,
+ "hf_revision_recorded": true,
+ "yield": {
+  "yield_all": {
+   "problems": 2305,
+   "problems_validation": 2305,
+   "text_joined": 2304,
+   "equation_parsed": 1693,
+   "equation_equals_answer": 1531,
+   "answer_integer": 1499,
+   "has_number_once_in_text_and_in_equation": 1121,
+   "has_value_valid_B": 1114,
+   "has_token_valid_B": 1114
+  },
+  "rejections": {
+   "no_candidate_number": 378,
+   "candidate_sign_changed": 475,
+   "candidate_gold_B_in_text": 500,
+   "candidate_value_B_in_text": 65,
+   "equation_Unsupported": 609,
+   "answer_unparsed": 5,
+   "candidate_fraction": 2242,
+   "answer_not_integer": 32,
+   "equation_ne_answer": 157,
+   "candidate_token_check": 3,
+   "duplicate_text": 1,
+   "candidate_gold_equal": 222,
+   "equation_EvalError": 2
+  }
+ },
+ "strata": {
+  "all": {
+   "n": 1114,
+   "split": {
+    "validation": 1114
+   },
+   "n_digits": {
+    "1": 374,
+    "2": 579,
+    "3": 152,
+    "4": 9
+   },
+   "ouro_span_tokens": {
+    "1": 374,
+    "2": 579,
+    "3": 152,
+    "4": 9
+   },
+   "huginn_span_tokens": {
+    "1": 376,
+    "2": 577,
+    "3": 152,
+    "4": 9
+   },
+   "mcleish_span_tokens": {
+    "1": 1105,
+    "2": 9
+   },
+   "ifm_span_tokens": {
+    "1": 1105,
+    "2": 9
+   },
+   "first_digit_differs": {
+    "False": 187,
+    "True": 927
+   },
+   "value_first_digit_differs": {
+    "False": 100,
+    "True": 1014
+   },
+   "src_type": {
+    "Addition": 214,
+    "Common-Division": 142,
+    "Difference": 36,
+    "Geometry": 57,
+    "Multiplication": 193,
+    "Number-Operation": 1,
+    "Number-Pattern": 1,
+    "Set-Operation": 6,
+    "Subtraction": 269,
+    "Sum": 79,
+    "TVQ-Change": 20,
+    "TVQ-Final": 77,
+    "TVQ-Initial": 19
+   },
+   "n_equation_occurrences": {
+    "1": 1079,
+    "2": 29,
+    "3": 3,
+    "4": 1,
+    "7": 1,
+    "9": 1
+   }
+  }
+ }
+}

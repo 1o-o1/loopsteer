@@ -1,0 +1,87 @@
+{
+ "dataset": "gsm8k",
+ "chains": "artifacts_spark/cluster_local/ra20_g2/A/steer_gen/a1_gsm8k/r00/chains_ouro_1_4b_base_gsm8k_k4.jsonl",
+ "n_pool": 395,
+ "n_with_chain": 395,
+ "counts": {
+  "kept": 156,
+  "kept_r1_info": 122,
+  "inconsistent": 13,
+  "no_changed_step": 84,
+  "token_count": 67,
+  "no_equation": 27,
+  "one_step": 16,
+  "chain_arithmetic_error": 10,
+  "no_intermediate": 7,
+  "plen_mismatch": 2,
+  "clean_wrong": 7,
+  "ambiguous_operand": 2,
+  "ambiguous_value": 3,
+  "expr_parse": 1
+ },
+ "kept": 156,
+ "shown": [
+  {
+   "idx": 989,
+   "P": [
+    630,
+    632
+   ],
+   "tokens_A": [
+    "1",
+    "5"
+   ],
+   "tokens_B": [
+    "1",
+    "0"
+   ],
+   "derived_A": "15",
+   "derived_B": "10",
+   "e1": "90/6",
+   "answer_edit": "40",
+   "gold_B": "40",
+   "prefix_tail": "0/6 = <<90/6=15"
+  },
+  {
+   "idx": 517,
+   "P": [
+    646,
+    647
+   ],
+   "tokens_A": [
+    "9"
+   ],
+   "tokens_B": [
+    "8"
+   ],
+   "derived_A": "9",
+   "derived_B": "8",
+   "e1": "36/4",
+   "answer_edit": "16",
+   "gold_B": "16",
+   "prefix_tail": "36/4 = <<36/4=9"
+  },
+  {
+   "idx": 839,
+   "P": [
+    634,
+    636
+   ],
+   "tokens_A": [
+    "1",
+    "5"
+   ],
+   "tokens_B": [
+    "2",
+    "0"
+   ],
+   "derived_A": "15",
+   "derived_B": "20",
+   "e1": "5*3",
+   "answer_edit": "1",
+   "gold_B": "1",
+   "prefix_tail": "5 * 3 = <<5*3=15"
+  }
+ ],
+ "note": "estimate on the Table 2 batch-16 chains; the run re-screens its own batch-1 chains"
+}

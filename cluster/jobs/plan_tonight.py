@@ -59,14 +59,15 @@ import sys
 BUDGET_H = 9.0
 GPUS_PER_NODE = 8
 PACK_SPEED = 0.6
-ALONE_CMD = r"steer_gen_raven|steer_gen_math"          # pack_lib.sh: these lines never share a card
+ALONE_CMD = r"steer_gen_raven|steer_gen_math|e6c_ra29_cell"   # these lines never share a card (pack_lib.sh; the
+                                                               # RA-29 cells: submit_ext6c.sh stage *_alone)
 FREE_STATES = ("idle", "mix", "mixed")
 DONE_STATES = ("CD", "F", "CA", "TO", "NF", "PR", "OOM", "BF", "DL")
 
 # (unit, group-name regex, submit script, its yes variable); submitted in this order (a unit's dependencies first)
 UNITS = [
     ("EXT5", r"^(g17_fillmap|g18_fillgen|g12_ifmv1)$", "submit_fill.sh", "FILL_YES"),
-    # g26_e6bra30 (RA-30 ASDiv 2.6B) is absent in push 2 (RA decision: it reruns fresh in push 3 from the waiver copy)
+    # g26_e6bra30 (RA-30 ASDiv 2.6B of EXT6b) stays absent: push 3 runs that cell fresh in EXT6c (g38, the waiver copy)
     ("EXT6b", r"^(g24_e6bra29|g25_e6bra31t|g28_e6bmerge)$", "submit_ext6b.sh", "EXT6B_YES"),
     ("EXT6c", r"^g\d+_e6c", "submit_ext6c.sh", "EXT6C_YES"),
 ]
@@ -86,6 +87,8 @@ CELLS = [
     ("never", "EXT5 priority 2 McLeish ASDiv pool (prep, screen, select)", "EXT5", MCLEISH_ASDIV_POOL, None),
     ("never", "EXT6c RA-30 McLeish ASDiv", "EXT6c", {"script": r"^ra30", "model": r"(?i)mcleish", "any": r"(?i)asdiv"},
      MCLEISH_ASDIV_POOL),
+    ("never", "EXT6c RA-30 Thinking GSM8K pilot", "EXT6c",
+     {"script": r"^ra30", "model": r"(?i)think", "datasets": r"(?i)gsm8k"}, None),
     ("never", "EXT6c RA-30 flags on EXT6 GSM8K", "EXT6c", {"script": r"^ra30_flags", "datasets": r"(?i)gsm8k"}, None),
     ("never", "EXT6c McLeish", "EXT6c", {"model": r"(?i)mcleish"}, None),
     ("never", "EXT6c Huginn", "EXT6c", {"model": r"(?i)huginn"}, None),
@@ -95,8 +98,10 @@ CELLS = [
     ("2", "EXT5 priority 2 SVAMP", "EXT5", {"group": r"^g18_fillgen$", "datasets": r"(?i)svamp"}, None),
     ("3", "EXT6b RA-31 Thinking Part A", "EXT6b", {"group": r"^g25_e6bra31t$"}, None),
     ("3", "EXT6c RA-29 Thinking", "EXT6c", {"script": r"^ra29", "model": r"(?i)think"}, None),
-    ("3", "EXT6c RA-30 Thinking", "EXT6c", {"script": r"^ra30", "model": r"(?i)think"}, None),
+    ("3", "EXT6c RA-30 Thinking ASDiv pilot", "EXT6c", {"script": r"^ra30", "model": r"(?i)think", "datasets": r"(?i)asdiv"},
+     None),
     ("4", "EXT6b RA-30 ASDiv 2.6B", "EXT6b", {"group": r"^g26_e6bra30$"}, None),
+    ("4", "EXT6c RA-30 ASDiv 2.6B", "EXT6c", {"group": r"^g\d+_e6cra30d$"}, None),
     ("4", "EXT6c RA-30 flags on EXT6b ASDiv", "EXT6c", {"script": r"^ra30_flags", "datasets": r"(?i)asdiv"}, None),
     ("5", "EXT6b RA-29 HellaSwag 2.6B", "EXT6b",
      {"group": r"^g24_e6bra29$", "model": r"(?i)2[._]6b", "datasets": r"(?i)hellaswag"}, None),
@@ -104,6 +109,7 @@ CELLS = [
      {"group": r"^g24_e6bra29$", "model": r"(?i)1[._]4b", "datasets": r"(?i)hellaswag"}, None),
     ("5", "EXT6b RA-29 MMLU 2.6B", "EXT6b", {"group": r"^g24_e6bra29$", "model": r"(?i)2[._]6b", "datasets": r"(?i)mmlu"}, None),
     ("5", "EXT6b RA-29 MMLU 1.4B", "EXT6b", {"group": r"^g24_e6bra29$", "model": r"(?i)1[._]4b", "datasets": r"(?i)mmlu"}, None),
+    ("5", "EXT6c RA-29 Ouro 2.6B CSQA and ARC", "EXT6c", {"script": r"^ra29", "model": r"(?i)ouro_2_6b_base"}, None),
     ("6", "EXT6c 2.6B Part B", "EXT6c", {"script": r"^ra31_gen", "model": r"(?i)2[._]6b"}, None),
     ("7", "EXT6c 1.4B Part B", "EXT6c", {"script": r"^ra31_gen", "model": r"(?i)1[._]4b"}, None),
     ("8", "EXT5 priority 1", "EXT5", {"group": r"^g17_fillmap$"}, None),

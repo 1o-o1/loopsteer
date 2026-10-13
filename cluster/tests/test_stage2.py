@@ -44,6 +44,10 @@ def test_pushed_ext6_pins_stay_byte_identical():
     pins = open(os.path.join(JOBS, "scripts_sha256.txt"), "rb").read().decode("utf-8").splitlines()
     frozen = open(os.path.join(JOBS, "pins_ext6_pushed.txt"), "rb").read().decode("utf-8").splitlines()
     assert len(frozen) >= 200
+    # push 2 too (jobs/pins_stage2_pushed.txt: every pin of push 2 except the login-node scripts push 3 changes)
+    s2 = open(os.path.join(JOBS, "pins_stage2_pushed.txt"), "rb").read().decode("utf-8").splitlines()
+    assert len(s2) >= 500 and not [ln for ln in s2 if re.search(r"/(plan_tonight\.py|submit_ext6c\.sh|gen_ext6c\.py)$", ln)]
+    frozen = frozen + s2
     missing = [ln for ln in frozen if ln not in set(pins)]
     assert not missing, missing[:5]
     for ln in frozen:
@@ -94,31 +98,53 @@ def _line(lst, tid):
 
 @needs_bash
 def test_submit_ext6c_chains_blocks_and_waits_on_other_units(tmp_path):
-    """No marker of the other units: the McLeish pipeline is submitted (pilot, then the shard lines afterok, then the
-    summary afterok), the four flags lines are named and not submitted, the merge waits afterany for every new job;
-    every call excludes the reserved node and passes --time=10:00:00. With the g19 pilot done and the g19 full run
-    in the queue (job 7001), the GSM8K pilot flags line waits for nothing and the GSM8K full flags line waits afterok
-    on 7001."""
+    """No marker of the other units: the McLeish GSM8K pipeline goes (pilot, shard lines afterok, summary afterok); the
+    lines that need another unit's task without its marker or queued job are named and not submitted (GSM8K flags
+    after g19, 2.6B Part B after g21, McLeish ASDiv after the g18 select); the RA-29 cells run one line per GPU job
+    (no packing) with the template's SIGTERM; each Thinking pilot chains tokens, screen, rows, merge with afterok;
+    the 1.4B Part B summaries wait afterany on their shards; the ASDiv flags wait afterok on the fresh 2.6B ASDiv cell;
+    the merge waits afterany for every new job; every call excludes the reserved node and passes --time=10:00:00.
+    With the g19 pilot done and the g19 full run queued (job 7001): the GSM8K pilot flags wait for nothing, the GSM8K
+    full flags afterok on 7001."""
     rows = _rows("joblist_ext6c.tsv")
-    assert {r["group"] for r in rows} == {"g29_e6cra30m", "g30_e6cra30f", "g32_e6cmerge", "g33_e6cra31b14"}   # 2.6B Part B: push 3
+    assert {r["group"] for r in rows} == {"g29_e6cra30m", "g30_e6cra30f", "g32_e6cmerge", "g33_e6cra31b14", "g34_e6cra31b26",
+                                          "g35_e6cra29", "g36_e6cra30t", "g37_e6cra30a", "g38_e6cra30d", "g39_e6cra30n"}
+    assert "#SBATCH --signal=TERM@120" in open(os.path.join(NOLOCAL, "task_g35_e6cra29.sbatch")).read()
     rc, so, calls, out = _run(tmp_path / "a", "submit_ext6c.sh", {"EXT6C_YES": "yes"})
     assert rc == 0, so[-2500:]
-    assert so.count("NOT SUBMITTED") == 4, so[-2500:]                    # the flags (no g19 or g26 marker)
     assert all("--time=10:00:00" in c and "--exclude=n08,n06" in c for c in calls), calls
-    run = [c for c in calls if "g29_e6cra30m" in c]
-    assert len(run) == 3 and "--dependency" not in run[0], run
-    assert "--dependency=afterok:1001" in run[1] and "--dependency=afterok:1002" in run[2], run
-    assert not [c for c in calls if "g30_e6cra30f" in c]
-    # 1.4B Part B: per cell its 4 independent shards (no dependency), then cell_summarize afterany on their jobs
-    pb = [(1001 + k, c) for k, c in enumerate(calls) if "g33_e6cra31b14" in c]
-    shard_jobs = [j for j, c in pb if "s1_shard" in c]
+    jobs = [(1001 + k, c) for k, c in enumerate(calls)]
+    of = lambda g: [(j, c) for j, c in jobs if g in c]          # noqa: E731
+    for g in ("g30_e6cra30f", "g34_e6cra31b26", "g37_e6cra30a"):
+        assert not of(g), (g, of(g))
+    for needed in ("g19_e6ra30.s1_pilot.001", "g21_e6ra31a.s1_pilot.001", "g18_fillgen.s3_select.002"):
+        assert "NOT SUBMITTED: needs the done marker or the queued job of " in so and needed in so, (needed, so[-3000:])
+    run = of("g29_e6cra30m")
+    assert len(run) == 3 and "--dependency" not in run[0][1], run
+    assert "--dependency=afterok:%d" % run[0][0] in run[1][1] and "--dependency=afterok:%d" % run[1][0] in run[2][1], run
+    pb = of("g33_e6cra31b14")
     summ = [c for j, c in pb if "s2_summarize_any" in c]
+    shard_jobs = [j for j, c in pb if "s1_shard" in c]
     assert len(summ) == 3 and shard_jobs and all("--dependency" not in c for j, c in pb if "s1_shard" in c), pb
-    assert all(re.search(r"--dependency=afterany:\d+", c) for c in summ), summ
     assert sorted(int(x) for c in summ for x in c.split("--dependency=afterany:")[1].split()[0].split(":")) == sorted(shard_jobs)
-    merge = [c for c in calls if "g32_e6cmerge" in c]
-    others = [str(1001 + k) for k, c in enumerate(calls) if "g32_e6cmerge" not in c]
-    assert len(merge) == 1 and merge[0].split("--dependency=afterany:")[1].split()[0].split(":") == others, merge
+    r29 = of("g35_e6cra29")
+    assert len(r29) == 13 and all("task_g35_e6cra29.sbatch" in c and "task_pack" not in c and "--dependency" not in c
+                                  for j, c in r29), r29
+    th = of("g36_e6cra30t")
+    assert len(th) == 4 * 4, th                              # four pilots: tokens, screen, rows, merge
+    for k in range(0, 16, 4):
+        t, sc, rw, mg = th[k:k + 4]
+        assert "s1_tokens" in t[1] and "s2_screen" in sc[1] and "s3_rows" in rw[1] and "s4_merge" in mg[1], th[k:k + 4]
+        assert ("--dependency=afterok:%d " % t[0]) in sc[1] + " " and ("--dependency=afterok:%d " % sc[0]) in rw[1] + " " \
+            and ("--dependency=afterok:%d " % rw[0]) in mg[1] + " ", th[k:k + 4]
+    d = of("g38_e6cra30d")
+    assert len(d) == 2 and "--dependency=afterok:%d " % d[0][0] in d[1][1] + " ", d
+    fl = of("g39_e6cra30n")
+    assert len(fl) == 2 and re.search(r"--dependency=afterok:%d\b" % d[0][0], fl[0][1]) \
+        and re.search(r"--dependency=afterok:%d\b" % d[1][0], fl[1][1]), fl
+    merge = of("g32_e6cmerge")
+    others = [str(j) for j, c in jobs if "g32_e6cmerge" not in c]
+    assert len(merge) == 1 and merge[0][1].split("--dependency=afterany:")[1].split()[0].split(":") == others, merge
     # the other unit: g19 pilot done, g19 full queued as job 7001
     full_line = _line("g19_e6ra30.s2_full.tsv", "g19_e6ra30.s2_full.001")
     b = tmp_path / "b"
@@ -128,9 +154,12 @@ def test_submit_ext6c_chains_blocks_and_waits_on_other_units(tmp_path):
     rc, so, calls, out = _run(b, "submit_ext6c.sh", {"EXT6C_YES": "yes"}, queue="7001 %d\n" % full_line,
                               sub="7001 g19_e6ra30.s2_full.tsv %d\n" % full_line)
     assert rc == 0, so[-2500:]
-    fl = [c for c in calls if "g30_e6cra30f" in c]
-    assert len(fl) == 2 and "--dependency" not in fl[0] and "--dependency=afterok:7001" in fl[1], fl
-    assert so.count("NOT SUBMITTED") == 2, so[-2500:]
+    for g in ("g30_e6cra30f", "g39_e6cra30n"):
+        fl = [c for c in calls if g in c and "gsm8k" in c] or [c for c in calls if g in c][:2]
+        f2 = [c for c in calls if g in c]
+        gs = [c for c in f2 if "--dependency=afterok:7001" in c]
+        assert len(gs) == 1, (g, f2)
+    assert len([c for c in calls if "g30_e6cra30f" in c]) == 2 and "--dependency" not in [c for c in calls if "g30_e6cra30f" in c][0]
 
 
 @needs_bash

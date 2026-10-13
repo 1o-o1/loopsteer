@@ -5,6 +5,7 @@
 # every e6c job this script submits or finds in the queue). Nodes, packing and time as jobs/pack_lib.sh (the last
 # NODELIST node stays empty, two task lines per GPU job, CARDS = used nodes x 8, --time=$TIME_LIMIT on every job).
 # PLAN_IDS=<file> (one task id per line): only those ids are planned and priced (the planner's selection).
+# Stage names: *_any waits afterany on the stage before it (a summary of shards); *_alone runs one line per GPU job.
 # A task with a done marker is never submitted; a pipeline with a queued line is left alone. A task that depends on a
 # task of another unit (for example the flags on g19_e6ra30, or a McLeish ASDiv line on the g18 select): with that
 # task's done marker it waits for nothing; with that task's job still in the queue it waits afterok on that job (the
@@ -177,6 +178,9 @@ while IFS="$TAB" read -r g script model out stage state idxs ntodo ndone secs ex
           --output="$LOG_ROOT/ra20_${g}_%A_%a.out" ${dep:+--dependency=afterany:$dep} --array="$idxs%$CARDS" \
           "task_$g.sbatch" "$g.$stage.tsv") && echo "$j $g.$stage.tsv $idxs" >> "$SUB" \
       || { echo "sbatch failed: $pl $stage"; FAIL=1; skip_pl="$pl"; continue; }
+  elif [ "${stage%_alone}" != "$stage" ]; then        # a stage named *_alone runs one line per GPU job (no packing)
+    j=$(PACK=0 submit_stage "$g" "$stage" "$idxs" "$dep") && [ -n "$j" ] \
+      || { echo "sbatch failed: $pl $stage (its later stages are not submitted)"; FAIL=1; skip_pl="$pl"; continue; }
   else
     j=$(submit_stage "$g" "$stage" "$idxs" "$dep") && [ -n "$j" ] \
       || { echo "sbatch failed: $pl $stage (its later stages are not submitted)"; FAIL=1; skip_pl="$pl"; continue; }

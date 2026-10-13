@@ -1,0 +1,30 @@
+Answer multiple-choice questions about history, philosophy and law.
+
+Q: The Magna Carta was sealed by which English king?
+Options:
+(A) Henry VIII
+(B) Richard I
+(C) John
+(D) Edward I
+A: Let's think step by step.
+The Magna Carta was sealed at Runnymede in 1215. The king of England in 1215 was John, who agreed to it under pressure from his barons. So the answer is (C).
+
+Q: The claim that an action is right if it produces the greatest happiness for the greatest number is central to which ethical theory?
+Options:
+(A) Deontology
+(B) Utilitarianism
+(C) Virtue ethics
+(D) Social contract theory
+A: Let's think step by step.
+The greatest-happiness principle judges an action by its consequences for overall welfare, which is the core commitment of utilitarianism as set out by Bentham and Mill. Deontology judges actions by duties rather than by consequences. So the answer is (B).
+
+Q: In a common-law system, the principle that courts should follow the reasoning of earlier decisions is called
+Options:
+(A) stare decisis
+(B) habeas corpus
+(C) mens rea
+(D) ultra vires
+A: Let's think step by step.
+The doctrine of binding precedent is named stare decisis, meaning to stand by things decided. Habeas corpus concerns unlawful detention and mens rea concerns criminal intent, so neither fits. So the answer is (A).
+
+Q: 

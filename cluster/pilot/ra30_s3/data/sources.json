@@ -1,0 +1,34 @@
+{
+ "files": {
+  "pool_asdiv.json": "8a028af7b35d632eae7f4cf79adfb2da87b4989d632f12bba924346cbf0c5808",
+  "pool_gsm8k.json": "4e9f4ce5ae6e3ed48c0df2e229fa959bcd59c8bbf656120fd2e29dc06eddb9df",
+  "prescreen_asdiv.json": "0954f6c95adc61d168f57bcf0c7d514df53d6c75ad2e8c9247bb3b752cb03504",
+  "prescreen_gsm8k.json": "0c9fa5a044ca40540014fd5a3364f5d1f7ba9d46e4cf4758fec3399887080973",
+  "split_asdiv.json": "1e76e93946bfa8f8c2dab444df57e1d9d863a7ae46c1e954448b43c6e682340f",
+  "split_gsm8k.json": "92b8ffecb9820e6677f484e816e31fd5c6d215e2d6891d0f5e31a38287d92d7f"
+ },
+ "pool_n": {
+  "asdiv": 1036,
+  "gsm8k": 395
+ },
+ "pool_sources": {
+  "asdiv": {
+   "kind": "Table 2 single-card scored list (setting a1)",
+   "pairs": {
+    "path": "tree/data_steer/asdiv/pairs_asdiv.jsonl",
+    "sha256": "54e07676b8d4923450baf49f2f356191c6e2ab9950b851b8fea61cef128e6cdf"
+   },
+   "path": "artifacts_spark/cluster_local/ra20_tail2/A/steer_gen_math/a1_asdiv/items.json",
+   "sha256": "0cc072fbab137eceb17e2cf450fa262e10eac1acb784d31aea7e2d0d85885c8f"
+  },
+  "gsm8k": {
+   "kind": "Table 2 single-card scored list (setting a1)",
+   "pairs": {
+    "path": "tree/data_steer/varbench/pairs_gsm8k.jsonl",
+    "sha256": "cf53734e2eb4c148737419efce869896e0b82e9e89ef69d79d3615c01d707387"
+   },
+   "path": "artifacts_spark/cluster_local/ra20_g2/A/steer_gen/a1_gsm8k/items.json",
+   "sha256": "b74bcfdea2480ed5809b7bd9e18180dfa6981bd56abc249f74f9b73cb81158a7"
+  }
+ }
+}

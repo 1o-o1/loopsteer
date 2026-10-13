@@ -1,0 +1,1 @@
+g34_e6cra31b26.s0_freeze.001	source $VENV_OURO/bin/activate && cd $REPO/loopedcot/cluster/pilot/ra31_s2 && CUDA_VISIBLE_DEVICES= PROD_DEV=cpu python -u ra31_gen.py freeze26 --pilot $OUT_ROOT/E6/ra31/a_2.6b/pilot_2.6b --out $OUT_ROOT/E6/ra31/partb26_sets.json

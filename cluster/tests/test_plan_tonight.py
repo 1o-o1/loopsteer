@@ -222,8 +222,9 @@ def test_cell_table_order_and_the_pool_dependency_field():
     assert steps == sorted(steps, key=lambda s: -1 if s == "never" else int(s)), steps
     assert DROP_LABELS == [
         "EXT5 priority 3", "EXT5 priority 2 MAWPS", "EXT5 priority 2 ASDiv", "EXT5 priority 2 SVAMP",
-        "EXT6b RA-31 Thinking Part A", "EXT6c RA-29 Thinking", "EXT6c RA-30 Thinking", "EXT6b RA-30 ASDiv 2.6B",
-        "EXT6c RA-30 flags on EXT6b ASDiv", "EXT6b RA-29 HellaSwag 2.6B", "EXT6b RA-29 HellaSwag 1.4B", "EXT6b RA-29 MMLU 2.6B", "EXT6b RA-29 MMLU 1.4B",
+        "EXT6b RA-31 Thinking Part A", "EXT6c RA-29 Thinking", "EXT6c RA-30 Thinking ASDiv pilot", "EXT6b RA-30 ASDiv 2.6B",
+        "EXT6c RA-30 ASDiv 2.6B", "EXT6c RA-30 flags on EXT6b ASDiv", "EXT6b RA-29 HellaSwag 2.6B", "EXT6b RA-29 HellaSwag 1.4B",
+        "EXT6b RA-29 MMLU 2.6B", "EXT6b RA-29 MMLU 1.4B", "EXT6c RA-29 Ouro 2.6B CSQA and ARC",
         "EXT6c 2.6B Part B", "EXT6c 1.4B Part B", "EXT5 priority 1"]
     cell = {c[1]: c for c in P.CELLS}
     assert cell["EXT6c RA-30 McLeish ASDiv"][4] is P.MCLEISH_ASDIV_POOL and cell[POOL][0] == "never"
@@ -310,7 +311,7 @@ def test_ext6_chains_in_the_schedule(tmp_path, capsys):
 def _synthetic(big_h=8.0, mc_full_h=2.0):
     """Every cell kind: 30 priority-1 lines of 8 h (alone: 32 h on 8 GPUs), the McLeish ASDiv pool and its rows, a
     MAWPS row, EXT6b cells, and EXT6c: RA-30 McLeish ASDiv (pilot, full; needs the pool), RA-29 McLeish and Huginn,
-    RA-30 Thinking (pilot, full), Part B 2.6B and 1.4B."""
+    RA-30 Thinking ASDiv (two stages), Part B 2.6B and 1.4B."""
     R = []
     for i in range(1, 31):
         R.append(_row(i, "g17_fillmap", "s1_run", "k15_full.py", "ifm_d28", "D%d" % i, big_h, out="$OUT_ROOT/B/m%d" % i))
@@ -330,8 +331,8 @@ def _synthetic(big_h=8.0, mc_full_h=2.0):
     R.append(_row(1, "g29_e6cra30", "s2_full", "ra30.py", "mcleish_llama32_r32", "asdiv", mc_full_h, out=mo,
                   deps="g29_e6cra30.s1_pilot.001"))
     to = "$OUT_ROOT/E6/ra30/think26"
-    R.append(_row(2, "g29_e6cra30", "s1_pilot", "ra30.py", "ouro_2_6b_think", "gsm8k", 1.0, out=to))
-    R.append(_row(2, "g29_e6cra30", "s2_full", "ra30.py", "ouro_2_6b_think", "gsm8k", 3.0, out=to,
+    R.append(_row(2, "g29_e6cra30", "s1_pilot", "ra30.py", "ouro_2_6b_think", "asdiv", 1.0, out=to))
+    R.append(_row(2, "g29_e6cra30", "s2_full", "ra30.py", "ouro_2_6b_think", "asdiv", 3.0, out=to,
                   deps="g29_e6cra30.s1_pilot.002"))
     R.append(_row(1, "g30_e6cra29", "s1_cell", "ra29.py", "mcleish_llama32_r32", "aqua", 1.0))
     R.append(_row(2, "g30_e6cra29", "s1_cell", "ra29.py", "huginn_0125", "csqa", 1.0))
@@ -351,7 +352,7 @@ def test_never_dropped_cells_kept_refill_and_final_lists(tmp_path, capsys):
     assert rc == 0, text
     cells = _todo_cells(lists, out)
     assert set(cells) == {POOL, "EXT6c RA-30 McLeish ASDiv", "EXT6c McLeish", "EXT6c Huginn", "EXT5 priority 2 ASDiv",
-                          "EXT5 priority 2 MAWPS", "EXT6b RA-31 Thinking Part A", "EXT6c RA-30 Thinking",
+                          "EXT5 priority 2 MAWPS", "EXT6b RA-31 Thinking Part A", "EXT6c RA-30 Thinking ASDiv pilot",
                           "EXT6b RA-29 HellaSwag 2.6B", "EXT6c 2.6B Part B", "EXT6c 1.4B Part B", "EXT5 priority 1"}, cells
     probs = _check_drops(text, rows, cells)
     assert not probs, "\n".join(probs) + "\n" + text
@@ -383,7 +384,7 @@ def test_ra30_mcleish_asdiv_chains_behind_the_pool_and_chains_stay_whole(tmp_pat
     assert of["g29_e6cra30.s1_pilot.001"] in jobs[of["g29_e6cra30.s2_full.001"]]["preds"]
     assert of["g29_e6cra30.s1_pilot.002"] in jobs[of["g29_e6cra30.s2_full.002"]]["preds"]
     by = {r["id"]: r for r in plan.todo}
-    assert by["g29_e6cra30.s1_pilot.002"]["cell"] == by["g29_e6cra30.s2_full.002"]["cell"] == "EXT6c RA-30 Thinking"
+    assert by["g29_e6cra30.s1_pilot.002"]["cell"] == by["g29_e6cra30.s2_full.002"]["cell"] == "EXT6c RA-30 Thinking ASDiv pilot"
     # the pool (prep 0.1 h, screen 1 h, select 0.1 h: generation lines, alone at rate 1.0), then pilot 0.5 h and
     # full 2 h packed at 0.6: on 8 GPUs the wall is the chain, 1.2 + 2.5 / 0.6 h
     sub = plan.jobs({"g18_fillgen.s1_prep.001", "g18_fillgen.s2_screen.001", "g18_fillgen.s3_select.001",
@@ -651,3 +652,63 @@ def test_ext6c_list_queued_ext6_dependencies_and_the_flag_cells(tmp_path, capsys
     assert re.search(r"^estimated wall 4\.2 h \(budget 9\.0 h\)", text, re.M), text
     rc, text, rows = _plan(tmp_path, capsys, lists=lists, free=1, out=_out_root(tmp_path / "empty"))
     assert rc == 0 and "NOT PLANNED: needs the done marker of g19_e6ra30.s2_full.001" in text, text
+
+
+
+def _thinking_rows(gsm_h=1.0, asdiv_h=1.0):
+    """RA-30 Thinking pilot cells on 1.4B and 2.6B: per model and dataset a screen, two rows shards and a merge stage
+    (no full jobs); GSM8K never dropped, ASDiv at step 3. Plus 30 priority-1 lines of 8 h that force the drops."""
+    R = [_row(i, "g17_fillmap", "s1_run", "k15_full.py", "ifm_d28", "D%d" % i, 8.0, out="$OUT_ROOT/B/m%d" % i)
+         for i in range(1, 31)]
+    n = 0
+    for m in ("ouro_1_4b_think", "ouro_2_6b_think"):
+        for ds, h in (("gsm8k", gsm_h), ("asdiv", asdiv_h)):
+            o = "$OUT_ROOT/E6/ra30/%s_%s" % (m, ds)
+            n += 1
+            scr = _row(n, "g35_e6cra30t", "s1_screen", "ra30.py", m, ds, h, out=o)
+            rows = [_row(2 * n + k, "g35_e6cra30t", "s2_rows", "ra30.py", m, ds, h, out=o, deps=scr["id"]) for k in (0, 1)]
+            mrg = _row(n, "g35_e6cra30t", "s3_merge", "ra30.py", m, ds, 0.1, out=o, deps=",".join(r["id"] for r in rows))
+            R += [scr] + rows + [mrg]
+    return R
+
+
+def test_thinking_gsm8k_pilot_cells_are_never_dropped_and_asdiv_drops_at_step_3(tmp_path, capsys):
+    """The RA-30 Thinking GSM8K pilot cells (1.4B and 2.6B: screen, rows shards, merge; no full jobs) are never
+    dropped; the Thinking ASDiv pilot cells drop at step 3 (here the refill brings them back once priority 1 is out).
+    Each cell runs as one afterok chain: screen, then rows, then merge. A Thinking RA-30 line on another dataset
+    matches no cell (exit 3)."""
+    lists = _lists(tmp_path, _thinking_rows())
+    out = _out_root(tmp_path)
+    plan = _todo(lists, out)
+    by = {r["id"]: r for r in plan.todo}
+    cell = {(r["model"], r["datasets"]): r["cell"] for r in plan.todo if r["group"] == "g35_e6cra30t"}
+    assert cell == {("ouro_1_4b_think", "gsm8k"): "EXT6c RA-30 Thinking GSM8K pilot",
+                    ("ouro_2_6b_think", "gsm8k"): "EXT6c RA-30 Thinking GSM8K pilot",
+                    ("ouro_1_4b_think", "asdiv"): "EXT6c RA-30 Thinking ASDiv pilot",
+                    ("ouro_2_6b_think", "asdiv"): "EXT6c RA-30 Thinking ASDiv pilot"}, cell
+    assert {r["step"] for r in plan.todo if r["cell"] == "EXT6c RA-30 Thinking GSM8K pilot"} == {"never"}
+    assert {r["step"] for r in plan.todo if r["cell"] == "EXT6c RA-30 Thinking ASDiv pilot"} == {"3"}
+    jobs = plan.jobs({r["id"] for r in plan.todo if r["group"] == "g35_e6cra30t"})
+    of = {i: n for n, j in enumerate(jobs) for i in j["ids"]}
+    assert of["g35_e6cra30t.s1_screen.001"] in jobs[of["g35_e6cra30t.s2_rows.002"]]["preds"]
+    assert of["g35_e6cra30t.s2_rows.002"] in jobs[of["g35_e6cra30t.s3_merge.001"]]["preds"]
+    rc, text, rows = _plan(tmp_path, capsys, lists=lists, free=1, out=out)
+    assert rc == 0, text
+    probs = _check_drops(text, rows, _todo_cells(lists, out))
+    assert not probs, "\n".join(probs) + "\n" + text
+    assert re.search(r"^drop \(3\) EXT6c RA-30 Thinking ASDiv pilot: ", text, re.M), text
+    assert not re.search(r"^drop \(\w+\) EXT6c RA-30 Thinking GSM8K pilot", text, re.M), text
+    assert "  never EXT6c RA-30 Thinking GSM8K pilot: " in text[text.index("KEPT ("):text.index("DROPPED (")], text
+    kept = {r[4] for r in rows["line"]}
+    assert {i for i, r in by.items() if r["cell"] == "EXT6c RA-30 Thinking GSM8K pilot"} <= kept, text
+    # ASDiv stays out when it cannot fit: 8 h screens make each ASDiv chain 8/0.6 + 8/0.6 h
+    big = tmp_path / "big"
+    big.mkdir()
+    rc, text, rows = _plan(big, capsys, lists=_lists(big, _thinking_rows(asdiv_h=8.0)), free=1)
+    assert rc == 0 and "  (3) EXT6c RA-30 Thinking ASDiv pilot: " in text[text.index("DROPPED ("):], text
+    assert "  never EXT6c RA-30 Thinking GSM8K pilot: " in text[text.index("KEPT ("):text.index("DROPPED (")], text
+    other = tmp_path / "other"
+    other.mkdir()
+    rc, text, _ = _plan(other, capsys, lists=_lists(other, [_row(1, "g35_e6cra30t", "s1_screen", "ra30.py",
+                                                                   "ouro_1_4b_think", "mawps", 1.0)]), free=1)
+    assert rc == 3 and "match no cell" in text, text

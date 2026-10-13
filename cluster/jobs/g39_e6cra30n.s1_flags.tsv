@@ -1,0 +1,4 @@
+g39_e6cra30n.s1_flags.001	source $VENV_OURO/bin/activate && cd $REPO/loopedcot/cluster/pilot/ra30_s3 && CUDA_VISIBLE_DEVICES= PROD_DEV=cpu python -u ra30_flags.py --out $OUT_ROOT/E6/ra30/ouro_2_6b_base/pilot/gsm8k
+g39_e6cra30n.s1_flags.002	source $VENV_OURO/bin/activate && cd $REPO/loopedcot/cluster/pilot/ra30_s3 && CUDA_VISIBLE_DEVICES= PROD_DEV=cpu python -u ra30_flags.py --out $OUT_ROOT/E6/ra30/ouro_2_6b_base/full/gsm8k
+g39_e6cra30n.s1_flags.003	source $VENV_OURO/bin/activate && cd $REPO/loopedcot/cluster/pilot/ra30_s3 && CUDA_VISIBLE_DEVICES= PROD_DEV=cpu python -u ra30_flags.py --out $OUT_ROOT/E6/ra30/ouro_2_6b_base/pilot/asdiv
+g39_e6cra30n.s1_flags.004	source $VENV_OURO/bin/activate && cd $REPO/loopedcot/cluster/pilot/ra30_s3 && CUDA_VISIBLE_DEVICES= PROD_DEV=cpu python -u ra30_flags.py --out $OUT_ROOT/E6/ra30/ouro_2_6b_base/full/asdiv
