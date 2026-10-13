@@ -1080,7 +1080,9 @@ def test_setup_cluster_dry_run_headers_env_and_home_refusal(tmp_path):
                 "SLURM_RESTART_COUNT", "HOME_RUN",
                 # task_pack.sbatch (two lines per GPU job) and the defaulted share-of-the-card settings it halves
                 "GROUP", "IDS", "JOB", "LN", "PAIRS", "PIDS", "RC", "TPL", "PWD", "SLURM_SUBMIT_DIR", "E6_MEM_FRACTION",
-                "PROD_MEM_FRACTION"}
+                "PROD_MEM_FRACTION",
+                # push 4: the per-task remote-code module cache of the RA-29 and RA-31 templates (Slurm sets TMPDIR)
+                "HF_MODULES_CACHE", "TMPDIR"}
     names -= internal | {n for n in names if re.match(r"^J\d+$", n)}
     exported = set(re.findall(r"\b([A-Z][A-Z0-9_]+)=", e))
     assert not names - exported, sorted(names - exported)

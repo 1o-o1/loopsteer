@@ -114,6 +114,8 @@ for v in REPO OUT_ROOT DATA_ROOT HF_HOME SETTLE WEIGHTS_ROOT IFM_CKPT_ROOT XLLM_
 done
 [ -z "${HOME_RUN:-}" ] || echo "running inside a home directory; records will be scrubbed at merge" | tee -a "$TL"
 export HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1
+export HF_MODULES_CACHE="${TMPDIR:-$OUT_ROOT/hfmod}/hfmod_${SLURM_JOB_ID:-0}_${SLURM_ARRAY_TASK_ID:-0}"
+mkdir -p "$HF_MODULES_CACHE"
 export SETUPTOOLS_USE_DISTUTILS=stdlib      # setuptools' own distutils clashes with the stdlib one on venvs over a conda base
 if [ -f "$OUT_ROOT/_done/$ID" ]; then echo "done already: $ID"; exit 0; fi
 echo "task $ID" | tee -a "$TL"

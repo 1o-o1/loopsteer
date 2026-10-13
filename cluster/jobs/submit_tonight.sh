@@ -1,7 +1,8 @@
 #!/bin/bash
 # Tonight's round under the PI budget rule (2026-10-12: everything must finish within 10 h of its start; what does
 # not fit is not run), on the login node, after the pull:
-#   source <OUT_ROOT>/cluster.env && bash loopedcot/cluster/jobs/submit_tonight.sh [--dry-run]
+#   source <OUT_ROOT>/cluster.env && bash loopedcot/cluster/jobs/submit_tonight.sh [--dry-run] [--budget-h N] [--set NAME]
+#   (or BUDGET_H=N and SET=NAME in the environment; unset: the planner's default budget and the full cell table)
 # 1. Reads the queue (squeue -h -r -u $USER -o "%F|%K|%t|%j|%N|%M") and the free nodes (sinfo -h -N -n $NODELIST -o
 #    "%N %t": idle or mix, NODELIST minus the reserve, the last node, minus bad nodes; FREE_NODES=<n> overrides sinfo).
 # 2. jobs/plan_tonight.py plans the units EXT5 (submit_fill.sh), EXT6b (submit_ext6b.sh) and EXT6c (submit_ext6c.sh)
@@ -30,7 +31,20 @@ if [ -z "${REPO:-}" ] || [ -z "${PARTITION:-}" ]; then
 fi
 : "${OUT_ROOT:?source the cluster.env that setup_cluster.sh wrote}" "${PARTITION:?}" "${ACCOUNT:?}" "${LOG_ROOT:?}"
 DRY=0
-[ "${1:-}" = "--dry-run" ] && DRY=1
+BUDGET_H="${BUDGET_H:-}"   # empty: the planner's default budget
+SET="${SET:-}"             # empty: the full cell table; a name: that set of plan_tonight.py SETS (e.g. tonight4)
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --dry-run) DRY=1;;
+    --budget-h) BUDGET_H="${2:?--budget-h needs hours}"; shift;;
+    --set) SET="${2:?--set needs a name}"; shift;;
+    *) echo "unknown argument $1 (use --dry-run, --budget-h N, --set NAME)"; exit 2;;
+  esac
+  shift
+done
+PLANARG=()
+[ -z "$BUDGET_H" ] || PLANARG+=(--budget-h "$BUDGET_H")
+[ -z "$SET" ] || PLANARG+=(--set "$SET")
 LISTS=$(sed -n 's/^lists //p' "$OUT_ROOT/_chain/jobs.txt" 2> /dev/null)
 LISTS="${LISTS:-$HERE/nolocal}"
 [ -f "$LISTS/joblist.tsv" ] || { echo "no job list $LISTS/joblist.tsv"; exit 2; }
@@ -57,7 +71,7 @@ else
 fi
 PLAN="$OUT_ROOT/_chain/plan_tonight.tsv"
 "$PY" "$HERE/plan_tonight.py" --lists "$LISTS" --out-root "$OUT_ROOT" --squeue "$TMPD/squeue" --used "$USED" \
-  --reserved "$RESERVED" "${NODEARG[@]}" --plan "$PLAN"
+  --reserved "$RESERVED" "${NODEARG[@]}" ${PLANARG[@]+"${PLANARG[@]}"} --plan "$PLAN"
 rc=$?
 [ "$rc" = 0 ] || { echo "plan_tonight.py exited $rc: nothing submitted"; exit "$rc"; }
 

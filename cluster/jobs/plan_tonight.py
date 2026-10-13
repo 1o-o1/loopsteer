@@ -47,6 +47,8 @@ kept ids (PLAN_IDS), the fallback selection when the script has no PLAN_IDS opti
 priorities kept>; EXT6b, EXT6c: ALL when nothing of the unit was dropped; "-" for none), what the fallback leaves
 out, and the units whose kept lines this unit depends on. "line" rows: unit, group, stage list, line index, id. "drop"
 rows: unit, cell, card-hours, reason.
+Sets (--set NAME, SET=NAME in submit_tonight.sh): a named cell table from SETS replaces CELLS; planned lines that
+match no cell of the set are left out (not planned, not dropped), so the full plan stays the default.
 Exit codes: 0 plan written; 2 the never-dropped set does not fit; 3 input problem.
 """
 import argparse
@@ -114,6 +116,27 @@ CELLS = [
     ("7", "EXT6c 1.4B Part B", "EXT6c", {"script": r"^ra31_gen", "model": r"(?i)1[._]4b"}, None),
     ("8", "EXT5 priority 1", "EXT5", {"group": r"^g17_fillmap$"}, None),
 ]
+
+
+def _ra29_cells(step, label, group, pairs):
+    return [(step, "%s %s %s" % (label, m, ds), "EXT6c" if group.startswith("g35") else "EXT6b",
+             {"group": r"^%s$" % group, "model": r"^%s$" % m, "datasets": r"^%s$" % ds}, None) for m, ds in pairs]
+
+
+# Named cell tables (--set). Cells are dropped in table order, so the lowest priority comes first.
+# tonight4 (PI, push 4): 1 RA-29 Thinking multiple choice (both sizes), 2 RA-29 MMLU and HellaSwag on Ouro 1.4B and
+# 2.6B, 3 RA-29 McLeish and Huginn multiple choice; nothing else.
+SETS = {
+    "tonight4":
+        _ra29_cells("3", "RA-29", "g35_e6cra29", [("huginn_0125", "csqa"), ("huginn_0125", "aqua"),
+                                                   ("mcleish_llama32_r32", "csqa"), ("mcleish_llama32_r32", "arc"),
+                                                   ("mcleish_llama32_r32", "aqua")])
+        + _ra29_cells("2", "RA-29", "g24_e6bra29", [("ouro_2_6b_base", "hellaswag"), ("ouro_2_6b_base", "mmlu"),
+                                                    ("ouro_1_4b_base", "hellaswag"), ("ouro_1_4b_base", "mmlu")])
+        + _ra29_cells("1", "RA-29", "g35_e6cra29", [("ouro_2_6b_think", "csqa"), ("ouro_2_6b_think", "arc"),
+                                                    ("ouro_2_6b_think", "aqua"), ("ouro_1_4b_think", "csqa"),
+                                                    ("ouro_1_4b_think", "arc"), ("ouro_1_4b_think", "aqua")]),
+}
 
 
 class PlanError(Exception):
@@ -503,7 +526,14 @@ def main(argv=None):
     ap.add_argument("--free-nodes", type=int, default=None, help="override: free nodes (the reserve already excluded)")
     ap.add_argument("--budget-h", type=float, default=BUDGET_H)
     ap.add_argument("--plan", default="", help="plan file to write (default $OUT_ROOT/_chain/plan_tonight.tsv)")
+    ap.add_argument("--set", default="", help="a named cell table of SETS instead of CELLS (%s)" % ", ".join(sorted(SETS)))
     a = ap.parse_args(argv)
+    global CELLS
+    if a.set:
+        if a.set not in SETS:
+            print("plan_tonight: no set %s (sets: %s)" % (a.set, ", ".join(sorted(SETS))))
+            return 3
+        CELLS = SETS[a.set]
     pack = int(os.environ.get("PACK", "1") or 1)
     pack_max_h = float(os.environ.get("PACK_MAX_H", "9") or 9)
     e6c = os.environ.get("EXT6C_GROUPS", "").replace(",", " ").split()
@@ -518,6 +548,10 @@ def main(argv=None):
     except PlanError as e:
         print("plan_tonight: %s" % e)
         return 3
+    if a.set:
+        out_set = [r for r in plan.todo if r["cell"] is None]
+        plan.todo = [r for r in plan.todo if r["cell"] is not None]
+        print("set %s: %d planned lines, %d lines outside the set left out" % (a.set, len(plan.todo), len(out_set)))
     bad = [r["id"] for r in plan.todo if r["cell"] is None]
     if bad:
         print("plan_tonight: %d planned line(s) match no cell of CELLS (add them to the table at the top of "
@@ -678,6 +712,8 @@ def main(argv=None):
             left = ",".join("priority %d (partly dropped)" % p for p in pri if p in part) or "-"
         else:
             fb, left = ("ALL", "-") if not cut else ("-", "the whole unit (partly dropped)")
+            if a.set:
+                fb, left = "-", "the whole unit (set %s)" % a.set
         needs = sorted({todo_by_id[x]["unit"] for r in ul for x in r["xdeps"] if x in kept and todo_by_id[x]["unit"] != unit})
         out.append("unit\t%s\t%s\t%s\t%d\t%s\t%s\t%s\t%s" % (unit, script, yes, len(ul), ids_file, fb, left,
                                                              ",".join(needs) or "-"))

@@ -126,8 +126,8 @@ def build():
         sh_ids = [J.add("g33_e6cra31b14", "s1_shard", "ra31_gen.py", "ouro_1_4b_base", [ds, "partb"], sh, oc, [],
                         h * 3600 + 180, "ra31_gen.py cell_list (plan %s): %.2f h at the single-card rate, plus the CPU tests"
                         % (s31[:8], h),
-                        "%s%s -m unittest discover -s tests && %s%s%s ra31_gen.py cell --cell %s --shard %s --out %s%s"
-                        " --mem_fraction $GEN_MEM_FRACTION" % (w31, PY, w31, env, PY, cell, sh, oc, extra))
+                        "%s && %s%s%s ra31_gen.py cell --cell %s --shard %s --out %s%s"
+                        " --mem_fraction $GEN_MEM_FRACTION" % (GJ.unit_pins("ra31_s2"), w31, env, PY, cell, sh, oc, extra))
                   for sh, h in shs]
         sm = J.add("g33_e6cra31b14", "s2_summarize_any", "ra31_gen.py", "ouro_1_4b_base", [ds, "partb"], "", oc, sh_ids,
                    300, "CPU (cell_summarize, afterany on the 4 shards)",
@@ -154,8 +154,8 @@ def build():
         sh_ids = [J.add("g34_e6cra31b26", "s1_shard", "ra31_gen.py", "ouro_2_6b_base", [ds, "partb"], sh, oc,
                         [frz, "g21_e6ra31a.s1_pilot.001"], h * 3600 + 180,
                         "ra31_gen.py cell_list (plan %s): %.2f h at the single-card rate, plus the CPU tests" % (s31[:8], h),
-                        "%s%s -m unittest discover -s tests && %s%s%s ra31_gen.py cell --cell %s --shard %s --out %s%s"
-                        " --mem_fraction $GEN_MEM_FRACTION" % (w31, PY, w31, env, PY, cell, sh, oc, extra))
+                        "%s && %s%s%s ra31_gen.py cell --cell %s --shard %s --out %s%s"
+                        " --mem_fraction $GEN_MEM_FRACTION" % (GJ.unit_pins("ra31_s2"), w31, env, PY, cell, sh, oc, extra))
                   for sh, h in shs]
         ids31b += sh_ids + [J.add("g34_e6cra31b26", "s2_summarize_any", "ra31_gen.py", "ouro_2_6b_base", [ds, "partb"], "", oc,
                                   sh_ids, 300, "CPU (cell_summarize, afterany on the shards)",
@@ -280,7 +280,7 @@ def write(J, out_dir):
             for r in rs:
                 f.write("%s\t%s\n" % (r["id"], r["cmd"]))
     for g in sorted({r["group"] for r in J.rows}):
-        txt = GJ.SBATCH.format(group=g, time="%d:00:00" % TIME_H)
+        txt = GJ.with_hfmod(g, GJ.SBATCH.format(group=g, time="%d:00:00" % TIME_H))
         if g == "g35_e6cra29":            # RA-29 cells: SIGTERM 120 s before the limit (the run resumes after an item)
             txt = txt.replace("#SBATCH --requeue\n", "#SBATCH --requeue\n#SBATCH --signal=TERM@120\n", 1)
         open(os.path.join(out_dir, "task_%s.sbatch" % g), "w", encoding="utf-8", newline="\n").write(txt)

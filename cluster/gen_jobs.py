@@ -472,6 +472,29 @@ def n_shards(total_s, shard_s, cap=16):
 PY = "python -u"
 LC = "$REPO/loopedcot"
 LF = LC + "/cluster/pilot"          # pilot scripts: the bundle copies (cluster/pilot/), hashed in jobs/scripts_sha256.txt
+
+
+def unit_pins(unit):
+    """push 4: sha256sum -c of the jobs/scripts_sha256.txt lines of one pilot folder; it replaces the folder's CPU tests
+    in the RA-29 and RA-31 task lines (on the cluster those tests took 5.7 h and failed in inspect.getsource)"""
+    return ("(cd $REPO && grep -F '  loopedcot/cluster/pilot/%s/' loopedcot/cluster/jobs/scripts_sha256.txt"
+            " | sha256sum -c --quiet)" % unit)
+
+
+# push 4: every task of these groups gets its own remote-code module cache before python starts (concurrent tasks
+# shared HF_MODULES_CACHE while transformers rewrote the modeling files)
+HFMOD_GROUPS = ["g20_e6ra29", "g21_e6ra31a", "g22_e6ra31b", "g24_e6bra29", "g25_e6bra31t", "g33_e6cra31b14",
+                "g34_e6cra31b26", "g35_e6cra29"]
+HFMOD_AFTER = "export HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1\n"
+HFMOD = ('export HF_MODULES_CACHE="${TMPDIR:-$OUT_ROOT/hfmod}/hfmod_${SLURM_JOB_ID:-0}_${SLURM_ARRAY_TASK_ID:-0}"\n'
+         'mkdir -p "$HF_MODULES_CACHE"\n')
+
+
+def with_hfmod(group, txt):
+    if group not in HFMOD_GROUPS:
+        return txt
+    assert txt.count(HFMOD_AFTER) == 1
+    return txt.replace(HFMOD_AFTER, HFMOD_AFTER + HFMOD)
 TREE = LF + "/tree"                 # the bundle's prod tree: steer_gen.py, every prod module and data file it reads, and
                                     # data_steer/ (the pair files); generation lines run `python -m prod.steer_gen` there
 DATA = "$DATA_ROOT"                 # pilot inputs: cluster/pilot/data/ unless set otherwise
@@ -977,8 +1000,8 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
         w = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (d, o, o)
         e6("g20_e6ra29", "ra29.py", o, "s1_pilot", 600,
            "plan_ra29 8: 2.6B pilot, 30 kept x 9.9 s + about 30 screened out x 1.5 s, tests, load",
-           "%s%s -m unittest discover -s tests && %s%s ra29.py --run --model ouro26 --dataset %s --out %s/pilot --plan_sha256 %s"
-           " --pilot%s && %s%s ra29.py --summarize --out %s/pilot" % (w, PY, w, PY, ds, o, s, E6_MEM, w, PY, o))
+           "%s && %s%s ra29.py --run --model ouro26 --dataset %s --out %s/pilot --plan_sha256 %s"
+           " --pilot%s && %s%s ra29.py --summarize --out %s/pilot" % (unit_pins("ra29"), w, PY, ds, o, s, E6_MEM, w, PY, o))
         nk = n_built * keep
         e6("g20_e6ra29", "ra29.py", o, "s2_full", nk * 9.9 + (n_built - nk) * 1.5 + 120,
            "plan_ra29 8: %d built, about %d kept x 9.9 s + %d screened out x 1.5 s, identity gate and load" % (
@@ -992,8 +1015,8 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
     s = e6_sha("ra31")
     e6("g21_e6ra31a", "ra31.py", o, "s1_pilot", 1300,
        "plan_ra31 11: 1.4B 0.104 s per forward x 2 on 2.6B, 85 forward-equivalents, 50 items + 6 gate items, scan, tests",
-       "%s%s -m unittest discover -s tests && %s%s ra31.py --run --model 2.6b --out %s/pilot_2.6b --plan_sha256 %s --pilot 25%s"
-       " && %s%s ra31.py --summarize --out %s/pilot_2.6b" % (w, PY, w, PY, o, s, E6_MEM, w, PY, o))
+       "%s && %s%s ra31.py --run --model 2.6b --out %s/pilot_2.6b --plan_sha256 %s --pilot 25%s"
+       " && %s%s ra31.py --summarize --out %s/pilot_2.6b" % (unit_pins("ra31"), w, PY, o, s, E6_MEM, w, PY, o))
     e6("g21_e6ra31a", "ra31.py", o, "s2_full", 10440,
        "plan_ra31 11: full 2.6B 1.8 to 2.7 card-h (upper taken) plus the clean-filter scan (about 0.2)",
        "%s%s ra31.py --run --model 2.6b --out %s/full_2.6b --plan_sha256 %s --pilot_gate %s/pilot_2.6b/pilot_gate.json%s"
@@ -1007,8 +1030,8 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
         shard_ids.append(J.add("g22_e6ra31b", "s1_shard", "ra31_gen.py", "ouro_1_4b_base", ["ra31"], name, o, [],
                                h * E6_PARTB_SPEED * 3600 + 120, "ra31_gen.py list: %.2f A100 card-h at A100 speed %.1f "
                                "= %.2f h at the single-card rate, plus the CPU tests" % (h, E6_PARTB_SPEED, h * E6_PARTB_SPEED),
-                               "%s%s -m unittest discover -s tests && %s%s ra31_gen.py partb --shard %s --out %s"
-                               " --mem_fraction $GEN_MEM_FRACTION" % (w, PY, w, PY, name, o)))
+                               "%s && %s%s ra31_gen.py partb --shard %s --out %s"
+                               " --mem_fraction $GEN_MEM_FRACTION" % (unit_pins("ra31"), w, PY, name, o)))
     shard_ids.append(J.add("g22_e6ra31b", "s2_summarize", "ra31_gen.py", "ouro_1_4b_base", ["ra31"], "", o,
                            list(shard_ids), 300, "CPU", "%s%s ra31_gen.py summarize --out %s" % (w, PY, o)))
     e6_ids[("g22_e6ra31b", o)] = shard_ids
@@ -1034,8 +1057,8 @@ def build(cells, order, last, skips, kept, shard_s, done=()):
         w = "cd %s && PROD_ART=%s/prod_art PROD_LOGS=%s/prod_logs " % (d, o, o)
         p = J.add("g25_e6bra31t", "s1_pilot", "ra31.py", E6B_MODEL[m], ["ra31"], "", o, [], hp * 3600,
                   "RA-31 builder: %.2f h at the single-card rate (pilot, 25 items per dataset), plus the CPU tests" % hp,
-                  "%s%s -m unittest discover -s tests && %s%s ra31.py --run --model %s --out %s/pilot_%s --plan_sha256 %s --pilot 25%s"
-                  " && %s%s ra31.py --summarize --out %s/pilot_%s" % (w, PY, w, PY, m, o, m, s, E6_MEM, w, PY, o, m))
+                  "%s && %s%s ra31.py --run --model %s --out %s/pilot_%s --plan_sha256 %s --pilot 25%s"
+                  " && %s%s ra31.py --summarize --out %s/pilot_%s" % (unit_pins("ra31"), w, PY, m, o, m, s, E6_MEM, w, PY, o, m))
         J.add("g25_e6bra31t", "s2_full", "ra31.py", E6B_MODEL[m], ["ra31"], "", o, [p], hf * 3600,
               "RA-31 builder: %.2f h at the single-card rate (full)" % hf,
               "%s%s ra31.py --run --model %s --out %s/full_%s --plan_sha256 %s --pilot_gate %s/pilot_%s/pilot_gate.json%s"
@@ -1492,7 +1515,7 @@ def write_outputs(J, words, conflicts, cells, kept, cards, out_dir, staged=True,
         hours = min(48, max(2, int(math.ceil(mx * 2 / 3600.0))))
         if g in E6_GROUPS + E6B_GROUPS:   # B-EXT6 and B-EXT6b: no job over 6 h wall (the scripts resume after a SIGTERM)
             hours = E6_WALL_H
-        txt = SBATCH.format(group=g, time="%d:00:00" % hours)
+        txt = with_hfmod(g, SBATCH.format(group=g, time="%d:00:00" % hours))
         if g in ("g9_merge", E6_MERGE, E6B_MERGE):   # B-EXT2 item 0: the merge reruns every round (idempotent), done marker or not
             assert txt.count(DONE_SKIP) == 1
             txt = txt.replace(DONE_SKIP, MERGE_RERUN)
