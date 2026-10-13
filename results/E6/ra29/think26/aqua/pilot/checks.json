@@ -1,0 +1,53 @@
+{
+ "model": "think26",
+ "dataset": "aqua",
+ "pilot": true,
+ "plan_sha256": "0aeb6563b39388d4fcaadc7e78104ce633404dcf28bf618e4709efc88d636da3",
+ "counts": {
+  "n_built": 250,
+  "n_tried": 105,
+  "n_kept": 30,
+  "drops": {
+   "screen_A": 50,
+   "gap_below_2": 9,
+   "screen_B": 16
+  },
+  "lB_kept": {
+   "a": 6,
+   "b": 1,
+   "c": 11,
+   "d": 8,
+   "e": 4
+  }
+ },
+ "timing": {
+  "seconds_per_tried_item": 2.156,
+  "seconds_per_kept_item": 5.74,
+  "seconds_per_arm_and_item": {
+   "lt_L1": 0.2435,
+   "blk_L1": 0.2597,
+   "lt_L2": 0.2562,
+   "lt_L3": 0.248,
+   "lt_L4first": 0.2497,
+   "lt_L4q1": 0.2489,
+   "lt_L4mid": 0.2487,
+   "lt_L4q3": 0.2486,
+   "lt_L4": 0.2498,
+   "blk_L2": 0.261,
+   "blk_L3": 0.2604,
+   "blk_L4": 0.2597,
+   "persist_lt_L1to4": 0.2518,
+   "rnd_lt_L1": 0.2507,
+   "rnd_lt_L4": 0.2512,
+   "rnd_blk_L1": 0.2688,
+   "pc": 0.2517
+  },
+  "full_card_hours_at_this_rate": 0.15
+ },
+ "identity_failures": {},
+ "gates": {
+  "pc_exact_all": true,
+  "hook_identity_all": true,
+  "kept_ge_80": false
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "model": "mcleish",
+ "dataset": "csqa",
+ "pilot": false,
+ "plan_sha256": "0aeb6563b39388d4fcaadc7e78104ce633404dcf28bf618e4709efc88d636da3",
+ "counts": {
+  "n_built": 1215,
+  "n_tried": 1215,
+  "n_kept": 248,
+  "drops": {
+   "screen_A": 687,
+   "screen_B": 181,
+   "gap_below_2": 99
+  },
+  "lB_kept": {
+   "a": 58,
+   "b": 50,
+   "c": 55,
+   "d": 45,
+   "e": 40
+  }
+ },
+ "timing": {
+  "seconds_per_tried_item": 1.309,
+  "seconds_per_kept_item": 4.234,
+  "seconds_per_arm_and_item": {
+   "lt_L1": 0.1918,
+   "blk_L1": 0.1922,
+   "blk_L2": 0.1922,
+   "blk_L3": 0.1921,
+   "blk_L31": 0.1913,
+   "blk_L32": 0.1917,
+   "blk_persist": 0.2906,
+   "blk_e": 0.1927,
+   "lt_L31": 0.1899,
+   "lt_L32first": 0.1899,
+   "lt_L32mid": 0.191,
+   "lt_L32": 0.19,
+   "rnd_lt_L1": 0.1906,
+   "rnd_lt_L32": 0.1896,
+   "rnd_blk_L1": 0.1939,
+   "pc": 0.1906,
+   "sz_fin_blk": 0.1919
+  },
+  "full_card_hours_at_this_rate": 0.442
+ },
+ "identity_failures": {},
+ "gates": {
+  "pc_exact_all": true,
+  "hook_identity_all": true,
+  "kept_ge_80": true
+ }
+}

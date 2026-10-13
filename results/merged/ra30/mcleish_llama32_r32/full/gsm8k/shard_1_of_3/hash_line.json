@@ -1,0 +1,19 @@
+{
+ "code_sha256": {
+  "lib/chain.py": "b703010f5b02423f3c36703033a65b52537deff9ef09a9c20e4212a09fa03706",
+  "lib/ra30_data.py": "a2c8b1138c0b0c5333438167d5d58d8760190fd16a70465f20dffb659ecfbe41",
+  "lib/steer_gen_raven.py": "a862710fdbd77b71828479096a22cdfb94052770aebbad9793dcb3f7e249412a",
+  "ra30.py": "33362720f9ee39c0023d8509c5725672b8becd30f5c2a8a5f13b72b119265bc4",
+  "ra30_mcl.py": "c962edfa07c5b0424abe7e9e15655be5bdd1ab6a30cae7d8d8b62a04dce42b01",
+  "tree/prod/models/mcleish.py": "29962f601af46426f61468d901b8d62a4b23c9d5f6d00a0869d2c7f218e4c5c3",
+  "tree/prod/models/raven.py": "590b90eca6b95836902f8787f083c84e0e52d7cfa9ef41c972e1d2ab8e765da3",
+  "tree/prod/steer_gen.py": "23430adcb206889dd3c18d87eb30eb1ec032420d2cda34e5966e92fe8dc65596",
+  "tree/prod/tasks/__init__.py": "1378881344b25e24e2727c2d3cf3be9e8c79bcda5e5e7672a0557acb8b1eea18"
+ },
+ "config_sha256": "79c78d6d15d7c1e401dc9b42e7878d23edbee1ce57259b07ca196d787e690cbd",
+ "data_sha256": {
+  "pool_gsm8k_mcleish_llama32_r32.json": "3b010add551fbd1e50a7ad68fbba3a825e0a607baab6b437bea5f4cd51fffd0a",
+  "split_gsm8k_mcleish_llama32_r32.json": "189ab4e4b7ad25532eb1aa6ef76593c03fffd9ad8175beb4e5f2f7b0f9152734"
+ },
+ "plan_sha256": "086581bf0b2c109436b4c09dd47e8f1e6c2d168dd28ef0c431cc684df8081ba8"
+}

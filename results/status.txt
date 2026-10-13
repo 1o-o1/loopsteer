@@ -1,4 +1,4 @@
-job list: /home/mzaoad/loopedcot/cluster/jobs/nolocal/joblist.tsv
+job list: <HOME>/loopedcot/cluster/jobs/nolocal/joblist.tsv
 group          jobs   done  running  pending  failed   slurm_R  slurm_PD
 g0_xllm           1      1        0        0       0         0         0
 g1_copy          49     49        0        0       0         0         0
@@ -13,7 +13,7 @@ total           642    642        0        0       0
 
 failed task ids (0):
 
-chain markers (/home/mzaoad/loopedcot/out/_chain):
+chain markers (<HOME>/loopedcot/out/_chain):
   jobs.txt
   pack
   packed.tsv
@@ -30,17 +30,17 @@ chain markers (/home/mzaoad/loopedcot/out/_chain):
   submitted.tsv.packed
   _smoke.ok
 
-bad nodes (/home/mzaoad/loopedcot/out/bad_nodes.txt, excluded from every later submission): 
-HELD family ouro: smoke failed: cross-host tolerance failed (|new - ref| > 0.001; /home/mzaoad/loopedcot/out/_smoke_tolerance_diff.tsv); 65 jobs held (release after the fix: bash cluster/jobs/release_family.sh ouro)
+bad nodes (<HOME>/loopedcot/out/bad_nodes.txt, excluded from every later submission): 
+HELD family ouro: smoke failed: cross-host tolerance failed (|new - ref| > 0.001; <HOME>/loopedcot/out/_smoke_tolerance_diff.tsv); 77 jobs held (release after the fix: bash cluster/jobs/release_family.sh ouro)
 preflight: ok ['ouro'] held []
-run nodes (/home/mzaoad/loopedcot/out/run_nodes.txt, chosen by the probe step): tukeygpn02,tukeygpn04,tukeygpn05,tukeygpn06,tukeygpn07
+run nodes (<HOME>/loopedcot/out/run_nodes.txt, chosen by the probe step): tukeygpn02,tukeygpn04,tukeygpn05,tukeygpn06,tukeygpn07
   probe tukeygpn02: RC=0 
   probe tukeygpn04: RC=0 
   probe tukeygpn05: RC=0 
   probe tukeygpn06: RC=0 
   probe tukeygpn07: RC=0 
 
-cluster rerun against the local reference (/home/mzaoad/loopedcot/out/merged/local_vs_cluster.csv):
+cluster rerun against the local reference (<HOME>/loopedcot/out/merged/local_vs_cluster.csv):
   out,dataset,status,rows_matched,max_abs_diff,max_abs_diff_field,n_items_equal,n_clusters_equal
   A/steer_gen/a1_gsm8k,gsm8k,compared,66,0.0321,ci95_hi,False,False
   A/steer_gen/a1_svamp,svamp,compared,66,0.0287,ci95_hi,False,False
@@ -76,28 +76,28 @@ slurm: job 102007_1 node tukeygpn01
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1992 GiB available of 2015 GiB
 time: 2026-10-13 00:12:05
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g20_e6ra29.s1_pilot.001.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g20_e6ra29.s1_pilot.001.log
 
 ======================================================================
 ERROR: test_random_payload_built_in_model_dtype (test_ra29.TestItem.test_random_payload_built_in_model_dtype)
 RA-28 lesson: with a bf16 dtype the written payload is the bf16-rounded vector, and the identity holds.
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -105,21 +105,21 @@ OSError: could not get source code
 ERROR: test_screen_and_gap_drops (test_ra29.TestItem.test_screen_and_gap_drops)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -136,28 +136,28 @@ slurm: job 102009_2 node tukeygpn01
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1992 GiB available of 2015 GiB
 time: 2026-10-13 00:12:05
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g20_e6ra29.s1_pilot.002.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g20_e6ra29.s1_pilot.002.log
 
 ======================================================================
 ERROR: test_random_payload_built_in_model_dtype (test_ra29.TestItem.test_random_payload_built_in_model_dtype)
 RA-28 lesson: with a bf16 dtype the written payload is the bf16-rounded vector, and the identity holds.
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -165,21 +165,21 @@ OSError: could not get source code
 ERROR: test_screen_and_gap_drops (test_ra29.TestItem.test_screen_and_gap_drops)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -196,27 +196,27 @@ slurm: job 102011_1 node tukeygpn01
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1990 GiB available of 2015 GiB
 time: 2026-10-13 00:12:03
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g21_e6ra31a.s1_pilot.001.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g21_e6ra31a.s1_pilot.001.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -225,21 +225,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -256,27 +256,27 @@ slurm: job 102013_1 node tukeygpn01
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1990 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.001.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.001.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -285,21 +285,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -316,27 +316,27 @@ slurm: job 102013_2 node tukeygpn01
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1992 GiB available of 2015 GiB
 time: 2026-10-13 00:12:04
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.002.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.002.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -345,21 +345,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -376,27 +376,27 @@ slurm: job 102013_3 node tukeygpn01
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1991 GiB available of 2015 GiB
 time: 2026-10-13 00:12:03
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.003.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.003.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -405,21 +405,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -436,27 +436,27 @@ slurm: job 102013_4 node tukeygpn01
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1992 GiB available of 2015 GiB
 time: 2026-10-13 00:12:04
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.004.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.004.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -465,21 +465,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -496,27 +496,27 @@ slurm: job 102013_5 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.005.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.005.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -525,21 +525,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -556,27 +556,27 @@ slurm: job 102013_6 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.006.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.006.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -585,21 +585,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -616,27 +616,27 @@ slurm: job 102013_7 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.007.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.007.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -645,21 +645,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -676,27 +676,27 @@ slurm: job 102013_8 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.008.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.008.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -705,21 +705,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -736,27 +736,27 @@ slurm: job 102013_9 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.009.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.009.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -765,21 +765,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -796,27 +796,27 @@ slurm: job 102013_10 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.010.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.010.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -825,21 +825,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -856,27 +856,27 @@ slurm: job 102013_11 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.011.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.011.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -885,21 +885,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -916,27 +916,27 @@ slurm: job 102013_12 node tukeygpn02
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1995 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.012.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g22_e6ra31b.s1_shard.012.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -945,21 +945,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -976,28 +976,28 @@ slurm: job none_1 node tukeygpn07
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:04
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g24_e6bra29.s1_cell.001.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g24_e6bra29.s1_cell.001.log
 
 ======================================================================
 ERROR: test_random_payload_built_in_model_dtype (test_ra29.TestItem.test_random_payload_built_in_model_dtype)
 RA-28 lesson: with a bf16 dtype the written payload is the bf16-rounded vector, and the identity holds.
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1005,21 +1005,21 @@ OSError: could not get source code
 ERROR: test_screen_and_gap_drops (test_ra29.TestItem.test_screen_and_gap_drops)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1036,28 +1036,28 @@ slurm: job none_2 node tukeygpn07
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:04
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g24_e6bra29.s1_cell.002.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g24_e6bra29.s1_cell.002.log
 
 ======================================================================
 ERROR: test_random_payload_built_in_model_dtype (test_ra29.TestItem.test_random_payload_built_in_model_dtype)
 RA-28 lesson: with a bf16 dtype the written payload is the bf16-rounded vector, and the identity holds.
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1065,86 +1065,26 @@ OSError: could not get source code
 ERROR: test_screen_and_gap_drops (test_ra29.TestItem.test_screen_and_gap_drops)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
 ----------------------------------------------------------------------
 Ran 29 tests in 20692.098s
-
-FAILED (errors=19)
-================ diagnosis g24_e6bra29.s1_cell.003
-task: g24_e6bra29.s1_cell.003 (list g24_e6bra29.s1_cell.tsv line 3)
-exit code: 1
-failing check: task command (exit code of the task line)
-host role: cluster
-slurm: job none_3 node tukeygpn07
-gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
-host memory: 1995 GiB available of 2015 GiB
-time: 2026-10-13 00:12:05
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g24_e6bra29.s1_cell.003.log
-
-======================================================================
-ERROR: test_random_payload_built_in_model_dtype (test_ra29.TestItem.test_random_payload_built_in_model_dtype)
-RA-28 lesson: with a bf16 dtype the written payload is the bf16-rounded vector, and the identity holds.
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
-    return next(self.gen)
-           ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
-    lines, lnum = getsourcelines(object)
-                  ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
-    lines, lnum = findsource(object)
-                  ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
-    raise OSError('could not get source code')
-OSError: could not get source code
-
-======================================================================
-ERROR: test_screen_and_gap_drops (test_ra29.TestItem.test_screen_and_gap_drops)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
-    return next(self.gen)
-           ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
-    lines, lnum = getsourcelines(object)
-                  ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
-    lines, lnum = findsource(object)
-                  ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
-    raise OSError('could not get source code')
-OSError: could not get source code
-
-----------------------------------------------------------------------
-Ran 29 tests in 20692.572s
 
 FAILED (errors=19)
 ================ diagnosis g24_e6bra29.s1_cell.004
@@ -1156,28 +1096,28 @@ slurm: job none_4 node tukeygpn07
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1995 GiB available of 2015 GiB
 time: 2026-10-13 00:12:05
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g24_e6bra29.s1_cell.004.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g24_e6bra29.s1_cell.004.log
 
 ======================================================================
 ERROR: test_random_payload_built_in_model_dtype (test_ra29.TestItem.test_random_payload_built_in_model_dtype)
 RA-28 lesson: with a bf16 dtype the written payload is the bf16-rounded vector, and the identity holds.
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 306, in test_random_payload_built_in_model_dtype
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1185,21 +1125,21 @@ OSError: could not get source code
 ERROR: test_screen_and_gap_drops (test_ra29.TestItem.test_screen_and_gap_drops)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 287, in test_screen_and_gap_drops
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tests/test_ra29.py", line 69, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra29/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1216,27 +1156,27 @@ slurm: job none_1 node tukeygpn07
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:03
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g25_e6bra31t.s1_pilot.001.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g25_e6bra31t.s1_pilot.001.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1245,21 +1185,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1276,27 +1216,27 @@ slurm: job none_2 node tukeygpn07
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:04
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g25_e6bra31t.s1_pilot.002.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g25_e6bra31t.s1_pilot.002.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1305,21 +1245,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1336,27 +1276,27 @@ slurm: job none_1 node tukeygpn05
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.001.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.001.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1365,21 +1305,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1396,27 +1336,27 @@ slurm: job none_2 node tukeygpn05
 gpu (name, free, total): NVIDIA PG506-230, 97429 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.002.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.002.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1425,21 +1365,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1456,27 +1396,27 @@ slurm: job none_3 node tukeygpn05
 gpu (name, free, total): NVIDIA PG506-230, 97429 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.003.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.003.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1485,21 +1425,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1516,27 +1456,27 @@ slurm: job none_4 node tukeygpn05
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.004.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.004.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1545,21 +1485,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1576,27 +1516,27 @@ slurm: job none_5 node tukeygpn05
 gpu (name, free, total): NVIDIA PG506-230, 97429 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.005.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.005.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1605,21 +1545,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1636,27 +1576,27 @@ slurm: job none_6 node tukeygpn05
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.006.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.006.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1665,21 +1605,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1696,27 +1636,27 @@ slurm: job none_7 node tukeygpn04
 gpu (name, free, total): NVIDIA PG506-230, 97429 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:03
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.007.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.007.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1725,21 +1665,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1756,27 +1696,27 @@ slurm: job none_8 node tukeygpn04
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1995 GiB available of 2015 GiB
 time: 2026-10-13 00:12:03
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.008.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.008.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1785,21 +1725,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1816,27 +1756,27 @@ slurm: job none_9 node tukeygpn04
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1994 GiB available of 2015 GiB
 time: 2026-10-13 00:12:03
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.009.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.009.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1845,21 +1785,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1876,27 +1816,27 @@ slurm: job none_10 node tukeygpn04
 gpu (name, free, total): NVIDIA PG506-230, 97429 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.010.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.010.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1905,21 +1845,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1936,27 +1876,27 @@ slurm: job none_11 node tukeygpn04
 gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:02
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.011.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.011.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1965,21 +1905,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -1996,27 +1936,27 @@ slurm: job none_12 node tukeygpn04
 gpu (name, free, total): NVIDIA PG506-230, 97429 MiB, 98304 MiB
 host memory: 1993 GiB available of 2015 GiB
 time: 2026-10-13 00:12:01
---- last 50 lines of /home/mzaoad/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.012.log
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g33_e6cra31b14.s1_shard.012.log
 
 ======================================================================
 ERROR: test_store_roundtrip_and_size_at_530 (test_ra31.TestSizeSetsAndAttribution.test_store_roundtrip_and_size_at_530)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 525, in test_store_roundtrip_and_size_at_530
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -2025,21 +1965,21 @@ ERROR: test_top_with_every_unit_equals_dall_bit_exact (test_ra31.TestTopAllEqual
 Review N1: the subset index map (u // n, u % n) with every unit listed gives the dall tables and the same
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 254, in test_top_with_every_unit_equals_dall_bit_exact
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tests/test_ra31.py", line 51, in __init__
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/contextlib.py", line 137, in __enter__
     return next(self.gen)
            ^^^^^^^^^^^^^^
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
-  File "/home/mzaoad/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 162, in trust_for_tests
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 91, in source_sha256
+  File "<HOME>/loopedcot/cluster/pilot/ra31_s2/tree/prod/steer/hooks.py", line 83, in normalized_source
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1258, in getsource
     lines, lnum = getsourcelines(object)
                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1240, in getsourcelines
     lines, lnum = findsource(object)
                   ^^^^^^^^^^^^^^^^^^
-  File "/home/mzaoad/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
+  File "<HOME>/.conda/envs/loopedcot_base/lib/python3.11/inspect.py", line 1077, in findsource
     raise OSError('could not get source code')
 OSError: could not get source code
 
@@ -2047,6 +1987,26 @@ OSError: could not get source code
 Ran 60 tests in 20687.391s
 
 FAILED (errors=7)
+================ diagnosis g35_e6cra29.s1_cell_alone.012
+task: g35_e6cra29.s1_cell_alone.012 (list g35_e6cra29.s1_cell_alone.tsv line 12)
+exit code: 3
+failing check: task command (exit code of the task line)
+host role: cluster
+slurm: job 102237_12 node tukeygpn04
+gpu (name, free, total): NVIDIA PG506-230, 97432 MiB, 98304 MiB
+host memory: 1989 GiB available of 2015 GiB
+time: 2026-10-13 01:44:19
+--- last 50 lines of <HOME>/loopedcot/out/_tasklog/g35_e6cra29.s1_cell_alone.012.log
+node=tukeygpn04
+GPU 0: NVIDIA PG506-230 (UUID: GPU-348fc1de-7c8f-9430-a93b-3894d171caf0)
+running inside a home directory; records will be scrubbed at merge
+task g35_e6cra29.s1_cell_alone.012
+<HOME>/venvs/ouro/lib/python3.11/site-packages/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:13<00:40, 13.48s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:28<00:28, 14.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:43<00:14, 14.94s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:49<00:00, 11.10s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:49<00:00, 12.30s/it]
+[ra29] identity gate FAIL (0 scored of 60 tried)
+[ra29] GATE FAILED (identity gate before any scored row): {}
 ================ diagnosis pack_102078_1
 packed job 102078 task 1 on node tukeygpn07, list g24_e6bra29.s1_cell.tsv
 line 1 g24_e6bra29.s1_cell.001: exit 1 (diagnosis: _diag/g24_e6bra29.s1_cell.001.txt)

@@ -1,0 +1,106 @@
+{
+ "G2b": [
+  {
+   "div": 8,
+   "identical": false,
+   "margin": 0.125,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "div": 13,
+   "identical": false,
+   "margin": 0.125,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  }
+ ],
+ "drops": {
+  "ambiguous_operand": 3,
+  "ambiguous_value": 2,
+  "chain_arithmetic_error": 8,
+  "clean_wrong": 4,
+  "derived_B_format": 2,
+  "eligible": 173,
+  "inconsistent": 18,
+  "no_changed_step": 94,
+  "no_equation": 5,
+  "no_intermediate": 13,
+  "one_step": 23,
+  "token_count": 80
+ },
+ "eligible_rate": 0.4071,
+ "gate_80": true,
+ "horizon_cap_rule": {
+  "rows_marker_after_cap": 0,
+  "rows_with_answer": 2074,
+  "rule": "cap = min(512 - prefix, 2 x clean continuation after the prefix + 64) if under 1% of parsed rows pass it",
+  "share": 0.0,
+  "use_cap_in_full": true
+ },
+ "n_lead_same_hist": {
+  "0": 125,
+  "1": 46,
+  "2": 2
+ },
+ "n_pool": 425,
+ "norm_ratio_prerounding": [
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  },
+  {
+   "rnd1": 1.0,
+   "rnd3": 1.0
+  }
+ ],
+ "projected_eligible": 173,
+ "projected_full_card_hours": 4.87,
+ "r1_rule_kept_info": 131,
+ "sec_clean_mean": 23.67,
+ "sec_per_arm_item": 1.802,
+ "sec_per_item_mean": 43.25,
+ "split_n": 0
+}

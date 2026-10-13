@@ -1,0 +1,235 @@
+{
+ "cells": {
+  "lt_L1": {
+   "mean": 0.0017,
+   "ci90": [
+    0.0007,
+    0.0027
+   ],
+   "n_items": 934,
+   "writes_B": 0.0
+  },
+  "blk_L1": {
+   "mean": 0.9962,
+   "ci90": [
+    0.9946,
+    0.9977
+   ],
+   "n_items": 934,
+   "writes_B": 0.9936
+  },
+  "lt_L2": {
+   "mean": 0.0366,
+   "ci90": [
+    0.0344,
+    0.0387
+   ],
+   "n_items": 934,
+   "writes_B": 0.0043
+  },
+  "lt_L3": {
+   "mean": 0.2392,
+   "ci90": [
+    0.2338,
+    0.2446
+   ],
+   "n_items": 934,
+   "writes_B": 0.0749
+  },
+  "lt_L4first": {
+   "mean": 0.2389,
+   "ci90": [
+    0.2336,
+    0.2443
+   ],
+   "n_items": 934,
+   "writes_B": 0.0728
+  },
+  "lt_L4q1": {
+   "mean": 0.242,
+   "ci90": [
+    0.2365,
+    0.2476
+   ],
+   "n_items": 934,
+   "writes_B": 0.0749
+  },
+  "lt_L4mid": {
+   "mean": 0.4975,
+   "ci90": [
+    0.4898,
+    0.5055
+   ],
+   "n_items": 934,
+   "writes_B": 0.4454
+  },
+  "lt_L4q3": {
+   "mean": 0.7991,
+   "ci90": [
+    0.7942,
+    0.804
+   ],
+   "n_items": 934,
+   "writes_B": 0.9379
+  },
+  "lt_L4": {
+   "mean": 1.0,
+   "ci90": [
+    1.0,
+    1.0
+   ],
+   "n_items": 934,
+   "writes_B": 1.0
+  },
+  "blk_L2": {
+   "mean": 0.9509,
+   "ci90": [
+    0.9473,
+    0.9545
+   ],
+   "n_items": 934,
+   "writes_B": 0.9647
+  },
+  "blk_L3": {
+   "mean": 0.7377,
+   "ci90": [
+    0.7316,
+    0.7438
+   ],
+   "n_items": 934,
+   "writes_B": 0.8747
+  },
+  "blk_L4": {
+   "mean": 0.0,
+   "ci90": [
+    0.0,
+    0.0
+   ],
+   "n_items": 934,
+   "writes_B": 0.0
+  },
+  "persist_lt_L1to4": {
+   "mean": 1.0,
+   "ci90": [
+    1.0,
+    1.0
+   ],
+   "n_items": 934,
+   "writes_B": 1.0
+  },
+  "rnd_lt_L1": {
+   "mean": 0.0004,
+   "ci90": [
+    -0.0009,
+    0.0017
+   ],
+   "n_items": 934,
+   "writes_B": 0.0,
+   "norm_ratio_min_max": [
+    0.998751,
+    1.003509
+   ]
+  },
+  "rnd_lt_L4": {
+   "mean": 0.0035,
+   "ci90": [
+    -0.0015,
+    0.0086
+   ],
+   "n_items": 934,
+   "writes_B": 0.0075,
+   "norm_ratio_min_max": [
+    0.999267,
+    1.000808
+   ]
+  },
+  "rnd_blk_L1": {
+   "mean": 0.4878,
+   "ci90": [
+    0.4739,
+    0.5015
+   ],
+   "n_items": 934,
+   "writes_B": 0.2666,
+   "norm_ratio_min_max": [
+    0.999959,
+    1.000047
+   ]
+  },
+  "pc": {
+   "mean": 1.0,
+   "ci90": [
+    1.0,
+    1.0
+   ],
+   "n_items": 934,
+   "writes_B": 1.0
+  },
+  "swap": {
+   "mean": 1.0,
+   "ci90": [
+    1.0,
+    1.0
+   ],
+   "n_items": 934,
+   "writes_B": 1.0
+  },
+  "clean_A": {
+   "mean": 0.0,
+   "ci90": [
+    0.0,
+    0.0
+   ],
+   "n_items": 934,
+   "writes_B": 0.0
+  }
+ },
+ "nld_by_gold_letter_B": {
+  "a": {
+   "lt_L1": -0.0001,
+   "blk_L1": 0.9972,
+   "lt_L3": 0.2395,
+   "lt_L4q1": 0.248,
+   "lt_L4mid": 0.508,
+   "lt_L4q3": 0.7783,
+   "n": 251
+  },
+  "b": {
+   "lt_L1": 0.0032,
+   "blk_L1": 0.9951,
+   "lt_L3": 0.2375,
+   "lt_L4q1": 0.2394,
+   "lt_L4mid": 0.4524,
+   "lt_L4q3": 0.8025,
+   "n": 252
+  },
+  "c": {
+   "lt_L1": 0.0013,
+   "blk_L1": 1.001,
+   "lt_L3": 0.2774,
+   "lt_L4q1": 0.2829,
+   "lt_L4mid": 0.4727,
+   "lt_L4q3": 0.8183,
+   "n": 236
+  },
+  "d": {
+   "lt_L1": 0.0026,
+   "blk_L1": 0.9902,
+   "lt_L3": 0.1946,
+   "lt_L4q1": 0.1879,
+   "lt_L4mid": 0.5722,
+   "lt_L4q3": 0.7984,
+   "n": 195
+  }
+ },
+ "predictions": {
+  "P1_lt_L3_or_L4mid_ge_0.5": false,
+  "P1_lt_L1_below_0.2": true,
+  "P1_holds": false,
+  "P2_blk_L1_ge_0.8": true,
+  "note": "lt_L4 (end of loop 4) is the readout input and equals pc: the positive-control identity, not a result. Facts reference at the same sites (k15 map): at most 0.17."
+ },
+ "n_boot": 10000,
+ "seed": 0,
+ "ci": "90 percent cluster bootstrap over items (each item its own cluster)"
+}

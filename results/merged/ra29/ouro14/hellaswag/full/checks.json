@@ -1,0 +1,53 @@
+{
+ "model": "ouro14",
+ "dataset": "hellaswag",
+ "pilot": false,
+ "plan_sha256": "9b799c25bf9a1dffa701d8c2e391092ca00cecd3d3ce9c1aae472645671c5d7a",
+ "counts": {
+  "n_built": 2000,
+  "n_tried": 2000,
+  "n_kept": 934,
+  "drops": {
+   "screen_A": 649,
+   "screen_B": 296,
+   "gap_below_2": 121
+  },
+  "lB_kept": {
+   "a": 251,
+   "b": 252,
+   "c": 236,
+   "d": 195,
+   "e": 0
+  }
+ },
+ "timing": {
+  "seconds_per_tried_item": 1.525,
+  "seconds_per_kept_item": 2.84,
+  "seconds_per_arm_and_item": {
+   "lt_L1": 0.1269,
+   "blk_L1": 0.1358,
+   "lt_L2": 0.1301,
+   "lt_L3": 0.1303,
+   "lt_L4first": 0.1307,
+   "lt_L4q1": 0.1301,
+   "lt_L4mid": 0.1301,
+   "lt_L4q3": 0.1303,
+   "lt_L4": 0.1302,
+   "blk_L2": 0.134,
+   "blk_L3": 0.1344,
+   "blk_L4": 0.1337,
+   "persist_lt_L1to4": 0.1315,
+   "rnd_lt_L1": 0.1301,
+   "rnd_lt_L4": 0.1294,
+   "rnd_blk_L1": 0.1355,
+   "pc": 0.1306
+  },
+  "full_card_hours_at_this_rate": 0.847
+ },
+ "identity_failures": {},
+ "gates": {
+  "pc_exact_all": true,
+  "hook_identity_all": true,
+  "kept_ge_80": true
+ }
+}
