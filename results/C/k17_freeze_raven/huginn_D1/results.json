@@ -1,0 +1,1298 @@
+{
+ "plan_sha256": "ee8c583f5a9652485f2508f5ac15b14266387b168d63726864f9849aba5e936e",
+ "model": "huginn_0125",
+ "config_sha256": "158621e9f9f52bebe6d0640a299ecdda80911fb5f0d01bc275169e3cbc053aa1",
+ "cells": {
+  "facts": {
+   "n_items": 66,
+   "n_clusters": 29,
+   "descriptive_lt_40": false,
+   "strata": {
+    "capital": 5,
+    "city_mid": 61
+   },
+   "identity_counts": {
+    "ans_loop1_state_is_donor": 66,
+    "freeze_no_edit_identity": 66,
+    "hook_identity": 66,
+    "pc_exact": 66,
+    "readout_identity": 66,
+    "source_attn_frozen_identity": 66,
+    "source_edit_reaches_r": 66,
+    "sz_exact": 66
+   },
+   "e0": {
+    "mean": -0.0004,
+    "ci90": [
+     -0.0014,
+     0.0004
+    ],
+    "ci95": [
+     -0.0016,
+     0.0005
+    ],
+    "n_items": 66,
+    "n_defined": 66,
+    "n_clusters": 29,
+    "dyadic": {
+     "ci90": [
+      -0.0016,
+      0.0006
+     ],
+     "ci95": [
+      -0.0019,
+      0.0008
+     ],
+     "n_subjects": 36
+    }
+   },
+   "e_attn": {
+    "mean": -0.0005,
+    "ci90": [
+     -0.0009,
+     -0.0
+    ],
+    "ci95": [
+     -0.001,
+     0.0001
+    ],
+    "n_items": 66,
+    "n_defined": 66,
+    "n_clusters": 29,
+    "dyadic": {
+     "ci90": [
+      -0.0014,
+      0.0003
+     ],
+     "ci95": [
+      -0.0017,
+      0.0004
+     ],
+     "n_subjects": 36
+    }
+   },
+   "e_mlp": {
+    "mean": -0.0004,
+    "ci90": [
+     -0.0008,
+     0.0
+    ],
+    "ci95": [
+     -0.0009,
+     0.0001
+    ],
+    "n_items": 66,
+    "n_defined": 66,
+    "n_clusters": 29,
+    "dyadic": {
+     "ci90": [
+      -0.0014,
+      0.0006
+     ],
+     "ci95": [
+      -0.0016,
+      0.0008
+     ],
+     "n_subjects": 36
+    }
+   },
+   "pc_final_e": {
+    "mean": 1.0,
+    "ci90": [
+     1.0,
+     1.0
+    ],
+    "ci95": [
+     1.0,
+     1.0
+    ],
+    "n_items": 66,
+    "n_defined": 66,
+    "n_clusters": 29
+   },
+   "sz_e": {
+    "mean": 0.0,
+    "ci90": [
+     0.0,
+     0.0
+    ],
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "n_items": 66,
+    "n_defined": 66,
+    "n_clusters": 29
+   },
+   "src_e": {
+    "mean": -0.0005,
+    "ci90": [
+     -0.0012,
+     0.0002
+    ],
+    "ci95": [
+     -0.0014,
+     0.0003
+    ],
+    "n_items": 66,
+    "n_defined": 66,
+    "n_clusters": 29
+   },
+   "src_frz_attn_e": {
+    "mean": 0.0,
+    "ci90": [
+     0.0,
+     0.0
+    ],
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "n_items": 66,
+    "n_defined": 66,
+    "n_clusters": 29
+   },
+   "ratio_of_means": {
+    "E0": -0.0003,
+    "ans_frz_mlp": -0.0004,
+    "ans_frz_attn": -0.0003
+   },
+   "mean_D": 19.5998,
+   "n_D_ge_2": 66,
+   "g5": {
+    "E0": [
+     {
+      "loop": 1,
+      "norm_ratio": {
+       "mean": 1.0,
+       "ci90": [
+        1.0,
+        1.0
+       ],
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 1.0,
+       "ci90": [
+        1.0,
+        1.0
+       ],
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0873,
+       "ci90": [
+        0.0715,
+        0.102
+       ],
+       "ci95": [
+        0.0681,
+        0.1044
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 2,
+      "norm_ratio": {
+       "mean": 0.341,
+       "ci90": [
+        0.3242,
+        0.3597
+       ],
+       "ci95": [
+        0.321,
+        0.3632
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.5671,
+       "ci90": [
+        0.5279,
+        0.6047
+       ],
+       "ci95": [
+        0.5203,
+        0.6117
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0394,
+       "ci90": [
+        0.0302,
+        0.0482
+       ],
+       "ci95": [
+        0.0286,
+        0.05
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 4,
+      "norm_ratio": {
+       "mean": 0.1312,
+       "ci90": [
+        0.1189,
+        0.1436
+       ],
+       "ci95": [
+        0.1166,
+        0.1458
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.2218,
+       "ci90": [
+        0.1982,
+        0.2448
+       ],
+       "ci95": [
+        0.1941,
+        0.2488
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0024,
+       "ci90": [
+        0.0008,
+        0.0038
+       ],
+       "ci95": [
+        0.0005,
+        0.0041
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 8,
+      "norm_ratio": {
+       "mean": 0.0553,
+       "ci90": [
+        0.0505,
+        0.0599
+       ],
+       "ci95": [
+        0.0495,
+        0.0607
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0535,
+       "ci90": [
+        0.0373,
+        0.0714
+       ],
+       "ci95": [
+        0.0349,
+        0.0757
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0015,
+       "ci90": [
+        -0.0022,
+        -0.0007
+       ],
+       "ci95": [
+        -0.0023,
+        -0.0006
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 16,
+      "norm_ratio": {
+       "mean": 0.0338,
+       "ci90": [
+        0.0324,
+        0.0353
+       ],
+       "ci95": [
+        0.0321,
+        0.0357
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0322,
+       "ci90": [
+        0.0163,
+        0.0528
+       ],
+       "ci95": [
+        0.0136,
+        0.0579
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0003,
+       "ci90": [
+        -0.0003,
+        0.0009
+       ],
+       "ci95": [
+        -0.0005,
+        0.0011
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 24,
+      "norm_ratio": {
+       "mean": 0.0325,
+       "ci90": [
+        0.0312,
+        0.0342
+       ],
+       "ci95": [
+        0.0309,
+        0.0345
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0062,
+       "ci90": [
+        -0.006,
+        0.0189
+       ],
+       "ci95": [
+        -0.0084,
+        0.0215
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0005,
+       "ci90": [
+        -0.0011,
+        0.0002
+       ],
+       "ci95": [
+        -0.0012,
+        0.0003
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 31,
+      "norm_ratio": {
+       "mean": 0.0322,
+       "ci90": [
+        0.0307,
+        0.0339
+       ],
+       "ci95": [
+        0.0305,
+        0.0343
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0038,
+       "ci90": [
+        -0.0078,
+        0.015
+       ],
+       "ci95": [
+        -0.01,
+        0.0172
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0005,
+       "ci90": [
+        -0.0,
+        0.001
+       ],
+       "ci95": [
+        -0.0001,
+        0.0011
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 32,
+      "norm_ratio": {
+       "mean": 0.0322,
+       "ci90": [
+        0.0308,
+        0.0339
+       ],
+       "ci95": [
+        0.0305,
+        0.0342
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0163,
+       "ci90": [
+        0.0024,
+        0.0304
+       ],
+       "ci95": [
+        0.0001,
+        0.0332
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0004,
+       "ci90": [
+        -0.0014,
+        0.0004
+       ],
+       "ci95": [
+        -0.0016,
+        0.0005
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     }
+    ],
+    "ans_frz_mlp": [
+     {
+      "loop": 1,
+      "norm_ratio": {
+       "mean": 1.0,
+       "ci90": [
+        1.0,
+        1.0
+       ],
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 1.0,
+       "ci90": [
+        1.0,
+        1.0
+       ],
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0873,
+       "ci90": [
+        0.0715,
+        0.102
+       ],
+       "ci95": [
+        0.0681,
+        0.1044
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 2,
+      "norm_ratio": {
+       "mean": 0.2767,
+       "ci90": [
+        0.2608,
+        0.2949
+       ],
+       "ci95": [
+        0.2579,
+        0.2982
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.3634,
+       "ci90": [
+        0.3408,
+        0.3856
+       ],
+       "ci95": [
+        0.3359,
+        0.3898
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0389,
+       "ci90": [
+        0.0313,
+        0.0459
+       ],
+       "ci95": [
+        0.0298,
+        0.0472
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 4,
+      "norm_ratio": {
+       "mean": 0.0763,
+       "ci90": [
+        0.0721,
+        0.0804
+       ],
+       "ci95": [
+        0.0712,
+        0.0811
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0331,
+       "ci90": [
+        0.0264,
+        0.039
+       ],
+       "ci95": [
+        0.0251,
+        0.0401
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0028,
+       "ci90": [
+        -0.0043,
+        -0.0014
+       ],
+       "ci95": [
+        -0.0046,
+        -0.0011
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 8,
+      "norm_ratio": {
+       "mean": 0.0263,
+       "ci90": [
+        0.025,
+        0.0275
+       ],
+       "ci95": [
+        0.0247,
+        0.0278
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0064,
+       "ci90": [
+        0.0009,
+        0.012
+       ],
+       "ci95": [
+        -0.0001,
+        0.013
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0004,
+       "ci90": [
+        -0.0009,
+        0.0001
+       ],
+       "ci95": [
+        -0.001,
+        0.0002
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 16,
+      "norm_ratio": {
+       "mean": 0.0206,
+       "ci90": [
+        0.0199,
+        0.0214
+       ],
+       "ci95": [
+        0.0197,
+        0.0216
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0091,
+       "ci90": [
+        0.0039,
+        0.0147
+       ],
+       "ci95": [
+        0.003,
+        0.0159
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0002,
+       "ci90": [
+        -0.0003,
+        0.0008
+       ],
+       "ci95": [
+        -0.0004,
+        0.0009
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 24,
+      "norm_ratio": {
+       "mean": 0.0203,
+       "ci90": [
+        0.0195,
+        0.0211
+       ],
+       "ci95": [
+        0.0193,
+        0.0213
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0038,
+       "ci90": [
+        -0.0023,
+        0.0097
+       ],
+       "ci95": [
+        -0.0036,
+        0.0108
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0002,
+       "ci90": [
+        -0.0001,
+        0.0006
+       ],
+       "ci95": [
+        -0.0002,
+        0.0007
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 31,
+      "norm_ratio": {
+       "mean": 0.0203,
+       "ci90": [
+        0.0194,
+        0.0211
+       ],
+       "ci95": [
+        0.0193,
+        0.0213
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0096,
+       "ci90": [
+        0.0056,
+        0.0135
+       ],
+       "ci95": [
+        0.0048,
+        0.0142
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0002,
+       "ci90": [
+        -0.0002,
+        0.0007
+       ],
+       "ci95": [
+        -0.0003,
+        0.0008
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 32,
+      "norm_ratio": {
+       "mean": 0.0202,
+       "ci90": [
+        0.0194,
+        0.0211
+       ],
+       "ci95": [
+        0.0193,
+        0.0212
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0082,
+       "ci90": [
+        0.0043,
+        0.0123
+       ],
+       "ci95": [
+        0.0036,
+        0.0131
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0007,
+       "ci90": [
+        -0.0014,
+        -0.0001
+       ],
+       "ci95": [
+        -0.0015,
+        0.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     }
+    ],
+    "ans_frz_attn": [
+     {
+      "loop": 1,
+      "norm_ratio": {
+       "mean": 1.0,
+       "ci90": [
+        1.0,
+        1.0
+       ],
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 1.0,
+       "ci90": [
+        1.0,
+        1.0
+       ],
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0873,
+       "ci90": [
+        0.0715,
+        0.102
+       ],
+       "ci95": [
+        0.0681,
+        0.1044
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 2,
+      "norm_ratio": {
+       "mean": 0.3243,
+       "ci90": [
+        0.3057,
+        0.3456
+       ],
+       "ci95": [
+        0.3023,
+        0.3497
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.5789,
+       "ci90": [
+        0.541,
+        0.6154
+       ],
+       "ci95": [
+        0.5333,
+        0.6219
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0396,
+       "ci90": [
+        0.0319,
+        0.0469
+       ],
+       "ci95": [
+        0.0303,
+        0.0482
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 4,
+      "norm_ratio": {
+       "mean": 0.1169,
+       "ci90": [
+        0.1048,
+        0.1296
+       ],
+       "ci95": [
+        0.1027,
+        0.1319
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.2634,
+       "ci90": [
+        0.2315,
+        0.2932
+       ],
+       "ci95": [
+        0.225,
+        0.2987
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0043,
+       "ci90": [
+        0.0025,
+        0.0062
+       ],
+       "ci95": [
+        0.0021,
+        0.0065
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 8,
+      "norm_ratio": {
+       "mean": 0.0469,
+       "ci90": [
+        0.0418,
+        0.0522
+       ],
+       "ci95": [
+        0.0409,
+        0.0533
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.044,
+       "ci90": [
+        0.0294,
+        0.0611
+       ],
+       "ci95": [
+        0.0269,
+        0.0655
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0006,
+       "ci90": [
+        -0.0011,
+        0.0
+       ],
+       "ci95": [
+        -0.0012,
+        0.0001
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 16,
+      "norm_ratio": {
+       "mean": 0.028,
+       "ci90": [
+        0.0268,
+        0.0292
+       ],
+       "ci95": [
+        0.0266,
+        0.0295
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0177,
+       "ci90": [
+        0.0093,
+        0.0267
+       ],
+       "ci95": [
+        0.0077,
+        0.0288
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0001,
+       "ci90": [
+        -0.0005,
+        0.0004
+       ],
+       "ci95": [
+        -0.0006,
+        0.0004
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 24,
+      "norm_ratio": {
+       "mean": 0.0267,
+       "ci90": [
+        0.0256,
+        0.028
+       ],
+       "ci95": [
+        0.0254,
+        0.0282
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0113,
+       "ci90": [
+        0.0031,
+        0.0191
+       ],
+       "ci95": [
+        0.0013,
+        0.0206
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0002,
+       "ci90": [
+        -0.0008,
+        0.0004
+       ],
+       "ci95": [
+        -0.0009,
+        0.0005
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 31,
+      "norm_ratio": {
+       "mean": 0.0268,
+       "ci90": [
+        0.0257,
+        0.028
+       ],
+       "ci95": [
+        0.0255,
+        0.0283
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0103,
+       "ci90": [
+        0.004,
+        0.0162
+       ],
+       "ci95": [
+        0.0027,
+        0.0174
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": 0.0001,
+       "ci90": [
+        -0.0004,
+        0.0007
+       ],
+       "ci95": [
+        -0.0005,
+        0.0007
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     },
+     {
+      "loop": 32,
+      "norm_ratio": {
+       "mean": 0.0267,
+       "ci90": [
+        0.0256,
+        0.0278
+       ],
+       "ci95": [
+        0.0254,
+        0.0281
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "cos": {
+       "mean": 0.0152,
+       "ci90": [
+        0.0101,
+        0.02
+       ],
+       "ci95": [
+        0.009,
+        0.0209
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      },
+      "e": {
+       "mean": -0.0008,
+       "ci90": [
+        -0.0014,
+        -0.0001
+       ],
+       "ci95": [
+        -0.0015,
+        -0.0
+       ],
+       "n_items": 66,
+       "n_defined": 66,
+       "n_clusters": 29
+      }
+     }
+    ]
+   },
+   "verdict": "R1 supported",
+   "bounds_used": "dyadic 90%"
+  }
+ },
+ "selection": {
+  "D1": {
+   "candidates": 314,
+   "pos0_dropped": 79,
+   "cands_sha256": "a684a1df4c8472ba883a549c4bbfe73e13b69d3e27f0e78e07235d57f5c72120",
+   "cands_file": "cands_huginn_D1.json",
+   "A_fail": 128,
+   "B_fail": 41,
+   "skipped_by_cap": 0,
+   "scanned": 235,
+   "kept": 66,
+   "rule": "every clean-passing candidate in file order",
+   "scan_forwards": 342,
+   "scan_seconds": 52.7
+  }
+ },
+ "checks": {
+  "model": "huginn_0125",
+  "zero_edit_bit_identical": true,
+  "freeze_no_edit_bit_identical": true,
+  "source_attn_frozen_e_zero_bit_exact": true,
+  "source_edit_reaches_r_all": true,
+  "pc_exact_all": true,
+  "sz_exact_all": true,
+  "ans_loop1_state_is_donor_all": true,
+  "readout_identity_all": true,
+  "freeze_rows_loopK_readout_equals_final_n": {
+   "ans_frz_mlp": 0,
+   "ans_frz_attn": 0
+  },
+  "n_items_all": 66,
+  "n_items_facts": 66,
+  "n_clusters_facts": 29,
+  "n_items_addition": null,
+  "n_clusters_addition": null,
+  "verdict_facts": "R1 supported",
+  "verdict_addition": null,
+  "e_attn_facts_lower_bound_ge_0.5": false,
+  "e_attn_facts_upper_bound_le_0.15": true,
+  "e_mlp_facts_upper_bound_le_0.15": true,
+  "gpu_minutes": 13.6,
+  "outputs_hashed": true,
+  "plan_sha256": "ee8c583f5a9652485f2508f5ac15b14266387b168d63726864f9849aba5e936e"
+ }
+}

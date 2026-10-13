@@ -1,0 +1,88 @@
+{
+ "cases": {
+  "cache_vs_recompute_r03": {
+   "argmax_agree": 16,
+   "n": 16,
+   "pass": true,
+   "recompute_top2_margins_min": 0.125
+  },
+  "complete1_eq_B": {
+   "max_abs_dz": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "pass": true
+  },
+  "completeK_eq_B": {
+   "max_abs_dz": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "pass": true
+  },
+  "completeKm1_eq_B": {
+   "max_abs_dz": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "pass": true
+  },
+  "emb_patch_eq_B": {
+   "max_abs_dz": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "pass": true
+  },
+  "self_donor_eq_A": {
+   "max_abs_dz": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "pass": true
+  },
+  "source1_differs_A": {
+   "max_abs_dz": [
+    0.109375,
+    0.125,
+    0.099609375
+   ],
+   "note": "reported only (a loop-1 span edit may be erased)"
+  },
+  "zero_edit_eq_A": {
+   "max_abs_dz": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "pass": true
+  },
+  "zero_edit_mixed_batch": {
+   "pass": true,
+   "prefill_bitwise": true,
+   "tokens_equal": true
+  }
+ },
+ "env": {
+  "file_sha16": {
+   "raven_modeling_minimal.py": "4f7a86e9b4ce9e73"
+  },
+  "gpu": "NVIDIA PG506-230",
+  "python": "3.11.16",
+  "steer_gen": "k17gen-1",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.56.2"
+ },
+ "items": [
+  989,
+  1095,
+  548
+ ],
+ "pass": true,
+ "seconds": 27.2
+}

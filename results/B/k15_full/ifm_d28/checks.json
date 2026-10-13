@@ -1,0 +1,841 @@
+{
+ "pairs_per_model_dataset": {
+  "ifm_d28": {
+   "D1": 136,
+   "D2": 567,
+   "CF": {
+    "P103": 200,
+    "P364": 84,
+    "P641": 3,
+    "total": 287
+   },
+   "D4": 320,
+   "D5": 4
+  }
+ },
+ "smoke2_repro": {},
+ "S_loop1_effect": {
+  "ifm_d28": {
+   "D1": {
+    "O2|L0@1": [
+     0.9809,
+     0.9686,
+     0.991
+    ],
+    "O2|Lmid@1": [
+     0.9596,
+     0.9498,
+     0.9697
+    ],
+    "O2|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "O4|L0@1": [
+     0.0451,
+     0.027,
+     0.0629
+    ],
+    "O4|Lmid@1": [
+     0.0249,
+     0.0186,
+     0.0309
+    ],
+    "O4|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "D2": {
+    "O2|L0@1": [
+     0.9961,
+     0.9951,
+     0.9973
+    ],
+    "O2|Lmid@1": [
+     0.0233,
+     0.0206,
+     0.0259
+    ],
+    "O2|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "O4|L0@1": [
+     0.0237,
+     0.0187,
+     0.0285
+    ],
+    "O4|Lmid@1": [
+     -0.0002,
+     -0.0011,
+     0.0007
+    ],
+    "O4|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "CF": {
+    "O2|L0@1": [
+     0.9977,
+     0.9935,
+     1.0023
+    ],
+    "O2|Lmid@1": [
+     0.9676,
+     0.9523,
+     0.9834
+    ],
+    "O2|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "O4|L0@1": [
+     0.1566,
+     0.1326,
+     0.1815
+    ],
+    "O4|Lmid@1": [
+     0.0775,
+     0.0667,
+     0.0898
+    ],
+    "O4|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "D4": {
+    "O2|L0@1": [
+     0.9963,
+     0.9949,
+     0.9978
+    ],
+    "O2|Lmid@1": [
+     0.2855,
+     0.2644,
+     0.3059
+    ],
+    "O2|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "O4|L0@1": [
+     0.0024,
+     -0.0008,
+     0.006
+    ],
+    "O4|Lmid@1": [
+     0.0125,
+     0.0098,
+     0.0152
+    ],
+    "O4|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "D5": {
+    "O2|L0@1": [
+     0.9567,
+     0.8929,
+     1.0
+    ],
+    "O2|Lmid@1": [
+     0.1711,
+     0.037,
+     0.3336
+    ],
+    "O2|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "O4|L0@1": [
+     -0.0455,
+     -0.0909,
+     0.0
+    ],
+    "O4|Lmid@1": [
+     -0.0341,
+     -0.0682,
+     0.0
+    ],
+    "O4|Llast@1": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  }
+ },
+ "A_rederived_vs_neverread": {
+  "ifm_d28": {
+   "D1": {
+    "L0@1": {
+     "own": [
+      0.0009,
+      0.0001,
+      0.0018
+     ],
+     "final": [
+      0.0009,
+      0.0001,
+      0.0018
+     ],
+     "class_fractions": {
+      "never_read": 1.0,
+      "rederived": 0.0,
+      "persisted": 0.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "never_read",
+     "flip_own": 0.0,
+     "own_in_final_gap_units": [
+      0.0009,
+      0.0001,
+      0.0018
+     ],
+     "clean_gap_own_logits": [
+      21.5132,
+      20.534,
+      22.5805
+     ]
+    },
+    "Lmid@1": {
+     "own": [
+      0.0326,
+      0.0263,
+      0.0392
+     ],
+     "final": [
+      0.0326,
+      0.0263,
+      0.0392
+     ],
+     "class_fractions": {
+      "never_read": 1.0,
+      "rederived": 0.0,
+      "persisted": 0.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "never_read",
+     "flip_own": 0.0,
+     "own_in_final_gap_units": [
+      0.0326,
+      0.0263,
+      0.0392
+     ],
+     "clean_gap_own_logits": [
+      21.5137,
+      20.5345,
+      22.5809
+     ]
+    },
+    "Llast@1": {
+     "own": [
+      1.6437,
+      1.6251,
+      1.6612
+     ],
+     "final": [
+      1.6437,
+      1.6251,
+      1.6612
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 1.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "persisted",
+     "flip_own": 0.912,
+     "own_in_final_gap_units": [
+      1.6437,
+      1.6251,
+      1.6612
+     ],
+     "clean_gap_own_logits": [
+      21.5141,
+      20.5307,
+      22.5812
+     ]
+    }
+   },
+   "D2": {
+    "L0@1": {
+     "own": [
+      0.0003,
+      -0.0002,
+      0.0008
+     ],
+     "final": [
+      0.0003,
+      -0.0002,
+      0.0008
+     ],
+     "class_fractions": {
+      "never_read": 1.0,
+      "rederived": 0.0,
+      "persisted": 0.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "never_read",
+     "flip_own": 0.0,
+     "own_in_final_gap_units": [
+      0.0003,
+      -0.0002,
+      0.0008
+     ],
+     "clean_gap_own_logits": [
+      14.4236,
+      14.123,
+      14.7254
+     ]
+    },
+    "Lmid@1": {
+     "own": [
+      0.9263,
+      0.912,
+      0.9395
+     ],
+     "final": [
+      0.9263,
+      0.912,
+      0.9395
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 1.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "persisted",
+     "flip_own": 0.813,
+     "own_in_final_gap_units": [
+      0.9263,
+      0.912,
+      0.9395
+     ],
+     "clean_gap_own_logits": [
+      14.4217,
+      14.1227,
+      14.7239
+     ]
+    },
+    "Llast@1": {
+     "own": [
+      1.4955,
+      1.4812,
+      1.51
+     ],
+     "final": [
+      1.4955,
+      1.4812,
+      1.51
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 1.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "persisted",
+     "flip_own": 0.991,
+     "own_in_final_gap_units": [
+      1.4955,
+      1.4812,
+      1.51
+     ],
+     "clean_gap_own_logits": [
+      14.4238,
+      14.1241,
+      14.7252
+     ]
+    }
+   },
+   "CF": {
+    "L0@1": {
+     "own": [
+      0.0003,
+      -0.0011,
+      0.0019
+     ],
+     "final": [
+      0.0003,
+      -0.0011,
+      0.0019
+     ],
+     "class_fractions": {
+      "never_read": 1.0,
+      "rederived": 0.0,
+      "persisted": 0.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "never_read",
+     "flip_own": 0.0,
+     "own_in_final_gap_units": [
+      0.0003,
+      -0.0011,
+      0.0019
+     ],
+     "clean_gap_own_logits": [
+      8.2866,
+      7.8792,
+      8.6823
+     ]
+    },
+    "Lmid@1": {
+     "own": [
+      0.0642,
+      0.0475,
+      0.081
+     ],
+     "final": [
+      0.0642,
+      0.0475,
+      0.081
+     ],
+     "class_fractions": {
+      "never_read": 0.899,
+      "rederived": 0.0,
+      "persisted": 0.101,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "never_read",
+     "flip_own": 0.007,
+     "own_in_final_gap_units": [
+      0.0642,
+      0.0475,
+      0.081
+     ],
+     "clean_gap_own_logits": [
+      8.2852,
+      7.8776,
+      8.6814
+     ]
+    },
+    "Llast@1": {
+     "own": [
+      1.5007,
+      1.457,
+      1.5514
+     ],
+     "final": [
+      1.5007,
+      1.457,
+      1.5514
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 1.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "persisted",
+     "flip_own": 0.746,
+     "own_in_final_gap_units": [
+      1.5007,
+      1.457,
+      1.5514
+     ],
+     "clean_gap_own_logits": [
+      8.2822,
+      7.8752,
+      8.6782
+     ]
+    }
+   },
+   "D4": {
+    "L0@1": {
+     "own": [
+      -0.0006,
+      -0.0019,
+      0.0005
+     ],
+     "final": [
+      -0.0006,
+      -0.0019,
+      0.0005
+     ],
+     "class_fractions": {
+      "never_read": 1.0,
+      "rederived": 0.0,
+      "persisted": 0.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "never_read",
+     "flip_own": 0.0,
+     "own_in_final_gap_units": [
+      -0.0006,
+      -0.0019,
+      0.0005
+     ],
+     "clean_gap_own_logits": [
+      8.5869,
+      8.364,
+      8.8021
+     ]
+    },
+    "Lmid@1": {
+     "own": [
+      0.9148,
+      0.8952,
+      0.9368
+     ],
+     "final": [
+      0.9148,
+      0.8952,
+      0.9368
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 1.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "persisted",
+     "flip_own": 0.953,
+     "own_in_final_gap_units": [
+      0.9148,
+      0.8952,
+      0.9368
+     ],
+     "clean_gap_own_logits": [
+      8.5865,
+      8.3622,
+      8.8027
+     ]
+    },
+    "Llast@1": {
+     "own": [
+      1.9404,
+      1.9124,
+      1.9673
+     ],
+     "final": [
+      1.9404,
+      1.9124,
+      1.9673
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 1.0,
+      "delayed": 0.0,
+      "unreadable": 0.0
+     },
+     "verdict": "persisted",
+     "flip_own": 0.997,
+     "own_in_final_gap_units": [
+      1.9404,
+      1.9124,
+      1.9673
+     ],
+     "clean_gap_own_logits": [
+      8.5855,
+      8.362,
+      8.8004
+     ]
+    }
+   },
+   "D5": {
+    "L0@1": {
+     "own": [
+      -0.0208,
+      -0.0909,
+      0.0286
+     ],
+     "final": [
+      -0.0156,
+      -0.0682,
+      0.0214
+     ],
+     "class_fractions": {
+      "never_read": 0.75,
+      "rederived": 0.0,
+      "persisted": 0.0,
+      "delayed": 0.0,
+      "unreadable": 0.25
+     },
+     "verdict": "never_read",
+     "flip_own": 0.0,
+     "own_in_final_gap_units": [
+      -0.0156,
+      -0.0682,
+      0.0214
+     ],
+     "clean_gap_own_logits": [
+      2.3438,
+      1.1219,
+      3.625
+     ]
+    },
+    "Lmid@1": {
+     "own": [
+      1.2828,
+      1.0,
+      1.7273
+     ],
+     "final": [
+      1.1764,
+      0.9232,
+      1.5455
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 0.75,
+      "delayed": 0.0,
+      "unreadable": 0.25
+     },
+     "verdict": "persisted",
+     "flip_own": 0.75,
+     "own_in_final_gap_units": [
+      1.1764,
+      0.9232,
+      1.5455
+     ],
+     "clean_gap_own_logits": [
+      2.2812,
+      1.1219,
+      3.4375
+     ]
+    },
+    "Llast@1": {
+     "own": [
+      1.5064,
+      0.913,
+      2.1818
+     ],
+     "final": [
+      1.1298,
+      0.3561,
+      1.8646
+     ],
+     "class_fractions": {
+      "never_read": 0.0,
+      "rederived": 0.0,
+      "persisted": 0.75,
+      "delayed": 0.0,
+      "unreadable": 0.25
+     },
+     "verdict": "persisted",
+     "flip_own": 0.5,
+     "own_in_final_gap_units": [
+      1.1298,
+      0.3561,
+      1.8646
+     ],
+     "clean_gap_own_logits": [
+      2.3125,
+      1.1219,
+      3.5
+     ]
+    }
+   }
+  }
+ },
+ "C_mid_fraction": {
+  "ifm_d28": {
+   "D1": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "D2": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "CF": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "D4": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "D5": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "C_bimodality": {
+  "ifm_d28": {
+   "D1": null,
+   "D2": null,
+   "CF": null,
+   "D4": null,
+   "D5": null
+  }
+ },
+ "B_matched_strength": {
+  "ifm_d28": {}
+ },
+ "B_broken_cells": {
+  "ifm_d28": [
+   "L1|random|0.4"
+  ]
+ },
+ "downloads": [
+  "azhx/counterfact (HF hub dataset, 2 parquet files, 12.4 MB, laptop HF cache)"
+ ],
+ "classifier": "distilbert/distilbert-base-uncased-finetuned-sst-2-english (existing copy, shared-host out/k15_smoke2/clf, no new download)",
+ "gpu_minutes": {
+  "cluster": 13.42,
+  "total": 13.42
+ },
+ "o5_effect_per_model": {
+  "ifm_d28": {
+   "D1": 1.0,
+   "D2": 1.0,
+   "CF": 1.0,
+   "D4": 1.0,
+   "D5": 1.0
+  }
+ },
+ "o4_max_flip_rate": {
+  "ifm_d28": {
+   "D1": 0.0,
+   "D2": 0.026,
+   "CF": 0.059,
+   "D4": 0.003,
+   "D5": 0.0
+  }
+ },
+ "structural_zero_max_abs_effect": {
+  "ifm_d28": {
+   "D1": 0.0,
+   "D2": 0.0,
+   "CF": 0.0,
+   "D4": 0.0,
+   "D5": 0.0
+  }
+ },
+ "reruns": {
+  "ifm_d28": {
+   "D1": "822/5032",
+   "D2": "1289/20979",
+   "CF": "3946/10619",
+   "D4": "1691/11840",
+   "D5": "113/148"
+  }
+ },
+ "batch_gap_max": {
+  "ifm_d28": {
+   "D1": 0.281,
+   "D2": 0.406,
+   "CF": 0.258,
+   "D4": 0.438,
+   "D5": 0.211
+  }
+ },
+ "para_modes": {
+  "ifm_d28": {
+   "D1": {
+    "aligned": 242,
+    "last_token": 30
+   },
+   "D2": {
+    "aligned": 1134
+   },
+   "CF": {
+    "aligned": 572,
+    "last_token": 2
+   },
+   "D4": {
+    "aligned": 640
+   },
+   "D5": {
+    "aligned": 8
+   }
+  }
+ },
+ "truncated": {
+  "ifm_d28": {
+   "D1": false,
+   "D2": false,
+   "CF": false,
+   "D4": false,
+   "D5": false
+  }
+ },
+ "partial": {
+  "ifm_d28": false
+ },
+ "para_fallback_last_token": {
+  "ifm_d28": {
+   "D1": "30/272",
+   "D2": "0/1134",
+   "CF": "2/574",
+   "D4": "0/640",
+   "D5": "0/8"
+  }
+ },
+ "record_pass": {
+  "ifm_d28": {
+   "D2": {
+    "op1": [
+     496,
+     505
+    ],
+    "all": [
+     995,
+     1010
+    ],
+    "op2": [
+     499,
+     505
+    ]
+   },
+   "CF": {
+    "P17": [
+     3,
+     34
+    ],
+    "all": [
+     343,
+     966
+    ],
+    "P103": [
+     187,
+     246
+    ],
+    "P364": [
+     142,
+     642
+    ],
+    "P641": [
+     11,
+     44
+    ]
+   }
+  }
+ }
+}

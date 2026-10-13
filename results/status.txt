@@ -1,0 +1,70 @@
+job list: /home/mzaoad/loopedcot/cluster/jobs/nolocal/joblist.tsv
+group          jobs   done  running  pending  failed   slurm_R  slurm_PD
+g0_xllm           1      1        0        0       0         0         0
+g1_copy          49     49        0        0       0         0         0
+g6_ifm           51     51        0        0       0         0         0
+g2_gen          188    188        0        0       0         0         0
+g3_map           85     85        0        0       0         0         0
+g4_cd             4      4        0        0       0         0         0
+g7_ra23         175    175        0        0       0         0         0
+g5_huginn        88     88        0        0       0         0         0
+g9_merge          1      1        0        0       0         0         0
+total           642    642        0        0       0
+
+failed task ids (0):
+
+chain markers (/home/mzaoad/loopedcot/out/_chain):
+  jobs.txt
+  pack
+  packed.tsv
+  plan_tonight.tsv
+  plan_tonight.tsv.EXT5.ids
+  plan_tonight.tsv.EXT6b.ids
+  plan_tonight.tsv.EXT6c.ids
+  plan_tonight.tsv.summary
+  probe_collect.ok
+  setup_check.ok
+  smoke.ok
+  stage_submit.ok
+  submitted.tsv
+  submitted.tsv.packed
+  _smoke.ok
+
+bad nodes (/home/mzaoad/loopedcot/out/bad_nodes.txt, excluded from every later submission): 
+HELD family ouro: smoke failed: cross-host tolerance failed (|new - ref| > 0.001; /home/mzaoad/loopedcot/out/_smoke_tolerance_diff.tsv); 65 jobs held (release after the fix: bash cluster/jobs/release_family.sh ouro)
+preflight: ok ['ouro'] held []
+run nodes (/home/mzaoad/loopedcot/out/run_nodes.txt, chosen by the probe step): tukeygpn02,tukeygpn04,tukeygpn05,tukeygpn06,tukeygpn07
+  probe tukeygpn02: RC=0 
+  probe tukeygpn04: RC=0 
+  probe tukeygpn05: RC=0 
+  probe tukeygpn06: RC=0 
+  probe tukeygpn07: RC=0 
+
+cluster rerun against the local reference (/home/mzaoad/loopedcot/out/merged/local_vs_cluster.csv):
+  out,dataset,status,rows_matched,max_abs_diff,max_abs_diff_field,n_items_equal,n_clusters_equal
+  A/steer_gen/a1_gsm8k,gsm8k,compared,66,0.0321,ci95_hi,False,False
+  A/steer_gen/a1_svamp,svamp,compared,66,0.0287,ci95_hi,False,False
+  A/steer_gen/a2_gsm8k,gsm8k,compared,66,0.0234,ci95_lo,False,False
+  A/steer_gen_math/a1_asdiv,asdiv,compared,66,0.0157,ci95_lo,False,False
+  B/k15_full/ifm_p1_ouro,addition,compared,136,0.0613,ci95_hi,False,False
+  B/k15_full/ifm_p1_ouro,counterfact,compared,136,0.1594,ci95_lo,False,False
+  B/k15_full/ifm_p1_ouro,facts,compared,136,0.0384,ci90_lo,False,False
+  B/k17_public/ouro_think_D1,facts,compared,66,0.0025,ci95_hi,True,True
+  B/k17_public/ouro_think_D2,addition,compared,66,0.0288,ci95_lo,True,True
+  B/k17_public/ouro_think_D4,code,compared,66,0.0083,estimate,False,False
+  B/k17_public/ouro_think_LRE,facts,compared,66,0.0044,ci95_lo,True,True
+  B/k17_varbench/ouro,gsm8k_copy,compared,52,0.0013,ci95_hi,False,True
+  B/k17_varbench/ouro,gsm8k_derived,compared,48,0.0032,ci95_lo,True,True
+  B/k17_varbench/ouro26,gsm8k_copy,compared,52,0.001,ci90_lo,False,True
+  B/k17_varbench/ouro26,gsm8k_derived,compared,48,0.0023,ci90_hi,True,True
+  B/k17_varbench/ouro26_think,gsm8k_copy,compared,52,0.0021,ci90_hi,True,True
+  B/k17_varbench/ouro26_think,gsm8k_derived,compared,48,0.0025,ci90_lo,True,True
+  B/k17_varbench/ouro_think,gsm8k_copy,compared,52,0.0016,ci95_hi,False,False
+  B/k17_varbench/ouro_think,gsm8k_derived,compared,48,0.0034,ci90_lo,True,True
+  C/k17_freeze/ouro26_think_D1,facts,compared,22,0.0067,ci95_hi,True,True
+  C/k17_freeze/ouro26_think_D2,addition,compared,19,0.0086,ci90_lo,True,True
+  C/k17_freeze/ouro_think_D1,facts,compared,22,0.004,ci90_hi,True,True
+  C/k17_freeze/ouro_think_D2,addition,compared,19,0.0089,ci95_lo,True,True
+  C/k17_freeze/ouro_think_D4,code,compared,57,0.0076,estimate,False,False
+
+diagnosis files: 0

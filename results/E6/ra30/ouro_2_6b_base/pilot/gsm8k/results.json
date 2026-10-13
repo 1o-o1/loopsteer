@@ -1,0 +1,989 @@
+{
+ "arms": {
+  "base": {
+   "A": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.0,
+    0.0,
+    0.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "carry_B": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 102.8,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "clean": {
+   "A": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.0,
+    0.0,
+    0.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    0.95,
+    0.85,
+    1.0,
+    20
+   ],
+   "carry_B": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 100.2,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "cv1": {
+   "A": [
+    0.15,
+    0.05,
+    0.3,
+    20
+   ],
+   "CA": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.8889,
+    0.7778,
+    1.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    0.15,
+    0.05,
+    0.3,
+    20
+   ],
+   "carry_B": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 102.2,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "cv2": {
+   "A": [
+    0.4,
+    0.25,
+    0.6,
+    20
+   ],
+   "CA": [
+    0.55,
+    0.35,
+    0.75,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.55,
+    0.35,
+    0.75,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.6111,
+    0.4444,
+    0.7778,
+    18
+   ],
+   "break": [
+    0.05,
+    0.0,
+    0.15,
+    20
+   ],
+   "carry_A": [
+    0.4,
+    0.25,
+    0.6,
+    20
+   ],
+   "carry_B": [
+    0.55,
+    0.35,
+    0.75,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.55,
+    0.35,
+    0.75,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 102.8,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "cv3": {
+   "A": [
+    0.55,
+    0.35,
+    0.75,
+    20
+   ],
+   "CA": [
+    0.4,
+    0.2,
+    0.6,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.4,
+    0.2,
+    0.6,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.4444,
+    0.2778,
+    0.6111,
+    18
+   ],
+   "break": [
+    0.05,
+    0.0,
+    0.15,
+    20
+   ],
+   "carry_A": [
+    0.55,
+    0.35,
+    0.75,
+    20
+   ],
+   "carry_B": [
+    0.4,
+    0.2,
+    0.6,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.4,
+    0.2,
+    0.6,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 100.9,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "cvP": {
+   "A": [
+    0.15,
+    0.05,
+    0.3,
+    20
+   ],
+   "CA": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.8889,
+    0.7778,
+    1.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    0.15,
+    0.05,
+    0.3,
+    20
+   ],
+   "carry_B": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 102.2,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "floor": {
+   "A": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.0,
+    0.0,
+    0.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "carry_B": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 101.9,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "kv1": {
+   "A": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    1.0,
+    1.0,
+    1.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 103.0,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "rnd1": {
+   "A": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.0,
+    0.0,
+    0.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "carry_B": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 104.2,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "rnd3": {
+   "A": [
+    0.95,
+    0.85,
+    1.0,
+    20
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    0.0,
+    0.0,
+    0.0,
+    18
+   ],
+   "break": [
+    0.05,
+    0.0,
+    0.15,
+    20
+   ],
+   "carry_A": [
+    0.95,
+    0.85,
+    1.0,
+    20
+   ],
+   "carry_B": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 102.7,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "span1": {
+   "A": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    1.0,
+    1.0,
+    1.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 105.9,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  },
+  "text": {
+   "A": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "CA": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA_floorA_cleanA": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "CA_no_goldB_coincidence": [
+    1.0,
+    1.0,
+    1.0,
+    18
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_A": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "carry_B": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "carry_B_derivedB_not_in_prompt": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ],
+   "mean_chain": 103.2,
+   "n": 20,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    20
+   ]
+  }
+ },
+ "checks": {
+  "G2b": [
+   {
+    "div": 8,
+    "identical": false,
+    "margin": 0.125,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "div": 13,
+    "identical": false,
+    "margin": 0.125,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "div": 8,
+    "identical": false,
+    "margin": 0.125,
+    "pass": true
+   }
+  ],
+  "drops": {
+   "ambiguous_operand": 1,
+   "chain_arithmetic_error": 2,
+   "eligible": 20,
+   "inconsistent": 2,
+   "no_changed_step": 10,
+   "no_equation": 1,
+   "token_count": 7
+  },
+  "eligible_rate": 0.4651,
+  "gate_80": true,
+  "horizon_cap_rule": {
+   "rows_marker_after_cap": 0,
+   "rows_with_answer": 240,
+   "rule": "cap = min(512 - prefix, 2 x clean continuation after the prefix + 64) if under 1% of parsed rows pass it",
+   "share": 0.0,
+   "use_cap_in_full": true
+  },
+  "n_lead_same_hist": {
+   "0": 15,
+   "1": 5
+  },
+  "n_pool": 425,
+  "norm_ratio_prerounding": [
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   },
+   {
+    "rnd1": 1.0,
+    "rnd3": 1.0
+   }
+  ],
+  "projected_eligible": 198,
+  "projected_full_card_hours": 5.25,
+  "r1_rule_kept_info": 17,
+  "sec_clean_mean": 23.39,
+  "sec_per_arm_item": 1.891,
+  "sec_per_item_mean": 45.39,
+  "split_n": 0
+ },
+ "n_items": 20,
+ "neuron": {},
+ "predictions": {
+  "P3_ratio_cv1_text": [
+   0.85,
+   0.7,
+   0.95,
+   20
+  ],
+  "P3_ratio_kv1_text": [
+   1.0,
+   1.0,
+   1.0,
+   20
+  ],
+  "P4_cv1_minus_cv2": [
+   0.3,
+   0.15,
+   0.45,
+   20
+  ],
+  "P4_cv2_minus_cv3": [
+   0.15,
+   0.05,
+   0.3,
+   20
+  ],
+  "P5_base_CA": [
+   0.0,
+   0.0,
+   0.0,
+   20
+  ],
+  "identity_cvP_cv1_token_share": 0.95,
+  "side_by_side_CA": {
+   "cv1": [
+    0.85,
+    0.7,
+    0.95,
+    20
+   ],
+   "kv1": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ],
+   "text": [
+    1.0,
+    1.0,
+    1.0,
+    20
+   ]
+  }
+ }
+}

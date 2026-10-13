@@ -1,0 +1,20 @@
+{
+ "code_sha256": {
+  "lib/arms.py": "02831127fc1095594287e4aaa8c69321597df8d8d480185c198002356c5158ce",
+  "lib/chain.py": "b703010f5b02423f3c36703033a65b52537deff9ef09a9c20e4212a09fa03706",
+  "lib/ra28_score.py": "91c3d27d22c3050c9e8d9f38f969768e129772838c565dbb235d36f739f47035",
+  "lib/ra30_data.py": "a2c8b1138c0b0c5333438167d5d58d8760190fd16a70465f20dffb659ecfbe41",
+  "ra30.py": "33362720f9ee39c0023d8509c5725672b8becd30f5c2a8a5f13b72b119265bc4",
+  "tree/prod/models/ouro.py": "c0e5746547c97147023b5b35185fde9e7ce6a648575aa96f4d7cb4ac3e7bd87a",
+  "tree/prod/steer_gen.py": "23430adcb206889dd3c18d87eb30eb1ec032420d2cda34e5966e92fe8dc65596",
+  "tree/prod/tasks/__init__.py": "1378881344b25e24e2727c2d3cf3be9e8c79bcda5e5e7672a0557acb8b1eea18"
+ },
+ "config_sha256": "0af24fc6275f55a948db7af453f6d95504bc9ce29e1e2e0b4ecbd48cdb374d7b",
+ "data_sha256": {
+  "pool_asdiv_ouro_2_6b_base.json": "8de3b754c90cc80dc0ad98907039df532e874e3baf4616a9f510807c3ea66634",
+  "pool_gsm8k_ouro_2_6b_base.json": "f472d5b0a13d332cebef36a74fd8f107c03250a76a68453706bacb78cae112b1",
+  "split_asdiv_ouro_2_6b_base.json": "18ae1c192a1ebc4c3796b7090e916595576b39e11814f6e7e036e6db8bc4d6f0",
+  "split_gsm8k_ouro_2_6b_base.json": "fbe4d7a4b1cdf3d81e41c55daed3527cd473cb8595f5d2f59143aff2e1ecf534"
+ },
+ "plan_sha256": "3cf3fc9844e33d7f55af5812e44615b7b6df962cb5434ddc9a022a7480f104b4"
+}

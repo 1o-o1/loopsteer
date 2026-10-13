@@ -1,0 +1,113 @@
+{
+ "G2b": [
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  },
+  {
+   "identical": true,
+   "pass": true
+  }
+ ],
+ "breadth_cell": "McLeish r32: the 80-item gate is waived (RA D1); n is printed with every interval",
+ "drops": {
+  "ambiguous_value": 1,
+  "chain_arithmetic_error": 7,
+  "eligible": 75,
+  "expr_parse": 1,
+  "inconsistent": 10,
+  "last_result_not_answer": 1,
+  "no_changed_step": 49,
+  "no_equation": 21,
+  "no_intermediate": 5,
+  "one_step": 29,
+  "token_count": 36,
+  "value_is_operand": 2
+ },
+ "eligible_rate": 0.3165,
+ "gate_80": "waived (RA D1: the full run needs n >= 20 projected eligible)",
+ "gate_n20": true,
+ "horizon_cap_rule": {
+  "rows_marker_after_cap": 0,
+  "rows_with_answer": 822,
+  "share": 0.0,
+  "use_cap_in_full": true
+ },
+ "n_pool": 237,
+ "norm_ratio_prerounding": [
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  },
+  {
+   "rnd1": 1.0
+  }
+ ],
+ "projected_eligible": 75,
+ "projected_full_card_hours": 1.6,
+ "r1_rule_kept_info": 59,
+ "sec_clean_mean": 14.86,
+ "sec_per_arm_item": 2.691,
+ "sec_per_item_mean": 29.61,
+ "shards_merged": [
+  "shard_0_of_3",
+  "shard_1_of_3",
+  "shard_2_of_3"
+ ],
+ "shards_rule": {
+  "projected_full_card_hours": 1.6,
+  "rule": "3 if <= 16.2 card-hours, else ceil(projected / 5.4)",
+  "shards": 3
+ }
+}

@@ -1,0 +1,621 @@
+{
+ "arms": {
+  "base": {
+   "A": [
+    0.9733,
+    0.9467,
+    1.0,
+    75
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "break": [
+    0.0267,
+    0.0,
+    0.0533,
+    75
+   ],
+   "carry_B": [
+    0.0533,
+    0.0133,
+    0.0933,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 78.4,
+   "n": 75,
+   "no_parse": [
+    0.0133,
+    0.0,
+    0.04,
+    75
+   ]
+  },
+  "clean": {
+   "A": [
+    0.9733,
+    0.9467,
+    1.0,
+    75
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "break": [
+    0.0267,
+    0.0,
+    0.0533,
+    75
+   ],
+   "carry_B": [
+    0.04,
+    0.0133,
+    0.08,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 78.6,
+   "n": 75,
+   "no_parse": [
+    0.0133,
+    0.0,
+    0.04,
+    75
+   ]
+  },
+  "cv1": {
+   "A": [
+    1.0,
+    1.0,
+    1.0,
+    75
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "carry_B": [
+    0.04,
+    0.0133,
+    0.08,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.3,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  },
+  "cvP": {
+   "A": [
+    0.0667,
+    0.0267,
+    0.12,
+    75
+   ],
+   "CA": [
+    0.8933,
+    0.84,
+    0.9467,
+    75
+   ],
+   "break": [
+    0.04,
+    0.0133,
+    0.08,
+    75
+   ],
+   "carry_B": [
+    0.9333,
+    0.88,
+    0.9733,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.5,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  },
+  "eP": {
+   "A": [
+    0.0267,
+    0.0,
+    0.0667,
+    75
+   ],
+   "CA": [
+    0.9333,
+    0.88,
+    0.9733,
+    75
+   ],
+   "break": [
+    0.04,
+    0.0133,
+    0.08,
+    75
+   ],
+   "carry_B": [
+    0.9733,
+    0.9333,
+    1.0,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.5,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  },
+  "floor": {
+   "A": [
+    1.0,
+    1.0,
+    1.0,
+    75
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "carry_B": [
+    0.04,
+    0.0133,
+    0.08,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.1,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  },
+  "kv1": {
+   "A": [
+    1.0,
+    1.0,
+    1.0,
+    75
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "break": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "carry_B": [
+    0.04,
+    0.0133,
+    0.08,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.3,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  },
+  "kvP": {
+   "A": [
+    0.9333,
+    0.88,
+    0.9733,
+    75
+   ],
+   "CA": [
+    0.0133,
+    0.0,
+    0.04,
+    75
+   ],
+   "break": [
+    0.0533,
+    0.0133,
+    0.0933,
+    75
+   ],
+   "carry_B": [
+    0.0533,
+    0.0133,
+    0.0933,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 77.5,
+   "n": 75,
+   "no_parse": [
+    0.0133,
+    0.0,
+    0.04,
+    75
+   ]
+  },
+  "rnd1": {
+   "A": [
+    0.9867,
+    0.96,
+    1.0,
+    75
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "break": [
+    0.0133,
+    0.0,
+    0.04,
+    75
+   ],
+   "carry_B": [
+    0.04,
+    0.0133,
+    0.08,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.7,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  },
+  "span1": {
+   "A": [
+    0.9867,
+    0.96,
+    1.0,
+    75
+   ],
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "break": [
+    0.0133,
+    0.0,
+    0.04,
+    75
+   ],
+   "carry_B": [
+    0.0533,
+    0.0133,
+    0.0933,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.4,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  },
+  "text": {
+   "A": [
+    0.0267,
+    0.0,
+    0.0667,
+    75
+   ],
+   "CA": [
+    0.9467,
+    0.9067,
+    0.9867,
+    75
+   ],
+   "break": [
+    0.0267,
+    0.0,
+    0.0533,
+    75
+   ],
+   "carry_B": [
+    0.9733,
+    0.9333,
+    1.0,
+    75
+   ],
+   "horizon": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "mean_chain": 76.7,
+   "n": 75,
+   "no_parse": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ]
+  }
+ },
+ "checks": {
+  "G2b": [
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   },
+   {
+    "identical": true,
+    "pass": true
+   }
+  ],
+  "breadth_cell": "McLeish r32: the 80-item gate is waived (RA D1); n is printed with every interval",
+  "drops": {
+   "ambiguous_value": 1,
+   "chain_arithmetic_error": 7,
+   "eligible": 75,
+   "expr_parse": 1,
+   "inconsistent": 10,
+   "last_result_not_answer": 1,
+   "no_changed_step": 49,
+   "no_equation": 21,
+   "no_intermediate": 5,
+   "one_step": 29,
+   "token_count": 36,
+   "value_is_operand": 2
+  },
+  "eligible_rate": 0.3165,
+  "gate_80": "waived (RA D1: the full run needs n >= 20 projected eligible)",
+  "gate_n20": true,
+  "horizon_cap_rule": {
+   "rows_marker_after_cap": 0,
+   "rows_with_answer": 822,
+   "share": 0.0,
+   "use_cap_in_full": true
+  },
+  "n_pool": 237,
+  "norm_ratio_prerounding": [
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   },
+   {
+    "rnd1": 1.0
+   }
+  ],
+  "projected_eligible": 75,
+  "projected_full_card_hours": 1.6,
+  "r1_rule_kept_info": 59,
+  "sec_clean_mean": 14.86,
+  "sec_per_arm_item": 2.691,
+  "sec_per_item_mean": 29.61,
+  "shards_merged": [
+   "shard_0_of_3",
+   "shard_1_of_3",
+   "shard_2_of_3"
+  ],
+  "shards_rule": {
+   "projected_full_card_hours": 1.6,
+   "rule": "3 if <= 16.2 card-hours, else ceil(projected / 5.4)",
+   "shards": 3
+  }
+ },
+ "n_items": 75,
+ "predictions": {
+  "base_CA": [
+   0.0,
+   0.0,
+   0.0,
+   75
+  ],
+  "cv1_about0": {
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "holds": true
+  },
+  "cvP_most": {
+   "holds": true,
+   "ratio": [
+    0.9437,
+    0.8767,
+    1.0,
+    75
+   ]
+  },
+  "cvP_over_eP": [
+   0.9571,
+   0.9028,
+   1.0,
+   75
+  ],
+  "eP_over_text": [
+   0.9859,
+   0.9444,
+   1.0282,
+   75
+  ],
+  "kv1_about0": {
+   "CA": [
+    0.0,
+    0.0,
+    0.0,
+    75
+   ],
+   "holds": true
+  },
+  "kvP_over_text": [
+   0.0141,
+   0.0,
+   0.0423,
+   75
+  ],
+  "thresholds": {
+   "about0": {
+    "hi90": 0.1,
+    "point": 0.05
+   },
+   "most": {
+    "lo90": 0.5,
+    "ratio": 0.67
+   }
+  }
+ }
+}

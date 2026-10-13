@@ -1,0 +1,4 @@
+grid,card,script,model,dataset,arm,site,loop,strength,metric,endpoint,item_set,n_items,n_clusters,estimate,neither_rate,ci90_lo,ci90_hi,ci90_method,ci95_lo,ci95_hi,random_control_estimate,positive_control_value,source_key
+A,generation placement,steer_gen_raven.py,huginn_0125,mawps,r15:random_s0,post|span,1-32,norm-matched,gold_B,parsed_answer,own,87,87,0.0,0.1724,0.0,0.0,recomputed,0.0,0.0,,1.0,"analysis.json:[""rows"", ""r15"", ""gold_B""]"
+A,generation placement,steer_gen_raven.py,huginn_0125,mawps,r15:random_s0,post|span,1-32,norm-matched,gold_A,parsed_answer,own,87,87,0.8276,0.1724,0.7586,0.8856,recomputed,0.7471,0.8966,,,"analysis.json:[""rows"", ""r15"", ""gold_A""]"
+A,generation placement,steer_gen_raven.py,huginn_0125,mawps,r15:random_s0,post|span,1-32,norm-matched,neither,parsed_answer,own,87,87,0.1724,0.1724,0.1144,0.2414,recomputed,0.1034,0.2529,,,"analysis.json:[""rows"", ""r15"", ""neither""]"
